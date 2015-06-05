@@ -1,6 +1,7 @@
-create database projectDB;
+create database webProject;
+use webProject;
 
-create table persons_info(
+create table persons(
 	persons_id int not null auto_increment,
 	person_name char(64) not null,
     person_surname char(64) not null,
@@ -14,14 +15,6 @@ create table persons_info(
     constraint persons_info_pk primary key(persons_id)
 );
 
-create  table skills(
-	skills_id int not null auto_increment,
-    skill_name char(64),
-    searched_number int not null,
-    category_id int not null,
-    constraint person_skills_pk primary key(skills_id),
-    constraint person_skills_fk foreign key (cateogry_id) references skill_category(category_id)
-);
 
 create table skill_category(
 	category_id int not null auto_increment,
@@ -29,6 +22,15 @@ create table skill_category(
     constraint category_id_pk primary key(category_id)
 
 );
+create  table skills(
+	skills_id int not null auto_increment,
+    skill_name char(64),
+    searched_number int not null,
+    category_id int not null,
+    constraint person_skills_pk primary key(skills_id),
+    constraint person_skills_fk foreign key (category_id) references skill_category(category_id)
+);
+
 
 create table vacancy_category(
 	vacancy_category_id int not null auto_increment,
@@ -57,8 +59,8 @@ create table person_skills(
     category_id int not null,
     skill_level_id int not null,
     constraint person_skills_fk1 foreign key (skills_id) references skills(skills_id),
-    constraint person_skills_fk2 foreign key (persons_id) references persons_info(persons_id),
-	constraint person_skills_fk3 foreign key (category_id) references category(category_id),
+    constraint person_skills_fk2 foreign key (persons_id) references persons(persons_id),
+	constraint person_skills_fk3 foreign key (category_id) references skill_category(category_id),
     constraint person_skills_fk4 foreign key (skill_level_id) references skill_level(skill_level_id)
 );
 
@@ -69,7 +71,7 @@ create table person_photoes(
     person_photo mediumblob not null,
     persons_id int not null,
     constraint person_photoes_pk primary key(person_photo_id),
-    constraint person_phptoes_fk foreign key(persons_id) references persons_info (persons_id)
+    constraint person_phptoes_fk foreign key(persons_id) references persons(persons_id)
 
 );
 
@@ -85,7 +87,7 @@ create table person_CV(
     person_CV mediumblob not null,
     persons_id int not null,
     constraint person_CV_pk primary key(person_CV_id),
-    constraint person_CV_fk foreign key(persons_id) references persons_info(persons_id)
+    constraint person_CV_fk foreign key(persons_id) references persons(persons_id)
 
 );
 create table faculty(
@@ -101,7 +103,7 @@ create table company_info(
     company_info TEXT,
     company_password char(64) not null,
     company_rating double not null,
-    constraint company_info primary key(comapny_id)
+    constraint company_info primary key(company_id)
 );
 create table company_photo(
 	company_photo_id int not null auto_increment,
