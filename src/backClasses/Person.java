@@ -1,5 +1,9 @@
 package backClasses;
-
+/** this project contains info about person
+ * 
+ * @author root
+ *
+ */
 public class Person {
 	private String name;
 	private String mail;
