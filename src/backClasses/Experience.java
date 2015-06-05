@@ -10,4 +10,15 @@ import java.util.Date;
 public class Experience {
 	private String position, company;
 	private Date startDate, endDate;
+	private boolean isCurrent;
+	
+	
+	public Experience(String pos, String comp, Date st, Date end, boolean cur) {
+		position = pos;
+		company = comp;
+		startDate = st;
+		endDate = end;
+		isCurrent = cur;
+	}
+	
 }
