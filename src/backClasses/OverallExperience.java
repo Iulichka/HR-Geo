@@ -34,4 +34,8 @@ public class OverallExperience {
 	public void removeExperience(Experience e) {
 		exps.remove(e);
 	}
+	
+	public Iterator<Experience> getIterator() {
+		return exps.iterator();
+	}
 }
