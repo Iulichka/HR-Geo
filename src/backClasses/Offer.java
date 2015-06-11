@@ -2,6 +2,7 @@ package backClasses;
 
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Offer {
 	private String subject, text;
@@ -14,6 +15,10 @@ public class Offer {
 		this.endDate = endDate;
 		this.startDate = startDate;
 		this.comp = comp;
+	}
+	
+	public Offer(Company cmp) {
+		comp = cmp;
 	}
 	
 	public Company getCompany() {
@@ -42,6 +47,22 @@ public class Offer {
 		long hours = milis/(1000*60*60);
 		int res = (int) hours;
 		return res;
+	}
+	
+	public void setSubject(String sbj) {
+		subject = sbj;
+	}
+	
+	public void setText(String tx) {
+		text = tx;
+	}
+	
+	public void setStartDate(int year, int month, int day) {
+		startDate = new GregorianCalendar(year, month, day).getTime();
+	}
+	
+	public void setEndDate(int year, int month, int day) {
+		endDate = new GregorianCalendar(year, month, day).getTime();
 	}
 	
 }

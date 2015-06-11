@@ -14,13 +14,13 @@ public class OverallExperience {
 	 * 
 	 * @return sum of all years of experience
 	 */
-	public int getSumOfYears() {
+	public int getSumOfFullYears() {
 		int res = 0;
 		Iterator<Experience> it = exps.iterator();
 		while(it.hasNext()) {
-			res = res + it.next().getDuration();
+			res = res + it.next().getMonthDuration();
 		}
-		return res;
+		return res/12;
 	}
 	
 	public void addExperience(Experience e) {

@@ -67,4 +67,33 @@ public class Company {
 	public double getRating() {
 		return rating;
 	}
-}
+	
+	public void setName(String n) {
+		name = n;
+	}
+	
+	public void setSite(String st) {
+		site = st;
+	}
+	
+	public void setMail(String m) {
+		mail = m;
+	}
+	
+	public void setTel(String t) {
+		tel = t;
+	}
+	
+	public void setOrgForm(String f) {
+		orgForm = f;
+	}
+	
+	public void setRating(double r) {
+		rating = r;
+	}
+	
+	public void setInfo(String inf) {
+		info = inf;
+	}
+	
+ }

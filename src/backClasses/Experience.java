@@ -37,10 +37,10 @@ public class Experience {
 		return endDate;
 	}
 	
-	@SuppressWarnings("deprecation")
-	public int getDuration() {
-		if (endDate == null) return new Date().getYear()-startDate.getYear();
-		return endDate.getYear() - startDate.getYear();
+	public int getMonthDuration() {
+		Date temp = endDate;
+		if (endDate == null) temp =  new Date();
+		return (int)((temp.getTime() - startDate.getTime())/(1000*60*60*24*30));
 	}
 	
 	public boolean isCurrent() {
