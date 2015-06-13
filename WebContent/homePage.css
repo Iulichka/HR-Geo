@@ -1,1 +1,39 @@
-@CHARSET "UTF-8";
+
+
+.navigationStyle {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border: silver
+	font-weight: bold; color: white; 
+	font-size: 17pt;
+	background: #25dac8;
+	padding: %;
+	text-align: center;
+} 
+
+
+.log {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-weight: bold; color: #0080ff; 
+	font-size: 12pt;
+	text-align: right;
+	padding-bottom: 10pt;
+}
+
+#homeImage {
+	border: thin;
+	height: 90%;
+	width: 100%;
+
+}
+
+#copyRight {
+	font-size: 12pt;
+	text-align: center;
+	bottom: inherit;
+	padding-top: 100pt;
+
+}
+
+a, a:visited{
+     color: black;
+}

@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="homePage.css">
 <head>
 <meta charset="UTF-8">
 <title>Home Page</title>
-<link rel="stylesheet" type="text/css" href="homePage.css">
 </head>
 <body>
-<div id="about">
+<div id="log" class="log">
+<a href="Login">ავტორიზაცია</a>
+<a href="register">რეგისტრაცია</a>
+</div>
 <!--homePage.htm-ს ნაცვლად მერე შესაბამის სერვლეტებს ან HTML-ებს ჩავსვამთ-->
-<a href="homePage.html">ჩვენს შესახებ</a>
+<div id="navigation" class="navigationStyle">
+<a href="homePage.html" id="about" style="padding: 2%;">ჩვენს შესახებ</a>
+<a href="homePage.html" id="emp" style="padding: 2%;">სამუშოს მაძიებლებისთვის</a>
+<a href="homePage.html" id="comp" style="padding: 2%;">დამსაქმებლებითვის</a>
+<a href="homePage.html" id="cont" style="padding: 2%;">კონტაქტი</a>
 </div>
-<div id="emp">
-<a href="homePage.html">სამუშოს მაძიებლებისთვის</a>
+<div>
+<img id= "homeImage" src="http://burnish.co.in/images/career/pilot-web-banner.png">
 </div>
-<div id="comp">
-<a href="homePage.html">დამსაქმებლებითვის</a>
-</div>
-<div id="cont">
-<a href="homePage.html">კონტაქტი</a>
+<div id="copyRight">
+All Rights Reserved © HR-geo Inc.
 </div>
 </body>
 </html>
