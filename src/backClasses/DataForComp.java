@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
-import com.mysql.jdbc.Statement;
-
 
 // root password 12345678
 public class DataForComp {
