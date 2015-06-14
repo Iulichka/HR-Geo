@@ -104,6 +104,7 @@ create table company_info(
     company_info TEXT,
     company_password varchar(64) not null,
     company_rating double not null,
+    voters_number int not null,
     constraint company_info primary key(company_id)
 );
 create table company_photo(
@@ -130,10 +131,10 @@ create table person_university(
 create table working_experience(
 	working_experience_id int not null primary key auto_increment,
 	persons_id int not null,
-    company_name varchar(50),
+    company_name varchar(50) not null,
     position varchar(100) not null,
     job_start_date date not null,
-    job_end_date date not null,
+    job_end_date date,
     constraint working_experience_fk1 foreign key(persons_id) references persons(persons_id)
 );
 
