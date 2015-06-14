@@ -1,4 +1,3 @@
-create database webProject;
 use webProject;
 
 create table persons(
