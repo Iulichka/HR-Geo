@@ -1,5 +1,4 @@
-create database webProject;
-use webProject;
+use webproject;
 
 create table persons(
 	persons_id int not null auto_increment,
@@ -155,7 +154,7 @@ create table persons_offer(
     email_state enum('visible','not_visible'),
     constraint persons_offer_fk1 foreign key(offer_id) references offer(offer_id),
     constraint persons_offer_fk2 foreign key(persons_id) references persons(persons_id),
-    constraint pk primary key (offfer_id, persons_id)
+    constraint pk primary key (offer_id, persons_id)
 
 );
 create table documents(
