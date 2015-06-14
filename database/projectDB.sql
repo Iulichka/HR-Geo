@@ -38,6 +38,8 @@ create table vacancy_category(
     constraint vacancy_category_pk primary key(vacancy_category_id)
 );
 
+
+
 create table persons_vacancy(
 	vacancy_category_id int not null,
     persons_id int not null,
