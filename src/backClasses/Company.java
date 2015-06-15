@@ -3,13 +3,13 @@ package backClasses;
 import java.util.ArrayList;
 
 public class Company {
-	private String name, site, tel, mail, orgForm;
+	private String name, site, tel, mail, orgForm,password;
 	private double rating;
 	private String info;
 	private ArrayList<byte []> images;
 	
 	
-	public Company(String name, String site, String tel, String mail, String orgForm, String info, double rating) {
+	public Company(String name, String site, String tel, String mail, String orgForm, String info, double rating,String password) {
 		this.name = name;
 		this.site = site;
 		this.tel = tel;
@@ -17,6 +17,7 @@ public class Company {
 		this.orgForm = orgForm;
 		this.rating = rating;
 		this.info = info;
+		this.password=password;
 	}
 	
 	public Company(String name) {
@@ -50,6 +51,9 @@ public class Company {
 	public int getImagesNum() {
 		return images.size();
 	}
+	public String getPassword(){
+		return password;
+	}
 	
 	public void addImage(byte [] im) {
 		images.add(im);
@@ -68,32 +72,35 @@ public class Company {
 		return rating;
 	}
 	
-	public void setName(String n) {
-		name = n;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
-	public void setSite(String st) {
-		site = st;
+	public void setSite(String site) {
+		this.site = site;
 	}
 	
-	public void setMail(String m) {
-		mail = m;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 	
-	public void setTel(String t) {
-		tel = t;
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 	
-	public void setOrgForm(String f) {
-		orgForm = f;
+	public void setOrgForm(String orgForm) {
+		this.orgForm = orgForm;
 	}
 	
-	public void setRating(double r) {
-		rating = r;
+	public void setRating(double rating) {
+		this.rating = rating;
 	}
 	
-	public void setInfo(String inf) {
-		info = inf;
+	public void setInfo(String info) {
+		this.info = info;
+	}
+	public void setPassword(String password){
+		this.password=password;
 	}
 	
  }
