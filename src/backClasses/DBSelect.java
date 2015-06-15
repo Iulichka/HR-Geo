@@ -30,4 +30,11 @@ public class DBSelect {
 		}
 		return true;
 	}
+	public void addPerson(Person person) throws SQLException {
+		Connection con=DataBaseInfo.getConnection();
+		Statement stmt =con.createStatement();
+		String query= "INSERT INTO persons VALUES("+person.getName()+ " , "+person.getSurname()+" , "
+				+person.getPassword()+" , "+person.getId()+" , "+person.getDate()+" , "+person.getMail()+" , "+person.getSex()+" არავითარი "+ ");";
+		stmt.executeQuery(query);
+	}
 }

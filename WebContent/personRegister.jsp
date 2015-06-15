@@ -54,8 +54,8 @@
 
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-		<form role="form">
-			<h2>Please Sign Up <small>It's free and always will be.</small></h2>
+		<form role="form" action="PersonRegisterServlet" method="post">
+			<h2>Registration Page <small>person registration.</small></h2>
 			<hr class="colorgraph">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
@@ -75,6 +75,25 @@
 			<div class="form-group">
 				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
 			</div>
+			 <div class="form-group">
+       				 <label for="birthday" class="col-xs-3 col-sm-2 control-label">Birthday</label>
+        				<div class="col-xs-3">
+         				   <input type="text" name="year" class="form-control" placeholder="year"/>
+        				</div>
+       				 <div class="col-xs-3">
+         				   <input type="text" name="month"  class="form-control" placeholder="month"/>
+       				 </div>
+       					 <div class="col-xs-3">
+         				   <input type="text" name="day" class="form-control" placeholder="day"/>
+       					 </div>    
+   					 </div>
+			<label class="radio-inline">
+ 			 	<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>MALE
+			</label>
+			<label class="radio-inline">
+  				<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">FEMALE
+			</label>
+				
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
@@ -87,25 +106,29 @@
 					</div>
 				</div>
 			</div>
+        </form>
+    </div>
+</div>
+
+
 			<div class="row">
-				<div class="col-xs-4 col-sm-3 col-md-3">
-					<span class="button-checkbox">
-						<button type="button" class="btn" data-color="info" tabindex="7">I Agree</button>
-                        <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
-					</span>
-				</div>
 				<div class="col-xs-8 col-sm-9 col-md-9">
 					 By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
 				</div>
 			</div>
-			
+			<form action="PersonRegisterServlet" method="post">
 			<hr class="colorgraph">
 			<div class="row">
 				<div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
 			</div>
+			</form>
 		</form>
 	</div>
 </div>
+
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
