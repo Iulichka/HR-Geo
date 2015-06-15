@@ -32,8 +32,8 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Registration <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Register Company</a></li>
-            <li><a href="#">Register Person</a></li>
+            <li><a href="companyRegister.jsp">Register Company</a></li>
+            <li><a href="personRegister.jsp">Register Person</a></li>
           </ul>
         </li>
         
