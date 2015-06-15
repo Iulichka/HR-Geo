@@ -29,17 +29,16 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Login<span class="sr-only">(current)</span></a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Registration <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Register Company</a></li>
-            <li><a href="#">Register Person</a></li>
+            <li><a href="companyRegister.jsp">Register Company</a></li>
+            <li><a href="personRegister.jsp">Register Person</a></li>
           </ul>
         </li>
+        
       </ul>
-      <form action="LoginServlet" method="post">  
-      <form class="navbar-form navbar-right" role="login">
+      <form class="navbar-form navbar-right" action="LoginServlet" method="post" role="login">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="email" name="email">
           <input type="password" class="form-control" placeholder="password" name="password">
@@ -47,8 +46,7 @@
         </div>
         <button type="submit" class="btn btn-default" value="Login">Login</button>
       </form>   
-          
-      </form>
+         
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 			try {
 				boolean contains =selects.searchPerson(person);
 				if(contains==false){
-					RequestDispatcher rd=request.getRequestDispatcher("FailLogin.jsp");
+					RequestDispatcher rd=request.getRequestDispatcher("homePage.jsp");
 					rd.forward(request,response);
 				}else{
 					RequestDispatcher rd=request.getRequestDispatcher("personPage.jsp");
@@ -68,7 +68,7 @@ public class LoginServlet extends HttpServlet {
 			try {
 				boolean contains=selects.searchCompany(company);
 				if(contains==false){
-					RequestDispatcher rd=request.getRequestDispatcher("FailLogin.jsp");
+					RequestDispatcher rd=request.getRequestDispatcher("homePage.jsp");
 					rd.forward(request,response);
 				}else{
 					RequestDispatcher rd=request.getRequestDispatcher("companyPage.jsp");
