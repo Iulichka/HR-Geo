@@ -46,13 +46,13 @@ public class LoginServlet extends HttpServlet {
 		String email=(String)request.getParameter("email");
 		String password=(String)request.getParameter("password");
 		String checked =(String)request.getParameter("check");
-		Person person=new Person(" ",email," ",0,null,password);
 		DBSelect selects=new DBSelect();
-		if(!checked.equals("Company")){
+		if(checked==null){
+			Person person=new Person(email, password);
 			try {
 				boolean contains =selects.searchPerson(person);
 				if(contains==false){
-					RequestDispatcher rd=request.getRequestDispatcher("signin.jsp");
+					RequestDispatcher rd=request.getRequestDispatcher("FailLogin.jsp");
 					rd.forward(request,response);
 				}else{
 					RequestDispatcher rd=request.getRequestDispatcher("personPage.jsp");
@@ -64,11 +64,11 @@ public class LoginServlet extends HttpServlet {
 			}
 			
 		}else{
-			Company company=new Company(" ", " ", " ", email, " "," ", 0, password);
+			Company company=new Company(email, password);
 			try {
 				boolean contains=selects.searchCompany(company);
 				if(contains==false){
-					RequestDispatcher rd=request.getRequestDispatcher("signin.jsp");
+					RequestDispatcher rd=request.getRequestDispatcher("FailLogin.jsp");
 					rd.forward(request,response);
 				}else{
 					RequestDispatcher rd=request.getRequestDispatcher("companyPage.jsp");
@@ -79,7 +79,6 @@ public class LoginServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
 	}
 
 }

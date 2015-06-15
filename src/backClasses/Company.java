@@ -20,8 +20,9 @@ public class Company {
 		this.password=password;
 	}
 	
-	public Company(String name) {
-		this.name = name;
+	public Company(String mail,String password) {
+		this.mail = mail;
+		this.password=password;
 	}
 	
 	public String getName() {

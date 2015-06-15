@@ -21,9 +21,9 @@
 			<br>
 			<div class=login>
 		<form action="LoginServlet" method="post">
-				<input type="text" placeholder="email" name="email"><br>
-				<input type="password" placeholder="password" name="password"><br>
-				<input type="button" value="Login">
+				<input type="text" placeHolder="email"  name="email"><br>
+				<input type="password" placeHolder="password" name="password"><br>
+				<input type="submit" name="login" value="Login">
 				<label><input type="checkbox" name="check">Company</label>
 		</form>
 		</div>

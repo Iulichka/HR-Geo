@@ -21,6 +21,11 @@ public class Person {
 		this.password=password;
 	}
 	
+	public Person(String mail,String password){
+		this.mail=mail;
+		this.password=password;
+	}
+	
 	public String getName(){
 		return name;		
 	}

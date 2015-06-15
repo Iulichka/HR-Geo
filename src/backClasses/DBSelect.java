@@ -5,23 +5,29 @@ import java.sql.SQLException;
 import java.sql.Statement;
 public class DBSelect {
 	public boolean searchPerson(Person person) throws SQLException{
-		Connection con=DataBaseInfo.getConnection();
+		Connection con =null;
+		con=DataBaseInfo.getConnection();
 		Statement stmt =con.createStatement();
-		String query = "SELECT * FROM persons   "
-				+ "WHERE " + "email = " + person.getMail() + " AND password = "+person.getPassword()
-				+ " ;";
+		String query = "SELECT * FROM persons "
+				+ "WHERE " + "person_email = '" + person.getMail() + "' AND person_password = '"+person.getPassword()
+				+ "' ;";
 		ResultSet rs=stmt.executeQuery(query);
-		if(rs==null) return false;
+		if(!rs.next()){
+			return false;
+		}
 		return true;
+			
 	}
 	public boolean searchCompany(Company company) throws SQLException{
 		Connection con=DataBaseInfo.getConnection();
 		Statement stmt =con.createStatement();
-		String query = "SELECT * FROM company_info   "
-				+ "WHERE " + "email = " + company.getMail() + " AND password = "+company.getPassword()
-				+ " ;";
+		String query = "SELECT * FROM company_info "
+				+ "WHERE " + "company_email = '" + company.getMail() + "' AND company_password = '"+company.getPassword()
+				+ "' ;";
 		ResultSet rs=stmt.executeQuery(query);
-		if(rs==null) return false;
+		if(!rs.next()){
+			return false;
+		}
 		return true;
 	}
 }
