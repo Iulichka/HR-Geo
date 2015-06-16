@@ -10,6 +10,7 @@
 <title>Companies</title>
 </head>
 <body>
+<div>
 <%DataForComp d = new DataForComp();
 ArrayList<Company> comps = d.getCompList();
 for (int i=0; i<comps.size(); i++) {
@@ -18,5 +19,6 @@ for (int i=0; i<comps.size(); i++) {
 	out.print("</li>");
 }
 %>
+</div>
 </body>
 </html>

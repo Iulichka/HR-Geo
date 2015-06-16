@@ -24,6 +24,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="homePage.jsp">Home</a>
+      <a class="navbar-brand" href="Companies.jsp">Companies</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

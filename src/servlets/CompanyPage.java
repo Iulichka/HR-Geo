@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,12 +31,17 @@ public class CompanyPage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");	
+		response.setCharacterEncoding("UTF-8");
+		request.setAttribute("comp", new DataForComp().getComp(request.getParameter("mail")));
+		RequestDispatcher rd=request.getRequestDispatcher("CompanyPage.jsp");
+		rd.forward(request, response);		
+	/*	response.setContentType("text/html");	
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter w = response.getWriter();
 		w.println("<body>");
 		w.println(new DataForComp().getComp(request.getParameter("mail")).getName());	
 		w.println("</body>");
+		*/
 	}
 
 	/**
