@@ -15,21 +15,18 @@ public class Person {
 	private String surname;
 	private String id;
 	private byte[] photo;
-	private String password;
 	public static final String ATTRIBUTE_NAME = "Person";
-	public Person(String name,String mail,String surname,String id,String password,String sex,Date date){
+	public Person(String name,String mail,String surname,String id,String sex,Date date){
 		this.mail=mail;
 		this.name=name;
 		this.surname=surname;
 		this.id=id;
-		this.password=password;
 		this.sex=sex;
 		this.date=date;
 	}
 	
-	public Person(String mail,String password){
+	public Person(String mail){
 		this.mail=mail;
-		this.password=password;
 	}
 	public Date getDate(){
 		return date;
@@ -55,9 +52,7 @@ public class Person {
 	public String getSex(){
 		return sex;
 	}
-	public String getPassword(){
-		return password;
-	}
+
 	public void setName(String name){
 		this.name=name;
 	}
@@ -74,8 +69,6 @@ public class Person {
 	public void setDate(Date date){
 		this.date=date;
 	}
-	public void setPassword(String password){
-		this.password=password;
-	}
+
 	
 }

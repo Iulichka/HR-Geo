@@ -3,25 +3,25 @@ package backClasses;
 import java.util.ArrayList;
 
 public class Company {
-	private String name, site, tel, mail, orgForm,password;
+	private String name, site, tel, mail, orgForm;
 	private double rating;
 	private String info;
 	private ArrayList<byte []> images;
 	@SuppressWarnings("unused")
 	private int votersNum;
 	
-	public Company(String name,String mail, String info, double rating,String password,int votersNum) {
+	public Company(String name, String site, String tel, String mail, String orgForm, String info, double rating) {
 		this.name = name;
+		this.site = site;
+		this.tel = tel;
 		this.mail = mail;
+		this.orgForm = orgForm;
 		this.rating = rating;
 		this.info = info;
-		this.password=password;
-		this.votersNum=votersNum;
 	}
 	
-	public Company(String mail,String password) {
-		this.mail = mail;
-		this.password=password;
+	public Company(String name) {
+		this.name = name;
 	}
 	
 	public String getName() {
@@ -51,9 +51,6 @@ public class Company {
 	public int getImagesNum() {
 		return images.size();
 	}
-	public String getPassword(){
-		return password;
-	}
 	
 	public void addImage(byte [] im) {
 		images.add(im);
@@ -72,35 +69,32 @@ public class Company {
 		return rating;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String n) {
+		name = n;
 	}
 	
-	public void setSite(String site) {
-		this.site = site;
+	public void setSite(String st) {
+		site = st;
 	}
 	
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setMail(String m) {
+		mail = m;
 	}
 	
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setTel(String t) {
+		tel = t;
 	}
 	
-	public void setOrgForm(String orgForm) {
-		this.orgForm = orgForm;
+	public void setOrgForm(String f) {
+		orgForm = f;
 	}
 	
-	public void setRating(double rating) {
-		this.rating = rating;
+	public void setRating(double r) {
+		rating = r;
 	}
 	
-	public void setInfo(String info) {
-		this.info = info;
-	}
-	public void setPassword(String password){
-		this.password=password;
+	public void setInfo(String inf) {
+		info = inf;
 	}
 	
  }
