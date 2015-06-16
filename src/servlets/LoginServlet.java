@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 					RequestDispatcher rd=request.getRequestDispatcher("homePage.jsp");
 					rd.forward(request,response);
 				}else{
-					RequestDispatcher rd=request.getRequestDispatcher("personPage.jsp");
+					RequestDispatcher rd=request.getRequestDispatcher("personProfile.jsp");
 					rd.forward(request, response);
 				}
 			} catch (SQLException e) {
@@ -71,7 +71,7 @@ public class LoginServlet extends HttpServlet {
 					RequestDispatcher rd=request.getRequestDispatcher("homePage.jsp");
 					rd.forward(request,response);
 				}else{
-					RequestDispatcher rd=request.getRequestDispatcher("companyPage.jsp");
+					RequestDispatcher rd=request.getRequestDispatcher("companyProfile.jsp");
 					rd.forward(request, response);
 				}
 			} catch (SQLException e) {

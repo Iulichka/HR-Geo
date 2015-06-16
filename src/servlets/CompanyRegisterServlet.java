@@ -1,9 +1,7 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
-
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import backClasses.Company;
 import backClasses.DBSelect;
-import backClasses.Person;
 
 /**
- * Servlet implementation class PersonRegisterServlet
+ * Servlet implementation class CompanyRegisterServlet
  */
-@WebServlet("/PersonRegisterServlet")
-public class PersonRegisterServlet extends HttpServlet {
+@WebServlet("/CompanyRegisterServlet")
+public class CompanyRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PersonRegisterServlet() {
+    public CompanyRegisterServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,32 +41,23 @@ public class PersonRegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email=(String)request.getParameter("email");
 		String password=(String)request.getParameter("password");
-		String password_confirm=(String)request.getParameter("password_confirmation");
-		String first_name=(String)request.getParameter("first_name");
-		String surname=(String)request.getParameter("last_name");
-		String id=(String)request.getParameter("id_number");
-		String sex=(String)request.getParameter("inlineRadioOptions");
-		int year=Integer.parseInt((String)request.getParameter("year"));
-		int month=Integer.parseInt((String)request.getParameter("month"));
-		int day=Integer.parseInt((String)request.getParameter("day"));
-		@SuppressWarnings("deprecation")
-		Date date=new Date(day,month,year);
-		Person person=new Person(first_name, email, surname, id, password,sex,date);		
+		String name=(String)request.getParameter("company_name");
+		Company company=new Company(name, email," ", 0, password, 0);
 		DBSelect selects= new DBSelect();
 		try {
-			boolean contains=selects.searchPerson(person);			
-			if(contains==true||password==null
-					||password_confirm==null||!password.equals(password_confirm)||surname==null||email==null||first_name==null||surname==null){
-				RequestDispatcher rd=request.getRequestDispatcher("personRegister.jsp");
+			boolean contains=selects.searchCompany(company);	
+			if(contains==true||password==null||email==null){
+				RequestDispatcher rd=request.getRequestDispatcher("companyRegister.jsp");
 				rd.forward(request, response);
 			}else{
-				selects.addPerson(person);
-				RequestDispatcher rd=request.getRequestDispatcher("personProfile.jsp");
+				selects.addCompany(company);
+				RequestDispatcher rd=request.getRequestDispatcher("companyProfile.jsp");
 				rd.forward(request, response);				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 }

@@ -21,8 +21,8 @@ public class DataForComp {
 			st.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			ResultSet resSet = st.executeQuery("select * from company_info");
 			while (resSet.next()) {
-				Company com = new Company(resSet.getString(2), null, null, resSet.getString(3), null, resSet.getString(4), resSet.getDouble(6),resSet.getString(7));
-				res.add(com);
+			//	Company com = new Company(resSet.getString(2), null, null, resSet.getString(3), null, resSet.getString(4), resSet.getDouble(6),resSet.getString(7));
+				//res.add(com);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -39,7 +39,7 @@ public class DataForComp {
 			st.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			ResultSet resSet = st.executeQuery("select * from company_info where company_email = '"+mail+"'");
 			resSet.next();
-			res = new Company(resSet.getString(2), null, null, resSet.getString(3), null, resSet.getString(4), resSet.getDouble(6), null);
+			//res = new Company(resSet.getString(2), null, null, resSet.getString(3), null, resSet.getString(4), resSet.getDouble(6), null);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

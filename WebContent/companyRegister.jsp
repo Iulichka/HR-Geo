@@ -50,19 +50,15 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<div class="container">
-
-<div class="row">
-    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-		<form role="form">
-			<h2>Please Sign Up <small>It's free and always will be.</small></h2>
+<form action="CompanyRegisterServlet" method="post">
+	<div class="container">
+		<div class="row">
+   			 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+			<h2>Registration Page <small>company register.</small></h2>
 			<hr class="colorgraph">	
 					<div class="form-group">
                         <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Company Name" tabindex="1">
 					</div>			
-			<div class="form-group">
-				<input type="text" name="id_number" id="id_number" class="form-control input-lg" placeholder="ID Number" tabindex="3">
-			</div>
 			<div class="form-group">
 				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
 			</div>
@@ -94,9 +90,9 @@
 			<div class="row">
 				<div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
 			</div>
-		</form>
 	</div>
 </div>
+</form>
 <!-- Modal -->
 <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">

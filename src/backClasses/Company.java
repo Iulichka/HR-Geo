@@ -7,17 +7,16 @@ public class Company {
 	private double rating;
 	private String info;
 	private ArrayList<byte []> images;
+	@SuppressWarnings("unused")
+	private int votersNum;
 	
-	
-	public Company(String name, String site, String tel, String mail, String orgForm, String info, double rating,String password) {
+	public Company(String name,String mail, String info, double rating,String password,int votersNum) {
 		this.name = name;
-		this.site = site;
-		this.tel = tel;
 		this.mail = mail;
-		this.orgForm = orgForm;
 		this.rating = rating;
 		this.info = info;
 		this.password=password;
+		this.votersNum=votersNum;
 	}
 	
 	public Company(String mail,String password) {
