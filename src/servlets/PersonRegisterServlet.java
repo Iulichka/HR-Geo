@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import backClasses.DBSelect;
-import backClasses.Person;
+
 
 /**
  * Servlet implementation class PersonRegisterServlet
@@ -52,17 +52,16 @@ public class PersonRegisterServlet extends HttpServlet {
 		int month=Integer.parseInt((String)request.getParameter("month"));
 		int day=Integer.parseInt((String)request.getParameter("day"));
 		@SuppressWarnings("deprecation")
-		Date date=new Date(day,month,year);
-		Person person=new Person(first_name, email, surname, id, password,sex,date);		
+		Date date=new Date(day,month,year);		
 		DBSelect selects= new DBSelect();
 		try {
-			boolean contains=selects.searchPerson(person);			
+			boolean contains=selects.searchPerson(email,password);			
 			if(contains==true||password==null
 					||password_confirm==null||!password.equals(password_confirm)||surname==null||email==null||first_name==null||surname==null){
 				RequestDispatcher rd=request.getRequestDispatcher("personRegister.jsp");
 				rd.forward(request, response);
 			}else{
-				selects.addPerson(person);
+				selects.addPerson(first_name, surname, password, id, date, email, sex);
 				RequestDispatcher rd=request.getRequestDispatcher("personProfile.jsp");
 				rd.forward(request, response);				
 			}

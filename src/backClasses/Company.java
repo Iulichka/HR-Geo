@@ -10,19 +10,17 @@ public class Company {
 	@SuppressWarnings("unused")
 	private int votersNum;
 	
-	public Company(String name,String mail, String info, double rating,String password,int votersNum) {
+	public Company(String name,String mail, String info, double rating,String password,int votersNum,String tel,String site) {
 		this.name = name;
 		this.mail = mail;
 		this.rating = rating;
 		this.info = info;
-		this.password=password;
 		this.votersNum=votersNum;
+		this.tel=tel;
+		this.site=site;
 	}
 	
-	public Company(String mail,String password) {
-		this.mail = mail;
-		this.password=password;
-	}
+	
 	
 	public String getName() {
 		return trim(name);

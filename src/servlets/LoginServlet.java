@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-import backClasses.Company;
+
 import backClasses.DBSelect;
-import backClasses.Person;
+
 
 
 /**
@@ -48,9 +48,8 @@ public class LoginServlet extends HttpServlet {
 		String checked =(String)request.getParameter("check");
 		DBSelect selects=new DBSelect();
 		if(checked==null){
-			Person person=new Person(email, password);
 			try {
-				boolean contains =selects.searchPerson(person);
+				boolean contains =selects.searchPerson(email,password);
 				if(contains==false){
 					RequestDispatcher rd=request.getRequestDispatcher("homePage.jsp");
 					rd.forward(request,response);
@@ -64,9 +63,8 @@ public class LoginServlet extends HttpServlet {
 			}
 			
 		}else{
-			Company company=new Company(email, password);
 			try {
-				boolean contains=selects.searchCompany(company);
+				boolean contains=selects.searchCompany(email,password);
 				if(contains==false){
 					RequestDispatcher rd=request.getRequestDispatcher("homePage.jsp");
 					rd.forward(request,response);

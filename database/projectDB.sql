@@ -105,6 +105,8 @@ create table company_info(
     company_password varchar(64) not null,
     company_rating double not null,
     voters_number int not null,
+    company_telephone varchar(64) ,
+    company_site varchar(64),
     constraint company_info primary key(company_id)
 );
 create table company_photo(

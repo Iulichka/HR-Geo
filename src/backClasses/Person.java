@@ -27,10 +27,7 @@ public class Person {
 		this.date=date;
 	}
 	
-	public Person(String mail,String password){
-		this.mail=mail;
-		this.password=password;
-	}
+
 	public Date getDate(){
 		return date;
 	}
