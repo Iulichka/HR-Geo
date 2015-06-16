@@ -1,5 +1,6 @@
 package backClasses;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -30,11 +31,21 @@ public class DBSelect {
 		}
 		return true;
 	}
+	
 	public void addPerson(Person person) throws SQLException {
 		Connection con=DataBaseInfo.getConnection();
-		Statement stmt =con.createStatement();
-		String query= "INSERT INTO persons VALUES("+person.getName()+ " , "+person.getSurname()+" , "
-				+person.getPassword()+" , "+person.getId()+" , "+person.getDate()+" , "+person.getMail()+" , "+person.getSex()+" არავითარი "+ ");";
-		stmt.executeQuery(query);
+
+		PreparedStatement stmt = con.prepareStatement("INSERT INTO persons (person_name,person_surname,person_password,person_id_number,person_birth_date,person_email,person_sex,person_education,person_info) "
+				+ "values (?,?,?,?,?,?,?,?,?)");
+		stmt.setString(1, person.getName());
+		stmt.setString(2, person.getSurname());
+		stmt.setString(3, person.getPassword());
+		stmt.setString(4, person.getId());
+		stmt.setDate(5, person.getDate());
+		stmt.setString(6, person.getMail());
+		stmt.setString(7,person.getSex());
+		stmt.setString(8, "არავითარი");
+		stmt.setString(9,"info");
+		stmt.executeUpdate();
 	}
 }

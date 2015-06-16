@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,24 +40,23 @@ public class PersonRegisterServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email=(String)request.getParameter("email");
 		String password=(String)request.getParameter("password");
+		String password_confirm=(String)request.getParameter("password_confirmation");
 		String first_name=(String)request.getParameter("first_name");
 		String surname=(String)request.getParameter("last_name");
 		String id=(String)request.getParameter("id_number");
-		String password_confirm=(String)request.getParameter("password_confirmation");
 		String sex=(String)request.getParameter("inlineRadioOptions");
-		String year=(String)request.getParameter("year");
-		String month=(String)request.getParameter("month");
-		String day=(String)request.getParameter("day");
-		Date date=new Date(Integer.parseInt(year),Integer.parseInt(month), Integer.parseInt(day));
+		int year=Integer.parseInt((String)request.getParameter("year"));
+		int month=Integer.parseInt((String)request.getParameter("month"));
+		int day=Integer.parseInt((String)request.getParameter("day"));
+		Date date=new Date(day,month,year);
 		Person person=new Person(first_name, email, surname, id, password,sex,date);		
 		DBSelect selects= new DBSelect();
 		try {
 			boolean contains=selects.searchPerson(person);			
-			if(contains==true||password==null||!password.equals(password_confirm)){
+			if(contains==true){
 				RequestDispatcher rd=request.getRequestDispatcher("personRegister.jsp");
 				rd.forward(request, response);
 			}else{
@@ -65,7 +65,6 @@ public class PersonRegisterServlet extends HttpServlet {
 				rd.forward(request, response);				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
