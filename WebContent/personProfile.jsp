@@ -14,6 +14,21 @@
 <title>Person Profile</title>
 </head>
 <body>
+<%
+		//allow access only if session exists
+		String user = null;
+		if(session.getAttribute("email") == null){
+   			 response.sendRedirect("homePage.jsp");
+		}else user = (String) session.getAttribute("email");
+			String userName = null;
+			String sessionID = null;
+			Cookie[] cookies = request.getCookies();
+			if(cookies !=null){
+				for(Cookie cookie : cookies){
+    				if(cookie.getName().equals("email")) userName = cookie.getValue();
+				}
+			}
+%>   
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -25,6 +40,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="homePage.jsp">Home</a>
+      <a class="navbar-brand" href="personProfile.jsp"><%=userName %></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -39,27 +55,20 @@
         </li>
         
       </ul>
-      <form class="navbar-form navbar-right" action="LoginServlet" method="post" role="login">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="email" name="email">
-          <input type="password" class="form-control" placeholder="password" name="password">
-          <label><input type="checkbox" name="check" >Company</label>
-        </div>
-        <button type="submit" class="btn btn-default" value="Login">Login</button>
-      </form>   
+      	
          
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
-
+	
 	<div class="row">
 		<div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
     	 <div class="well profile">
             <div class="col-sm-12">
                 <div class="col-xs-12 col-sm-8">                	 				
-                    <h2>Shota Kasradze</h2>
+                	<h2><%=userName %></h2>
                     <p><strong>About: </strong> Web Designer / UI. </p>
                     <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
                     <p><strong>Skills: </strong>

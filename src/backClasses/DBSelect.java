@@ -37,8 +37,8 @@ public class DBSelect {
 	public void addPerson(String name,String surname,String password,String id,Date date,String email,String sex) throws SQLException {
 		Connection con=DataBaseInfo.getConnection();
 
-		PreparedStatement stmt = con.prepareStatement("INSERT INTO persons (person_name,person_surname,person_password,person_id_number,person_birth_date,person_email,person_sex,person_info) "
-				+ "values (?,?,?,?,?,?,?,?)");
+		PreparedStatement stmt = con.prepareStatement("INSERT INTO persons (person_name,person_surname,person_password,person_id_number,person_birth_date,person_email,person_sex,person_education,person_info) "
+				+ "values (?,?,?,?,?,?,?,?,?)");
 		stmt.setString(1, name);
 		stmt.setString(2, surname);
 		stmt.setString(3, password);
@@ -46,6 +46,7 @@ public class DBSelect {
 		stmt.setDate(5, date);
 		stmt.setString(6, email);
 		stmt.setString(7,sex);
+		stmt.setString(8, "არავითარი");
 		stmt.setString(9,"info");
 		stmt.executeUpdate();
 	}

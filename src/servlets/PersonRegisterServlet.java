@@ -5,12 +5,16 @@ import java.sql.Date;
 import java.sql.SQLException;
 
 
+
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import backClasses.DBSelect;
 
@@ -57,13 +61,20 @@ public class PersonRegisterServlet extends HttpServlet {
 		try {
 			boolean contains=selects.searchPerson(email,password);			
 			if(contains==true||password==null
-					||password_confirm==null||!password.equals(password_confirm)||surname==null||email==null||first_name==null||surname==null){
+					||password_confirm==null||!password.equals(password_confirm)||surname==null||email==null||first_name==null){
 				RequestDispatcher rd=request.getRequestDispatcher("personRegister.jsp");
 				rd.forward(request, response);
 			}else{
+				  HttpSession session = request.getSession(false);			        
+			        if(session != null){
+			            session.invalidate();
+			        }
 				selects.addPerson(first_name, surname, password, id, date, email, sex);
-				RequestDispatcher rd=request.getRequestDispatcher("personProfile.jsp");
-				rd.forward(request, response);				
+				session=request.getSession();
+				session.setAttribute("email", email);
+				Cookie userName=new Cookie("email",email);
+				response.addCookie(userName);
+				response.sendRedirect("personProfile.jsp");			
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
