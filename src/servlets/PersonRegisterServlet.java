@@ -71,9 +71,8 @@ public class PersonRegisterServlet extends HttpServlet {
 			        }
 				selects.addPerson(first_name, surname, password, id, date, email, sex);
 				session=request.getSession();
-				session.setAttribute("email", email);
-				Cookie userName=new Cookie("email",email);
-				response.addCookie(userName);
+				session.setAttribute("first_name", first_name);
+				session.setAttribute("last_name", surname);
 				response.sendRedirect("personProfile.jsp");			
 			}
 		} catch (SQLException e) {

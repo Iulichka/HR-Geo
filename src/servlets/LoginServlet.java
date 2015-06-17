@@ -57,10 +57,14 @@ public class LoginServlet extends HttpServlet {
 					RequestDispatcher rd=request.getRequestDispatcher("homePage.jsp");
 					rd.forward(request,response);
 				}else{
-					HttpSession session=request.getSession();
+					HttpSession session = request.getSession(false);			        
+			        if(session != null){
+			            session.invalidate();
+			        }
+			        session=request.getSession();
 					session.setAttribute("email", email);
-					Cookie userName=new Cookie("email",email);
-					response.addCookie(userName);
+					//Cookie userName=new Cookie("email",email);
+					//response.addCookie(userName);
 					//RequestDispatcher rd=request.getRequestDispatcher("personProfile.jsp");
 					//rd.forward(request, response);
 					response.sendRedirect("personProfile.jsp");

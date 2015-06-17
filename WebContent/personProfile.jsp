@@ -14,20 +14,21 @@
 <title>Person Profile</title>
 </head>
 <body>
-<%
+		<%
 		//allow access only if session exists
-		String user = null;
-		if(session.getAttribute("email") == null){
-   			 response.sendRedirect("homePage.jsp");
-		}else user = (String) session.getAttribute("email");
-			String userName = null;
-			String sessionID = null;
-			Cookie[] cookies = request.getCookies();
-			if(cookies !=null){
-				for(Cookie cookie : cookies){
-    				if(cookie.getName().equals("email")) userName = cookie.getValue();
-				}
+		String user =null;
+		String first_name = null;
+		String last_name = null;
+		if(session.getAttribute("first_name")==null){
+			if(session.getAttribute("email")!=null){
+				user=(String)session.getAttribute("email");
+			}else{
+   			 	response.sendRedirect("homePage.jsp");
 			}
+		}else{
+			user = (String)session.getAttribute("first_name")+" "+(String)session.getAttribute("last_name");
+		}
+			
 %>   
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -40,7 +41,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="homePage.jsp">Home</a>
-      <a class="navbar-brand" href="personProfile.jsp"><%=userName %></a>
+      <a class="navbar-brand" href="personProfile.jsp"><%=user%></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -68,7 +69,7 @@
     	 <div class="well profile">
             <div class="col-sm-12">
                 <div class="col-xs-12 col-sm-8">                	 				
-                	<h2><%=userName %></h2>
+                	<h2><%=user %></h2>
                     <p><strong>About: </strong> Web Designer / UI. </p>
                     <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
                     <p><strong>Skills: </strong>
