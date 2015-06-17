@@ -1,4 +1,5 @@
 use webproject;
+
 delete from company_info;
 
 insert into company_info 
