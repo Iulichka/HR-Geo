@@ -58,7 +58,6 @@ create table skill_level(
 create table person_skills(
     skills_id int not null,
     persons_id int not null,
-    category_id int not null,
     skill_level_id int not null,
     constraint person_skills_fk1 foreign key (skills_id) references skills(skills_id),
     constraint person_skills_fk2 foreign key (persons_id) references persons(persons_id),

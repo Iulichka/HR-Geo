@@ -16,7 +16,7 @@ public class Person {
 	private String id;
 	private byte[] photo;
 	public static final String ATTRIBUTE_NAME = "Person";
-	public Person(String name,String mail,String surname,String id,String sex,Date date){
+	public Person(String name,String mail,String surname,String id,String sex,Date date,byte[] photo){
 		this.mail=mail;
 		this.name=name;
 		this.surname=surname;
