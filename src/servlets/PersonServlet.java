@@ -17,7 +17,7 @@ import backClasses.Person;
 @WebServlet("/PersonServlet")
 public class PersonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Person curPerson;
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -33,7 +33,9 @@ public class PersonServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id=(int) request.getAttribute("personId");
 		DataForPerson data=new DataForPerson();
-		curPerson = data.getPerson(id);
+		Person curPerson = data.getPerson(id);
+		
+		
 	}
 
 	/**
