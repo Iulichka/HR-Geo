@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.servlet.ServletException;
@@ -10,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import backClasses.DataForPerson;
+import backClasses.Education;
 import backClasses.Experience;
 import backClasses.OverallExperience;
 import backClasses.Person;
+import backClasses.PersonEducation;
 import backClasses.PersonSkills;
 
 /**
@@ -39,8 +42,13 @@ public class PersonServlet extends HttpServlet {
 		DataForPerson data=new DataForPerson();
 		Person person = data.getPerson(id);
 		PersonSkills skills=data.getPersonSkills(id);
-		OverallExperience experience=data.getPersonExperiance(id);
-
+		OverallExperience experience=data.getPersonExperience(id);
+		PersonEducation edu=data.getPersonEducation(id);
+		request.setAttribute("person", person);
+		request.setAttribute("skills", skills);
+		request.setAttribute("experience", experience);
+		request.setAttribute("education", edu);
+		
 	}
 
 	/**
