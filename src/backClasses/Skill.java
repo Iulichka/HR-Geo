@@ -10,10 +10,10 @@ public class Skill {
 		/** skill level is id of skill in database skill table
 		 * 
 		 */
-		private int level;
+		private String level;
 		private String skillCategory;
 		private int skillId;
-		public Skill(String name,int level,int id,String skillCategory){
+		public Skill(String name,String level,int id,String skillCategory){
 			this.name=name;
 			this.level=level;
 			this.skillId=id;
@@ -27,11 +27,11 @@ public class Skill {
 			this.skillCategory=category;
 		}
 		
-		public int getLevel(){
+		public String getLevel(){
 			return level;
 		}
 		
-		public void setLevel(int level){
+		public void setLevel(String level){
 			this.level=level;
 		}
 		

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import backClasses.DataForPerson;
 import backClasses.Person;
+import backClasses.PersonSkills;
 
 /**
  * Servlet implementation class PersonServlet
@@ -33,8 +34,8 @@ public class PersonServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id=(int) request.getAttribute("personId");
 		DataForPerson data=new DataForPerson();
-		Person curPerson = data.getPerson(id);
-		
+		Person person = data.getPerson(id);
+		PersonSkills skills=data.getPersonSkills(id);
 		
 	}
 
