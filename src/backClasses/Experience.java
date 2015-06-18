@@ -11,16 +11,21 @@ public class Experience {
 	private String position, company;
 	private Date startDate, endDate;
 	private boolean isCurrent;
+	private int id;
 	
 	// if endDate = null considered as current
-	public Experience(String pos, String comp, Date st, Date end) {
+	public Experience(String pos, String comp, Date st, Date end,int id) {
 		position = pos;
 		company = comp;
 		startDate = st;
 		endDate = end;
+		this.id=id;
 		isCurrent = (end == null);
 	}
 	
+	public int getId(){
+		return id;
+	}
 	public String getCompName() {
 		return company;
 	}

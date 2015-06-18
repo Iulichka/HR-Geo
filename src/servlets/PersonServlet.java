@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import backClasses.DataForPerson;
+import backClasses.Education;
+import backClasses.Experience;
+import backClasses.OverallExperience;
 import backClasses.Person;
+import backClasses.PersonEducation;
+import backClasses.PersonSkills;
 
 /**
  * Servlet implementation class PersonServlet
@@ -17,7 +24,7 @@ import backClasses.Person;
 @WebServlet("/PersonServlet")
 public class PersonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Person curPerson;
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,9 +38,17 @@ public class PersonServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id=(int) request.getAttribute("personId");
+		int id=1;
 		DataForPerson data=new DataForPerson();
-		curPerson = data.getPerson(id);
+		Person person = data.getPerson(id);
+		PersonSkills skills=data.getPersonSkills(id);
+		OverallExperience experience=data.getPersonExperience(id);
+		PersonEducation edu=data.getPersonEducation(id);
+		request.setAttribute("person", person);
+		request.setAttribute("skills", skills);
+		request.setAttribute("experience", experience);
+		request.setAttribute("education", edu);
+		
 	}
 
 	/**
