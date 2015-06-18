@@ -7,9 +7,6 @@ package backClasses;
  */
 public class Skill {
 		private String name;
-		/** skill level is id of skill in database skill table
-		 * 
-		 */
 		private String level;
 		private String skillCategory;
 		private int skillId;

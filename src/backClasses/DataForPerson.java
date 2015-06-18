@@ -11,6 +11,30 @@ public class DataForPerson {
  public DataForPerson(){
 	 con=DataBaseInfo.getConnection();
  }
+ public OverallExperience getPersonExperiance(int idNum){
+	 OverallExperience res=new OverallExperience();
+	 Statement stm;
+	 try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		ResultSet rSet=stm.executeQuery(
+				"select working_experience_id,position, "+
+				" company_name,job_start_date,job_end_date "+
+				"from working_experience "+
+				"where persons_id="+idNum+";");
+		while(rSet.next()){
+			Experience exp=new Experience(rSet.getString(2),rSet.getString(3),rSet.getDate(4),
+					rSet.getDate(5),rSet.getInt(1));
+			res.addExperience(exp);
+		}
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	 return res;
+ }
+ 
  public PersonSkills getPersonSkills(int idNum){
 	 PersonSkills result=new PersonSkills();
 	 Statement stm;
