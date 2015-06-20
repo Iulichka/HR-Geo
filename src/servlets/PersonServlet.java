@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,6 +49,8 @@ public class PersonServlet extends HttpServlet {
 		request.setAttribute("skills", skills);
 		request.setAttribute("experience", experience);
 		request.setAttribute("education", edu);
+		RequestDispatcher rd = request.getRequestDispatcher("personProfile.jsp");
+		rd.forward(request, response);
 		
 	}
 

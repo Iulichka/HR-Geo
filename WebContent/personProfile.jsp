@@ -1,6 +1,7 @@
+<%@page import="backClasses.*"%>
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
@@ -21,9 +22,16 @@
 		String user =null;
 		String first_name = null;
 		String last_name = null;
+		Person pers=null;
+		PersonSkills skills=null;
+		OverallExperience experience=null;
 		if(session.getAttribute("first_name")==null){
 			if(session.getAttribute("email")!=null){
 				user=(String)session.getAttribute("email");
+				pers=(Person)request.getAttribute("person");
+				skills=(PersonSkills)request.getAttribute("skills");
+				experience=(OverallExperience)request.getAttribute("experience");
+				
 			}else{
    			 	response.sendRedirect("homePage.jsp");
 			}
@@ -69,14 +77,14 @@
     	 <div class="well profile">
             <div class="col-sm-12">
                 <div class="col-xs-12 col-sm-8">                	 				
-                	<h2><%=user %></h2>
+                	<h2><%=pers.getName()+" "+pers.getSurname()  %></h2>
                     <p><strong>About: </strong> Web Designer / UI. </p>
                     <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
                     <p><strong>Skills: </strong>
-                        <span class="label label-primary">html5</span> 
-                        <span class="label label-primary">css3</span>
-                        <span class="label label-primary">jquery</span>
-                        <span class="label label-primary">bootstrap3</span>
+                    <%for(int i=0;i<skills.getPersonSkills().size();i++){ %>
+                    
+                        <span class="label label-primary"><%=skills.getPersonSkills().get(i).getName() %></span> 
+                    <%} %>
                     </p>
                 </div>             
                 <div class="col-xs-12 col-sm-4 text-center">
