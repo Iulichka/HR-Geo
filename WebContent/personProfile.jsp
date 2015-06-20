@@ -9,8 +9,10 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 <title>Person Profile</title>
 </head>
 <body>
@@ -53,17 +55,15 @@
             <li><a href="companyRegister.jsp">Register Company</a></li>
             <li><a href="personRegister.jsp">Register Person</a></li>
           </ul>
-        </li>
-        
+        </li>       
       </ul>
       	
          
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
-<div class="container">
-	
+
+<div class="container">	
 	<div class="row">
 		<div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
     	 <div class="well profile">
@@ -81,33 +81,15 @@
                 </div>             
                 <div class="col-xs-12 col-sm-4 text-center">
                     <figure>
-                        <img src="https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-9/11052374_1015707648459173_7172254462271392940_n.jpg?oh=4431852c32906e9287093f7b4c64cf35&oe=5624D7DE&__gda__=1442345953_4c4203b240338452f40f3940c6385482" alt="" class="img-circle img-responsive">
-                        <figcaption class="ratings">
-                            <p>Ratings
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                 <span class="fa fa-star-o"></span>
-                            </a> 
-                            </p>
-                        </figcaption>
+                        <img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="" class="img-circle img-responsive">
                     </figure>
                 </div>
-            </div>            
+            </div> 
+                       
             <div class="col-xs-12 divider text-center">
                 <div class="col-xs-12 col-sm-4 emphasis">                  
                     <p><small> Update Profile</small></p>
-                    <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Update Profile</button>
+                    <a href="personProfileUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Profile</a>                  
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis">                                     
                     <p><small> Offers</small></p>
@@ -123,7 +105,9 @@
                       </button>
                       <ul class="dropdown-menu text-left" role="menu">
                         <li><a href="#"><span class="fa fa-envelope pull-right"></span> Send an email to company </a></li>
-                        <li><a href="#"><span class="fa fa-list pull-right"></span> accept or reject offer </a></li>
+                        <form action="LogoutServlet" method="post">
+                        <a href="homePage.jsp"><span class="fa fa-list pull-right"></span> Log Out </a>
+                        </form>
                         <li class="divider"></li>
                         <li><a href="#"><span class="fa fa-warning pull-right"></span>delete my account</a></li>
                         <li class="divider"></li>
@@ -135,6 +119,48 @@
     	 </div>                 
 		</div>
 	</div>
+<table class="table table-hover">
+<thead><tr><th>Offer Name</th><th>Company</th><th>Offer Recieved</th><th>Offer End Date</th><th>Offer Status</th></tr></thead>
+<tbody>
+ <tr class="danger">
+        <td>Java Programmer</td>
+        <td>Microsoft</td>
+        <td>05-03-2015</td>
+        <td>15-03-2015</td>
+        <td>Rejected</td>
+      </tr>
+  </tbody>
+  <tbody>
+ <tr class="success">
+        <td>Translator</td>
+        <td>ebooks</td>
+        <td>08-03-2015</td>
+        <td>18-03-2015</td>
+        <td>accepted</td>
+      </tr>
+  </tbody>
+   <tbody>
+ <tr class="warning">
+        <td>Database Administrator</td>
+        <td>Oracle</td>
+        <td>08-03-2015</td>
+        <td>18-03-2015</td>
+        <td>thinking</td>
+      </tr>
+  </tbody>
+  <tr class="active">
+        <td>Database Administrator</td>
+        <td>Oracle</td>
+        <td>08-03-2015</td>
+        <td>18-03-2015</td>
+        <td>not answered</td>
+      </tr>
+  </tbody>
+  
+</table>
+  </div>
+  
+
 
 </body>
 </html>
