@@ -136,11 +136,6 @@
     <script src="js/bootstrap.min.js"></script>
     <script>
      var nama = ["Java","PHP","Oracle","MySql","Javascript","Ajax","Translator","Taxi Driver","Dancer"];
-     <% for(int i=0;i<10;i++){
-    	 String k="lem"+i;
-    %>
-    	nama.push(k);
-    <% } %>
 	$( "#single" ).autocomplete({
 		source: nama
 	});
