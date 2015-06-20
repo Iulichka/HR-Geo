@@ -1,0 +1,85 @@
+
+use webproject;
+-- persons insert
+insert into persons
+(person_name,person_surname,person_password,person_id_number,person_birth_date
+,person_email,person_sex,person_education,person_info)
+values
+('ჯოტია','ცაავა',12345,123456,'1991-01-13','jcaava@caava.com','male','Ph.d','ტიპიაა'),
+('გიული','მესხი',1349,133456,'1987-07-13','giuli@mesxi.com','female','Doc','lady');
+select * from persons;
+
+-- skill category inserts
+insert into skill_category
+(category_name)
+values
+('Programming'),
+('MS Programs'),
+('Languages'),
+('Personal');
+
+-- skill inserts
+
+insert into skills
+(skill_name,category_id)
+values
+('Java',1),
+('Word',2),
+('Russian',3);
+
+-- skill level insert 
+
+insert into skill_level
+(skill_level_name)
+values
+('Beginner'),
+('Novice'),
+('Pre-Intermediate'),
+('Intermediate'),
+('Advance/Expert');
+
+-- person skills insertions
+
+insert into  person_skills
+(skills_id,persons_id,skill_level_id)
+values
+(1,1,2),
+(2,1,4),
+(3,2,2);
+
+
+-- insert into facultys
+insert into faculty
+(faculty_name)
+values
+('ბიზნესის ადმინისტრირება'),
+('პროგრამირება'),
+('ფიზიკა');
+
+
+--  inserts into university
+insert into university
+(university_name)
+values
+('თავისუფალი უნივერსიტეტი'),
+('ჯავახიშვილის უნივერსიტეტი');
+
+-- insert into person_university
+insert into person_university
+(persons_id,university_id,faculty_id,graduation_year,graduation_type)
+values
+(1,1,2,2009,'დოქტორი'),
+(2,2,1,2011,'ბაკალავრი');
+
+
+-- insert into working exp
+insert into working_experience
+(persons_id,company_name,position,job_start_date,job_end_date)
+values
+(1,'KPMG','assistante','2009-09-14','2010-09-28'),
+(1,'EY','Partner','2011-09-14','2012-09-28'),
+(2,'KPMG','Senior','2001-09-14','2011-09-28'),
+(2,'Deloitte','assistante','2002-09-14','2010-12-18');
+
+
+

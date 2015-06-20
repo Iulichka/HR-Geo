@@ -8,18 +8,12 @@ public class Education {
 	private String lvl;
 	private String faculty;
 	private int end;
-	private int id;
 	
-	public Education(int id,String uni,String level,int start,int end,String faculty){
+	public Education(String uni,String level,int end,String faculty){
 		this.uni=uni;
 		this.lvl=level;
 		this.end=end;
 		this.faculty=faculty;
-		this.id=id;
-	}
-	
-	public int getId(){
-		return id;
 	}
 	
 	public String getUniversity(){

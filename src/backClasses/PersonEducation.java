@@ -17,9 +17,9 @@ public class PersonEducation {
 		edu.add(e);
 	}
 	
-	public void deleteEdu(int id){
+	public void deleteEdu(String uni,String faculty){
 		for(int i=0;i<edu.size();i++){
-			if(edu.get(i).getId()==id){
+			if(edu.get(i).getUniversity().equals(uni) && edu.get(i).getFaculty().equals(faculty)){
 				edu.remove(i);
 				return;
 			}
