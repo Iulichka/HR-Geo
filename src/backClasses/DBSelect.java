@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 public class DBSelect {
-	
+	private Map<Integer,String> map;
 	public boolean searchPerson(String email,String password) throws SQLException{
 		Connection con =null;
 		con=DataBaseInfo.getConnection();
@@ -65,4 +67,14 @@ public class DBSelect {
 		stmt.setString(8, site);
 		stmt.executeUpdate();
 	}
+	public void addSkill(String name) throws SQLException{
+		Connection con=DataBaseInfo.getConnection();
+		PreparedStatement stmt = con.prepareStatement("INSERT INTO skills (skill_name,searched_number,category_id)"
+				+ "values (?,?,?)");
+		
+		
+		
+		
+	}
+	
 }
