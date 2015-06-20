@@ -19,7 +19,7 @@ public class DataForComp {
 		try {
 			st = con.createStatement();
 			st.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
-			ResultSet resSet = st.executeQuery("select * from company_info");
+			ResultSet resSet = st.executeQuery("select * from company_info order by company_rating desc");
 			while (resSet.next()) {
 				Company com = new Company(resSet.getString(2), resSet.getString(3), resSet.getString(4), resSet.getDouble(6), null, 0, null, null);
 				res.add(com);

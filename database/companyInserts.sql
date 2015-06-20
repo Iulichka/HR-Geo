@@ -1,4 +1,5 @@
 use webproject;
+SET SQL_SAFE_UPDATES = 0;
 
 delete from company_info;
 
