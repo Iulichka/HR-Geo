@@ -78,7 +78,7 @@
             <div class="col-sm-12">
                 <div class="col-xs-12 col-sm-8">                	 				
                 	<h2><%=pers.getName()+" "+pers.getSurname()  %></h2>
-                    <p><strong>About: </strong> Web Designer / UI. </p>
+                    <p><strong>About: </strong> <%=pers.getAbout() %> </p>
                     <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
                     <p><strong>Skills: </strong>
                     <%for(int i=0;i<skills.getPersonSkills().size();i++){ %>
