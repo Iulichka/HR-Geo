@@ -33,7 +33,7 @@ public class CompanyPage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		request.setAttribute("comp", new DataForComp().getComp(request.getParameter("mail")));
-		RequestDispatcher rd=request.getRequestDispatcher("companyProfile.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("CompanyPage.jsp");
 		rd.forward(request, response);		
 	/*	response.setContentType("text/html");	
 		response.setCharacterEncoding("UTF-8");
