@@ -69,7 +69,7 @@ create table person_skills(
 
 create table person_photoes(
 	person_photo_id int not null auto_increment,
-    person_photo mediumblob not null,
+    person_photo mediumblob,
     persons_id int not null,
     constraint person_photoes_pk primary key(person_photo_id),
     constraint person_phptoes_fk foreign key(persons_id) references persons(persons_id)
