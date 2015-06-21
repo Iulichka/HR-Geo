@@ -40,6 +40,7 @@ public class DBSelect {
 	public int getPersonId(String email) throws SQLException{
 		Connection con=DataBaseInfo.getConnection();
 		Statement stmt=con.createStatement();
+		stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 		String query = "SELECT * FROM persons "
 				+ "WHERE " + "person_email = '" + email + "' ;";
 		ResultSet rs=stmt.executeQuery(query);

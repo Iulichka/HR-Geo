@@ -40,17 +40,11 @@ public class PersonServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DBSelect selects=new DBSelect();
 		HttpSession session=request.getSession();
 		String email= (String)session.getAttribute("email");
-		int id=0;
-		try {
-			id = selects.getPersonId(email);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		DataForPerson data=new DataForPerson();
+		int id=0;
+		id =data.getPersonId(email);
 		Person person = data.getPerson(id);
 		PersonSkills skills=data.getPersonSkills(id);
 		OverallExperience experience=data.getPersonExperience(id);

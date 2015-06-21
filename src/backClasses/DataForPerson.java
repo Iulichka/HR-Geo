@@ -11,6 +11,24 @@ public class DataForPerson {
  public DataForPerson(){
 	 con=DataBaseInfo.getConnection();
  }
+ public int getPersonId(String email){
+	 Statement stm;
+	 int res=-1;
+	 
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		ResultSet rSet=stm.executeQuery(
+				"select * from persons where person_email='"+email+"';");
+		if(rSet.next()){
+			res=rSet.getInt(1);
+		}
+	} catch (SQLException e) {
+		System.out.println(e.getMessage());
+	}		
+	 
+	 return res;
+ }
  public PersonEducation getPersonEducation(int idNum){
 	 PersonEducation result=new PersonEducation();
 	 Statement stm;

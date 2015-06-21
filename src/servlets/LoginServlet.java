@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 			        }
 			        session=request.getSession();
 					session.setAttribute("email", email);					
-					response.sendRedirect("personProfile.jsp");
+					response.sendRedirect("http://localhost:8080/HR-Geo/PersonServlet");
 				}
 			} catch (SQLException e) {
 				
