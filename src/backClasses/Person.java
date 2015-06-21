@@ -15,7 +15,7 @@ public class Person {
 	private String surname;
 	private String id;
 	private byte[] photo;
-	private String about;
+	private String about="";
 	public static final String ATTRIBUTE_NAME = "Person";
 	public Person(String name,String mail,String surname,String id,String sex,Date date,byte[] photo,String about){
 		this.mail=mail;

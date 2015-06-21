@@ -28,6 +28,7 @@
 				Person pers=null;
 				PersonSkills skills=null;
 				OverallExperience experience=null;
+				
 				if(session.getAttribute("first_name")==null){
 					if(session.getAttribute("email")!=null){
 						pers=(Person)request.getAttribute("person");
@@ -87,7 +88,9 @@
                     <p><strong>Birth Date: </strong><%=pers.getDate()%> </p>
                     <p><strong>Skills: </strong>
                     <%for(int i=0;i<skills.getPersonSkills().size();i++){ %>
-                        <span class="label label-primary"><%=skills.getPersonSkills().get(i).getName() %></span> 
+                    	<%if(skills!=null){ %>
+                    		<span class="label label-primary"><%=skills.getPersonSkills().get(i).getName() %></span> 
+                		<%} %>
                     <%} %>
                     </p>
                 </div>             
