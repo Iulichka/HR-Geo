@@ -152,7 +152,7 @@ public class DBSelect {
 		if(!rs.next()){
 			return null;
 		}
-		Company company= new Company(rs.getString("company_email"), rs.getString("company_name"), rs.getString("company_info"),rs.getDouble("company_rating"), rs.getString("company_password"),rs.getInt("voters_number"), rs.getString("company_telephone"),rs.getString("company_site"));		
+		Company company= new Company(rs.getString("company_name"), rs.getString("company_email"), rs.getString("company_info"),rs.getDouble("company_rating"), rs.getString("company_password"),rs.getInt("voters_number"), rs.getString("company_telephone"),rs.getString("company_site"));		
 		return company;
 	}
 	

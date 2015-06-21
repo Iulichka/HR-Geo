@@ -149,8 +149,9 @@
 			DBSelect select= new DBSelect();
 			offer = select.getOffer(perOff.getOfferID());	
 			Company comp=offer.getCompany();
+			String compAddress="CompanyPage?mail="+comp.getMail();
 	%>		
-                    	<tr class= <%=perOff.getOfferState() %>>
+                    	<tr class= <%=perOff.getOfferState() %> onclick="window.document.location='<%=compAddress%>';">
                     		<td><%= offer.getName() %></td> 
                     		<td><%= comp.getName() %></td> 
                     		<td><%= offer.getStartDate() %></td> 
