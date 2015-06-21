@@ -39,7 +39,7 @@
         </li>
         
       </ul>
-	)      
+	      
       <form class="navbar-form navbar-right" action="LoginServlet" method="post" role="login">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="email" name="email">

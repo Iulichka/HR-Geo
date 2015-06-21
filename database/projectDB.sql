@@ -111,7 +111,7 @@ create table company_info(
 create table company_photo(
 	company_photo_id int not null auto_increment,
     company_id int not null,
-    comapny_photo mediumblob not null,
+    company_photo mediumblob not null,
     constraint company_photo_pk primary key(company_photo_id),
     constraint company_photo_fk foreign key (company_id) references company_info (company_id)
 
@@ -143,6 +143,7 @@ create table offer(
 	offer_id int not null auto_increment,
     offer_info text,
     offer_name varchar(100) not null,
+    offer_start_date date not null,
     offer_end_date date not null,
     company_id int not null,
     constraint offer_pk primary key(offer_id),
@@ -152,7 +153,7 @@ create table offer(
 create table persons_offer(
 	offer_id int not null,
     persons_id int not null,
-    offer_state enum('accept','reject','maybe'),
+    offer_state enum('success','danger','warning','active'),
     email_state enum('visible','not_visible'),
     constraint persons_offer_fk1 foreign key(offer_id) references offer(offer_id),
     constraint persons_offer_fk2 foreign key(persons_id) references persons(persons_id),
@@ -167,5 +168,7 @@ create table documents(
     constraint document_pk primary key(document_id),
     constraint document_fk foreign key(persons_id) references persons(persons_id)
 );
+
+
 
 

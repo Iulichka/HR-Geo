@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
+
+import backClasses.PersonOffer;
 
 public class DBSelect {
 
@@ -124,6 +127,48 @@ public class DBSelect {
 		}
 		return result;
 		
+	}
+	
+	public ArrayList<PersonOffer> getPersonOffers(int personID) throws SQLException{
+		Connection con=DataBaseInfo.getConnection();
+		Statement stmt=con.createStatement();
+		String query = "SELECT * FROM persons_offer "
+				+ "WHERE " + "persons_id = '" + personID+ "' ;";
+		ResultSet rs=stmt.executeQuery(query);
+		ArrayList<PersonOffer> result=new ArrayList<PersonOffer>();		
+		while(rs.next()){
+			PersonOffer perOff=new PersonOffer(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4));
+			result.add(perOff);
+		}
+		return result;
+	}
+	
+	public Company getCompany(int companyID) throws SQLException{
+		Connection con=DataBaseInfo.getConnection();
+		Statement stmt=con.createStatement();
+		String query = "SELECT * FROM company_info "
+				+ "WHERE " + "company_id = '" + companyID+ "' ;";
+		ResultSet rs=stmt.executeQuery(query);
+		if(!rs.next()){
+			return null;
+		}
+		Company company= new Company(rs.getString("company_email"), rs.getString("company_name"), rs.getString("company_info"),rs.getDouble("company_rating"), rs.getString("company_password"),rs.getInt("voters_number"), rs.getString("company_telephone"),rs.getString("company_site"));		
+		return company;
+	}
+	
+	public Offer getOffer(int offerID) throws SQLException{
+		Connection con=DataBaseInfo.getConnection();
+		Statement stmt=con.createStatement();
+		String query = "SELECT * FROM offer "
+				+ "WHERE " + "offer_id = '" + offerID+ "' ;";
+		ResultSet rs=stmt.executeQuery(query);
+		if(!rs.next()){
+			return null;
+		}
+		Company company=null;
+		company=getCompany(rs.getInt("company_id"));
+		Offer offer=new Offer(rs.getString("offer_name"), rs.getString("offer_info"), rs.getDate("offer_end_date"), rs.getDate("offer_start_date"), company);
+		return offer;
 	}
 	
 }
