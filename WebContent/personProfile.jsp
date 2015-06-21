@@ -16,21 +16,32 @@
 <title>Person Profile</title>
 </head>
 <body>
+<%@ page import="backClasses.Person" %>
+<%@ page import="backClasses.PersonSkills" %>
+<%@ page import="backClasses.OverallExperience" %>
 		<%
 		//allow access only if session exists
-		String company="CompanyPage?mail=socar@yahoo.com";
-		String user =null;
-		String first_name = null;
-		String last_name = null;
-		if(session.getAttribute("first_name")==null){
-			if(session.getAttribute("email")!=null){
-				user=(String)session.getAttribute("email");
-			}else{
-   			 	response.sendRedirect("homePage.jsp");
-			}
-		}else{
-			user = (String)session.getAttribute("first_name")+" "+(String)session.getAttribute("last_name");
-		}
+				String company="CompanyPage?mail=socar@yahoo.com";
+				String user =null;
+				String first_name = null;
+				String last_name = null;
+				Person pers=null;
+				PersonSkills skills=null;
+				OverallExperience experience=null;
+				if(session.getAttribute("first_name")==null){
+					if(session.getAttribute("email")!=null){
+						user=(String)session.getAttribute("email");
+						pers=(Person)request.getAttribute("person");
+						skills=(PersonSkills)request.getAttribute("skills");
+						experience=(OverallExperience)request.getAttribute("experience");
+						
+					}else{
+		   			 	response.sendRedirect("homePage.jsp");
+					}
+				}else{
+					user = (String)session.getAttribute("first_name")+" "+(String)session.getAttribute("last_name");
+				}
+		
 			
 %>   
 <nav class="navbar navbar-default">

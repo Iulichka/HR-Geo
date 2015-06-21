@@ -5,13 +5,13 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<%@include  file="bootstrap.html" %>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Companies</title>
 </head>
 <body>
-<%@include  file="navigation.html" %>
+
 <div class="list-group" style="width: 50%; left: 25%; position: absolute;">
 <%DataForComp d = new DataForComp();
 ArrayList<Company> comps = d.getCompList();

@@ -2,20 +2,13 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
-
-
 import javax.servlet.http.HttpSession;
-
 import backClasses.DBSelect;
 
 
@@ -62,15 +55,11 @@ public class LoginServlet extends HttpServlet {
 			            session.invalidate();
 			        }
 			        session=request.getSession();
-					session.setAttribute("email", email);
-					//Cookie userName=new Cookie("email",email);
-					//response.addCookie(userName);
-					//RequestDispatcher rd=request.getRequestDispatcher("personProfile.jsp");
-					//rd.forward(request, response);
+					session.setAttribute("email", email);					
 					response.sendRedirect("personProfile.jsp");
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			
@@ -85,7 +74,7 @@ public class LoginServlet extends HttpServlet {
 					rd.forward(request, response);
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		}

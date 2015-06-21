@@ -3,14 +3,14 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<%@include  file="bootstrap.html" %>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><% Company c = (Company)request.getAttribute("comp");
 out.println(c.getName()); %></title>
 </head>
 <body>
-<%@include  file="navigation.html" %>
+
 <div class ="page-header" id="name" style="text-shadow: aqua; font-size: 24pt; padding-bottom: 20pt; padding-left: 10pt">
 <h1>
 <%

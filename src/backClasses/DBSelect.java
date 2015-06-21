@@ -5,10 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.StringTokenizer;
+
 public class DBSelect {
-	private Map<Integer,String> map;
+
 	public boolean searchPerson(String email,String password) throws SQLException{
 		Connection con =null;
 		con=DataBaseInfo.getConnection();
@@ -33,9 +33,29 @@ public class DBSelect {
 		if(!rs.next()){
 			return false;
 		}
+		
 		return true;
 	}
 	
+	public int getPersonId(String email) throws SQLException{
+		Connection con=DataBaseInfo.getConnection();
+		Statement stmt=con.createStatement();
+		String query = "SELECT * FROM persons "
+				+ "WHERE " + "person_email = '" + email + "' ;";
+		ResultSet rs=stmt.executeQuery(query);
+		int id=rs.getInt(1);		
+		return id;
+	}
+	
+	public int getCompanyId(String email)throws SQLException{
+		Connection con=DataBaseInfo.getConnection();
+		Statement stmt=con.createStatement();
+		String query = "SELECT * FROM company_info "
+				+ "WHERE " + "company_email = '" + email + "' ;";
+		ResultSet rs=stmt.executeQuery(query);
+		int id=rs.getInt(1);		
+		return id;
+	}
 	public void addPerson(String name,String surname,String password,String id,Date date,String email,String sex) throws SQLException {
 		Connection con=DataBaseInfo.getConnection();
 
@@ -67,13 +87,41 @@ public class DBSelect {
 		stmt.setString(8, site);
 		stmt.executeUpdate();
 	}
-	public void addSkill(String name) throws SQLException{
+	
+	public void addPersonSkill(String skills,int personID) throws SQLException{	
 		Connection con=DataBaseInfo.getConnection();
-		PreparedStatement stmt = con.prepareStatement("INSERT INTO skills (skill_name,searched_number,category_id)"
-				+ "values (?,?,?)");
-		
-		
-		
+		StringTokenizer token=new StringTokenizer(skills, ",");
+		Statement stmt=con.createStatement();
+		while(token.hasMoreTokens()){
+			String skill=token.nextToken();
+			String querySkillID = "SELECT * FROM skills "
+					+ "WHERE " + "skill_name = '" + skill + "' ;";
+			ResultSet rs=stmt.executeQuery(querySkillID);
+			int skillID=rs.getInt(1);
+			String queryPersonSkill = "SELECT * FROM person_skills "
+					+ "WHERE " + "skills_id = '" + skillID + "AND persons_id = '" + personID+ "' ;";
+			ResultSet rs2=stmt.executeQuery(queryPersonSkill);
+			if(!rs2.next()){
+				PreparedStatement stm = con.prepareStatement("INSERT INTO person_skills (skills_id,persons_id,skill_level_id) "
+						+ "values (?,?,?)");
+				stm.setInt(1, skillID);
+				stm.setInt(2,personID);
+				stm.setInt(3, 1);
+				stm.executeUpdate();
+			}			
+		}			
+	}
+	public int getNumberOfSkills(int personID) throws SQLException{
+		Connection con=DataBaseInfo.getConnection();
+		int result=0;
+		Statement stmt=con.createStatement();
+		String query = "SELECT * FROM person_skills "
+				+ "WHERE " + "persons_id = '" + personID+ "' ;";
+		ResultSet rs=stmt.executeQuery(query);
+		while(!rs.next()){
+			result++;
+		}
+		return result;
 		
 	}
 	
