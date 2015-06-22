@@ -33,14 +33,14 @@
 				Person pers=null;
 				PersonSkills skills=null;
 				OverallExperience experience=null;
-				ArrayList<PersonOffer> personOffers=null;
+				// ArrayList<PersonOffer> personOffers=null;
 				if(session.getAttribute("first_name")==null){
 					if(session.getAttribute("email")!=null){
 						pers=(Person)request.getAttribute("person");
 						skills=(PersonSkills)request.getAttribute("skills");
 						experience=(OverallExperience)request.getAttribute("experience");
 						user=pers.getName()+" "+pers.getSurname();
-						personOffers=(ArrayList<PersonOffer>)request.getAttribute("personOffers");
+					// personOffers=(ArrayList<PersonOffer>)request.getAttribute("personOffers");
 						
 					}else{
 		   			 	response.sendRedirect("homePage.jsp");
@@ -142,23 +142,7 @@
 <table class="table table-hover">
 <thead><tr><th>Offer Name</th><th>Company</th><th>Offer Recieved</th><th>Offer End Date</th><th>Offer Status</th></tr></thead>
 <tbody>
-		<%for(int i=0;i<personOffers.size();i++){ %>
-			<% 
-			Offer offer=null;
-			PersonOffer perOff=personOffers.get(i);
-			DBSelect select= new DBSelect();
-			offer = select.getOffer(perOff.getOfferID());	
-			Company comp=offer.getCompany();
-			String compAddress="CompanyPage?mail="+comp.getMail();
-	%>		
-                    	<tr class= <%=perOff.getOfferState() %> onclick="window.document.location='<%=compAddress%>';">
-                    		<td><%= offer.getName() %></td> 
-                    		<td><%= comp.getName() %></td> 
-                    		<td><%= offer.getStartDate() %></td> 
-                    		<td><%= offer.getEndDate() %></td> 
-                    		<td><%= perOff.getOfferState() %></td>
-                    	</tr>
-              <%} %>
+
                  
  </tbody>
 </table>
