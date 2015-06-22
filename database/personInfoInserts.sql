@@ -13,10 +13,7 @@ values
 ('zura','zuradze','zura','01024070112','1994-01-01','zura@gmail.com','MALE','არავითარი','ტიპიაა'),
 ('dato','datodze','dato','01024070111','1994-01-01','dato@gmail.com','MALE','არავითარი','ტიპიაა');
 
-insert into person_photoes
-(person_photo,persons_id)
-values
-(load_file('D:\\suratebi\\legenda.png'),1);
+
 
 
 -- skill category inserts
