@@ -12,84 +12,127 @@ import backClasses.PersonOffer;
 
 public class DBSelect {
 
-	public boolean searchPerson(String email,String password) throws SQLException{
-		Connection con =null;
+	public boolean searchPerson(String email,String password){		
+		Connection con = null;
 		con=DataBaseInfo.getConnection();
-		Statement stmt =con.createStatement();
-		String query = "SELECT * FROM persons "
-				+ "WHERE " + "person_email = '" + email + "' AND person_password = '"+password
-				+ "' ;";
-		ResultSet rs=stmt.executeQuery(query);
-		if(!rs.next()){
-			return false;
-		}
-		return true;
-			
-	}
-	public boolean searchCompany(String email,String password) throws SQLException{
-		Connection con=DataBaseInfo.getConnection();
-		Statement stmt =con.createStatement();
-		String query = "SELECT * FROM company_info "
-				+ "WHERE " + "company_email = '" + email + "' AND company_password = '"+password
-				+ "' ;";
-		ResultSet rs=stmt.executeQuery(query);
-		if(!rs.next()){
-			return false;
+		Statement stmt;
+		try {
+			stmt = con.createStatement();
+			String query = "SELECT * FROM persons "
+					+ "WHERE " + "person_email = '" + email + "' AND person_password = '"+password
+					+ "' ;";
+			ResultSet rs=stmt.executeQuery(query);
+			if(!rs.next()){
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return true;
+			
+	}
+	public boolean searchCompany(String email,String password){
+		Connection con=DataBaseInfo.getConnection();
+		Statement stmt;
+		try {
+			stmt = con.createStatement();
+			String query = "SELECT * FROM company_info "
+					+ "WHERE " + "company_email = '" + email + "' AND company_password = '"+password
+					+ "' ;";
+			ResultSet rs=stmt.executeQuery(query);
+			if(!rs.next()){
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}				
+		return true;
 	}
 	
-	public int getPersonId(String email) throws SQLException{
+	public int getPersonId(String email) {
 		Connection con=DataBaseInfo.getConnection();
-		Statement stmt=con.createStatement();
-		stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
-		String query = "SELECT * FROM persons "
-				+ "WHERE " + "person_email = '" + email + "' ;";
-		ResultSet rs=stmt.executeQuery(query);
-		int id=rs.getInt(1);		
+		Statement stmt;
+		int id=0;
+		try {
+			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+			String query = "SELECT * FROM persons "
+					+ "WHERE " + "person_email = '" + email + "' ;";
+			ResultSet rs=stmt.executeQuery(query);
+			id=rs.getInt(1);		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return id;
 	}
 	
-	public int getCompanyId(String email)throws SQLException{
+	public int getCompanyId(String email){
 		Connection con=DataBaseInfo.getConnection();
-		Statement stmt=con.createStatement();
-		String query = "SELECT * FROM company_info "
-				+ "WHERE " + "company_email = '" + email + "' ;";
-		ResultSet rs=stmt.executeQuery(query);
-		int id=rs.getInt(1);		
+		Statement stmt;
+		int id=0;
+		try {
+			stmt = con.createStatement();
+			String query = "SELECT * FROM company_info "
+					+ "WHERE " + "company_email = '" + email + "' ;";
+			ResultSet rs=stmt.executeQuery(query);
+			rs.next();
+			id=rs.getInt(1);		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return id;
 	}
-	public void addPerson(String name,String surname,String password,String id,Date date,String email,String sex) throws SQLException {
+	
+	public void addPerson(String name,String surname,String password,String id,Date date,String email,String sex) {
 		Connection con=DataBaseInfo.getConnection();
 
-		PreparedStatement stmt = con.prepareStatement("INSERT INTO persons (person_name,person_surname,person_password,person_id_number,person_birth_date,person_email,person_sex,person_education,person_info) "
-				+ "values (?,?,?,?,?,?,?,?,?)");
-		stmt.setString(1, name);
-		stmt.setString(2, surname);
-		stmt.setString(3, password);
-		stmt.setString(4, id);
-		stmt.setDate(5, date);
-		stmt.setString(6, email);
-		stmt.setString(7,sex);
-		stmt.setString(8, "არავითარი");
-		stmt.setString(9,"info");
-		stmt.executeUpdate();
+		PreparedStatement stmt;
+		try {
+			stmt = con.prepareStatement("INSERT INTO persons (person_name,person_surname,person_password,person_id_number,person_birth_date,person_email,person_sex,person_education,person_info) "
+					+ "values (?,?,?,?,?,?,?,?,?)");
+			stmt.setString(1, name);
+			stmt.setString(2, surname);
+			stmt.setString(3, password);
+			stmt.setString(4, id);
+			stmt.setDate(5, date);
+			stmt.setString(6, email);
+			stmt.setString(7,sex);
+			stmt.setString(8, "არავითარი");
+			stmt.setString(9,"info");
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
-	public void addCompany(String name,String email,String password,String tel,String site) throws SQLException {
+	public void addCompany(String name,String email,String password,String tel,String site) {
 		Connection con=DataBaseInfo.getConnection();
-		PreparedStatement stmt = con.prepareStatement("INSERT INTO company_info (company_name,company_email,company_info,company_password,company_rating,voters_number,company_telephone,company_site) "
-				+ "values (?,?,?,?,?,?,?,?)");
-		stmt.setString(1, name);
-		stmt.setString(2, email);
-		stmt.setString(3, " ");
-		stmt.setString(4, password);
-		stmt.setDouble(5, 0);
-		stmt.setInt(6, 0);
-		stmt.setString(7, tel);
-		stmt.setString(8, site);
-		stmt.executeUpdate();
+		PreparedStatement stmt;
+		try {
+			stmt = con.prepareStatement("INSERT INTO company_info (company_name,company_email,company_info,company_password,company_rating,voters_number,company_telephone,company_site) "
+					+ "values (?,?,?,?,?,?,?,?)");
+			stmt.setString(1, name);
+			stmt.setString(2, email);
+			stmt.setString(3, " ");
+			stmt.setString(4, password);
+			stmt.setDouble(5, 0);
+			stmt.setInt(6, 0);
+			stmt.setString(7, tel);
+			stmt.setString(8, site);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public void addPersonSkill(String skills,int personID) throws SQLException{	
@@ -115,6 +158,9 @@ public class DBSelect {
 			}			
 		}			
 	}
+	
+	
+	
 	public int getNumberOfSkills(int personID) throws SQLException{
 		Connection con=DataBaseInfo.getConnection();
 		int result=0;
@@ -129,97 +175,127 @@ public class DBSelect {
 		
 	}
 	
-	public ArrayList<PersonOffer> getPersonOffers(int personID) throws SQLException{
+	public ArrayList<PersonOffer> getPersonOffers(int personID){
 		Connection con=DataBaseInfo.getConnection();
-		Statement stmt=con.createStatement();
-		String query = "SELECT * FROM persons_offer "
-				+ "WHERE " + "persons_id = '" + personID+ "' ;";
-		ResultSet rs=stmt.executeQuery(query);
-		ArrayList<PersonOffer> result=new ArrayList<PersonOffer>();		
-		while(rs.next()){
-			PersonOffer perOff=new PersonOffer(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4));
-			result.add(perOff);
-		}
+		Statement stmt;
+		ArrayList<PersonOffer> result=new ArrayList<PersonOffer>();
+		try {
+			stmt = con.createStatement();
+			String query = "SELECT * FROM persons_offer "
+					+ "WHERE " + "persons_id = '" + personID+ "' ;";
+			ResultSet rs=stmt.executeQuery(query);		
+			while(rs.next()){
+				PersonOffer perOff=new PersonOffer(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4));
+				result.add(perOff);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		return result;
 	}
-	public Person getPerson(int personID) throws SQLException{
+	
+	
+	public Person getPerson(int personID){
 		Connection con=DataBaseInfo.getConnection();
-		Statement stmt=con.createStatement();
-		String query = "SELECT * FROM persons "
-				+ "WHERE " + "persons_id = '" + personID+ "' ;";
-		ResultSet rs=stmt.executeQuery(query);
-		if(!rs.next()){
-			return null;
+		Statement stmt;
+		Person person=null;
+		try {
+			stmt = con.createStatement();
+			String query = "SELECT * FROM persons "
+					+ "WHERE " + "persons_id = '" + personID+ "' ;";
+			ResultSet rs=stmt.executeQuery(query);
+			rs.next();
+			person=new Person(rs.getString("person_name"), rs.getString("person_email"), rs.getString("person_surname"), rs.getString("person_id_number"),rs.getString("person_sex"),
+					rs.getDate("person_birth_date"), null, rs.getString("person_info"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		Person person=new Person(rs.getString("person_name"), rs.getString("person_email"), rs.getString("person_surname"), rs.getString("person_id_number"),rs.getString("person_sex"),
-				rs.getDate("person_birth_date"), null, rs.getString("person_info"));
+		
 		return person;
 	}
 	
-	public Company getCompany(int companyID) throws SQLException{
+	public Company getCompany(int companyID) {
 		Connection con=DataBaseInfo.getConnection();
-		Statement stmt=con.createStatement();
-		String query = "SELECT * FROM company_info "
-				+ "WHERE " + "company_id = '" + companyID+ "' ;";
-		ResultSet rs=stmt.executeQuery(query);
-		if(!rs.next()){
-			return null;
-		}
-		Company company= new Company(rs.getString("company_name"), rs.getString("company_email"), rs.getString("company_info"),rs.getDouble("company_rating"), rs.getString("company_password"),rs.getInt("voters_number"), rs.getString("company_telephone"),rs.getString("company_site"));		
+		Statement stmt;
+		Company company=null;
+		try {
+			stmt = con.createStatement();
+			String query = "SELECT * FROM company_info "
+					+ "WHERE " + "company_id = '" + companyID+ "' ;";
+			ResultSet rs=stmt.executeQuery(query);
+			rs.next();
+			company= new Company(rs.getString("company_name"), rs.getString("company_email"), rs.getString("company_info"),rs.getDouble("company_rating"), rs.getString("company_password"),rs.getInt("voters_number"), rs.getString("company_telephone"),rs.getString("company_site"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}			
 		return company;
 	}
 	
-	public Offer getOffer(int offerID) throws SQLException{
+	public Offer getOffer(int offerID){
 		Connection con=DataBaseInfo.getConnection();
-		Statement stmt=con.createStatement();
-		String query = "SELECT * FROM offer "
-				+ "WHERE " + "offer_id = '" + offerID+ "' ;";
-		ResultSet rs=stmt.executeQuery(query);
-		if(!rs.next()){
-			return null;
+		Statement stmt;
+		Offer offer=null;
+		try {
+			stmt = con.createStatement();
+			String query = "SELECT * FROM offer "
+					+ "WHERE " + "offer_id = '" + offerID+ "' ;";
+			ResultSet rs=stmt.executeQuery(query);
+			Company company=null;
+			company=getCompany(rs.getInt("company_id"));
+			offer=new Offer(rs.getString("offer_name"), rs.getString("offer_info"), rs.getDate("offer_end_date"), rs.getDate("offer_start_date"), company,rs.getInt("offer_id"),null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		Company company=null;
-		company=getCompany(rs.getInt("company_id"));
-		Offer offer=new Offer(rs.getString("offer_name"), rs.getString("offer_info"), rs.getDate("offer_end_date"), rs.getDate("offer_start_date"), company,rs.getInt("offer_id"),null);
+		
 		return offer;
 	}
 	
-	public ArrayList<Offer> getCompanyOffers(int companyID) throws SQLException{
+	public ArrayList<Offer> getCompanyOffers(int companyID){
 		Connection con=DataBaseInfo.getConnection();
 		DBSelect select=new DBSelect();
 		ArrayList<Offer> offers=new ArrayList<Offer>();;
-		Statement stmt=con.createStatement();
-		String query = "SELECT * FROM offer "
-				+ "WHERE " + "company_id = '" + companyID+ "' ;";
-		ResultSet rs=stmt.executeQuery(query);
-		if(!rs.next()){
-			return null;
+		Statement stmt;
+		try {
+			stmt = con.createStatement();
+			String query = "SELECT * FROM offer "
+					+ "WHERE " + "company_id = '" + companyID+ "' ;";
+			ResultSet rs=stmt.executeQuery(query);
+			while(rs.next()){		
+			Company cmp = select.getCompany(companyID);
+			Offer offer = new Offer(rs.getString("offer_name"), rs.getString("offer_info"), rs.getDate("offer_end_date"), rs.getDate("offer_start_date"), cmp,rs.getInt("offer_id"),null);
+			offers.add(offer);
+			}		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		while(rs.next()){		
-		Company cmp = select.getCompany(companyID);
-		Offer offer = new Offer(rs.getString("offer_name"), rs.getString("offer_info"), rs.getDate("offer_end_date"), rs.getDate("offer_start_date"), cmp,rs.getInt("offer_id"),null);
-		offers.add(offer);
-		}		
+		
 		return offers;
 	}
 	
-	public ArrayList <Person> getOfferPersons(int offerID)  throws SQLException{
+	public ArrayList <Person> getOfferPersons(int offerID) {
 		Connection con=DataBaseInfo.getConnection();
 		DBSelect select=new DBSelect();
 		ArrayList<Person> persons=new ArrayList<Person>();
 		Person person;
-		Statement stmt=con.createStatement();
-		String query = "SELECT * FROM persons_offer "
-				+ "WHERE " + "offer_id = '" + offerID+ "' ;";
-		ResultSet rs=stmt.executeQuery(query);
-		if(!rs.next()){
-			return null;
-		}
-		while(rs.next()){
-			person=select.getPerson(rs.getInt("persons_id"));
-			persons.add(person);
-		}
-		
+		Statement stmt;
+		try {
+			stmt = con.createStatement();
+			String query = "SELECT * FROM persons_offer "
+					+ "WHERE " + "offer_id = '" + offerID+ "' ;";
+			ResultSet rs=stmt.executeQuery(query);
+			while(rs.next()){
+				person=select.getPerson(rs.getInt("persons_id"));
+				persons.add(person);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}				
 		return persons;
 	}
 	

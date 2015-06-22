@@ -156,8 +156,7 @@ create table persons_offer(
     offer_state enum('success','danger','warning','active'),
     email_state enum('visible','not_visible'),
     constraint persons_offer_fk1 foreign key(offer_id) references offer(offer_id),
-    constraint persons_offer_fk2 foreign key(persons_id) references persons(persons_id),
-    constraint pk primary key (offer_id, persons_id)
+    constraint persons_offer_fk2 foreign key(persons_id) references persons(persons_id)
 
 );
 create table documents(
@@ -168,7 +167,3 @@ create table documents(
     constraint document_pk primary key(document_id),
     constraint document_fk foreign key(persons_id) references persons(persons_id)
 );
-
-
-
-

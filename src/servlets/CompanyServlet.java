@@ -1,9 +1,10 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import backClasses.Company;
 import backClasses.DBSelect;
+import backClasses.DataForComp;
 import backClasses.Offer;
 import backClasses.Person;
 
@@ -39,26 +41,26 @@ public class CompanyServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 		String email= (String)session.getAttribute("email");
-		int id=0;
-		DBSelect select=new DBSelect();
+		DBSelect select= new DBSelect();
 		ArrayList<Offer> offers=new ArrayList<Offer>();
-		HashMap<Offer,ArrayList<Person> > map = new HashMap<Offer, ArrayList<Person>>();
-		Company company=null;
-		try {
-			id=select.getCompanyId(email);
-			company=select.getCompany(id);
-			offers=select.getCompanyOffers(id);
-			for(int i=0;i<offers.size();i++){
-				map.put(offers.get(i), select.getOfferPersons(offers.get(i).getOfferID()));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("offers",map);
+		ArrayList<Person> persons=new ArrayList<Person>();
+		Map<Offer,ArrayList<Person> > map = new HashMap<Offer, ArrayList<Person>>();
+		DataForComp data=new DataForComp();
+		Company company=data.getComp(email);
+		int companyID=select.getCompanyId(email);
+		offers=select.getCompanyOffers(companyID);
+		 	
+	      for(int i=0;i<offers.size();i++){
+	    	  persons=select.getOfferPersons(offers.get(i).getOfferID());
+	    	  map.put(offers.get(i), persons);
+	      }
 		request.setAttribute("company", company);
-		RequestDispatcher rd = request.getRequestDispatcher("companyProfile.jsp");
+		request.setAttribute("offers", map);
+		RequestDispatcher rd=request.getRequestDispatcher("companyProfile.jsp");
 		rd.forward(request, response);
+			
 		
+						
 	}
 
 	/**

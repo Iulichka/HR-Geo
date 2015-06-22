@@ -57,25 +57,21 @@ public class PersonRegisterServlet extends HttpServlet {
 		@SuppressWarnings("deprecation")
 		Date date=new Date(day,month,year);		
 		DBSelect selects= new DBSelect();
-		try {
-			boolean contains=selects.searchPerson(email,password);			
-			if(contains==true||password==null
-					||password_confirm==null||!password.equals(password_confirm)||surname==null||email==null||first_name==null){
-				RequestDispatcher rd=request.getRequestDispatcher("personRegister.jsp");
-				rd.forward(request, response);
-			}else{
-				  HttpSession session = request.getSession(false);			        
-			        if(session != null){
-			            session.invalidate();
-			        }
-				selects.addPerson(first_name, surname, password, id, date, email, sex);
-				session=request.getSession();
-				session.setAttribute("first_name", first_name);
-				session.setAttribute("last_name", surname);
-				response.sendRedirect("personProfile.jsp");			
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		boolean contains=selects.searchPerson(email,password);			
+		if(contains==true||password==null
+				||password_confirm==null||!password.equals(password_confirm)||surname==null||email==null||first_name==null){
+			RequestDispatcher rd=request.getRequestDispatcher("personRegister.jsp");
+			rd.forward(request, response);
+		}else{
+			  HttpSession session = request.getSession(false);			        
+		        if(session != null){
+		            session.invalidate();
+		        }
+			selects.addPerson(first_name, surname, password, id, date, email, sex);
+			session=request.getSession();
+			session.setAttribute("first_name", first_name);
+			session.setAttribute("last_name", surname);
+			response.sendRedirect("personProfile.jsp");			
 		}
 	}
 
