@@ -47,7 +47,8 @@ public class Company {
 	}
 	
 	public int getImagesNum() {
-		return images.size();
+		DataForComp c = new DataForComp();
+		return c.getPicNum(mail);
 	}
 	public String getPassword(){
 		return password;

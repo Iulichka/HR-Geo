@@ -11,7 +11,8 @@
 <title>Companies</title>
 </head>
 <body>
-
+<%@include  file="bootstrap.html" %>
+<%@include  file="navigation.html" %>
 <div class="list-group" style="width: 50%; left: 25%; position: absolute;">
 <%DataForComp d = new DataForComp();
 ArrayList<Company> comps = d.getCompList();

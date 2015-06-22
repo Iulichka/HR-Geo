@@ -15,7 +15,7 @@ values
 insert into person_photoes
 (person_photo,persons_id)
 values
-(load_file('D:\\suratebi\\legenda.png'),1);
+(load_file('C:/Users/Nodo/Desktop/New folder/pic.jpg'),1);
 
 
 -- skill category inserts
@@ -95,3 +95,11 @@ values
 insert into persons_offer
 (offer_id,persons_id,offer_state,email_state)
 values(1,1,'warning','visible');
+
+insert into company_photo
+(company_photo,company_id)
+values
+(LOAD_FILE('C:\Users\Nodo\Desktop\New folder\pic.jpg'),1),
+(load_file('C:\Users\Nodo\Desktop\New folder\pic.jpg'),2),
+(load_file('C:\Users\Nodo\Desktop\New folder\pic.jpg'),3);
+

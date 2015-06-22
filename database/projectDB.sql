@@ -111,7 +111,7 @@ create table company_info(
 create table company_photo(
 	company_photo_id int not null auto_increment,
     company_id int not null,
-    company_photo mediumblob not null,
+    company_photo mediumblob,
     constraint company_photo_pk primary key(company_photo_id),
     constraint company_photo_fk foreign key (company_id) references company_info (company_id)
 

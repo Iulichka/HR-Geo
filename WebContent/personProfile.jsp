@@ -33,7 +33,7 @@
 				Person pers=null;
 				PersonSkills skills=null;
 				OverallExperience experience=null;
-				ArrayList<PersonOffer> personOffers=null;
+				ArrayList<PersonOffer> personOffers = null;
 				if(session.getAttribute("first_name")==null){
 					if(session.getAttribute("email")!=null){
 						pers=(Person)request.getAttribute("person");
