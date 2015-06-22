@@ -115,7 +115,7 @@
 							for(int i=0;i<value.size();i++){
 								Person pers=value.get(i);							
 							%>
-           				<tr class= <%= %>>
+           				<tr class="danger">
                     		<td><%=key.getName()%></td> 
                     		<td><%=pers.getName()+" "+pers.getSurname() %></td> 
                     		<td><%=key.getStartDate()%></td> 
