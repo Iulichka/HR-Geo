@@ -44,38 +44,32 @@ public class LoginServlet extends HttpServlet {
 		String checked =(String)request.getParameter("check");
 		DBSelect selects=new DBSelect();
 		if(checked==null){
-			try {
-				boolean contains =selects.searchPerson(email,password);
-				if(contains==false){
-					RequestDispatcher rd=request.getRequestDispatcher("homePage.jsp");
-					rd.forward(request,response);
-				}else{
-					HttpSession session = request.getSession(false);			        
-			        if(session != null){
-			            session.invalidate();
-			        }
-			        session=request.getSession();
-					session.setAttribute("email", email);					
-					response.sendRedirect("http://localhost:8080/HR-Geo/PersonServlet");
-				}
-			} catch (SQLException e) {
-				
-				e.printStackTrace();
-			}
-			
+			boolean contains =selects.searchPerson(email,password);
+			if(contains==false){
+				RequestDispatcher rd=request.getRequestDispatcher("homePage.jsp");
+				rd.forward(request,response);
+			}else{
+				HttpSession session = request.getSession(false);			        
+			    if(session != null){
+			        session.invalidate();
+			    }
+			    session=request.getSession();
+				session.setAttribute("email", email);					
+				response.sendRedirect("http://localhost:8080/HR-Geo/PersonServlet");
+			}			
 		}else{
-			try {
-				boolean contains=selects.searchCompany(email,password);
-				if(contains==false){
-					RequestDispatcher rd=request.getRequestDispatcher("homePage.jsp");
-					rd.forward(request,response);
-				}else{
-					RequestDispatcher rd=request.getRequestDispatcher("companyProfile.jsp");
-					rd.forward(request, response);
-				}
-			} catch (SQLException e) {
-				
-				e.printStackTrace();
+			boolean contains=selects.searchCompany(email,password);
+			if(contains==false){
+				RequestDispatcher rd=request.getRequestDispatcher("homePage.jsp");
+				rd.forward(request,response);
+			}else{
+				HttpSession session = request.getSession(false);			        
+			    if(session != null){
+			        session.invalidate();
+			    }
+			    session=request.getSession();
+				session.setAttribute("email", email);					
+				response.sendRedirect("http://localhost:8080/HR-Geo/CompanyServlet");
 			}
 		}
 	}

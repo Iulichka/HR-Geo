@@ -5,20 +5,30 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Offer {
+	private int offerID;
 	private String offerName, text;
 	private Date endDate, startDate;
 	private Company comp;
+	private String status;
 	
-	public Offer(String offerName, String text, Date endDate, Date startDate, Company comp) {
+	public Offer(String offerName, String text, Date endDate, Date startDate, Company comp,int offerID,String status) {
 		this.offerName = offerName;
 		this.text = text;
 		this.endDate = endDate;
 		this.startDate = startDate;
 		this.comp = comp;
+		this.offerID=offerID;
+		this.status=status;
 	}
 	
 	public Offer(Company cmp) {
 		comp = cmp;
+	}
+	public String getStatus(){
+		return status;
+	}
+	public void setSatus(String status){
+		this.status=status;
 	}
 	
 	public Company getCompany() {
@@ -36,6 +46,9 @@ public class Offer {
 	public String getName() {
 		return offerName;
 	}
+	public int getOfferID() {
+		return offerID;
+	}
 	
 	public String getText() {
 		return text;
@@ -51,6 +64,9 @@ public class Offer {
 	
 	public void setSubject(String sbj) {
 		offerName = sbj;
+	}
+	public void setOfferID(int offerID) {
+		this.offerID = offerID;
 	}
 	
 	public void setText(String tx) {

@@ -50,12 +50,10 @@ public class Upload extends HttpServlet {
 	        IOUtils.copy(fileContent, outputStream);
 	        FileInputStream inputStream= new FileInputStream(file);
 	        outputStream.close();
-	       // file.delete();
 	        DataForComp d = new DataForComp();
 	        d.addPicture(mail, inputStream);
 	        inputStream.close();
 	        file.delete();
-	      //  System.out.println(fileContent.read());
 	        response.getWriter().print("file: "+fileName+description+" was successfully uploaded");
 	    }
 

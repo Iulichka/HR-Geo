@@ -10,12 +10,17 @@ insert into persons
 (person_name,person_surname,person_password,person_id_number,person_birth_date
 ,person_email,person_sex,person_education,person_info)
 values
-('dato','chkhatarashvili','chkhatara','01024070110','1994-01-01','dato@gmail.com','MALE','არავითარი','ტიპიაა');
+('zura','zuradze','zura','01024070112','1994-01-01','zura@gmail.com','MALE','არავითარი','ტიპიაა'),
+('dato','datodze','dato','01024070111','1994-01-01','dato@gmail.com','MALE','არავითარი','ტიპიაა');
 
+
+<<<<<<< HEAD
 insert into person_photoes
 (person_photo,persons_id)
 values
 (load_file('C:/Users/Nodo/Desktop/New folder/pic.jpg'),1);
+=======
+>>>>>>> 6114d3a1ebc11697cad00e3ec01b94c12b3bc7c9
 
 
 -- skill category inserts
@@ -90,16 +95,17 @@ values
 insert into offer
 (offer_info,offer_name,offer_start_date,offer_end_date,company_id)
 values
-('Java Programmer Vacancy','Java Programmer','2015-07-20','2015-08-10',3);
+('PHP Programmer Vacancy','PHP Programmer','2015-07-20','2015-08-10',3),
+('Java pto','java','2015-07-20','2015-08-10',3);
+
+use  webproject;
 
 insert into persons_offer
 (offer_id,persons_id,offer_state,email_state)
-values(1,1,'warning','visible');
 
-insert into company_photo
-(company_photo,company_id)
 values
-(LOAD_FILE('C:\Users\Nodo\Desktop\New folder\pic.jpg'),1),
-(load_file('C:\Users\Nodo\Desktop\New folder\pic.jpg'),2),
-(load_file('C:\Users\Nodo\Desktop\New folder\pic.jpg'),3);
+(1,1,'warning','visible'),
+(1,2,'warning','visible'),
+(2,2,'warning','visible'),
+(2,2,'warning','visible');
 

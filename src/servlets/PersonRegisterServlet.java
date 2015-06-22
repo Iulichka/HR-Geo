@@ -76,8 +76,9 @@ public class PersonRegisterServlet extends HttpServlet {
 				session.setAttribute("last_name", surname);
 				response.sendRedirect("personProfile.jsp");			
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+		
 		}
 	}
 

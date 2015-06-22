@@ -7,7 +7,7 @@ insert into persons
 values
 ('ჯოტია','ცაავა',12345,123456,'1991-01-13','jcaava@caava.com','male','Ph.d','ტიპიაა'),
 ('გიული','მესხი',1349,133456,'1987-07-13','giuli@mesxi.com','female','Doc','lady');
-select * from persons;
+
 
 -- skill category inserts
 insert into skill_category
@@ -80,6 +80,19 @@ values
 (1,'EY','Partner','2011-09-14','2012-09-28'),
 (2,'KPMG','Senior','2001-09-14','2011-09-28'),
 (2,'Deloitte','assistante','2002-09-14','2010-12-18');
+-- insert into offers
+insert into offer
+(offer_info,offer_name,offer_start_date,offer_end_date,company_id)
+values
+('asisstant','A1','2009-01-28','2010-09-28',2),
+('intern','i','2007-01-28','2010-02-28',3),
+('manager','a3','2007-01-28','2015-09-28',4);
 
-
+-- insert into  person_offer
+insert into persons_offer
+ (offer_id,persons_id,offer_state,email_state)
+values 
+(11,1,'succes','visible'),
+(12,1,'active','not_visible'),
+(13,2,'warning','visible');
 
