@@ -142,6 +142,19 @@ public class DBSelect {
 		}
 		return result;
 	}
+	public Person getPerson(int personID) throws SQLException{
+		Connection con=DataBaseInfo.getConnection();
+		Statement stmt=con.createStatement();
+		String query = "SELECT * FROM persons "
+				+ "WHERE " + "persons_id = '" + personID+ "' ;";
+		ResultSet rs=stmt.executeQuery(query);
+		if(!rs.next()){
+			return null;
+		}
+		Person person=new Person(rs.getString("person_name"), rs.getString("person_email"), rs.getString("person_surname"), rs.getString("person_id_number"),rs.getString("person_sex"),
+				rs.getDate("person_birth_date"), null, rs.getString("person_info"));
+		return person;
+	}
 	
 	public Company getCompany(int companyID) throws SQLException{
 		Connection con=DataBaseInfo.getConnection();
@@ -167,8 +180,47 @@ public class DBSelect {
 		}
 		Company company=null;
 		company=getCompany(rs.getInt("company_id"));
-		Offer offer=new Offer(rs.getString("offer_name"), rs.getString("offer_info"), rs.getDate("offer_end_date"), rs.getDate("offer_start_date"), company);
+		Offer offer=new Offer(rs.getString("offer_name"), rs.getString("offer_info"), rs.getDate("offer_end_date"), rs.getDate("offer_start_date"), company,rs.getInt("offer_id"));
 		return offer;
+	}
+	
+	public ArrayList<Offer> getCompanyOffers(int companyID) throws SQLException{
+		Connection con=DataBaseInfo.getConnection();
+		DBSelect select=new DBSelect();
+		ArrayList<Offer> offers=new ArrayList<Offer>();;
+		Statement stmt=con.createStatement();
+		String query = "SELECT * FROM offer "
+				+ "WHERE " + "company_id = '" + companyID+ "' ;";
+		ResultSet rs=stmt.executeQuery(query);
+		if(!rs.next()){
+			return null;
+		}
+		while(rs.next()){		
+		Company cmp = select.getCompany(companyID);
+		Offer offer = new Offer(rs.getString("offer_name"), rs.getString("offer_info"), rs.getDate("offer_end_date"), rs.getDate("offer_start_date"), cmp,rs.getInt("offer_id"));
+		offers.add(offer);
+		}		
+		return offers;
+	}
+	
+	public ArrayList <Person> getOfferPersons(int offerID)  throws SQLException{
+		Connection con=DataBaseInfo.getConnection();
+		DBSelect select=new DBSelect();
+		ArrayList<Person> persons=new ArrayList<Person>();
+		Person person;
+		Statement stmt=con.createStatement();
+		String query = "SELECT * FROM persons_offer "
+				+ "WHERE " + "offer_id = '" + offerID+ "' ;";
+		ResultSet rs=stmt.executeQuery(query);
+		if(!rs.next()){
+			return null;
+		}
+		while(rs.next()){
+			person=select.getPerson(rs.getInt("persons_id"));
+			persons.add(person);
+		}
+		
+		return persons;
 	}
 	
 }

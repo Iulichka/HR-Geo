@@ -58,11 +58,9 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("email", email);					
 					response.sendRedirect("http://localhost:8080/HR-Geo/PersonServlet");
 				}
-			} catch (SQLException e) {
-				
+			} catch (SQLException e) {				
 				e.printStackTrace();
-			}
-			
+			}			
 		}else{
 			try {
 				boolean contains=selects.searchCompany(email,password);
@@ -70,11 +68,15 @@ public class LoginServlet extends HttpServlet {
 					RequestDispatcher rd=request.getRequestDispatcher("homePage.jsp");
 					rd.forward(request,response);
 				}else{
-					RequestDispatcher rd=request.getRequestDispatcher("companyProfile.jsp");
-					rd.forward(request, response);
+					HttpSession session = request.getSession(false);			        
+			        if(session != null){
+			            session.invalidate();
+			        }
+			        session=request.getSession();
+					session.setAttribute("email", email);					
+					response.sendRedirect("http://localhost:8080/HR-Geo/CompanyServlet");
 				}
-			} catch (SQLException e) {
-				
+			} catch (SQLException e) {				
 				e.printStackTrace();
 			}
 		}

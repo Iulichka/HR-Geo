@@ -39,7 +39,10 @@
             <li><a href="personRegister.jsp">Register Person</a></li>
           </ul>
         </li>        
-      </ul>	               
+      </ul>	 
+      <form class="navbar-form navbar-right" action="LogoutServlet" method="post" role="logout">
+          <button type="submit" class="btn btn-default" value="Logout">Log Out</button>
+          </form>              
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -50,46 +53,24 @@
     	 <div class="well profile">
             <div class="col-sm-12">
                 <div class="col-xs-12 col-sm-8">
-                    <h2>Company Name</h2>
-                    <p><strong>Company Info: </strong> Information About Company </p>                  
-                    
-                </div>             
-                <div class="col-xs-12 col-sm-4 text-center">                      
-                        <figcaption class="ratings">
-                            <p>Ratings
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                <span class="fa fa-star"></span>
-                            </a>
-                            <a href="#">
-                                 <span class="fa fa-star-o"></span>
-                            </a> 
-                            </p>
-                        </figcaption>
-                </div>
+                    <h2>Company Name</h2>                  
+                    <p><strong>Company Site: </strong> www.company.ge </p>
+                    <p><strong>Company Telephone: </strong> 599-35-65-41 </p>
+                     <p><strong>Company Info: </strong> Information About Company </p>                                                        
+                </div>                            
             </div>            
             <div class="col-xs-12 divider text-center">
                 <div class="col-xs-12 col-sm-4 emphasis">                                     
-                    <p><small>Update Profile</small></p>
                     <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Update Profile </button>
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis">                 
-                    <p><small>Make Offer</small></p>
                     <button class="btn btn-info btn-block"><span class="fa fa-user"></span> Make Offer </button>
                 </div>
             </div>
     	 </div>                 
 		</div>
 	</div>
-	
+	</div>
 	<br></br>
 	
 <div class="container">
