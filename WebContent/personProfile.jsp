@@ -16,13 +16,7 @@
 <title>Person Profile</title>
 </head>
 <body>
-<%@ page import="backClasses.Company" %>
-<%@ page import="backClasses.Offer" %>
-<%@ page import="backClasses.DBSelect" %>
-<%@ page import="backClasses.Person" %>
-<%@ page import="backClasses.PersonSkills" %>
-<%@ page import="backClasses.OverallExperience" %>
-<%@ page import="backClasses.PersonOffer" %>
+<%@ page import="backClasses.*" %>
 <%@ page import="java.util.ArrayList" %>
 		<%
 		//allow access only if session exists
@@ -33,15 +27,15 @@
 				Person pers=null;
 				PersonSkills skills=null;
 				OverallExperience experience=null;
-				// ArrayList<PersonOffer> personOffers=null;
+				AllOffersForPerson personOffers=null;
+				Offer o=null;
 				if(session.getAttribute("first_name")==null){
 					if(session.getAttribute("email")!=null){
 						pers=(Person)request.getAttribute("person");
 						skills=(PersonSkills)request.getAttribute("skills");
 						experience=(OverallExperience)request.getAttribute("experience");
 						user=pers.getName()+" "+pers.getSurname();
-					// personOffers=(ArrayList<PersonOffer>)request.getAttribute("personOffers");
-						
+					    personOffers=(AllOffersForPerson)request.getAttribute("offers");
 					}else{
 		   			 	response.sendRedirect("homePage.jsp");
 					}
@@ -141,9 +135,16 @@
 </div>	
 <table class="table table-hover">
 <thead><tr><th>Offer Name</th><th>Company</th><th>Offer Recieved</th><th>Offer End Date</th><th>Offer Status</th></tr></thead>
-<tbody>
-
-                 
+<tbody> 
+	<% while(personOffers.hasNext()) {%>
+		<%o=personOffers.getOffer(); %>
+		<tr class="danger" onclick="window.document.location='<%=company%>';">
+         <td><%=o.getName() %></td>
+         <td><%=o.getCompany().getName() %></td>
+         <td><%=o.getStartDate() %></td>
+         <td><%=o.getEndDate() %></td>
+         <td><%=o.getStatus() %></td>
+     <%} %>            
  </tbody>
 </table>
 

@@ -180,7 +180,7 @@ public class DBSelect {
 		}
 		Company company=null;
 		company=getCompany(rs.getInt("company_id"));
-		Offer offer=new Offer(rs.getString("offer_name"), rs.getString("offer_info"), rs.getDate("offer_end_date"), rs.getDate("offer_start_date"), company,rs.getInt("offer_id"));
+		Offer offer=new Offer(rs.getString("offer_name"), rs.getString("offer_info"), rs.getDate("offer_end_date"), rs.getDate("offer_start_date"), company,rs.getInt("offer_id"),null);
 		return offer;
 	}
 	
@@ -197,7 +197,7 @@ public class DBSelect {
 		}
 		while(rs.next()){		
 		Company cmp = select.getCompany(companyID);
-		Offer offer = new Offer(rs.getString("offer_name"), rs.getString("offer_info"), rs.getDate("offer_end_date"), rs.getDate("offer_start_date"), cmp,rs.getInt("offer_id"));
+		Offer offer = new Offer(rs.getString("offer_name"), rs.getString("offer_info"), rs.getDate("offer_end_date"), rs.getDate("offer_start_date"), cmp,rs.getInt("offer_id"),null);
 		offers.add(offer);
 		}		
 		return offers;

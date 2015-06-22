@@ -11,9 +11,25 @@ public class DataForPerson {
  public DataForPerson(){
 	 con=DataBaseInfo.getConnection();
  }
- public AllOffersForPerson getOffer(int id){
-	 AllOffersForPerson=new AllOffersForPerson();
-	 
+ public AllOffersForPerson getOffers(int id){
+	 AllOffersForPerson offers=new AllOffersForPerson();
+	 Statement stm;
+	 try {
+			stm=con.createStatement();
+			stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+			ResultSet rSet= stm.executeQuery("select po.offer_id,o.offer_name,o.offer_info, "+
+					"o.offer_end_date,o.offer_start_date,c.company_name,po.offer_state "+
+					"from  persons_offer po,offer o,company_info c "+
+					"where po.offer_id=o.offer_id and po.persons_id="+id+" and o.company_id=c.company_id;");
+			while(rSet.next()){
+				Offer cur=new Offer(rSet.getString(2),rSet.getString(3),rSet.getDate(4),rSet.getDate(5),
+						new Company(rSet.getString(6),null,null,0,null,1,null,null),rSet.getInt(1),rSet.getString(7));
+				offers.addOffer(cur);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}		
+	 return offers;
  }
  
  public int getPersonId(String email){

@@ -1,5 +1,5 @@
 package servlets;
-
+import backClasses.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -49,10 +49,12 @@ public class PersonServlet extends HttpServlet {
 		PersonSkills skills=data.getPersonSkills(id);
 		OverallExperience experience=data.getPersonExperience(id);
 		PersonEducation edu=data.getPersonEducation(id);
+		AllOffersForPerson offers=data.getOffers(id);
 		request.setAttribute("person", person);
 		request.setAttribute("skills", skills);
 		request.setAttribute("experience", experience);
 		request.setAttribute("education", edu);
+		request.setAttribute("offers", offers);
 		RequestDispatcher rd = request.getRequestDispatcher("personProfile.jsp");
 		rd.forward(request, response);
 		

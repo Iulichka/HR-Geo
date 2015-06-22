@@ -9,18 +9,26 @@ public class Offer {
 	private String offerName, text;
 	private Date endDate, startDate;
 	private Company comp;
+	private String status;
 	
-	public Offer(String offerName, String text, Date endDate, Date startDate, Company comp,int offerID) {
+	public Offer(String offerName, String text, Date endDate, Date startDate, Company comp,int offerID,String status) {
 		this.offerName = offerName;
 		this.text = text;
 		this.endDate = endDate;
 		this.startDate = startDate;
 		this.comp = comp;
 		this.offerID=offerID;
+		this.status=status;
 	}
 	
 	public Offer(Company cmp) {
 		comp = cmp;
+	}
+	public String getStatus(){
+		return status;
+	}
+	public void setSatus(String status){
+		this.status=status;
 	}
 	
 	public Company getCompany() {

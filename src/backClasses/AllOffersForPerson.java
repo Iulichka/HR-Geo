@@ -24,9 +24,9 @@ public class AllOffersForPerson {
 	 * @return
 	 */
 	public Offer getOffer(){
-		if(currentOffer<offers.size()){
+		if(currentOffer<offers.size() ){
 			currentOffer++;
-			return offers.get(currentOffer);
+			return offers.get(currentOffer-1);
 		}
 		return null;
 	}
