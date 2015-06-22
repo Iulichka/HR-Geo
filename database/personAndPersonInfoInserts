@@ -80,6 +80,18 @@ values
 (1,'EY','Partner','2011-09-14','2012-09-28'),
 (2,'KPMG','Senior','2001-09-14','2011-09-28'),
 (2,'Deloitte','assistante','2002-09-14','2010-12-18');
+-- insert into offers
+insert into offer
+(offer_info,offer_name,offer_start_date,offer_end_date,company_id)
+values
+('asisstant','A1','2010-09-28',2),
+('intern','i','2010-02-28',3),
+('manager','a3','2015-09-28',4);
 
-
-
+-- insert into  person_offer
+insert into persons_offer
+ (offer_id,persons_id,offer_state,email_state)
+values 
+(1,1,'accept','visible'),
+(2,1,'reject','not_visible'),
+(3,2,'accept','visible');

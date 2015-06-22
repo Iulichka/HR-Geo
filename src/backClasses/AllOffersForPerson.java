@@ -9,13 +9,13 @@ import java.util.ArrayList;
  *
  */
 public class AllOffersForPerson {
-	private ArrayList<PersonOffer> offers;
+	private ArrayList<Offer> offers;
 	private int currentOffer;
 	public AllOffersForPerson(){
-		offers=new ArrayList<PersonOffer>();
+		offers=new ArrayList<Offer>();
 		currentOffer=0;
 	}
-	public void addOffer(PersonOffer offer){
+	public void addOffer(Offer offer){
 		offers.add(offer);
 	} 
 	/**
@@ -23,7 +23,7 @@ public class AllOffersForPerson {
 	 * should be used after checking has next method or it will return null
 	 * @return
 	 */
-	public PersonOffer getOffer(){
+	public Offer getOffer(){
 		if(currentOffer<offers.size()){
 			currentOffer++;
 			return offers.get(currentOffer);

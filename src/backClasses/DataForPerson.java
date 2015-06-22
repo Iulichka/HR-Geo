@@ -11,6 +11,11 @@ public class DataForPerson {
  public DataForPerson(){
 	 con=DataBaseInfo.getConnection();
  }
+ public AllOffersForPerson getOffer(int id){
+	 AllOffersForPerson=new AllOffersForPerson();
+	 
+ }
+ 
  public int getPersonId(String email){
 	 Statement stm;
 	 int res=-1;
