@@ -32,7 +32,8 @@ public class CompImage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("image/jpeg");
+		String fileType = request.getParameter("type");
+		response.setContentType(fileType);
 		String mail = request.getParameter("mail");
 		int n = Integer.parseInt(request.getParameter("num"));
 		DataForComp dat = new DataForComp();

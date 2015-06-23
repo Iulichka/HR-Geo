@@ -56,7 +56,7 @@ for (int i=1; i<=c.getImagesNum(); i++) {
 	out.print("<div class=\"col-xs-6 col-md-3\">");
 	out.print("<a href=\"#\" class=\"thumbnail\">");
 	String mail = c.getMail();
-	out.print("<img src=\"CompImage?mail="+mail+"&num="+i+"\">");
+	out.print("<img src=\"CompImage?mail="+mail+"&num="+i+"&type=image/jpeg"+"\">");
 	out.print("</a></div>");
 }
 %>
