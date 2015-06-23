@@ -26,15 +26,14 @@
 		String user =null;
 		String first_name = null;
 		String last_name = null;
-		if(session.getAttribute("first_name")==null){
+	
 			if(session.getAttribute("email")!=null){
 				user=(String)session.getAttribute("email");
+				first_name=(String)session.getAttribute("first_name");
+				last_name=(String)session.getAttribute("last_name");
 			}else{
    			 	response.sendRedirect("homePage.jsp");
 			}
-		}else{
-			user = (String)session.getAttribute("first_name")+" "+(String)session.getAttribute("last_name");
-		}
 			
 %>   
 <nav class="navbar navbar-default">
@@ -48,20 +47,11 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="homePage.jsp">Home</a>
-      <a class="navbar-brand" href="personProfile.jsp"><%=user%></a>
+      <a class="navbar-brand" href="http://localhost:8080/HR-Geo/PersonServlet"><%=first_name+" "+last_name%></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Registration <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="companyRegister.jsp">Register Company</a></li>
-            <li><a href="personRegister.jsp">Register Person</a></li>
-          </ul>
-        </li>       
-      </ul>  
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> 
       <form class="navbar-form navbar-right" action="LogoutServlet" method="post" role="logout">
           <button type="submit" class="btn btn-default" value="Logout">Log Out</button>
           </form>   	         

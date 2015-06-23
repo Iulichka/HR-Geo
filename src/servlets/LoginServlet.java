@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import backClasses.DBSelect;
+import backClasses.DataForPerson;
+import backClasses.Person;
 
 
 
@@ -54,7 +58,11 @@ public class LoginServlet extends HttpServlet {
 			        session.invalidate();
 			    }
 			    session=request.getSession();
-				session.setAttribute("email", email);					
+			    DataForPerson data=new DataForPerson();
+			    Person p=data.getPerson(data.getPersonId(email));
+				session.setAttribute("email", email);
+				session.setAttribute("first_name",p.getName() );
+				session.setAttribute("last_name", p.getSurname());
 				response.sendRedirect("http://localhost:8080/HR-Geo/PersonServlet");
 			}			
 		}else{

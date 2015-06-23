@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html  >
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <html>
@@ -30,7 +30,6 @@
 
 				AllOffersForPerson personOffers=null;
 				Offer o=null;
-				if(session.getAttribute("first_name")==null){
 					if(session.getAttribute("email")!=null){
 						pers=(Person)request.getAttribute("person");
 						skills=(PersonSkills)request.getAttribute("skills");
@@ -40,9 +39,7 @@
 					}else{
 		   			 	response.sendRedirect("homePage.jsp");
 					}
-				}else{
-					user = (String)session.getAttribute("first_name")+" "+(String)session.getAttribute("last_name");
-				}
+				
 		
 			
 %>   
@@ -62,15 +59,6 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Registration <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="companyRegister.jsp">Register Company</a></li>
-            <li><a href="personRegister.jsp">Register Person</a></li>
-          </ul>
-        </li>       
-      </ul>
       	 <form class="navbar-form navbar-right" action="LogoutServlet" method="post" role="logout">
           <button type="submit" class="btn btn-default" value="Logout">Log Out</button>
           </form>
@@ -93,6 +81,7 @@
                     		<span class="label label-primary"><%=skills.getPersonSkills().get(i).getName() %></span> 
                 		<%} %>
                     <%} %>
+                    
                     </p>
                 </div>             
                 <div class="col-xs-12 col-sm-4 text-center">
