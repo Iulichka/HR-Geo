@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
@@ -16,20 +16,34 @@
 <title>Person Profile</title>
 </head>
 <body>
+<%@ page import="backClasses.*" %>
+<%@ page import="java.util.ArrayList" %>
 		<%
 		//allow access only if session exists
-		String user =null;
-		String first_name = null;
-		String last_name = null;
-		if(session.getAttribute("first_name")==null){
-			if(session.getAttribute("email")!=null){
-				user=(String)session.getAttribute("email");
-			}else{
-   			 	response.sendRedirect("homePage.jsp");
-			}
-		}else{
-			user = (String)session.getAttribute("first_name")+" "+(String)session.getAttribute("last_name");
-		}
+				String company="CompanyPage?mail=socar@yahoo.com";
+				String user =null;
+				String first_name = null;
+				String last_name = null;
+				Person pers=null;
+				PersonSkills skills=null;
+				OverallExperience experience=null;
+
+				AllOffersForPerson personOffers=null;
+				Offer o=null;
+				if(session.getAttribute("first_name")==null){
+					if(session.getAttribute("email")!=null){
+						pers=(Person)request.getAttribute("person");
+						skills=(PersonSkills)request.getAttribute("skills");
+						experience=(OverallExperience)request.getAttribute("experience");
+						user=pers.getName()+" "+pers.getSurname();
+					    personOffers=(AllOffersForPerson)request.getAttribute("offers");
+					}else{
+		   			 	response.sendRedirect("homePage.jsp");
+					}
+				}else{
+					user = (String)session.getAttribute("first_name")+" "+(String)session.getAttribute("last_name");
+				}
+		
 			
 %>   
 <nav class="navbar navbar-default">
@@ -43,7 +57,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="homePage.jsp">Home</a>
-      <a class="navbar-brand" href="personProfile.jsp"><%=user%></a>
+      <a class="navbar-brand" href="http://localhost:8080/HR-Geo/PersonServlet"><%=user%></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -57,8 +71,9 @@
           </ul>
         </li>       
       </ul>
-      	
-         
+      	 <form class="navbar-form navbar-right" action="LogoutServlet" method="post" role="logout">
+          <button type="submit" class="btn btn-default" value="Logout">Log Out</button>
+          </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -69,14 +84,15 @@
     	 <div class="well profile">
             <div class="col-sm-12">
                 <div class="col-xs-12 col-sm-8">                	 				
-                	<h2><%=user %></h2>
-                    <p><strong>About: </strong> Web Designer / UI. </p>
-                    <p><strong>Hobbies: </strong> Read, out with friends, listen to music, draw and learn new things. </p>
+                	<h2><%=user%></h2>
+                    <p><strong>About: </strong><%=pers.getAbout() %> </p>
+                    <p><strong>Birth Date: </strong><%=pers.getDate()%> </p>
                     <p><strong>Skills: </strong>
-                        <span class="label label-primary">html5</span> 
-                        <span class="label label-primary">css3</span>
-                        <span class="label label-primary">jquery</span>
-                        <span class="label label-primary">bootstrap3</span>
+                    <%for(int i=0;i<skills.getPersonSkills().size();i++){ %>
+                    	<%if(skills!=null){ %>
+                    		<span class="label label-primary"><%=skills.getPersonSkills().get(i).getName() %></span> 
+                		<%} %>
+                    <%} %>
                     </p>
                 </div>             
                 <div class="col-xs-12 col-sm-4 text-center">
@@ -105,9 +121,7 @@
                       </button>
                       <ul class="dropdown-menu text-left" role="menu">
                         <li><a href="#"><span class="fa fa-envelope pull-right"></span> Send an email to company </a></li>
-                        <form action="LogoutServlet" method="post">
-                        <a href="homePage.jsp"><span class="fa fa-list pull-right"></span> Log Out </a>
-                        </form>
+                        <li><a href="#"><span class="fa fa-list pull-right"></span> Log Out </a></li>
                         <li class="divider"></li>
                         <li><a href="#"><span class="fa fa-warning pull-right"></span>delete my account</a></li>
                         <li class="divider"></li>
@@ -119,48 +133,21 @@
     	 </div>                 
 		</div>
 	</div>
+</div>	
 <table class="table table-hover">
 <thead><tr><th>Offer Name</th><th>Company</th><th>Offer Recieved</th><th>Offer End Date</th><th>Offer Status</th></tr></thead>
-<tbody>
- <tr class="danger">
-        <td>Java Programmer</td>
-        <td>Microsoft</td>
-        <td>05-03-2015</td>
-        <td>15-03-2015</td>
-        <td>Rejected</td>
-      </tr>
-  </tbody>
-  <tbody>
- <tr class="success">
-        <td>Translator</td>
-        <td>ebooks</td>
-        <td>08-03-2015</td>
-        <td>18-03-2015</td>
-        <td>accepted</td>
-      </tr>
-  </tbody>
-   <tbody>
- <tr class="warning">
-        <td>Database Administrator</td>
-        <td>Oracle</td>
-        <td>08-03-2015</td>
-        <td>18-03-2015</td>
-        <td>thinking</td>
-      </tr>
-  </tbody>
-  <tr class="active">
-        <td>Database Administrator</td>
-        <td>Oracle</td>
-        <td>08-03-2015</td>
-        <td>18-03-2015</td>
-        <td>not answered</td>
-      </tr>
-  </tbody>
-  
+<tbody> 
+	<% while(personOffers.hasNext()) {%>
+		<%o=personOffers.getOffer(); %>
+		<tr class="danger" onclick="window.document.location='<%=company%>';">
+         <td><%=o.getName() %></td>
+         <td><%=o.getCompany().getName() %></td>
+         <td><%=o.getStartDate() %></td>
+         <td><%=o.getEndDate() %></td>
+         <td><%=o.getStatus() %></td>
+     <%} %>            
+ </tbody>
 </table>
-  </div>
-  
-
 
 </body>
 </html>

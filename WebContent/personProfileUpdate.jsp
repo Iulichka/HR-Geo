@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
+<!doctype html>
+<html>
+<head>
+ <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update Profile</title>
@@ -11,9 +11,17 @@
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/jquery-ui.min.css" rel="stylesheet">
-  </head>
-  <body>
-  <%
+    <link rel="stylesheet" type="text/css" href="http://snipplicious.com/css/bootstrap-3.2.0.min.css">
+	<link rel="stylesheet" type="text/css" href="http://snipplicious.com/css/font-awesome-4.1.0.min.css">
+	<script src="http://snipplicious.com/js/jquery.js"></script>
+	<script src="http://snipplicious.com/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://snipplicious.com/css/bootstrap-3.2.0.min.css">
+	<link rel="stylesheet" type="text/css" href="http://snipplicious.com/css/font-awesome-4.1.0.min.css">
+	<script src="http://snipplicious.com/js/jquery.js"></script>
+	<script src="http://snipplicious.com/js/bootstrap.min.js"></script>
+</head>
+<body>
+ <%
 		//allow access only if session exists
 		String user =null;
 		String first_name = null;
@@ -53,85 +61,79 @@
             <li><a href="personRegister.jsp">Register Person</a></li>
           </ul>
         </li>       
-      </ul>     	         
+      </ul>  
+      <form class="navbar-form navbar-right" action="LogoutServlet" method="post" role="logout">
+          <button type="submit" class="btn btn-default" value="Logout">Log Out</button>
+          </form>   	         
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
-
-<div class="container">
-	<div class="row">
-    	<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-			<h4>Update Your Profile  <%=user %></h4>
-			<hr class="colorgraph">		
-			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">
-                        <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">
-						<input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
-					</div>
-				</div>
-				</div>
-				<div class="form-group">
-    			<label for="multi">Update Skills</label>
-    			<input type="text" name="skills" placeholder="add skills" class="form-control" id="multi" />
-  			</div>									
-			<div class="form-group">
-				<input type="text" name="id_number" id="id_number" class="form-control input-lg" placeholder="ID Number" tabindex="3">
-			</div>
-			
-			<div class="form-group">
-				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
-			</div>
-			
-			 <div class="form-group">
-       				 <label for="birthday" class="col-xs-3 col-sm-2 control-label">Birthday</label>
-        				<div class="col-xs-3">
-         				   <input type="text" name="year" class="form-control" placeholder="year"/>
-        				</div>
-       				 <div class="col-xs-3">
-         				   <input type="text" name="month"  class="form-control" placeholder="month"/>
-       				 </div>
-       					 <div class="col-xs-3">
-         				   <input type="text" name="day" class="form-control" placeholder="day"/>
-       					 </div>    
-   					 </div>	
-   					 
-			<label class="radio-inline">
- 			 	<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="MALE" checked>MALE
-			</label>
-			
-			<label class="radio-inline">
-  				<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="FEMALE">FEMALE
-			</label>
-				
-			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">
-						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
-					</div>
-				</div>
-				
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">
-						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
-					</div>
-				</div>
-			</div>
+<div class="container" style="padding-top: 60px;">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="text-center">
+        <img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="" class="img-circle img-responsive"" class="avatar img-circle img-thumbnail" alt="avatar">
+        <h6>Upload a different photo...</h6>
+        <input type="file" class="text-center center-block well well-sm">
+      </div>
     </div>
+    <!-- edit form column -->
+    <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+      <div class="alert alert-info alert-dismissable">
+        <a class="panel-close close" data-dismiss="alert">×</a> 
+        <i class="fa fa-coffee"></i>
+        This is an <strong>.alert</strong>. Use this to show important messages to the user.
+      </div>
+      <h3>Personal info</h3>
+      <form class="form-horizontal" role="form">
+        <div class="form-group">
+          <label class="col-lg-3 control-label">First name:</label>
+          <div class="col-lg-8">
+            <input class="form-control" name="first_name" placeholder="First Name" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Last name:</label>
+          <div class="col-lg-8">
+            <input class="form-control" name="last_name" placeholder="Last Name" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+    			<label  class="col-lg-3 control-label" for="multi">Update Skills</label>
+    			<input type="text" name="skills" placeholder="add skills" class="form-control" id="multi" />
+  			</div>	
+        <div class="form-group">
+          <label class="col-lg-3 control-label">Email:</label>
+          <div class="col-lg-8">
+            <input class="form-control" placeholder="email" name="email" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Password:</label>
+          <div class="col-md-8">
+            <input class="form-control" placeholder="Enter Password" name="password" type="password">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Confirm password:</label>
+          <div class="col-md-8">
+            <input class="form-control" placeholder = "password_confirm" name="password_confirm" type="password">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label"></label>
+          <div class="col-md-8">
+            <input class="btn btn-primary" name="Save changes" value="Save Changes" type="submit">
+            <span></span>
+            <input class="btn btn-default" value="Cancel" type="reset">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
-			<hr class="colorgraph">
-				<div class="row">
-					<div class="col-xs-12 col-md-6">									
-						<input type="submit" value="Update" class="btn btn-primary btn-block btn-lg" tabindex="7">
-					</div>
-				</div>	
-			</div>
-    <script src="js/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
@@ -172,5 +174,5 @@
 		}
 	});
     </script>
-  </body>
+</body>
 </html>

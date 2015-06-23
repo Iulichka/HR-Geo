@@ -23,31 +23,32 @@ public class Company {
 	
 	
 	public String getName() {
-		return trim(name);
+		return name;
 	}
 	
 	public String getSite() {
-		return trim(site);
+		return site;
 	}
 	
 	public String getTel() {
-		return trim(tel);
+		return tel;
 	}
 	
 	public String getMail() {
-		return trim(mail);
+		return mail;
 	}
 	
 	public String getOrgForm() {
-		return trim(orgForm);
+		return orgForm;
 	}
 	
 	public String getInfo() {
-		return trim(info);
+		return info;
 	}
 	
 	public int getImagesNum() {
-		return images.size();
+		DataForComp c = new DataForComp();
+		return c.getPicNum(mail);
 	}
 	public String getPassword(){
 		return password;
@@ -61,10 +62,7 @@ public class Company {
 		return images;
 	}
 	
-	private String trim(String st) {
-		if (st == null) return "";
-		return st;
-	}
+
 	
 	public double getRating() {
 		return rating;

@@ -1,18 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<link rel="stylesheet" type="text/css" href="homePage.css">
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<head>
-<meta charset="UTF-8">
-<title>Home Page</title>
-</head>
-<body>
+
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -30,16 +17,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Registration <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="companyRegister.jsp">Register Company</a></li>
-            <li><a href="personRegister.jsp">Register Person</a></li>
-          </ul>
-        </li>
         
       </ul>
-	      
       <form class="navbar-form navbar-right" action="LoginServlet" method="post" role="login">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="email" name="email">
@@ -52,11 +31,3 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<div>
-<img id= "homeImage" src="http://burnish.co.in/images/career/pilot-web-banner.png">
-</div>
-<div id="copyRight">
-All Rights Reserved © HR-Geo Inc.
-</div>
-</body>
-</html>

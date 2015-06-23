@@ -1,16 +1,17 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 
 
 
 
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,12 +52,12 @@ public class PersonRegisterServlet extends HttpServlet {
 		String first_name=(String)request.getParameter("first_name");
 		String surname=(String)request.getParameter("last_name");
 		String id=(String)request.getParameter("id_number");
-		String sex=(String)request.getParameter("inlineRadioOptions");
-		int year=Integer.parseInt((String)request.getParameter("year"));
-		int month=Integer.parseInt((String)request.getParameter("month"));
-		int day=Integer.parseInt((String)request.getParameter("day"));
-		@SuppressWarnings("deprecation")
-		Date date=new Date(day,month,year);		
+		String sex=request.getParameter("inlineRadioOptions");
+		int year=Integer.parseInt(request.getParameter("year"));
+		int month=Integer.parseInt(request.getParameter("month"));
+		int day=Integer.parseInt(request.getParameter("day"));
+		Date date = new GregorianCalendar(year, month, day).getTime();
+		//Date date=new Date(day,month,year);		
 		DBSelect selects= new DBSelect();
 		try {
 			boolean contains=selects.searchPerson(email,password);			
@@ -69,14 +70,15 @@ public class PersonRegisterServlet extends HttpServlet {
 			        if(session != null){
 			            session.invalidate();
 			        }
-				selects.addPerson(first_name, surname, password, id, date, email, sex);
+				selects.addPerson(first_name, surname, password, id, new java.sql.Date(date.getTime()), email, sex);
 				session=request.getSession();
 				session.setAttribute("first_name", first_name);
 				session.setAttribute("last_name", surname);
 				response.sendRedirect("personProfile.jsp");			
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+		
 		}
 	}
 

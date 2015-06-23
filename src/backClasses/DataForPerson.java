@@ -11,6 +11,45 @@ public class DataForPerson {
  public DataForPerson(){
 	 con=DataBaseInfo.getConnection();
  }
+ public AllOffersForPerson getOffers(int id){
+	 AllOffersForPerson offers=new AllOffersForPerson();
+	 Statement stm;
+	 try {
+			stm=con.createStatement();
+			stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+			ResultSet rSet= stm.executeQuery("select po.offer_id,o.offer_name,o.offer_info, "+
+					"o.offer_end_date,o.offer_start_date,c.company_name,po.offer_state "+
+					"from  persons_offer po,offer o,company_info c "+
+					"where po.offer_id=o.offer_id and po.persons_id="+id+" and o.company_id=c.company_id;");
+			while(rSet.next()){
+				Offer cur=new Offer(rSet.getString(2),rSet.getString(3),rSet.getDate(4),rSet.getDate(5),
+						new Company(rSet.getString(6),null,null,0,null,1,null,null),rSet.getInt(1),rSet.getString(7));
+				offers.addOffer(cur);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}		
+	 return offers;
+ }
+ 
+ public int getPersonId(String email){
+	 Statement stm;
+	 int res=-1;
+	 
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		ResultSet rSet=stm.executeQuery(
+				"select * from persons where person_email='"+email+"';");
+		if(rSet.next()){
+			res=rSet.getInt(1);
+		}
+	} catch (SQLException e) {
+		System.out.println(e.getMessage());
+	}		
+	 
+	 return res;
+ }
  public PersonEducation getPersonEducation(int idNum){
 	 PersonEducation result=new PersonEducation();
 	 Statement stm;
@@ -84,25 +123,53 @@ public class DataForPerson {
 	 try {
 		stm=con.createStatement();
 		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
-		ResultSet rSet=stm.executeQuery("select p.persons_id,p.person_name,"
-				+ "p.person_surname,p.person_birth_date,"
-				+ "p.person_sex,p.person_email,ph.person_photo from persons p,person_photoes ph where p.persons_id="+idNum+" and "
-						+ "p.persons_id=ph.persons_id ;");
+		ResultSet rSet=stm.executeQuery("select persons_id,person_name,"
+				+ "person_surname,person_birth_date,"
+				+ "person_sex,person_email,person_info "
+				+ "from persons  where persons_id="+idNum+";");
+		Date date=null;
+		String sex=null;
+		String name=null;
+		String mail=null;
+		String surname=null;
+		String id=null;
+		String about=null;
 		if(rSet.next()){
-			 Date date=rSet.getDate(4);
-			 String sex=rSet.getString(5);
-			 String name=rSet.getString(2);
-			 String mail=rSet.getString(6);
-			 String surname=rSet.getString(3);
-			 String id=rSet.getString(1);
-			 byte[] photo=rSet.getBytes(7);
-			 pers=new Person(name, mail, surname, id, sex, date,photo);
+			  date=rSet.getDate(4);
+			  sex=rSet.getString(5);
+			  name=rSet.getString(2);
+			  mail=rSet.getString(6);
+			  surname=rSet.getString(3);
+			  id=rSet.getString(1);
+			  about=rSet.getString(7);
+			 
 		}
+		ResultSet rSet2=stm.executeQuery("select person_photo from person_photoes where persons_id="+idNum+";");
+		byte[] photo=getPhoto(idNum);
+		pers=new Person(name, mail, surname, id, sex, date,photo,about);
+
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
+		System.out.println(e.getMessage());
 	}
 	 return pers;
  }
+private byte[] getPhoto(int idNum) {
+	 Statement stm;
+	 byte[] photo=null;
+	 try {
+			stm=con.createStatement();
+			stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		
+			ResultSet rSet=stm.executeQuery("select person_photo from person_photoes where persons_id="+idNum+";");
+			if(rSet.next()){
+				photo=rSet.getBytes(1);
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	return photo;
+}
  
 }

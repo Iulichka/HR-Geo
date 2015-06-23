@@ -15,16 +15,23 @@ public class Person {
 	private String surname;
 	private String id;
 	private byte[] photo;
+	private String about="";
 	public static final String ATTRIBUTE_NAME = "Person";
-	public Person(String name,String mail,String surname,String id,String sex,Date date,byte[] photo){
+	public Person(String name,String mail,String surname,String id,String sex,Date date,byte[] photo,String about){
 		this.mail=mail;
 		this.name=name;
 		this.surname=surname;
 		this.id=id;
 		this.sex=sex;
 		this.date=date;
+		this.about=about;
 	}
-	
+	public void setAbout(String about){
+		this.about=about;
+	}
+	public String getAbout(){
+		return about;
+	}
 
 	public Date getDate(){
 		return date;
