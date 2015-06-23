@@ -2,7 +2,6 @@ package servlets;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import backClasses.Company;
 import backClasses.DataForComp;
 
 /**
- * Servlet implementation class CompImage
+ * Servlet implementation class GetFile
+ * this servlet gets file attribute from  request and sends it back
+ * type parameter is file type like "text/html"
  */
-@WebServlet("/CompImage")
-public class CompImage extends HttpServlet {
+@WebServlet("/GetFile")
+public class GetFile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CompImage() {
+    public GetFile() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,21 +34,11 @@ public class CompImage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String fileType = request.getParameter("type");
 		response.setContentType(fileType);
-		String mail = request.getParameter("mail");
-		int n = Integer.parseInt(request.getParameter("num"));
-		DataForComp dat = new DataForComp();
-		byte [] pic = dat.getCompPic(mail, n);
-		response.setContentLength(pic.length);
+		byte [] file = (byte[]) request.getAttribute("file");
+		response.setContentLength(file.length);
 		OutputStream out = response.getOutputStream();
-		System.out.println(pic.length);
-		out.write(pic);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println(file.length);
+		out.write(file);
 	}
 
 }
