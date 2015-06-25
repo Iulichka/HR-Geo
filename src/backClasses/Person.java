@@ -75,4 +75,8 @@ public class Person {
 		this.date=date;
 	}
 	
+	public void setPhoto(byte [] phot) {
+		photo = phot;
+	}
+	
 }

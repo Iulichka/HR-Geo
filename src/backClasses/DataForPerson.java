@@ -154,6 +154,8 @@ public class DataForPerson {
 	}
 	 return pers;
  }
+ 
+ 
 private byte[] getPhoto(int idNum) {
 	 Statement stm;
 	 byte[] photo=null;

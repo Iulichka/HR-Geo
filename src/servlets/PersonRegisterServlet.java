@@ -74,11 +74,11 @@ public class PersonRegisterServlet extends HttpServlet {
 				session=request.getSession();
 				session.setAttribute("first_name", first_name);
 				session.setAttribute("last_name", surname);
+				session.setAttribute("email", email);
 				response.sendRedirect("http://localhost:8080/HR-Geo/PersonServlet");			
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		
 		}
 	}
 

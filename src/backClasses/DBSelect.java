@@ -1,4 +1,5 @@
 package backClasses;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

@@ -45,7 +45,7 @@ public class Upload extends HttpServlet {
 	        Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
 	        String fileName = filePart.getSubmittedFileName();
 	        InputStream fileContent = filePart.getInputStream();
-	        File file = new File("/home/levan/Downloads/tthat.jpg");
+	        File file = new File("D:/tthat.jpg");
 	        OutputStream outputStream = new FileOutputStream(file);
 	        IOUtils.copy(fileContent, outputStream);
 	        FileInputStream inputStream= new FileInputStream(file);
