@@ -41,32 +41,33 @@ public class CompanyUpdateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 		String currentEmail=(String)session.getAttribute("email");
-		String updatedEmail=(String)request.getAttribute("email");
-		String name=(String)request.getAttribute("name");
-		String tel=(String)request.getAttribute("tel");
-		String site=(String)request.getAttribute("site");
-		String password=(String)request.getAttribute("password");
-		String passwordConfirm=(String)request.getAttribute("password_confirm");
+		String updatedEmail=(String)request.getParameter("email");
+		String name=(String)request.getParameter("name");
+		String tel=(String)request.getParameter("tel");
+		String site=(String)request.getParameter("site");
+		String password=(String)request.getParameter("password");
+		String passwordConfirm=(String)request.getParameter("password_confirm");
 		DBSelect select=new DBSelect();
-		if(updatedEmail!=null){
+		if(updatedEmail.length()>0){
 			select.changeCompanyEmail(currentEmail, updatedEmail);
 		}
-		if(site!=null){
+		if(site.length()>0){
 			select.changeCompanySite(currentEmail, site);
 		}
 		
-		if(tel!=null){
+		if(tel.length()>0){
 			select.changeCompanyTel(currentEmail, tel);
 		}
 			
-		if(password!=null&&password.equals(passwordConfirm)){
+		if(password.length()>0&&password.equals(passwordConfirm)){
 			select.changeCompanyPass(currentEmail, password);
 		}
-		if(name!=null){
+		if(name.length()>0){
 			select.changeCompanyName(currentEmail, name);
 		}
-				
+			
 		response.sendRedirect("http://localhost:8080/HR-Geo/CompanyServlet");
+		
 		
 		
 	}

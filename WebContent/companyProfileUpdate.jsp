@@ -46,12 +46,13 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> 
-      <form class="navbar-form navbar-right" action="LogoutServlet" method="post" role="logout">
+      <form class="navbar-form navbar-right" action="LogoutServlet" method="post">
           <button type="submit" class="btn btn-default" value="Logout">Log Out</button>
           </form>   	         
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>
+
 
 
 <form action="CompanyUpdateServlet" method="post">

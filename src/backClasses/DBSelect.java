@@ -298,12 +298,13 @@ public class DBSelect {
 		}				
 		return persons;
 	}
+	
 	public void changeCompanyEmail(String oldEmail,String newEmail){
 		Connection con=DataBaseInfo.getConnection();
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
-			 String sql = "UPDATE company_info SET company_email = "+newEmail+" WHERE company_email = "+oldEmail;
+			 String sql = "UPDATE company_info SET company_email = '"+newEmail+"' WHERE company_email = '"+oldEmail+"'";
 			 stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -311,12 +312,13 @@ public class DBSelect {
 		}
 	   
 	}
+	
 	public void changeCompanyName(String email,String name){		
 			Connection con=DataBaseInfo.getConnection();
 			Statement stmt;
 			try {
 				stmt = con.createStatement();
-				 String sql = "UPDATE company_info SET company_name = "+name+" WHERE company_email = "+email;
+				 String sql = "UPDATE company_info SET company_name = '"+name+"' WHERE company_email = '"+email+"'";
 				 stmt.executeUpdate(sql);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -328,7 +330,7 @@ public class DBSelect {
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
-			 String sql = "UPDATE company_info SET company_tel = "+tel+" WHERE company_email = "+email;
+			 String sql = "UPDATE company_info SET company_telephone = '"+tel+"' WHERE company_email = '"+email+"'";
 			 stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -340,7 +342,7 @@ public class DBSelect {
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
-			 String sql = "UPDATE company_info SET company_password = "+password+" WHERE company_email = "+email;
+			 String sql = "UPDATE company_info SET company_password = '"+password+"' WHERE company_email = '"+email+"'";
 			 stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -352,7 +354,7 @@ public class DBSelect {
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
-			 String sql = "UPDATE company_info SET company_site = "+site+" WHERE company_email = "+email;
+			 String sql = "UPDATE company_info SET company_site = '"+site+"' WHERE company_email = '"+email+"'";
 			 stmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
