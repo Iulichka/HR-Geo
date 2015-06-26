@@ -56,27 +56,31 @@ public class PersonalInfoUpdate extends HttpServlet {
 		String password=(String)request.getParameter("password");
 		String confirmPassword=(String)request.getParameter("password_confirm");
 		String date=(String)request.getParameter("date");
+		String about=(String)request.getParameter("about");
+		String sex=(String)request.getParameter("inlineRadioOptions");
 		DataForPerson data=new DataForPerson();
 		Person currentPerson=data.getPerson(data.getPersonId(sessionMail));
-		if(name!=null)currentPerson.setName(name);
-		if(lastName!=null) currentPerson.setSurname(lastName);
-		if(email!=null){
+		if(name!=null && !name.equals(""))currentPerson.setName(name);
+		if(lastName!=null && !lastName.equals("")) currentPerson.setSurname(lastName);
+		if(email!=null && !email.equals("")){
 			currentPerson.setMail(email);
 		}
-		if(date!=null){
+		if(date!=null && date.length()==10){
 			int year=Integer.parseInt(date.substring(0,4));
 			int day=Integer.parseInt(date.substring(8));
 			int month=Integer.parseInt(date.substring(5,7));
 			Date d=new GregorianCalendar(year, month-1, day).getTime();
-			//currentPerson.setDate(date);
+			currentPerson.setDate(d);
 		}
 		Boolean changePassword=false;
 		DBSelect db=new DBSelect();
 		if(db.searchPerson(sessionMail, currentPassword)){
-			if(password!=null && password.equals(confirmPassword)){
+			if(password!=null && password.equals(confirmPassword) && !password.equals("")){
 				changePassword=true;
 			}
 		}
+		currentPerson.setSex(sex);
+		currentPerson.setAbout(about);
 		data.updatePerson(currentPerson, password, changePassword, sessionMail);
 		HttpSession ses=request.getSession();
 		ses.setAttribute("email", currentPerson.getMail());

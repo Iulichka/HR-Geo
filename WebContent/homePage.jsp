@@ -51,7 +51,7 @@
         <button type="submit" class="btn btn-default" value="Login">Login</button>
       </form>   
        <% } else{%>
-       <% Person p=(Person)session.getAttribute("person"); %>>
+       <% Person p=(Person)session.getAttribute("person"); %>
        		 <a class="navbar-brand" href="http://localhost:8080/HR-Geo/PersonServlet"><%=p.getName()+" "+p.getSurname()%></a>
        		 <form class="navbar-form navbar-right" action="LogoutServlet" method="post" role="logout">
           		<button type="submit" class="btn btn-default" value="Logout">Log Out</button>

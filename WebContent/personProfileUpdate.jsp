@@ -16,16 +16,18 @@
 	<script src="http://snipplicious.com/js/bootstrap.min.js"></script>
 </head>
 <body>
+<%@page import="backClasses.*" %>
  <%
 		//allow access only if session exists
 		String user =null;
 		String first_name = null;
 		String last_name = null;
-	
+		Person p=null;
 			if(session.getAttribute("email")!=null){
 				user=(String)session.getAttribute("email");
 				first_name=(String)session.getAttribute("first_name");
 				last_name=(String)session.getAttribute("last_name");
+				p=(Person)session.getAttribute("person");
 			}else{
    			 	response.sendRedirect("homePage.jsp");
 			}
@@ -42,7 +44,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="homePage.jsp">Home</a>
-      <a class="navbar-brand" href="http://localhost:8080/HR-Geo/PersonServlet"><%=first_name+" "+last_name%></a>
+      <a class="navbar-brand" href="http://localhost:8080/HR-Geo/PersonServlet"><%=p.getName()+" "+p.getSurname()%></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -75,13 +77,13 @@
         <div class="form-group">
           <label class="col-lg-3 control-label">First name:</label>
           <div class="col-lg-8">
-            <input class="form-control" name="first_name" placeholder="First Name" type="text" id="first_name">
+            <input class="form-control" name="first_name" placeholder="First Name" type="text" id="first_name" value=<%=p.getName() %>>
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Last name:</label>
           <div class="col-lg-8">
-            <input class="form-control" name="last_name" placeholder="Last Name" type="text">
+            <input class="form-control" name="last_name" placeholder="Last Name" type="text" value=<%=p.getSurname() %>>
           </div>
         </div>
         <!--  
@@ -93,13 +95,33 @@
   		 <div class="form-group">
           <label class="col-lg-3 control-label">Birth Date:</label>
           <div class="col-lg-8">
-            <input class="form-control" placeholder="date" name="date" type="date">
+            <input class="form-control" placeholder="date" name="date" type="date" value=<%=p.getDate().toString() %>>
           </div>
         </div>
+    	<div class="form-group">
+          <label class="col-lg-3 control-label">Choose Sex</label>
+          <div class="col-lg-8">
+          <%if(p.getSex().equals("MALE")) {%>
+        	<label class="radio-inline">
+  				<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="MALE" checked="checked"> Male
+			</label>
+			<label class="radio-inline">
+				  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="FEMALE"> Female
+			</label>	
+			<% }else{ %>
+			<label class="radio-inline">
+  				<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="MALE"> Male
+			</label>
+			<label class="radio-inline">
+				  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="FEMALE" checked="checked"> Female
+			</label>
+			<% }%>
+          </div>
+        </div>    
         <div class="form-group">
           <label class="col-lg-3 control-label">Email:</label>
           <div class="col-lg-8">
-            <input class="form-control" placeholder="email" name="email" type="text">
+            <input class="form-control" placeholder="email" name="email" type="text" value=<%=p.getMail()%> >
           </div>
         </div>
           <div class="form-group">
@@ -118,6 +140,14 @@
           <label class="col-md-3 control-label">Confirm password:</label>
           <div class="col-md-8">
             <input class="form-control" placeholder = "password_confirm" name="password_confirm" type="password">
+          </div>
+        </div>
+           <div class="form-group">
+          <label class="col-lg-3 control-label">About me</label>
+          <div class="col-lg-8">
+           	<textarea cols="50" rows="5" name="about"> 
+				<%=p.getAbout() %>
+			</textarea>
           </div>
         </div>
         <div class="form-group">

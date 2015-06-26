@@ -73,8 +73,9 @@ public class Person {
 	public void setMail(String mail){
 		this.mail=mail;
 	}
-	public void setDate(Date date){
-		this.date=date;
+	public void setDate(java.util.Date date){
+		
+		this.date=new Date(date.getYear(), date.getMonth(), date.getDate());
 	}
 	
 	public void setPhoto(byte [] phot) {
