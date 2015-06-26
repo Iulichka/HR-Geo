@@ -1,3 +1,5 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="backClasses.Skill"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
@@ -27,37 +29,67 @@ PersonSkills skills = (PersonSkills) request.getAttribute("skills");
 </head>
 <body>
 <%@include  file="bootstrap.html" %>
-<div id="info">
-<%=
-per.getAbout()
-%>
-</div>
-<div id="mail">
-<%=
-per.getMail()
-%>
-</div>
+
+
 <div class="page-header">
   <h1 style="color: blue;"><%=per.getName()+" "+per.getSurname() %> <small><%=exp.getCurrentExperience().getPosition()+" at " + exp.getCurrentExperience().getCompName()
   %></small></h1>
 </div>
 
 
-<div id="pic" class="row">
-  <div class="col-xs-6 col-md-3">
+<div id="pic">
+  <div class="col-xs-4 col-md-2">
     <a href="#" class="thumbnail">
       <img src="http://www.cocult.com/assets/images/profile-default-male.jpg" alt="profile picture">
     </a>
   </div>
 </div>
 
+
+<div id="about" style="position: absolute; padding-left: 60%;">
+<div >
+<h3>About</h3>
+  <p>
+    <%=per.getAbout()%>
+  </p>
+</div>
+</div>
+
+
+<div id="docs" style="position: absolute; padding-left: 60%; padding-top: 10%">
+<h3 >Documents</h3>
+<p>
+  <a href="GetFile">
+    CV
+  </a>
+  </p>
+  <p>
+   <a href="GetFile">
+    Certificate 
+  </a>
+  </p>
+</div>
+
+
+
 <div id="experience" style="width: 50%;">
  <div class="panel panel-default">
+ <h3><%=per.getAge() %> years old</h3>
       <div class="panel-heading">
         <h4 class="panel-title">
-          Experience <%= exp.getSumOfFullYears() %> years 
+          Overall Experience <%= exp.getSumOfFullYears() %> years 
         </h4>
       </div>
+ <p> </p>
+<p id="date"> Birth Date: 
+<%= per.getDate()%>
+</p>
+<p id="mail">
+<%
+out.println("e-mail: "+ per.getMail());
+%>
+</p>
+
         <div class="panel-body">
         <table class="table table-hover">          
 			<thead><tr><th>Position</th><th>Company</th><th>duration</th><th>End Date</th><th>status</th></tr></thead>														
@@ -67,10 +99,10 @@ per.getMail()
 							while(it.hasNext()) {
 								Experience ex = it.next(); 
 							%>
-           				<tr class="danger">
+           				<tr>
                     		<td><%= ex.getPosition() %></td> 
                     		<td><%= ex.getCompName() %></td> 
-                    		<td><%= ex.getMonthDuration() %></td> 
+                    		<td><%= ex.getMonthDuration() %> month</td> 
                     		<td><%= ex.getEndDate() %></td> 
                     		<td><% if(ex.isCurrent()) out.print("Working"); else out.print("retired"); %></td>
                     	</tr>   
@@ -93,7 +125,7 @@ per.getMail()
       </div>
         <div class="panel-body">
         <table class="table table-hover">          
-			<thead><tr><th>University</th><th>Faculty</th><th>Degree</th><th>End year</th><th>is Current</th></tr></thead>														
+			<thead><tr><th>University</th><th>Faculty</th><th>Degree</th><th>End year</th><th>Status</th></tr></thead>														
 					<tbody>
 						<%
 							ArrayList<Education> edArr = edu.getEduList();
@@ -102,10 +134,10 @@ per.getMail()
 							%>
            				<tr>
                     		<td><%= ed.getUniversity() %></td> 
-                    		<td><%= ed.getFaculty() %></td> 
+                  	 		<td><%= ed.getFaculty() %></td> 
                     		<td><%= ed.getLevel() %></td> 
                     		<td><%= ed.getEndYear() %></td> 
-                    		<td><% if(ed.getEndYear()>new Date().getYear()) out.print("current"); else out.print("graduated");%></td>
+                    		<td><% if(ed.getEndYear()>new Date().getYear()+1900) out.print("current"); else out.print("graduated");%></td>
                     	</tr>   
                     	<% } %>       
            				
@@ -117,26 +149,51 @@ per.getMail()
 
 </div>
 
-<div id="Skills" style="width: 50%;">
- <div class="panel panel-default">
+
+
+<div id="Skills"  style="width: 50%">
+  <div class="panel-group" id="accordion">
+ 	<%
+ 	HashMap<String, ArrayList<Skill> > categoryMap = skills.getCategoryMap();
+ 	Iterator<String> iter = categoryMap.keySet().iterator();
+ 	int i = 0;
+ 	while(iter.hasNext()) {
+ 	 //   Offer key = entry.getKey();
+ 	 //accordion
+ 	   // ArrayList<Person> value = entry.getValue();
+ 	 	String curCategory = iter.next();
+ 	    String collapseHREF="#collapse"+i;
+ 	    String collapseID="collapse"+i;
+ 	    ArrayList<Skill> categorySkills = categoryMap.get(curCategory);
+ 	    
+	%>
+    <div class="panel panel-default">
       <div class="panel-heading">
-        <h4 class="panel-title">
-          Education
+        <h4 class="panel-title" >
+          <a data-toggle="collapse" data-parent="#accordion" href=<%=collapseHREF %>><%= curCategory  %> Skills </a>
         </h4>
       </div>
+      <div id=<%=collapseID %> class="panel-collapse collapse out">
         <div class="panel-body">
         <table class="table table-hover">          
-			<thead><tr><th>Offer Name</th><th>Person Name</th><th>Offer Sent</th><th>Offer End Date</th><th>Offer Status</th></tr></thead>														
+			<thead><tr><th>Skill</th><th>Level</th></tr></thead>														
 					<tbody>
 						<%
-							for(int i=0;i<4;i++){					
+							for(int j=0; j<categorySkills.size(); j++){
+								Skill currentSkill = categorySkills.get(j);	
+								int length = currentSkill.getLevel().length();
+								String cssClass;
+								if(length < 7) {
+									cssClass = "danger";
+								} else if (length<10) {
+									cssClass = "warning";
+								} else {
+									cssClass = "success";
+								}
 							%>
-           				<tr>
-                    		<td>1</td> 
-                    		<td>2</td> 
-                    		<td>3</td> 
-                    		<td>4</td> 
-                    		<td>success</td>
+           				<tr class=<%="\""+cssClass+"\"" %> >
+                    		<td><%= currentSkill.getName()%></td> 
+                    		<td><%= currentSkill.getLevel() %></td> 
                     	</tr>   
                     	<% } %>       
            				
@@ -144,8 +201,13 @@ per.getMail()
  				</tbody>
 			</table>
         </div>
+      </div>
     </div>
-
-</div>
+ 
+ 	<%
+ 	i++;
+ 	} %>
+    </div>
+  </div>
 </body>
 </html>

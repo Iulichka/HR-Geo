@@ -24,7 +24,6 @@
 <%@ page import="java.util.Map.Entry" %>
 <%@ page import="java.util.Iterator" %>
 
-<<<<<<< HEAD
 <%@include  file="navigation.html" %>
 <%
 		//allow access only if session exists		
