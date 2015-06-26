@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +34,13 @@ public class PersonalInfoUpdate extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String name=(String) request.getAttribute("first_name");
+		String lastName=(String)request.getAttribute("last_name");
+		String email=(String)request.getAttribute("email");
+		String currentPassword=(String)request.getAttribute("current_password");
+		String password=(String)request.getAttribute("password");
+		String confirmPassword=(String)request.getAttribute("password_confirm");
+		
 	}
 
 }
