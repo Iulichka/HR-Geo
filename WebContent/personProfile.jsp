@@ -92,31 +92,9 @@
             </div> 
                        
             <div class="col-xs-12 divider text-center">
-                <div class="col-xs-12 col-sm-4 emphasis">                  
+                <div class="col-xs-12 col-sm-4 emphasis" >                  
                     <p><small> Update Profile</small></p>
                     <a href="personProfileUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Profile</a>                  
-                </div>
-                <div class="col-xs-12 col-sm-4 emphasis">                                     
-                    <p><small> Offers</small></p>
-                    <button class="btn btn-info btn-block"><span class="fa fa-user"></span> Offers</button>
-                </div>
-                <div class="col-xs-12 col-sm-4 emphasis">                   
-                    <p><small>Options</small></p>
-                    <div class="btn-group dropup btn-block">
-                      <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options </button>
-                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                      </button>
-                      <ul class="dropdown-menu text-left" role="menu">
-                        <li><a href="#"><span class="fa fa-envelope pull-right"></span> Send an email to company </a></li>
-                        <li><a href="#"><span class="fa fa-list pull-right"></span> Log Out </a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><span class="fa fa-warning pull-right"></span>delete my account</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#" class="btn disabled" role="button"> Ragaca </a></li>
-                      </ul>
-                    </div>
                 </div>
             </div>
     	 </div>                 
@@ -128,7 +106,7 @@
 <tbody> 
 	<% while(personOffers.hasNext()) {%>
 		<%o=personOffers.getOffer(); %>
-		<tr class="danger" onclick="window.document.location='<%=company%>';">
+		<tr class=<%=o.getStatus() %> onclick="window.document.location='<%=company%>';">
          <td><%=o.getName() %></td>
          <td><%=o.getCompany().getName() %></td>
          <td><%=o.getStartDate() %></td>
