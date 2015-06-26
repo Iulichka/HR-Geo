@@ -62,7 +62,15 @@
       <div class="text-center">
         <img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="" class="img-circle img-responsive"" class="avatar img-circle img-thumbnail" alt="avatar">
         <h6>Upload a different photo</h6>
-        <input type="file" class="text-center center-block well well-sm">
+       <div>
+			<form action=<%="\""+"Upload?id="+p.getId()+"\"" %> method="post" enctype="multipart/form-data">
+    			<input type="text" name="description" />
+    			<input type="file" name="file" />
+			    <input type="submit" />
+			</form>
+		</div>
+       
+       
       </div>
     </div>
     <!-- edit form column -->

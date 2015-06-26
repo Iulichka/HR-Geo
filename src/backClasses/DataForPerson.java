@@ -201,7 +201,6 @@ public void addPicture(String idST, InputStream in) {
 	}
 }
 
-<<<<<<< HEAD
 	public void updatePerson(Person p,String password,Boolean changePassword,String email){
 	Statement stm;
 		try {
@@ -229,7 +228,7 @@ public void addPicture(String idST, InputStream in) {
 			e.printStackTrace();
 		}
 	}
-=======
+
 
 public void addDocument(String idST, String description, FileInputStream in) {
 	int id=0;
@@ -283,6 +282,5 @@ public byte[] getDocument(String id, String name) {
 	}
 	return result;
 }
->>>>>>> 90c9be9c41f7169c582bef38c34c702f66b00c1a
- 
+
 }
