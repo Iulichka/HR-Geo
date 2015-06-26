@@ -28,6 +28,7 @@
 				first_name=(String)session.getAttribute("first_name");
 				last_name=(String)session.getAttribute("last_name");
 				p=(Person)session.getAttribute("person");
+				request.getSession().setAttribute("file", p.getPhoto());
 			}else{
    			 	response.sendRedirect("homePage.jsp");
 			}
@@ -60,35 +61,29 @@
     <!-- left column -->
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="text-center">
-        <img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="" class="img-circle img-responsive"" class="avatar img-circle img-thumbnail" alt="avatar">
+        <img src="GetFile?type=image/jpeg" alt="" class="img-circle img-responsive"" class="avatar img-circle img-thumbnail" alt="avatar">
         <h6>Upload a different photo</h6>
        <div>
 			<form action=<%="\""+"Upload?id="+p.getId()+"\"" %> method="post" enctype="multipart/form-data">
-    			<input type="text" name="description" />
-    			<input type="file" name="file" />
+			    <input type="text" name="description" />
+			    <input type="file" name="file" />
 			    <input type="submit" />
 			</form>
+			
 		</div>
-  
-      </div>
-  </div>
-<div class="container" style="padding-top: 60px;">
-  <div class="row">
-    <!-- left column -->
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="text-center">
-        <img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="" class="img-circle img-responsive"" class="avatar img-circle img-thumbnail" alt="avatar">
-        <h6>Upload a different photo</h6>
-       <div>
-			<form action=<%="\""+"Upload?id="+p.getId()+"\"" %> method="post" enctype="multipart/form-data">
-    			<input type="text" name="description" />
+		<div>
+		<h6>Upload Document</h6>
+		<form action=<%="\""+"Upload?id="+p.getId()+"&type=document\"" %> method="post" enctype="multipart/form-data">
+    			<input type="text" name="description" value="Enter Document Description" />
     			<input type="file" name="file" />
-			    <input type="submit" />
+    			<input type="submit" />
 			</form>
 		</div>
-  
       </div>
-  </div>    
+    </div>
+
+    
+    
     <!-- edit form column -->
     <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
       <div class="alert alert-info alert-dismissable">
@@ -97,7 +92,7 @@
         This is an <strong>.alert</strong>. Use this to show important messages to the user.
       </div>
       <h3>Personal info</h3>
-      <form class="form-horizontal" role="form">
+      <form class="form-horizontal" role="form" action="http://localhost:8080/HR-Geo/PersonalInfoUpdate" method="post">
         <div class="form-group">
           <label class="col-lg-3 control-label">First name:</label>
           <div class="col-lg-8">

@@ -27,15 +27,15 @@
 				Person pers=null;
 				PersonSkills skills=null;
 				OverallExperience experience=null;
-
 				AllOffersForPerson personOffers=null;
 				Offer o=null;
-					if(session.getAttribute("email")!=null){
+					if(session.getAttribute("email")!=null && session.getAttribute("person")!=null){
 						pers=(Person)request.getAttribute("person");
 						skills=(PersonSkills)request.getAttribute("skills");
 						experience=(OverallExperience)request.getAttribute("experience");
 						user=pers.getName()+" "+pers.getSurname();
 					    personOffers=(AllOffersForPerson)request.getAttribute("offers");
+					    request.getSession().setAttribute("file", pers.getPhoto());
 					}else{
 		   			 	response.sendRedirect("homePage.jsp");
 					}
@@ -86,7 +86,7 @@
                 </div>             
                 <div class="col-xs-12 col-sm-4 text-center">
                     <figure>
-                        <img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="" class="img-circle img-responsive">
+                        <img src="GetFile?type=image/jpeg" alt="" class="img-circle img-responsive">
                     </figure>
                 </div>
             </div> 

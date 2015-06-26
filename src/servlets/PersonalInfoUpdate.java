@@ -85,6 +85,7 @@ public class PersonalInfoUpdate extends HttpServlet {
 		HttpSession ses=request.getSession();
 		ses.setAttribute("email", currentPerson.getMail());
 		ses.setAttribute("person", currentPerson);
+		ses.setAttribute("file", currentPerson.getPhoto());
 		response.sendRedirect("http://localhost:8080/HR-Geo/PersonServlet");
 	}
 
