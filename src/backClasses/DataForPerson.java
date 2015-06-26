@@ -106,7 +106,7 @@ public class DataForPerson {
 				"select ps.skills_id,s.skill_name,sc.category_name,sl.skill_level_name "+
 				"from person_skills ps,skills s,skill_category sc,skill_level sl "+
 				"where ps.persons_id="+idNum+ " and s.category_id=sc.category_id and "+
-				"ps.skill_level_id=sl.skill_level_id  and ps.skills_id=s.skills_id;");
+				"ps.skill_level_id=sl.skill_level_id  and ps.skills_id=s.skills_id order by sc.category_name;");
 		while(rSet.next()){
 			Skill cur=new Skill(rSet.getString(2),rSet.getString(4),rSet.getInt(1),rSet.getString(3));
 			result.addSkill(cur);

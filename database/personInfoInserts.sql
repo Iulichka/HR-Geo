@@ -53,7 +53,6 @@ values
 (1,1,2);
 
 
-
 -- insert into facultys
 insert into faculty
 (faculty_name)

@@ -38,9 +38,9 @@ public class PersonPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
-		id = "1"; // temp
+		if(id==null) id = "1"; // temp
 		String type = request.getParameter("type");
-		type = "open"; // temp
+		if(type == null) type = "open"; // temp
 		DataForPerson dfp = new DataForPerson();
 		int intId = Integer.parseInt(id);
 		dfp.getPerson(intId);

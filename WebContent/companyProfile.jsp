@@ -24,6 +24,7 @@
 <%@ page import="java.util.Map.Entry" %>
 <%@ page import="java.util.Iterator" %>
 
+
 <%
 		//allow access only if session exists		
 				Offer offer=null;
