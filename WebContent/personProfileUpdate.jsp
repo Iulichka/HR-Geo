@@ -84,14 +84,28 @@
             <input class="form-control" name="last_name" placeholder="Last Name" type="text">
           </div>
         </div>
+        <!--  
         <div class="form-group">
     			<label  class="col-lg-3 control-label" for="multi">Update Skills</label>
     			<input type="text" name="skills" placeholder="add skills" class="form-control" id="multi" />
-  			</div>	
+  		</div>	
+  		 -->
+  		 <div class="form-group">
+          <label class="col-lg-3 control-label">Birth Date:</label>
+          <div class="col-lg-8">
+            <input class="form-control" placeholder="email" name="email" type="date">
+          </div>
+        </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Email:</label>
           <div class="col-lg-8">
             <input class="form-control" placeholder="email" name="email" type="text">
+          </div>
+        </div>
+          <div class="form-group">
+          <label class="col-md-3 control-label">Current Password:</label>
+          <div class="col-md-8">
+            <input class="form-control" placeholder="Enter Current Password" name="current_password" type="password">
           </div>
         </div>
         <div class="form-group">
