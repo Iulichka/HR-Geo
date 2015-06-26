@@ -69,10 +69,26 @@
 			    <input type="submit" />
 			</form>
 		</div>
-       
-       
+  
       </div>
-    </div>
+  </div>
+<div class="container" style="padding-top: 60px;">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="text-center">
+        <img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="" class="img-circle img-responsive"" class="avatar img-circle img-thumbnail" alt="avatar">
+        <h6>Upload a different photo</h6>
+       <div>
+			<form action=<%="\""+"Upload?id="+p.getId()+"\"" %> method="post" enctype="multipart/form-data">
+    			<input type="text" name="description" />
+    			<input type="file" name="file" />
+			    <input type="submit" />
+			</form>
+		</div>
+  
+      </div>
+  </div>    
     <!-- edit form column -->
     <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
       <div class="alert alert-info alert-dismissable">
