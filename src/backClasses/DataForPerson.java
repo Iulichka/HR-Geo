@@ -1,5 +1,7 @@
 package backClasses;
 
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -144,7 +146,7 @@ public class DataForPerson {
 			  about=rSet.getString(7);
 			 
 		}
-		ResultSet rSet2=stm.executeQuery("select person_photo from person_photoes where persons_id="+idNum+";");
+		//ResultSet rSet2=stm.executeQuery("select person_photo from person_photoes where persons_id="+idNum+";");
 		byte[] photo=getPhoto(idNum);
 		pers=new Person(name, mail, surname, id, sex, date,photo,about);
 
@@ -165,13 +167,36 @@ private byte[] getPhoto(int idNum) {
 		
 			ResultSet rSet=stm.executeQuery("select person_photo from person_photoes where persons_id="+idNum+";");
 			if(rSet.next()){
-				photo=rSet.getBytes(1);
+				Blob blob = rSet.getBlob(1);
+			    photo =  blob.getBytes(1, (int) blob.length());
 			}
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 	return photo;
+}
+/**
+ * adding pictere causes removing old picture
+ * @param idST id
+ * @param in file as inputStream
+ */
+public void addPicture(String idST, InputStream in) {
+	int id=0;
+	 Statement stm;
+	try {
+		id = Integer.parseInt(idST);
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		stm.executeUpdate("delete from person_photoes where persons_id = "+id+";");
+		java.sql.PreparedStatement prs = con.prepareStatement("insert into person_photoes (person_photo, persons_id) values(?,?)");
+		prs.setInt(2, id);
+		prs.setBlob(1, in);
+		prs.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 }
  
 }

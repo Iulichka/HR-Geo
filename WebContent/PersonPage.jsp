@@ -24,12 +24,13 @@ Person per =(Person) request.getAttribute("person");
 PersonEducation edu = (PersonEducation) request.getAttribute("education");
 OverallExperience exp = (OverallExperience) request.getAttribute("experience");
 PersonSkills skills = (PersonSkills) request.getAttribute("skills");
+//session.setAttribute("file", per.getPhoto());
 %>
 <title><%=per.getName()+" "+per.getSurname() %></title>
 </head>
 <body>
 <%@include  file="bootstrap.html" %>
-
+<%//session.setAttribute("file", per.getPhoto()); %>
 
 <div class="page-header">
   <h1 style="color: blue;"><%=per.getName()+" "+per.getSurname() %> <small><%=exp.getCurrentExperience().getPosition()+" at " + exp.getCurrentExperience().getCompName()
@@ -40,7 +41,7 @@ PersonSkills skills = (PersonSkills) request.getAttribute("skills");
 <div id="pic">
   <div class="col-xs-4 col-md-2">
     <a href="#" class="thumbnail">
-      <img src="http://www.cocult.com/assets/images/profile-default-male.jpg" alt="profile picture">
+      <img src="GetFile?type=image/jpeg" alt="profile picture">
     </a>
   </div>
 </div>
@@ -209,5 +210,13 @@ out.println("e-mail: "+ per.getMail());
  	} %>
     </div>
   </div>
+  
+  <div>
+<form action=<%="\""+"Upload?id="+per.getId()+"\"" %> method="post" enctype="multipart/form-data">
+    <input type="text" name="description" />
+    <input type="file" name="file" />
+    <input type="submit" />
+</form>
+</div>
 </body>
 </html>

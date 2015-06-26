@@ -52,6 +52,7 @@ public class PersonPage extends HttpServlet {
 		request.setAttribute("experience", exp);
 		request.setAttribute("skills", skills);
 		request.setAttribute("education", edu);
+		request.getSession().setAttribute("file", per.getPhoto());
 		String rightJsp = "";
 		if (type.equals("open")) {
 			rightJsp = "PersonPage.jsp";

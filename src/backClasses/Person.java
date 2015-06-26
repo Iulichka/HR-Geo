@@ -26,6 +26,7 @@ public class Person {
 		this.sex=sex;
 		this.date=date;
 		this.about=about;
+		this.photo = photo;
 	}
 	public void setAbout(String about){
 		this.about=about;
