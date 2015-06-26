@@ -37,7 +37,6 @@ public class GetFile extends HttpServlet {
 		byte [] file = (byte[]) request.getAttribute("file");
 		response.setContentLength(file.length);
 		OutputStream out = response.getOutputStream();
-		System.out.println(file.length);
 		out.write(file);
 	}
 

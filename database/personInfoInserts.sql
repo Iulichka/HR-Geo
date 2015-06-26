@@ -14,13 +14,6 @@ values
 ('dato','datodze','dato','01024070111','1994-01-01','dato@gmail.com','MALE','არავითარი','ტიპიაა');
 
 
-<<<<<<< HEAD
-insert into person_photoes
-(person_photo,persons_id)
-values
-(load_file('C:/Users/Nodo/Desktop/New folder/pic.jpg'),1);
-=======
->>>>>>> 6114d3a1ebc11697cad00e3ec01b94c12b3bc7c9
 
 
 -- skill category inserts

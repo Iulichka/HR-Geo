@@ -93,6 +93,9 @@ public class DataForComp {
 	public void addPicture(String mail, InputStream in) {
 		int id=0;
 		try {
+			Statement st;
+			st = con.createStatement();
+			st.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			id = Integer.parseInt(getCompId(mail));
 			java.sql.PreparedStatement prs = con.prepareStatement("insert into company_photo (company_id, company_photo) values(?,?)");
 			prs.setInt(1, id);
