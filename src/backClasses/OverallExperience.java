@@ -38,4 +38,14 @@ public class OverallExperience {
 	public Iterator<Experience> getIterator() {
 		return exps.iterator();
 	}
+	
+	public Experience getCurrentExperience() {
+		Experience res = null;
+		Iterator<Experience> it = exps.iterator();
+		while (it.hasNext()) {
+			res = it.next();
+			if (res.isCurrent()) return res;
+		}
+		return res;
+	}
 }

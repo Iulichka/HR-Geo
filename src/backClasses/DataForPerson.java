@@ -1,10 +1,14 @@
 package backClasses;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DataForPerson {
  Connection con=null;
@@ -106,7 +110,7 @@ public class DataForPerson {
 				"select ps.skills_id,s.skill_name,sc.category_name,sl.skill_level_name "+
 				"from person_skills ps,skills s,skill_category sc,skill_level sl "+
 				"where ps.persons_id="+idNum+ " and s.category_id=sc.category_id and "+
-				"ps.skill_level_id=sl.skill_level_id  and ps.skills_id=s.skills_id;");
+				"ps.skill_level_id=sl.skill_level_id  and ps.skills_id=s.skills_id order by sc.category_name;");
 		while(rSet.next()){
 			Skill cur=new Skill(rSet.getString(2),rSet.getString(4),rSet.getInt(1),rSet.getString(3));
 			result.addSkill(cur);
@@ -144,7 +148,7 @@ public class DataForPerson {
 			  about=rSet.getString(7);
 			 
 		}
-		ResultSet rSet2=stm.executeQuery("select person_photo from person_photoes where persons_id="+idNum+";");
+		//ResultSet rSet2=stm.executeQuery("select person_photo from person_photoes where persons_id="+idNum+";");
 		byte[] photo=getPhoto(idNum);
 		pers=new Person(name, mail, surname, id, sex, date,photo,about);
 
@@ -154,6 +158,8 @@ public class DataForPerson {
 	}
 	 return pers;
  }
+ 
+ 
 private byte[] getPhoto(int idNum) {
 	 Statement stm;
 	 byte[] photo=null;
@@ -163,7 +169,8 @@ private byte[] getPhoto(int idNum) {
 		
 			ResultSet rSet=stm.executeQuery("select person_photo from person_photoes where persons_id="+idNum+";");
 			if(rSet.next()){
-				photo=rSet.getBytes(1);
+				Blob blob = rSet.getBlob(1);
+			    photo =  blob.getBytes(1, (int) blob.length());
 			}
 
 		} catch (SQLException e) {
@@ -171,5 +178,109 @@ private byte[] getPhoto(int idNum) {
 		}
 	return photo;
 }
- 
+/**
+ * adding pictere causes removing old picture
+ * @param idST id
+ * @param in file as inputStream
+ */
+public void addPicture(String idST, InputStream in) {
+	int id=0;
+	 Statement stm;
+	try {
+		id = Integer.parseInt(idST);
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		stm.executeUpdate("delete from person_photoes where persons_id = "+id+";");
+		java.sql.PreparedStatement prs = con.prepareStatement("insert into person_photoes (person_photo, persons_id) values(?,?)");
+		prs.setInt(2, id);
+		prs.setBlob(1, in);
+		prs.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+
+	public void updatePerson(Person p,String password,Boolean changePassword,String email){
+	Statement stm;
+		try {
+			stm=con.createStatement();
+			stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+			if(changePassword){
+				stm.executeUpdate("update persons "
+						+ "set person_name='"+p.getName()+"', person_surname='"+p.getSurname()+"', "
+								+ "person_password='"+password+"', person_birth_date='"+p.getDate()+"', "
+										+ "person_email='"+p.getMail()+"', person_sex='"+p.getSex()+"', "
+												+ "person_info='"+p.getAbout()+"' "
+														+ "where person_email='"+email+"';");
+			}else{
+				stm.executeUpdate("update persons "
+						+ "set person_name='"+p.getName()+"', person_surname='"+p.getSurname()+"', "
+								+"person_birth_date='"+p.getDate()+"', "
+										+ "person_email='"+p.getMail()+"', person_sex='"+p.getSex()+"', "
+												+ "person_info='"+p.getAbout()+"' "
+														+ "where person_email='"+email+"';");
+
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+public void addDocument(String idST, String description, FileInputStream in) {
+	int id=0;
+	Statement stm;
+	try {
+		id = Integer.parseInt(idST);
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prs = con.prepareStatement("insert into documents (document_name, document_file, persons_id) values(?,?,?)");
+		prs.setInt(3, id);
+		prs.setBlob(2, in);
+		prs.setString(1, description);
+		prs.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+}
+public ArrayList<String> getDocs(String id) {
+	ArrayList<String> result = new ArrayList<String>();
+	Statement stm;
+	try {
+		//id = Integer.parseInt(idST);
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		ResultSet rSet = stm.executeQuery("select document_name from documents  where persons_id = "+id);
+		while(rSet.next()) {
+			result.add(rSet.getString(1));
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return result;
+}
+public byte[] getDocument(String id, String name) {
+	byte[] result = null;
+	Statement stm;
+	try {
+		//id = Integer.parseInt(idST);
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		ResultSet rSet = stm.executeQuery("select document_file from documents  where persons_id = "+id+" and document_name = "+"'"+name+"'");
+		rSet.next();
+		Blob blob = rSet.getBlob(1);
+		result =  blob.getBytes(1, (int) blob.length());
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return result;
+}
+
 }

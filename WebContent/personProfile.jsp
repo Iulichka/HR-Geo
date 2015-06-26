@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html  >
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <html>
@@ -27,22 +27,19 @@
 				Person pers=null;
 				PersonSkills skills=null;
 				OverallExperience experience=null;
-
 				AllOffersForPerson personOffers=null;
 				Offer o=null;
-				if(session.getAttribute("first_name")==null){
-					if(session.getAttribute("email")!=null){
+					if(session.getAttribute("email")!=null && session.getAttribute("person")!=null){
 						pers=(Person)request.getAttribute("person");
 						skills=(PersonSkills)request.getAttribute("skills");
 						experience=(OverallExperience)request.getAttribute("experience");
 						user=pers.getName()+" "+pers.getSurname();
 					    personOffers=(AllOffersForPerson)request.getAttribute("offers");
+					    request.getSession().setAttribute("file", pers.getPhoto());
 					}else{
 		   			 	response.sendRedirect("homePage.jsp");
 					}
-				}else{
-					user = (String)session.getAttribute("first_name")+" "+(String)session.getAttribute("last_name");
-				}
+				
 		
 			
 %>   
@@ -62,15 +59,6 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Registration <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="companyRegister.jsp">Register Company</a></li>
-            <li><a href="personRegister.jsp">Register Person</a></li>
-          </ul>
-        </li>       
-      </ul>
       	 <form class="navbar-form navbar-right" action="LogoutServlet" method="post" role="logout">
           <button type="submit" class="btn btn-default" value="Logout">Log Out</button>
           </form>
@@ -93,41 +81,20 @@
                     		<span class="label label-primary"><%=skills.getPersonSkills().get(i).getName() %></span> 
                 		<%} %>
                     <%} %>
+                    
                     </p>
                 </div>             
                 <div class="col-xs-12 col-sm-4 text-center">
                     <figure>
-                        <img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="" class="img-circle img-responsive">
+                        <img src="GetFile?type=image/jpeg" alt="" class="img-circle img-responsive">
                     </figure>
                 </div>
             </div> 
                        
             <div class="col-xs-12 divider text-center">
-                <div class="col-xs-12 col-sm-4 emphasis">                  
+                <div class="col-xs-12 col-sm-4 emphasis" >                  
                     <p><small> Update Profile</small></p>
                     <a href="personProfileUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Profile</a>                  
-                </div>
-                <div class="col-xs-12 col-sm-4 emphasis">                                     
-                    <p><small> Offers</small></p>
-                    <button class="btn btn-info btn-block"><span class="fa fa-user"></span> Offers</button>
-                </div>
-                <div class="col-xs-12 col-sm-4 emphasis">                   
-                    <p><small>Options</small></p>
-                    <div class="btn-group dropup btn-block">
-                      <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options </button>
-                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                      </button>
-                      <ul class="dropdown-menu text-left" role="menu">
-                        <li><a href="#"><span class="fa fa-envelope pull-right"></span> Send an email to company </a></li>
-                        <li><a href="#"><span class="fa fa-list pull-right"></span> Log Out </a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><span class="fa fa-warning pull-right"></span>delete my account</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#" class="btn disabled" role="button"> Ragaca </a></li>
-                      </ul>
-                    </div>
                 </div>
             </div>
     	 </div>                 
@@ -139,7 +106,7 @@
 <tbody> 
 	<% while(personOffers.hasNext()) {%>
 		<%o=personOffers.getOffer(); %>
-		<tr class="danger" onclick="window.document.location='<%=company%>';">
+		<tr class=<%=o.getStatus() %> onclick="window.document.location='<%=company%>';">
          <td><%=o.getName() %></td>
          <td><%=o.getCompany().getName() %></td>
          <td><%=o.getStartDate() %></td>
@@ -148,6 +115,5 @@
      <%} %>            
  </tbody>
 </table>
-
 </body>
 </html>

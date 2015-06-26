@@ -1,3 +1,4 @@
+use webproject;
 insert into company_info 
 (company_name, company_email, company_info, company_password, company_rating, voters_number, company_telephone, company_site)
 values ('სოკარი', 'socar@yahoo.com', 'კავკასიაში პირველი ნავთობკომპანია', '123456', 6,0,'555 77 88 99', 'www.gulf.com'),
@@ -12,7 +13,6 @@ insert into persons
 values
 ('zura','zuradze','zura','01024070112','1994-01-01','zura@gmail.com','MALE','არავითარი','ტიპიაა'),
 ('dato','datodze','dato','01024070111','1994-01-01','dato@gmail.com','MALE','არავითარი','ტიპიაა');
-
 
 
 
@@ -51,7 +51,6 @@ insert into  person_skills
 (skills_id,persons_id,skill_level_id)
 values
 (1,1,2);
-
 
 
 -- insert into facultys

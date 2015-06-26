@@ -1,6 +1,7 @@
 package backClasses;
 
 import java.sql.Date;
+import java.util.Calendar;
 
 /** this project contains info about person
  * 
@@ -25,6 +26,7 @@ public class Person {
 		this.sex=sex;
 		this.date=date;
 		this.about=about;
+		this.photo = photo;
 	}
 	public void setAbout(String about){
 		this.about=about;
@@ -71,8 +73,26 @@ public class Person {
 	public void setMail(String mail){
 		this.mail=mail;
 	}
-	public void setDate(Date date){
-		this.date=date;
+	public void setDate(java.util.Date date){
+		
+		this.date=new Date(date.getYear(), date.getMonth(), date.getDate());
+	}
+	
+	public void setPhoto(byte [] phot) {
+		photo = phot;
+	}
+	
+	public int getAge() {
+	    int age = 0;
+	    Calendar born = Calendar.getInstance();
+	    Calendar now = Calendar.getInstance();
+	        now.setTime(new java.util.Date());
+	        born.setTime(date);
+	        age = now.get(Calendar.YEAR) - born.get(Calendar.YEAR);             
+	        if(now.get(Calendar.DAY_OF_YEAR) < born.get(Calendar.DAY_OF_YEAR))  {
+	            age-=1;
+	        }
+	    return age;
 	}
 	
 }

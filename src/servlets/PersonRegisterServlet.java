@@ -1,11 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
-
-
-
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -18,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import backClasses.DBSelect;
+import backClasses.DataForPerson;
+import backClasses.Person;
 
 
 /**
@@ -71,14 +68,17 @@ public class PersonRegisterServlet extends HttpServlet {
 			            session.invalidate();
 			        }
 				selects.addPerson(first_name, surname, password, id, new java.sql.Date(date.getTime()), email, sex);
+				DataForPerson data=new DataForPerson();
+				Person p=data.getPerson(data.getPersonId(email));
 				session=request.getSession();
+				session.setAttribute("person", p);
 				session.setAttribute("first_name", first_name);
 				session.setAttribute("last_name", surname);
-				response.sendRedirect("personProfile.jsp");			
+				session.setAttribute("email", email);
+				response.sendRedirect("http://localhost:8080/HR-Geo/PersonServlet");			
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		
 		}
 	}
 
