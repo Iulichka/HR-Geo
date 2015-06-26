@@ -10,6 +10,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <head>
 <meta charset="UTF-8">
+<%@ page import="backClasses.*" %>
 <title>Home Page</title>
 </head>
 <body>
@@ -40,7 +41,7 @@
         </li>
       </ul>
       <% } %>
-	  <%if(session.getAttribute("first_name")==null) {%>    
+	  <%if(session.getAttribute("person")==null) {%>    
       <form class="navbar-form navbar-right" action="LoginServlet" method="post" role="login">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="email" name="email">
@@ -50,7 +51,8 @@
         <button type="submit" class="btn btn-default" value="Login">Login</button>
       </form>   
        <% } else{%>
-       		 <a class="navbar-brand" href="http://localhost:8080/HR-Geo/PersonServlet"><%=session.getAttribute("first_name")+" "+session.getAttribute("last_name")%></a>
+       <% Person p=(Person)session.getAttribute("person"); %>>
+       		 <a class="navbar-brand" href="http://localhost:8080/HR-Geo/PersonServlet"><%=p.getName()+" "+p.getSurname()%></a>
        		 <form class="navbar-form navbar-right" action="LogoutServlet" method="post" role="logout">
           		<button type="submit" class="btn btn-default" value="Logout">Log Out</button>
           	</form>

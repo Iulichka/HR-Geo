@@ -198,5 +198,33 @@ public void addPicture(String idST, InputStream in) {
 		e.printStackTrace();
 	}
 }
+
+	public void updatePerson(Person p,String password,Boolean changePassword,String email){
+	Statement stm;
+		try {
+			stm=con.createStatement();
+			stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+			if(changePassword){
+				stm.executeUpdate("update persons "
+						+ "set person_name='"+p.getName()+"', person_surname='"+p.getSurname()+"', "
+								+ "person_password='"+password+"', person_birth_date='"+p.getDate()+"', "
+										+ "person_email='"+p.getMail()+"', person_sex='"+p.getSex()+"', "
+												+ "person_info='"+p.getAbout()+"' "
+														+ "where person_email='"+email+"';");
+			}else{
+				stm.executeUpdate("update persons "
+						+ "set person_name='"+p.getName()+"', person_surname='"+p.getSurname()+"', "
+								+"person_birth_date='"+p.getDate()+"', "
+										+ "person_email='"+p.getMail()+"', person_sex='"+p.getSex()+"', "
+												+ "person_info='"+p.getAbout()+"' "
+														+ "where person_email='"+email+"';");
+
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
  
 }

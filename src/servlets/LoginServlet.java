@@ -60,6 +60,7 @@ public class LoginServlet extends HttpServlet {
 			    session=request.getSession();
 			    DataForPerson data=new DataForPerson();
 			    Person p=data.getPerson(data.getPersonId(email));
+			    session.setAttribute("person", p);
 				session.setAttribute("email", email);
 				session.setAttribute("first_name",p.getName() );
 				session.setAttribute("last_name", p.getSurname());
