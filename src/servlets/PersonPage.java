@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.nio.channels.OverlappingFileLockException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -48,10 +49,12 @@ public class PersonPage extends HttpServlet {
 		OverallExperience exp = dfp.getPersonExperience(intId);
 		PersonSkills skills = dfp.getPersonSkills(intId);
 		PersonEducation edu = dfp.getPersonEducation(intId);
+		ArrayList<String> docs = dfp.getDocs(id);
 		request.setAttribute("person", per);
 		request.setAttribute("experience", exp);
 		request.setAttribute("skills", skills);
 		request.setAttribute("education", edu);
+		request.setAttribute("docs", docs);
 		request.getSession().setAttribute("file", per.getPhoto());
 		String rightJsp = "";
 		if (type.equals("open")) {

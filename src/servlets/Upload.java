@@ -44,6 +44,7 @@ public class Upload extends HttpServlet {
 	    	response.setContentType("text/plain");
 	    	String mail = request.getParameter("mail");
 	    	String id = request.getParameter("id");
+	    	String type = request.getParameter("type");
 	        String description = request.getParameter("description"); // Retrieves <input type="text" name="description">
 	        Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
 	        String fileName = filePart.getSubmittedFileName();
@@ -53,16 +54,21 @@ public class Upload extends HttpServlet {
 	        IOUtils.copy(fileContent, outputStream);
 	        FileInputStream inputStream= new FileInputStream(file);
 	        outputStream.close();
-	        if (id==null && mail!=null) {
-		        DataForComp d = new DataForComp();
-		        d.addPicture(mail, inputStream);
-	        } else if(id!=null) {
+	        if(("document").equals(type)) {
 	        	DataForPerson dp = new DataForPerson();
-	        	dp.addPicture(id, inputStream);
+	        	dp.addDocument(id,description,inputStream);
+	        } else {
+		        if (id==null && mail!=null) {
+			        DataForComp d = new DataForComp();
+			        d.addPicture(mail, inputStream);
+		        } else if(id!=null) {
+		        	DataForPerson dp = new DataForPerson();
+		        	dp.addPicture(id, inputStream);
+		        }
 	        }
 	        inputStream.close();
 	        file.delete();
 	        response.getWriter().print("file: "+fileName+description+" was successfully uploaded");
-	    }
+	  }
 
 }

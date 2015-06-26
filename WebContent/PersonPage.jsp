@@ -24,6 +24,7 @@ Person per =(Person) request.getAttribute("person");
 PersonEducation edu = (PersonEducation) request.getAttribute("education");
 OverallExperience exp = (OverallExperience) request.getAttribute("experience");
 PersonSkills skills = (PersonSkills) request.getAttribute("skills");
+ArrayList<String> docs =(ArrayList<String>) request.getAttribute("docs");
 //session.setAttribute("file", per.getPhoto());
 %>
 <title><%=per.getName()+" "+per.getSurname() %></title>
@@ -59,16 +60,15 @@ PersonSkills skills = (PersonSkills) request.getAttribute("skills");
 
 <div id="docs" style="position: absolute; padding-left: 60%; padding-top: 10%">
 <h3 >Documents</h3>
+<%for(int i=0; i<docs.size(); i++) { 
+	String document = docs.get(i);
+%>
 <p>
-  <a href="GetFile">
-    CV
+  <a href=<%="\""+"GetDocument?id="+per.getId()+"&name="+document+"\""%>>
+    <%=document %>
   </a>
   </p>
-  <p>
-   <a href="GetFile">
-    Certificate 
-  </a>
-  </p>
+  <%} %>
 </div>
 
 
@@ -213,6 +213,14 @@ out.println("e-mail: "+ per.getMail());
   
   <div>
 <form action=<%="\""+"Upload?id="+per.getId()+"\"" %> method="post" enctype="multipart/form-data">
+    <input type="text" name="description" />
+    <input type="file" name="file" />
+    <input type="submit" />
+</form>
+</div>
+
+<div>
+<form action=<%="\""+"Upload?id="+per.getId()+"&type=document\"" %> method="post" enctype="multipart/form-data">
     <input type="text" name="description" />
     <input type="file" name="file" />
     <input type="submit" />
