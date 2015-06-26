@@ -1,5 +1,6 @@
 package backClasses;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -7,6 +8,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DataForPerson {
  Connection con=null;
@@ -199,6 +201,7 @@ public void addPicture(String idST, InputStream in) {
 	}
 }
 
+<<<<<<< HEAD
 	public void updatePerson(Person p,String password,Boolean changePassword,String email){
 	Statement stm;
 		try {
@@ -226,5 +229,60 @@ public void addPicture(String idST, InputStream in) {
 			e.printStackTrace();
 		}
 	}
+=======
+
+public void addDocument(String idST, String description, FileInputStream in) {
+	int id=0;
+	Statement stm;
+	try {
+		id = Integer.parseInt(idST);
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prs = con.prepareStatement("insert into documents (document_name, document_file, persons_id) values(?,?,?)");
+		prs.setInt(3, id);
+		prs.setBlob(2, in);
+		prs.setString(1, description);
+		prs.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+}
+public ArrayList<String> getDocs(String id) {
+	ArrayList<String> result = new ArrayList<String>();
+	Statement stm;
+	try {
+		//id = Integer.parseInt(idST);
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		ResultSet rSet = stm.executeQuery("select document_name from documents  where persons_id = "+id);
+		while(rSet.next()) {
+			result.add(rSet.getString(1));
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return result;
+}
+public byte[] getDocument(String id, String name) {
+	byte[] result = null;
+	Statement stm;
+	try {
+		//id = Integer.parseInt(idST);
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		ResultSet rSet = stm.executeQuery("select document_file from documents  where persons_id = "+id+" and document_name = "+"'"+name+"'");
+		rSet.next();
+		Blob blob = rSet.getBlob(1);
+		result =  blob.getBytes(1, (int) blob.length());
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return result;
+}
+>>>>>>> 90c9be9c41f7169c582bef38c34c702f66b00c1a
  
 }
