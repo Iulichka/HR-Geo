@@ -71,11 +71,11 @@
         This is an <strong>.alert</strong>. Use this to show important messages to the user.
       </div>
       <h3>Personal info</h3>
-      <form class="form-horizontal" role="form">
+      <form class="form-horizontal" role="form"  action="PersonalInfoUpdate" method="post">
         <div class="form-group">
           <label class="col-lg-3 control-label">First name:</label>
           <div class="col-lg-8">
-            <input class="form-control" name="first_name" placeholder="First Name" type="text">
+            <input class="form-control" name="first_name" placeholder="First Name" type="text" id="first_name">
           </div>
         </div>
         <div class="form-group">
@@ -93,7 +93,7 @@
   		 <div class="form-group">
           <label class="col-lg-3 control-label">Birth Date:</label>
           <div class="col-lg-8">
-            <input class="form-control" placeholder="email" name="email" type="date">
+            <input class="form-control" placeholder="date" name="date" type="date">
           </div>
         </div>
         <div class="form-group">
