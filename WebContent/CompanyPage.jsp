@@ -18,8 +18,19 @@
 <% Company c = (Company)request.getAttribute("comp");
 	out.println(c.getName()); %>
 </title>
+<script type="text/javascript">
+function fun1(n, mail){
+	document.getElementById("message").innerHTML=n;
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("POST", "Rating?n="+n+"&mail="+mail, false);
+	xmlhttp.send();
+	var tx =  xmlhttp.responseText;
+	document.getElementById("message").innerHTML="thank you for voting new rating is: "+tx;
+}
+</script>
 </head>
 <body>
+
 <%@include  file="bootstrap.html" %>
 <%@include  file="navigation.html" %>
 <div class ="page-header" id="name" style="text-shadow: aqua; font-size: 24pt; padding-bottom: 20pt; padding-left: 10pt">
@@ -37,7 +48,7 @@ out.println("tel: "+c.getTel());
 </div>
 <div id="site">
 site:
-<a href="http://<%out.println(c.getSite()); %>">
+<a href="http://<% out.println(c.getSite()); %>">
 <%
 out.println(c.getSite());
 %>
@@ -62,7 +73,7 @@ for (int i=1; i<=c.getImagesNum(); i++) {
 %>
 </div>
 <div id="info" style="padding-left: 10pt; font-size: 14pt">
-<% out.println(c.getInfo()); %>
+<%  out.println(c.getInfo()); %>
 </div>
  <div class="col-xs-12 col-sm-3 text-center" id="rating" style="position: absolute; left: 52%; top: 15%; font-size: 16pt;">         
    <figcaption class="ratings">
@@ -70,13 +81,15 @@ for (int i=1; i<=c.getImagesNum(); i++) {
  <%
  for (int i=0; i<5; i++) {
 	 String filledStar ="";
-	 if (i >= c.getRating()) filledStar = "-o";
-	 out.print("<a href=\"#\">");
+	 if (i >= c.getRating()) filledStar = "-o"; //,"+c.getMail()+"
+	 String mail = "\""+c.getMail()+"\"";
+	 out.print("<a href=\"#\" onclick='fun1("+i+","+mail+")'>");
 	 out.print("<span class=\"fa fa-star"+filledStar+"\"></span></a>");
  }
  %>             
         </p>
      </figcaption>
+     <p id="message"style="font-size: 7pt"></p>
    </div>
    <div>
 <form action=<%="\""+"Upload?mail="+c.getMail()+"\"" %> method="post" enctype="multipart/form-data">

@@ -137,4 +137,26 @@ public class DataForComp {
 		}
 		return res;
 	}
+
+	public double vote(String mail, int score) {
+		double result = 0;
+		Statement st;
+		try {
+			st = con.createStatement();
+			st.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+			ResultSet resSet = st.executeQuery("select company_rating, voters_number from company_info where company_email = '"
+						+mail+"'");
+			resSet.next();
+			double curRate = resSet.getDouble(1);
+			int votersN = resSet.getInt(2)+1;
+			result = (curRate+score)/(votersN);
+			st.executeUpdate("update company_info set voters_number = "+votersN+", company_rating = "+result+
+					"where company_email = '"+mail+"';");
+		} catch (SQLException e) {
+			result = 0;
+			System.out.println(mail);
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
