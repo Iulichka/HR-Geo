@@ -361,6 +361,18 @@ public class DBSelect {
 			e.printStackTrace();
 		}
 	}
+	public void changeCompanyInfo(String email,String info){		
+		Connection con=DataBaseInfo.getConnection();
+		Statement stmt;
+		try {
+			stmt = con.createStatement();
+			 String sql = "UPDATE company_info SET company_info = '"+info+"' WHERE company_email = '"+email+"'";
+			 stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 	
