@@ -38,6 +38,7 @@
 					    request.getSession().setAttribute("file", pers.getPhoto());
 					}else{
 		   			 	response.sendRedirect("homePage.jsp");
+		   			 	return;
 					}
 				
 		

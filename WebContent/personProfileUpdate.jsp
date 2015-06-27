@@ -32,6 +32,7 @@
 				request.getSession().setAttribute("file", p.getPhoto());
 			}else{
    			 	response.sendRedirect("homePage.jsp");
+   			 	return;
 			}
 			
 %>   
