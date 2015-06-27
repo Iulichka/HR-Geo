@@ -296,5 +296,41 @@ public void changeSkill(int id){
 	}
 			
 }
+public ArrayList<String> getSkillNames(){
+	Statement stm;
+	ArrayList<String> skills=new ArrayList<String>();
 
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		ResultSet rSet=stm.executeQuery("select skill_name from skills");
+		while(rSet.next()){
+			skills.add(rSet.getString(1));
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	
+	return skills;
+	
+}
+public ArrayList<String> getSkillLevels(){
+	Statement stm;
+	ArrayList<String> skills=new ArrayList<String>();
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		ResultSet rSet= stm.executeQuery("select skill_level_name from skill_level ;");	
+		while(rSet.next()){
+		skills.add(rSet.getString(1));
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return skills;
+}
 }
