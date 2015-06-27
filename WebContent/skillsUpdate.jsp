@@ -56,7 +56,10 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> 
       <form class="navbar-form navbar-right" action="LogoutServlet" method="post" role="logout">
           <button type="submit" class="btn btn-default" value="Logout">Log Out</button>
-          </form>   	         
+          </form>
+          
+          
+             	         
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

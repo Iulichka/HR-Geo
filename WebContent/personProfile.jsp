@@ -29,7 +29,7 @@
 				OverallExperience experience=null;
 				AllOffersForPerson personOffers=null;
 				Offer o=null;
-					if(session.getAttribute("email")!=null && session.getAttribute("person")!=null){
+					if( request.getSession(false)!=null && session.getAttribute("email")!=null ){
 						pers=(Person)request.getAttribute("person");
 						skills=(PersonSkills)request.getAttribute("skills");
 						experience=(OverallExperience)request.getAttribute("experience");
