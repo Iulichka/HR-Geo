@@ -43,7 +43,7 @@ public class CompanyRegisterServlet extends HttpServlet {
 		String tel=(String)request.getParameter("tel");
 		DBSelect selects= new DBSelect();
 		boolean contains=selects.searchCompany(email,password);	
-		if(contains==true||password==null||email==null||tel==null||site==null||name==null){
+		if(contains==true||password.length()==0||email.length()==0||tel.length()==0||site.length()==0||name.length()==0){
 			RequestDispatcher rd=request.getRequestDispatcher("companyRegister.jsp");
 			rd.forward(request, response);
 		}else{
