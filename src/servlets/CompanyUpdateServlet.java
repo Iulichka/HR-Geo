@@ -47,6 +47,8 @@ public class CompanyUpdateServlet extends HttpServlet {
 		String site=(String)request.getParameter("site");
 		String password=(String)request.getParameter("password");
 		String passwordConfirm=(String)request.getParameter("password_confirm");
+		String currentPassword=(String)request.getParameter("current_password");
+		String about=(String)request.getParameter("about");
 		DBSelect select=new DBSelect();
 		if(updatedEmail.length()>0){
 			select.changeCompanyEmail(currentEmail, updatedEmail);
@@ -59,11 +61,14 @@ public class CompanyUpdateServlet extends HttpServlet {
 			select.changeCompanyTel(currentEmail, tel);
 		}
 			
-		if(password.length()>0&&password.equals(passwordConfirm)){
+		if(password.length()>0&&password.equals(passwordConfirm)&&select.searchCompany(currentEmail, currentPassword)){
 			select.changeCompanyPass(currentEmail, password);
 		}
 		if(name.length()>0){
 			select.changeCompanyName(currentEmail, name);
+		}
+		if(about.length()>0){
+			select.changeCompanyInfo(currentEmail ,about);
 		}
 			
 		response.sendRedirect("http://localhost:8080/HR-Geo/CompanyServlet");

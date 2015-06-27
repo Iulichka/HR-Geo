@@ -14,6 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="http://snipplicious.com/css/font-awesome-4.1.0.min.css">
 	<script src="http://snipplicious.com/js/jquery.js"></script>
 	<script src="http://snipplicious.com/js/bootstrap.min.js"></script>
+	<link href="css/search.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <%@page import="backClasses.*" %>
@@ -61,7 +62,7 @@
     <!-- left column -->
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="text-center">
-        <img src="GetFile?type=image/jpeg" alt="" class="img-circle img-responsive"" class="avatar img-circle img-thumbnail" alt="avatar">
+        <img src="GetFile?type=image/jpeg" alt="" class="img-circle img-responsive" class="avatar img-circle img-thumbnail" alt="avatar">
         <h6>Upload a different photo</h6>
        <div>
 			<form action=<%="\""+"Upload?id="+p.getId()+"\"" %> method="post" enctype="multipart/form-data">
@@ -80,10 +81,7 @@
 			</form>
 		</div>
       </div>
-    </div>
-
-    
-    
+    </div>    
     <!-- edit form column -->
     <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
       <div class="alert alert-info alert-dismissable">
@@ -92,7 +90,23 @@
         This is an <strong>.alert</strong>. Use this to show important messages to the user.
       </div>
       <h3>Personal info</h3>
-      <form class="form-horizontal" role="form" action="http://localhost:8080/HR-Geo/PersonalInfoUpdate" method="post">
+      <form class="form-horizontal" role="form" action="PersonalInfoUpdate" method="post">
+        <div class="form-group"> 
+        <label class="col-lg-3 control-label">Add Skill:</label>
+    		<div class="col-md-6">   		
+      	<select class="form-control" id="tagPicker" multiple="multiple">
+          <option value="1">Cats</option>
+          <option value="2">Dogs</option>
+          <option selected="selected" value="3">Fish</option>
+          <option value="4">Reptiles</option>
+          <option selected="selected" value="5">Equine</option>
+          <option value="6">Aviary</option>
+          <option value="7">Insects</option>
+        </select>
+    </div> 
+  </div><!--/row-->
+ 
+  
         <div class="form-group">
           <label class="col-lg-3 control-label">First name:</label>
           <div class="col-lg-8">
@@ -184,43 +198,20 @@
 <script src="js/jquery.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script>
-     var nama = ["Java","PHP","Oracle","MySql","Javascript","Ajax","Translator","Taxi Driver","Dancer"];
-	$( "#single" ).autocomplete({
-		source: nama
-	});
-	
-	 function split( val ) {
-		return val.split( /,\s*/ );
-	}
-	function extractLast( term ) {
-		return split( term ).pop();
-	}
-	$( "#multi" )
-		.bind( "keydown", function( event ) {
-	if ( event.keyCode === $.ui.keyCode.TAB &&
-		$( this ).autocomplete( "instance" ).menu.active ) {
-			event.preventDefault();
-		}
-	})
-	.autocomplete({
-		minLength: 0,
-		source: function( request, response ) {
-			response( $.ui.autocomplete.filter(
-			nama, extractLast( request.term ) ) );
-		},
-		focus: function() {
-			return false;
-		},
-		select: function( event, ui ) {
-			var terms = split( this.value );
-			terms.pop();
-			terms.push( ui.item.value );
-			terms.push( "" );
-			this.value = terms.join( ", " );
-			return false;
-		}
-	});
-    </script>
+  //Select2
+    $.getScript('http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.min.js',function(){
+                    
+      /* Select2 plugin as tagpicker */
+      $("#tagPicker").select2({
+        closeOnSelect:false
+      });
+
+    }); //script         
+
+    $(document).ready(function() {});</script>
 </body>
 </html>
