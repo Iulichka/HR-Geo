@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -27,12 +28,15 @@
 		String first_name = null;
 		String last_name = null;
 		Person p=null;
-			if(session.getAttribute("email")!=null){
+		ArrayList<Skill> skillArray=null;
+			if(request.getSession(false)!=null && session.getAttribute("email")!=null){
 				user=(String)session.getAttribute("email");
 				first_name=(String)session.getAttribute("first_name");
 				last_name=(String)session.getAttribute("last_name");
 				p=(Person)session.getAttribute("person");
-				request.getSession().setAttribute("file", p.getPhoto());
+				DataForPerson data=new DataForPerson();
+				PersonSkills skills=data.getPersonSkills(data.getPersonId(user));
+				skillArray=skills.getPersonSkills();
 			}else{
    			 	response.sendRedirect("homePage.jsp");
 			}
@@ -57,13 +61,57 @@
       <form class="navbar-form navbar-right" action="LogoutServlet" method="post" role="logout">
           <button type="submit" class="btn btn-default" value="Logout">Log Out</button>
           </form>
-          
-          
              	         
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+ <table class="table table-condensed">
+<thead><tr><th>Skill Name</th><th>Skill Level</th><th>Submit Change</th><th>Delete Skill</th></thead>
+<tbody>
+	
+		<%for(int i=0;i<skillArray.size();i++){ %>
+				<tr>
+				<td><%=skillArray.get(i).getName() %></td>
+				<td>
+					<select name="hall" id="hall">
+					<%if(skillArray.get(i).getLevel().equals("Novice")){ %>
+						 <option selected="selected">Novice</option>
+					<%}else{%>
+						 <option>Novice</option>
+					<%} %>
+					<%if(skillArray.get(i).getLevel().equals("Intermediate")){ %>
+						 <option selected="selected">Intermediate</option>
+					<%}else{%>
+						 <option>Intermediate</option>
+					<%} %>
+					</select>		
+				</td>
+				<td>
+					<form action="ChangeServlet" method="post">
+						<input type="hidden" name="skill_id" value=<%=skillArray.get(i).getId()%>>
+						<button type="submit" style="background-color: transparent;border-color: transparent ;">
+						<span class="glyphicon glyphicon-ok"></span>
 
+						</button> 
+					</form>
+				
+				 </td>
+				 <td>
+					<form action="ChangeServlet" method="post">
+						<input type="hidden" name="skill_id" value=<%=skillArray.get(i).getId()%>>
+						<button type="submit" style="background-color: transparent;border-color: transparent ;">
+						<span class="glyphicon glyphicon-remove"></span>
+
+						</button> 
+					</form>
+				
+				 </td>
+				 
+										
+		<% } %>   
+ </tbody>
+</table>
+	
 
 </body>
 </html>
