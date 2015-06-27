@@ -29,7 +29,7 @@
 				OverallExperience experience=null;
 				AllOffersForPerson personOffers=null;
 				Offer o=null;
-					if( request.getSession(false)!=null && session.getAttribute("email")!=null ){
+					if( request.getSession()!=null && session.getAttribute("email")!=null && request.getAttribute("person")!=null ){
 						pers=(Person)request.getAttribute("person");
 						skills=(PersonSkills)request.getAttribute("skills");
 						experience=(OverallExperience)request.getAttribute("experience");
@@ -97,7 +97,13 @@
                     <p><small> Update Profile</small></p>
                     <a href="personProfileUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Profile</a>                  
                 </div>
+                <div class="col-xs-12 col-sm-4 emphasis" >                  
+                    <p><small> Update Skills</small></p>
+                    <a href="skillsUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Skills</a>                  
+                </div>
             </div>
+            
+            
     	 </div>                 
 		</div>
 	</div>

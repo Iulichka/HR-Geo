@@ -283,18 +283,94 @@ public byte[] getDocument(String id, String name) {
 	return result;
 }
 
-public void changeSkill(int id){
+
+public ArrayList<String> getSkillNames(){
 	Statement stm;
+	ArrayList<String> skills=new ArrayList<String>();
+
 	try {
 		stm=con.createStatement();
 		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
-		java.sql.PreparedStatement prs=con.prepareStatement("update");
-	
+		ResultSet rSet=stm.executeQuery("select skill_name from skills");
+		while(rSet.next()){
+			skills.add(rSet.getString(1));
+		}
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-			
+	
+	
+	return skills;
+	
 }
-
+public ArrayList<String> getSkillLevels(){
+	Statement stm;
+	ArrayList<String> skills=new ArrayList<String>();
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		ResultSet rSet= stm.executeQuery("select skill_level_name from skill_level ;");	
+		while(rSet.next()){
+		skills.add(rSet.getString(1));
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return skills;
+}
+public void updateSkill(int id,String Level) {
+	Statement stm;
+	int skill_id=getSkillLevelId(Level);
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prst=con.prepareStatement("update person_skills "
+				+ "set skill_level_id= ? "
+						+ "where skills_id= ? ;");
+		prst.setInt(1, skill_id);
+		prst.setInt(2, id);
+		prst.executeUpdate();
+		
+	} catch (SQLException e) {
+			e.printStackTrace();
+	}
+	
+	
+}
+private int getSkillLevelId(String level) {
+	Statement stm;
+	int id=0;
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		ResultSet rSet=stm.executeQuery("select skill_level_id from skill_level"
+				+ " where skill_level_name='"+level+"';");
+		
+		if(rSet.next()){
+			id=rSet.getInt(1);
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return id;
+}
+public void deleteSkill(int skill_id) {
+	Statement stm;
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prst=con.prepareStatement("delete from person_skills where skills_id= ? ;");
+		prst.setInt(1, skill_id);
+		prst.executeUpdate();	
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+	
+}
 }

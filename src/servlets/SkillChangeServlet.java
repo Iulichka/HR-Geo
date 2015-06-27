@@ -1,11 +1,15 @@
 package servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.SendResult;
+
+import backClasses.DataForPerson;
 
 /**
  * Servlet implementation class SkillChangeServlet
@@ -36,9 +40,14 @@ public class SkillChangeServlet extends HttpServlet {
 		int skill_id=Integer.parseInt(request.getParameter("skill_id"));
 		String type=request.getParameter("SUBMIT");
 		String skill_level=request.getParameter("level");
-		while(type.equals("")){
-			
+		DataForPerson data=new DataForPerson();
+		if(type.equals("change")){
+			data.updateSkill(skill_id,skill_level);
+		}else{
+			data.deleteSkill(skill_id);
 		}
+		
+		response.sendRedirect("skillsUpdate.jsp");
 	}
 
 }
