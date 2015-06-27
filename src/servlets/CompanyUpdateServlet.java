@@ -47,6 +47,7 @@ public class CompanyUpdateServlet extends HttpServlet {
 		String site=(String)request.getParameter("site");
 		String password=(String)request.getParameter("password");
 		String passwordConfirm=(String)request.getParameter("password_confirm");
+		String currentPassword=(String)request.getParameter("current_password");
 		DBSelect select=new DBSelect();
 		if(updatedEmail.length()>0){
 			select.changeCompanyEmail(currentEmail, updatedEmail);
@@ -59,7 +60,7 @@ public class CompanyUpdateServlet extends HttpServlet {
 			select.changeCompanyTel(currentEmail, tel);
 		}
 			
-		if(password.length()>0&&password.equals(passwordConfirm)){
+		if(password.length()>0&&password.equals(passwordConfirm)&&select.searchCompany(currentEmail, currentPassword)){
 			select.changeCompanyPass(currentEmail, password);
 		}
 		if(name.length()>0){

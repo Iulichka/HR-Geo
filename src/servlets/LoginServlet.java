@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import backClasses.Company;
 import backClasses.DBSelect;
 import backClasses.DataForPerson;
 import backClasses.Person;
@@ -77,7 +78,9 @@ public class LoginServlet extends HttpServlet {
 			        session.invalidate();
 			    }
 			    session=request.getSession();
-				session.setAttribute("email", email);					
+			    Company company=selects.getCompany(selects.getCompanyId(email));			 
+				session.setAttribute("email", email);
+				session.setAttribute("company", company);
 				response.sendRedirect("http://localhost:8080/HR-Geo/CompanyServlet");
 			}
 		}

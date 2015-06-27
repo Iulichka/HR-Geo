@@ -19,11 +19,14 @@
 
 </head>
 <body>
+<%@page import="backClasses.*" %>
  <%
 		//allow access only if session exists
 		String companyEmail =null;	
+ 		Company company=null;
 			if(session.getAttribute("email")!=null){
 				companyEmail=(String)session.getAttribute("email");
+				company=(Company)session.getAttribute("company");
 			}else{
    			 	response.sendRedirect("homePage.jsp");
 			}
@@ -77,25 +80,31 @@
         <div class="form-group">
           <label class="col-lg-3 control-label">Company Name:</label>
           <div class="col-lg-8">
-            <input class="form-control" placeholder="Company Name" name="name" type="text">
+            <input class="form-control" value=<%=company.getName() %> name="name" type="text">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Company Tel:</label>
           <div class="col-lg-8">
-            <input class="form-control" placeholder="Company Tel" name="tel" type="text">
+            <input class="form-control" value=<%=company.getTel() %> name="tel" type="text">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Company Site:</label>
           <div class="col-lg-8">
-            <input class="form-control" placeholder="Company Site" name="site" type="text">
+            <input class="form-control" value=<%=company.getSite() %> name="site" type="text">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Email:</label>
           <div class="col-lg-8">
-            <input class="form-control" placeholder="email" name="email" type="text">
+            <input class="form-control" value=<%=company.getMail() %> name="email" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label">Enter Current Password:</label>
+          <div class="col-md-8">
+            <input class="form-control" placeholder="Enter Current Password" name="current_password" type="password">
           </div>
         </div>
         <div class="form-group">
