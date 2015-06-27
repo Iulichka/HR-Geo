@@ -13,5 +13,20 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jar/access-bridge.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jar/cldrdata.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jar/dnsns.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jar/jaccess.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jar/jfxrt.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jar/localedata.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jar/nashorn.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jar/sunec.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jar/sunjce_provider.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jar/sunmscapi.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jar/sunpkcs11.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jar/zipfs.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/rome-1.0-sources.jar/rome-1.0-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/jdom.jar/jdom.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/rome-1.0.jar/rome-1.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
