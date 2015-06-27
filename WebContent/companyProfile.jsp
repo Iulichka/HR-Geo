@@ -39,6 +39,7 @@
 																
 					}else{
 		   			 	response.sendRedirect("homePage.jsp");
+		   			 	return;
 					}						
 			
 %>   

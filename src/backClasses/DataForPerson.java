@@ -283,4 +283,18 @@ public byte[] getDocument(String id, String name) {
 	return result;
 }
 
+public void changeSkill(int id){
+	Statement stm;
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prs=con.prepareStatement("update");
+	
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+			
+}
+
 }

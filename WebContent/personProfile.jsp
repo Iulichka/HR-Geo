@@ -29,7 +29,7 @@
 				OverallExperience experience=null;
 				AllOffersForPerson personOffers=null;
 				Offer o=null;
-					if( request.getSession(false)!=null && session.getAttribute("email")!=null ){
+					if( request.getSession()!=null && session.getAttribute("email")!=null && request.getAttribute("person")!=null ){
 						pers=(Person)request.getAttribute("person");
 						skills=(PersonSkills)request.getAttribute("skills");
 						experience=(OverallExperience)request.getAttribute("experience");
@@ -38,6 +38,7 @@
 					    request.getSession().setAttribute("file", pers.getPhoto());
 					}else{
 		   			 	response.sendRedirect("homePage.jsp");
+		   			 	return;
 					}
 				
 		

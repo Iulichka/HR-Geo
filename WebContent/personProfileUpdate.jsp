@@ -32,6 +32,7 @@
 				request.getSession().setAttribute("file", p.getPhoto());
 			}else{
    			 	response.sendRedirect("homePage.jsp");
+   			 	return;
 			}
 			
 %>   
@@ -94,7 +95,7 @@
         <div class="form-group"> 
         <label class="col-lg-3 control-label">Add Skill:</label>
     		<div class="col-md-6">   		
-      	<select class="form-control" id="tagPicker" multiple="multiple">
+      	<select class="form-control">
           <option value="1">Cats</option>
           <option value="2">Dogs</option>
           <option selected="selected" value="3">Fish</option>
@@ -104,9 +105,9 @@
           <option value="7">Insects</option>
         </select>
     </div> 
-  </div><!--/row-->
+  </div>
  
-  
+ 
         <div class="form-group">
           <label class="col-lg-3 control-label">First name:</label>
           <div class="col-lg-8">
@@ -194,7 +195,7 @@
       </form>
     </div>
   </div>
-</div>
+
 <script src="js/jquery.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

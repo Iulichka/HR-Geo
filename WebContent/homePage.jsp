@@ -9,7 +9,8 @@
     <link href="css/modern-business.css" rel="stylesheet">
      <link href="css/persons.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"> 
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="homePage.css" rel="stylesheet" type="text/css"> 
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <!-- jQuery library -->
@@ -94,13 +95,7 @@
             <span class="icon-next"></span>
         </a>
         </header>
-<footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; HR-geo 2015</p>
-                </div>
-            </div>
-        </footer>
+     
        
  <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -114,5 +109,12 @@
         interval: 3000 //changes the speed
     })
     </script>
+    
+      <div class="copyRight" id="copyRight" >
+                <div class="col-lg-12">
+                    <p>Copyright &copy; HR-geo 2015</p>
+                </div>
+            </div>
+    
 </body>
 </html>

@@ -28,6 +28,7 @@
 				company=(Company)session.getAttribute("company");
 			}else{
    			 	response.sendRedirect("homePage.jsp");
+   			 	return;
 			}
 			
 %>   

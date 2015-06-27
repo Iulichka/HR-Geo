@@ -29,7 +29,7 @@
 		String last_name = null;
 		Person p=null;
 		ArrayList<Skill> skillArray=null;
-			if(request.getSession(false)!=null && session.getAttribute("email")!=null){
+			if(request.getSession(false)!=null && session.getAttribute("email")!=null && session.getAttribute("person")!=null){
 				user=(String)session.getAttribute("email");
 				first_name=(String)session.getAttribute("first_name");
 				last_name=(String)session.getAttribute("last_name");
@@ -38,7 +38,8 @@
 				PersonSkills skills=data.getPersonSkills(data.getPersonId(user));
 				skillArray=skills.getPersonSkills();
 			}else{
-   			 	response.sendRedirect("homePage.jsp");
+   			 	response.sendRedirect("http://localhost:8080/HR-Geo/homePage.jsp");
+   			 	return;
 			}
 			
 %>  
@@ -71,43 +72,39 @@
 	
 		<%for(int i=0;i<skillArray.size();i++){ %>
 				<tr>
+		<form action="http://localhost:8080/HR-Geo/SkillChangeServlet" method="post">
 				<td><%=skillArray.get(i).getName() %></td>
 				<td>
-					<select name="hall" id="hall">
+					<select name="level" id="level">
 					<%if(skillArray.get(i).getLevel().equals("Novice")){ %>
-						 <option selected="selected">Novice</option>
+						 <option selected="selected" value="Novice">Novice</option>
 					<%}else{%>
-						 <option>Novice</option>
+						 <option value="Novice">Novice</option>
 					<%} %>
 					<%if(skillArray.get(i).getLevel().equals("Intermediate")){ %>
-						 <option selected="selected">Intermediate</option>
+						 <option selected="selected" value="Intermediate">Intermediate</option>
 					<%}else{%>
-						 <option>Intermediate</option>
+						 <option value="Intermediate">Intermediate </option>
 					<%} %>
 					</select>		
 				</td>
 				<td>
-					<form action="ChangeServlet" method="post">
 						<input type="hidden" name="skill_id" value=<%=skillArray.get(i).getId()%>>
-						<button type="submit" style="background-color: transparent;border-color: transparent ;">
+						<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-ok"></span>
 
 						</button> 
-					</form>
 				
 				 </td>
 				 <td>
-					<form action="ChangeServlet" method="post">
-						<input type="hidden" name="skill_id" value=<%=skillArray.get(i).getId()%>>
-						<button type="submit" style="background-color: transparent;border-color: transparent ;">
+						<input type="hidden" name="skill_id" value=<%=skillArray.get(i).getId()%> >
+						<button type="submit"  name="SUBMIT" value="delete" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-remove"></span>
 
 						</button> 
-					</form>
-				
-				 </td>
-				 
-										
+				 </td>	
+				 </form>			
+			</tr>
 		<% } %>   
  </tbody>
 </table>
