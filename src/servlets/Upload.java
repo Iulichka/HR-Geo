@@ -47,7 +47,7 @@ public class Upload extends HttpServlet {
 	    	String type = request.getParameter("type");
 	        String description = request.getParameter("description"); // Retrieves <input type="text" name="description">
 	        Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
-	        String fileName = filePart.getSubmittedFileName();
+//	        String fileName = filePart.getSubmittedFileName();
 	        InputStream fileContent = filePart.getInputStream();
 	        File file = new File("/home/levan/Desktop/Photos/that.jpg");
 	        OutputStream outputStream = new FileOutputStream(file);
@@ -68,7 +68,7 @@ public class Upload extends HttpServlet {
 	        }
 	        inputStream.close();
 	        file.delete();
-	        response.getWriter().print("file: "+fileName+description+" was successfully uploaded");
+	        response.getWriter().print("file: "+description+" was successfully uploaded");
 	  }
 
 }
