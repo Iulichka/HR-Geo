@@ -1,7 +1,7 @@
-<!DOCTYPE html  >
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<!doctype html>
 <html>
+<head>
+ <meta charset="utf-8">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
 <!-- jQuery library -->
@@ -94,8 +94,12 @@
                        
             <div class="col-xs-12 divider text-center">
                 <div class="col-xs-12 col-sm-4 emphasis" >                  
-                    <p><small> Update Profile</small></p>
+                    <p><small> Update Info</small></p>
                     <a href="personProfileUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Profile</a>                  
+                </div>
+                <div class="col-xs-12 col-sm-4 emphasis" >                  
+                    <p><small>Update Skills</small></p>
+                    <a href="skillsUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Skills</a>                  
                 </div>
             </div>
     	 </div>                 

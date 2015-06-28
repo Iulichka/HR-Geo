@@ -65,8 +65,7 @@
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="text-center">
         <img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="" class="img-circle img-responsive" class="avatar img-circle img-thumbnail" alt="avatar">
-        <h6>Upload a different photo...</h6>
-        <input type="file" class="text-center center-block well well-sm">
+     
       </div>
     </div>
     <!-- edit form column -->
@@ -103,19 +102,19 @@
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Current Password:</label>
-          <div class="col-md-8">
+          <div class="col-lg-8">
             <input class="form-control" placeholder="Enter Current Password" name="current_password" type="password">
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Password:</label>
-          <div class="col-md-8">
+          <div class="col-lg-8">
             <input class="form-control" placeholder="Enter Password" name="password" type="password">
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Confirm password:</label>
-          <div class="col-md-8">
+          <div class="col-lg-8">
             <input class="form-control" placeholder = "password_confirm" name="password_confirm" type="password">
           </div>
         </div>
@@ -139,5 +138,13 @@
   </div>
 </div>
 </form>
+  <div>
+  <form action=<%="\""+"Upload?mail="+company.getMail()+"\"" %> method="post" enctype="multipart/form-data">
+    		<input type="text" name="description" />
+    		<input type="file" name="file" />
+    		<input type="submit" />
+			</form>    
+
+</div>
 </body>
 </html>

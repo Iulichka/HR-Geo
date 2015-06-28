@@ -41,7 +41,9 @@ public class Rating extends HttpServlet {
 		String mail = request.getParameter("mail");
 		DataForComp dc = new DataForComp();
 		double newRating = dc.vote(mail, score);
-		response.getWriter().print(""+newRating);
+		String stNewRating = ""+newRating;
+		if (stNewRating.length()>4) stNewRating = stNewRating.substring(0, 4);
+		response.getWriter().print(stNewRating);
 	}
 
 }

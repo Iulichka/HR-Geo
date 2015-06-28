@@ -81,6 +81,14 @@
     			<input type="submit" />
 			</form>
 		</div>
+		<div>
+		<h6>Upload CV</h6>
+		<form action=<%="\""+"Upload?id="+p.getId()+"&type=cv\"" %> method="post" enctype="multipart/form-data">
+    			<input type="text" name="description" value="Enter Document Description" />
+    			<input type="file" name="file" />
+    			<input type="submit" />
+			</form>
+		</div>
       </div>
     </div>    
     <!-- edit form column -->
@@ -91,33 +99,17 @@
         This is an <strong>.alert</strong>. Use this to show important messages to the user.
       </div>
       <h3>Personal info</h3>
-      <form class="form-horizontal" role="form" action="PersonalInfoUpdate" method="post">
-        <div class="form-group"> 
-        <label class="col-lg-3 control-label">Add Skill:</label>
-    		<div class="col-md-6">   		
-      	<select class="form-control">
-          <option value="1">Cats</option>
-          <option value="2">Dogs</option>
-          <option selected="selected" value="3">Fish</option>
-          <option value="4">Reptiles</option>
-          <option selected="selected" value="5">Equine</option>
-          <option value="6">Aviary</option>
-          <option value="7">Insects</option>
-        </select>
-    </div> 
-  </div>
- 
- 
+      <form class="form-horizontal" role="form" action="PersonalInfoUpdate" method="post">       
         <div class="form-group">
           <label class="col-lg-3 control-label">First name:</label>
           <div class="col-lg-8">
-            <input class="form-control" name="first_name" placeholder="First Name" type="text" id="first_name" value=<%=p.getName() %>>
+            <input class="form-control" name="first_name" placeholder="First Name" type="text" id="first_name" value="<%= p.getName() %>">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Last name:</label>
           <div class="col-lg-8">
-            <input class="form-control" name="last_name" placeholder="Last Name" type="text" value=<%=p.getSurname() %>>
+            <input class="form-control" name="last_name" placeholder="Last Name" type="text" value="<%=p.getSurname() %>">
           </div>
         </div>
         <!--  
@@ -160,19 +152,19 @@
         </div>
           <div class="form-group">
           <label class="col-md-3 control-label">Current Password:</label>
-          <div class="col-md-8">
+          <div class="col-lg-8">
             <input class="form-control" placeholder="Enter Current Password" name="current_password" type="password">
           </div>
         </div>
         <div class="form-group">
-          <label class="col-md-3 control-label">Password:</label>
-          <div class="col-md-8">
+          <label class="col-md-3 control-label">Enter Password:</label>
+          <div class="col-lg-8">
             <input class="form-control" placeholder="Enter Password" name="password" type="password">
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Confirm password:</label>
-          <div class="col-md-8">
+          <div class="col-lg-8">
             <input class="form-control" placeholder = "password_confirm" name="password_confirm" type="password">
           </div>
         </div>
@@ -186,7 +178,7 @@
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label"></label>
-          <div class="col-md-8">
+          <div class="col-lg-8">
             <input class="btn btn-primary" name="Save changes" value="Save Changes" type="submit">
             <span></span>
             <input class="btn btn-default" value="Cancel" type="reset">

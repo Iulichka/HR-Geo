@@ -27,6 +27,9 @@ import backClasses.DataForPerson;
 @MultipartConfig
 public class Upload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	// change it according OS
+	private static final String FILE_PATH = "/home/dato";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -49,7 +52,7 @@ public class Upload extends HttpServlet {
 	        Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
 //	        String fileName = filePart.getSubmittedFileName();
 	        InputStream fileContent = filePart.getInputStream();
-	        File file = new File("/home/levan/Desktop/Photos/that.jpg");
+	        File file = new File(FILE_PATH+"/that.jpg");
 	        OutputStream outputStream = new FileOutputStream(file);
 	        IOUtils.copy(fileContent, outputStream);
 	        FileInputStream inputStream= new FileInputStream(file);
@@ -57,7 +60,10 @@ public class Upload extends HttpServlet {
 	        if(("document").equals(type)) {
 	        	DataForPerson dp = new DataForPerson();
 	        	dp.addDocument(id,description,inputStream);
-	        } else {
+	        } else if (("cv").equals(type)) {
+	        	DataForPerson dp = new DataForPerson();
+	        	dp.addCV(id,inputStream);
+	        } else  {
 		        if (id==null && mail!=null) {
 			        DataForComp d = new DataForComp();
 			        d.addPicture(mail, inputStream);

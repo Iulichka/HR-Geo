@@ -1,3 +1,5 @@
+<%@page import="backClasses.DataForComp"%>
+<%@page import="backClasses.Company"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,72 +12,24 @@
     <meta name="author" content="">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/thumbnail-gallery.css" rel="stylesheet">
-<title>Company Photoes</title>
+<title><%=request.getParameter("mail") %></title>
 </head>
 <body>
     <div class="container">
         <div class="row">
-        <h3>Company Photoes</h3>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <figure>
-                        <img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="" class="img-rounded img-responsive">
-                    </figure>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
+        <h3>Company Photos</h3>
+            <% 
+            
+            Company c = (Company)session.getAttribute("fullCompany");
+ for (int i=1; i<=c.getImagesNum(); i++) {
+	out.print("<div class=\"col-lg-3 col-md-4 col-xs-6 thumb\">");
+	out.print("<a href=\"#\" class=\"thumbnail\">");
+	String mail = c.getMail();
+	out.print("<img class=\"img-responsive\" src=\"CompImage?mail="+mail+
+			"&num="+i+"&type=image/jpeg"+"\">");
+	out.print("</a></div>");
+}
+%>
         </div>
 
         <hr>
