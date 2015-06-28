@@ -1,10 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
 <head>
  <meta charset="utf-8">
- <head> 
-    <title>Update Profile</title>	
-    <link href="css/sear.css" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Make Offer</title>	
 	<script src="http://snipplicious.com/js/jquery.js"></script>
 	<link href="css/search.css" rel="stylesheet" type="text/css">
 	<link href="css/advancedSearch.css" rel="stylesheet">
@@ -81,7 +83,7 @@
                                     <select class="form-control">                                   
                                         <option value="0" selected>All Universities</option>
                                         <% for (int k=0;k<universities.size();k++){ %>
-                                        <option value=<%=value%>><%=universities.get(k)%></option>
+                                        <option value=<%=value%>><%=universities.get(k) %></option>
                                         <% 
          										 value++;
           												}
