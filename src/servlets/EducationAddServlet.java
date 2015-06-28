@@ -43,7 +43,7 @@ public class EducationAddServlet extends HttpServlet {
 			response.sendRedirect("homepage.jsp");
 		}
 		DataForPerson data=new DataForPerson();
-		Person p=(Person) request.getAttribute("person");
+		Person p=(Person)request.getSession().getAttribute("person");
 		int persId=Integer.parseInt(p.getId());
 		String uni=request.getParameter("university");
 		String faculty=request.getParameter("faculty");
