@@ -9,6 +9,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Program Files/Java/jar/access-bridge.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jar/cldrdata.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jar/dnsns.jar"/>
@@ -26,5 +27,7 @@
 	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/rome-1.0.jar/rome-1.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/javax.mail-0.4-incubating-sources.jar/javax.mail-0.4-incubating-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/java-mail-1.4.4.jar/java-mail-1.4.4.jar"/>
+=======
+>>>>>>> dd1f686147a397bf8bf8da39dbb8b46ea8439289
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

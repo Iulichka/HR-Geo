@@ -321,7 +321,7 @@ public ArrayList<String> getSkillLevels(){
 	
 	return skills;
 }
-public void updateSkill(int id,String Level) {
+public void updateSkill(int id,String Level, int persId) {
 	Statement stm;
 	int skill_id=getSkillLevelId(Level);
 	try {
@@ -329,7 +329,7 @@ public void updateSkill(int id,String Level) {
 		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 		java.sql.PreparedStatement prst=con.prepareStatement("update person_skills "
 				+ "set skill_level_id= ? "
-						+ "where skills_id= ? ;");
+						+ "where skills_id= ? and persons_id="+persId+";");
 		prst.setInt(1, skill_id);
 		prst.setInt(2, id);
 		prst.executeUpdate();
@@ -340,7 +340,7 @@ public void updateSkill(int id,String Level) {
 	
 	
 }
-private int getSkillLevelId(String level) {
+public int getSkillLevelId(String level) {
 	Statement stm;
 	int id=0;
 	try {
@@ -359,18 +359,55 @@ private int getSkillLevelId(String level) {
 	
 	return id;
 }
-public void deleteSkill(int skill_id) {
+public int getSkillId(String skill){
+	Statement stm;
+	int id=0;
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		ResultSet rSet=stm.executeQuery("select skills_id from skills"
+				+ " where skill_name='"+skill+"';");
+		
+		if(rSet.next()){
+			id=rSet.getInt(1);
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return id;
+	
+}
+
+public void deleteSkill(int skill_id, int persId) {
 	Statement stm;
 	try {
 		stm=con.createStatement();
 		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
-		java.sql.PreparedStatement prst=con.prepareStatement("delete from person_skills where skills_id= ? ;");
+		java.sql.PreparedStatement prst=con.prepareStatement("delete from person_skills "
+				+ "where skills_id= ? and persons_id="+persId+" ;");
 		prst.setInt(1, skill_id);
 		prst.executeUpdate();	
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
 	
+}
+public void addSkill(int skillId, int skillLevelId, int persId) {
+	Statement stm;
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prst=con.prepareStatement("insert into person_skills "
+				+ "(skills_id, persons_id, skill_level_id) values(?,?,?)");
+		prst.setInt(1, skillId);
+		prst.setInt(2, persId);
+		prst.setInt(3, skillLevelId);
+		prst.executeUpdate();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
 	
 }
 }

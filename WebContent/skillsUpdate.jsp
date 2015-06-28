@@ -76,10 +76,10 @@
 	
 		<%for(int i=0;i<skillArray.size();i++){ %>
 				<tr>
-		<form action="http://localhost:8080/HR-Geo/SkillChangeServlet" method="post">
+		<form action="SkillChangeServlet" method="post">
 				<td><%=skillArray.get(i).getName() %></td>
 				<td>
-					<select name="level" id="level">
+					<select name="level" id="level" class="form-control">
 					<%for(int j=0;j<skillLevels.size();j++){ %>
 						<%if(skillArray.get(i).getLevel().equals(skillLevels.get(j))){ %>
 							 <option selected="selected" value=<%=skillLevels.get(j) %>><%=skillLevels.get(j) %></option>
@@ -105,9 +105,41 @@
 
 						</button> 
 				 </td>	
-				 </form>			
+				 </form>
+				
+				 			
 			</tr>
-		<% } %>   
+		<% } %>  
+		<tr>  
+			<td><label>Choose Skill and Click Plus To add</label> </td>
+		</tr>
+		<tr>
+		<form action="SkillAddServlet" method="post">
+			 <td>
+			 	<select class="form-control" name="skill_name" id="skill_name">
+			 		<%for(int i=0;i<skillNames.size();i++){ %>
+			 			<option value=<%=skillNames.get(i)%>><%=skillNames.get(i) %> </option>
+			 		<%} %>
+			 	</select>
+			 </td>
+			 <td>
+				<select name="level" id="level" class="form-control">
+				<%for(int j=0;j<skillLevels.size();j++){ %>
+					<option value=<%=skillLevels.get(j) %>> <%=skillLevels.get(j) %></option>
+				<%} %>
+				
+				</select>	 		
+			 </td>
+			 
+			 <td>
+			 	<button type="submit"  name="SUBMIT" value="add" style="background-color: transparent;border-color: transparent ;">
+						<span class="glyphicon glyphicon-plus"></span>
+
+				</button> 
+			 </td>
+		</form>
+		</tr>
+		 
  </tbody>
 </table>
 	
