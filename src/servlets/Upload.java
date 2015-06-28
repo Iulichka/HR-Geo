@@ -29,7 +29,8 @@ public class Upload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	// change it according OS
-	private static final String FILE_PATH = "/home/dato";
+	private static final String FILE_PATH = "/home/levan/Desktop/Photos/";
+
        
     /**
      * @see HttpServlet#HttpServlet()

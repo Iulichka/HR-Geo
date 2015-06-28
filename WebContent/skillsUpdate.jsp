@@ -18,7 +18,7 @@
 	<link rel="stylesheet" type="text/css" href="http://snipplicious.com/css/font-awesome-4.1.0.min.css">
 	<script src="http://snipplicious.com/js/jquery.js"></script>
 	<script src="http://snipplicious.com/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>Update Skills</title>
 </head>
 <body>
 <%@page import="backClasses.*" %>
@@ -44,8 +44,7 @@
 			}else{
    			 	response.sendRedirect("http://localhost:8080/HR-Geo/homePage.jsp");
    			 	return;
-			}
-			
+			}			
 %>  
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -106,8 +105,6 @@
 						</button> 
 				 </td>	
 				 </form>
-				
-				 			
 			</tr>
 		<% } %>  
 		<tr>  
