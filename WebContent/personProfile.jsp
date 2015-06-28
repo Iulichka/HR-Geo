@@ -34,7 +34,6 @@
 					if( request.getSession()!=null && session.getAttribute("email")!=null && request.getAttribute("person")!=null ){
 						pers=(Person)request.getAttribute("person");
 						skills=(PersonSkills)request.getAttribute("skills");
-						experience=(OverallExperience)request.getAttribute("experience");
 						user=pers.getName()+" "+pers.getSurname();
 					    personOffers=(AllOffersForPerson)request.getAttribute("offers");
 					    request.getSession().setAttribute("file", pers.getPhoto());
@@ -42,9 +41,6 @@
 		   			 	response.sendRedirect("homePage.jsp");
 		   			 	return;
 					}
-				
-		
-			
 %>   
 <nav class="navbar navbar-default">
   <div class="container-fluid">

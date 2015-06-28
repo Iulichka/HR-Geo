@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update Profile</title>
@@ -18,7 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="http://snipplicious.com/css/font-awesome-4.1.0.min.css">
 	<script src="http://snipplicious.com/js/jquery.js"></script>
 	<script src="http://snipplicious.com/js/bootstrap.min.js"></script>
-<title>Update Skills</title>
+<title>Update Education Information</title>
 </head>
 <body>
 <%@page import="backClasses.*" %>
@@ -27,20 +26,15 @@
 		String user =null;
 		String first_name = null;
 		String last_name = null;
+		ArrayList<Education> edu=null;
 		Person p=null;
-		ArrayList<Skill> skillArray=null;
-		ArrayList<String> skillLevels=null;
-		ArrayList<String> skillNames=null;
 			if(request.getSession(false)!=null && session.getAttribute("email")!=null && session.getAttribute("person")!=null){
 				user=(String)session.getAttribute("email");
 				first_name=(String)session.getAttribute("first_name");
 				last_name=(String)session.getAttribute("last_name");
 				p=(Person)session.getAttribute("person");
 				DataForPerson data=new DataForPerson();
-				PersonSkills skills=data.getPersonSkills(data.getPersonId(user));
-				skillArray=skills.getPersonSkills();
-				skillLevels=data.getSkillLevels();
-				skillNames=data.getSkillNames();
+				edu=data.getPersonEducation(Integer.parseInt(p.getId())).getEduList();
 			}else{
    			 	response.sendRedirect("http://localhost:8080/HR-Geo/homePage.jsp");
    			 	return;
@@ -70,78 +64,31 @@
   </div><!-- /.container-fluid -->
 </nav>
  <table class="table table-condensed">
-<thead><tr><th>Skill Name</th><th>Skill Level</th><th>Submit Change</th><th>Delete Skill</th></thead>
-<tbody>
-	
-		<%for(int i=0;i<skillArray.size();i++){ %>
-				<tr>
-		<form action="SkillChangeServlet" method="post">
-				<td><%=skillArray.get(i).getName() %></td>
-				<td>
-					<select name="level" id="level" class="form-control">
-					<%for(int j=0;j<skillLevels.size();j++){ %>
-						<%if(skillArray.get(i).getLevel().equals(skillLevels.get(j))){ %>
-							 <option selected="selected" value=<%=skillLevels.get(j) %>><%=skillLevels.get(j) %></option>
-						<%}else{%>
-							 <option value=<%=skillLevels.get(j) %>><%=skillLevels.get(j) %></option>
-						<%} %>
-					<%} %>
-					
-					</select>		
-				</td>
-				<td>
-						<input type="hidden" name="skill_id" value=<%=skillArray.get(i).getId()%>>
-						<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
-						<span class="glyphicon glyphicon-ok"></span>
 
-						</button> 
-				
-				 </td>
-				 <td>
-						<input type="hidden" name="skill_id" value=<%=skillArray.get(i).getId()%> >
-						<button type="submit"  name="SUBMIT" value="delete" style="background-color: transparent;border-color: transparent ;">
-						<span class="glyphicon glyphicon-remove"></span>
+<thead><tr><th>Education Place</th><th>Faculty</th><th>Graduation Year</th><th>Graduation Type</th><th>Submit Change</th><th>Delete Education Entry</th></thead>
+		<tbody>
+				<%for(int i=0;i<edu.size();i++){  %>
+					<tr>
+						<td><%=edu.get(i).getUniversity()%></td>
+						<td><%=edu.get(i).getFaculty() %></td>
+						<td>
+							<select name="year" id="year" class="form-control">
+							
+								<%for(int j=1940;j<2030;j++){ %>	
+									<%if(edu.get(i).getEndYear()==j){ %>
+										 <option selected="selected" value=<%=j %>><%=j %></option>
+									<%}else{%>
+											 <option value=<%=j %>><%=j%></option>
+									<%} %>
+								<%} %>
+							</select>
+						</td>
+					</tr>
 
-						</button> 
-				 </td>	
-				 </form>
-				
-				 			
-			</tr>
-		<% } %>  
-		<tr>  
-			<td><label>Choose Skill and Click Plus To add</label> </td>
-		</tr>
-		<tr>
-		<form action="SkillAddServlet" method="post">
-			 <td>
-			 	<select class="form-control" name="skill_name" id="skill_name">
-			 		<%for(int i=0;i<skillNames.size();i++){ %>
-			 			<option value=<%=skillNames.get(i)%>><%=skillNames.get(i) %> </option>
-			 		<%} %>
-			 	</select>
-			 </td>
-			 <td>
-				<select name="level" id="level" class="form-control">
-				<%for(int j=0;j<skillLevels.size();j++){ %>
-					<option value=<%=skillLevels.get(j) %>> <%=skillLevels.get(j) %></option>
 				<%} %>
-				
-				</select>	 		
-			 </td>
-			 
-			 <td>
-			 	<button type="submit"  name="SUBMIT" value="add" style="background-color: transparent;border-color: transparent ;">
-						<span class="glyphicon glyphicon-plus"></span>
+		</tbody>
 
-				</button> 
-			 </td>
-		</form>
-		</tr>
-		 
- </tbody>
 </table>
-	
 
 </body>
 </html>
