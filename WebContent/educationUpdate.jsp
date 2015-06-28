@@ -104,20 +104,20 @@
 								<%if(edu.get(i).getLevel().equals("დოქტორი")){ %>
 									 <option selected="selected" value="დოქტორი" >დოქტორი</option>
 								<%}else {%>
-									<option value=<%=edu.get(i).getLevel() %>>დოქტორი</option>
+									<option value="დოქტორი">დოქტორი</option>
 								<% } %>								
 							</select>
 						</td>
 						<td>
-							<input type="hidden" name="university" value=<%=edu.get(i).getUniversity()%>>
-							<input type="hidden" name="faculty" value=<%=edu.get(i).getFaculty()%>>							
+							<input type="hidden" name="university" value="<%=edu.get(i).getUniversity()%>">
+							<input type="hidden" name="faculty" value="<%=edu.get(i).getFaculty()%>">							
 							<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
 							<span class="glyphicon glyphicon-ok"></span>
 							</button> 
 						</td>
 						<td>
-							<input type="hidden" name="university" value=<%=edu.get(i).getUniversity()%>>
-							<input type="hidden" name="faculty" value=<%=edu.get(i).getFaculty()%>>							
+							<input type="hidden" name="university" value="<%=edu.get(i).getUniversity()%>">
+							<input type="hidden" name="faculty" value="<%=edu.get(i).getFaculty()%>">							
 							<button type="submit" name="SUBMIT" value="delete" style="background-color: transparent;border-color: transparent ;">
 							<span class="glyphicon glyphicon-remove"></span>
 							</button> 

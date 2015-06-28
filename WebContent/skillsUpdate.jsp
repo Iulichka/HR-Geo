@@ -81,16 +81,16 @@
 					<select name="level" id="level" class="form-control">
 					<%for(int j=0;j<skillLevels.size();j++){ %>
 						<%if(skillArray.get(i).getLevel().equals(skillLevels.get(j))){ %>
-							 <option selected="selected" value=<%=skillLevels.get(j) %>><%=skillLevels.get(j) %></option>
+							 <option selected="selected" value="<%=skillLevels.get(j) %>"><%=skillLevels.get(j) %></option>
 						<%}else{%>
-							 <option value=<%=skillLevels.get(j) %>><%=skillLevels.get(j) %></option>
+							 <option value="<%=skillLevels.get(j) %>"><%=skillLevels.get(j) %></option>
 						<%} %>
 					<%} %>
 					
 					</select>		
 				</td>
 				<td>
-						<input type="hidden" name="skill_id" value=<%=skillArray.get(i).getId()%>>
+						<input type="hidden" name="skill_id" value="<%=skillArray.get(i).getId()%>">
 						<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-ok"></span>
 
@@ -98,7 +98,7 @@
 				
 				 </td>
 				 <td>
-						<input type="hidden" name="skill_id" value=<%=skillArray.get(i).getId()%> >
+						<input type="hidden" name="skill_id" value="<%=skillArray.get(i).getId()%>" >
 						<button type="submit"  name="SUBMIT" value="delete" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-remove"></span>
 
@@ -115,14 +115,14 @@
 			 <td>
 			 	<select class="form-control" name="skill_name" id="skill_name">
 			 		<%for(int i=0;i<skillNames.size();i++){ %>
-			 			<option value=<%=skillNames.get(i)%>><%=skillNames.get(i) %> </option>
+			 			<option value="<%=skillNames.get(i)%>"><%=skillNames.get(i) %> </option>
 			 		<%} %>
 			 	</select>
 			 </td>
 			 <td>
 				<select name="level" id="level" class="form-control">
 				<%for(int j=0;j<skillLevels.size();j++){ %>
-					<option value=<%=skillLevels.get(j) %>> <%=skillLevels.get(j) %></option>
+					<option value="<%=skillLevels.get(j) %>"> <%=skillLevels.get(j) %></option>
 				<%} %>
 				
 				</select>	 		
