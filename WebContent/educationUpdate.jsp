@@ -28,6 +28,7 @@
 		String last_name = null;
 		ArrayList<Education> edu=null;
 		Person p=null;
+		ArrayList<String> gradTypes=null;
 			if(request.getSession(false)!=null && session.getAttribute("email")!=null && session.getAttribute("person")!=null){
 				user=(String)session.getAttribute("email");
 				first_name=(String)session.getAttribute("first_name");
@@ -69,6 +70,7 @@
 		<tbody>
 				<%for(int i=0;i<edu.size();i++){  %>
 					<tr>
+					<form action="EducationUpdateServlet" method="post">
 						<td><%=edu.get(i).getUniversity()%></td>
 						<td><%=edu.get(i).getFaculty() %></td>
 						<td>
@@ -83,8 +85,46 @@
 								<%} %>
 							</select>
 						</td>
+						<td>
+							<select name="grad_type" id="grad_type" class="form-control">
+								<%if(edu.get(i).getLevel().equals("საშუალო")){ %>
+									 <option selected="selected" value="საშუალო" > საშუალო</option>
+								<%}else {%>
+									<option value="საშუალო">საშუალო</option>
+								<% } %>
+								<%if(edu.get(i).getLevel().equals("ბაკალავრი")){ %>
+									 <option selected="selected" value="ბაკალავრი" > ბაკალავრი</option>
+								<%}else {%>
+									<option value="ბაკალავრი">ბაკალავრი</option>
+								<% } %>
+								<%if(edu.get(i).getLevel().equals("მაგისტრატურა")){ %>
+									 <option selected="selected" value="მაგისტრატურა" >მაგისტრატურა</option>
+								<%}else {%>
+									<option value="მაგისტრატურა">მაგისტრატურა</option>
+								<% } %>
+								<%if(edu.get(i).getLevel().equals("დოქტორი")){ %>
+									 <option selected="selected" value="დოქტორი" >დოქტორი</option>
+								<%}else {%>
+									<option value="დოქტორი">დოქტორი</option>
+								<% } %>								
+							</select>
+						</td>
+						<td>
+							<input type="hidden" name="university" value=<%=edu.get(i).getUniversity()%>>
+							<input type="hidden" name="faculty" value=<%=edu.get(i).getFaculty()%>>							
+							<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
+							<span class="glyphicon glyphicon-ok"></span>
+							</button> 
+						</td>
+						<td>
+							<input type="hidden" name="university" value=<%=edu.get(i).getUniversity()%>>
+							<input type="hidden" name="faculty" value=<%=edu.get(i).getFaculty()%>>							
+							<button type="submit" name="SUBMIT" value="delete" style="background-color: transparent;border-color: transparent ;">
+							<span class="glyphicon glyphicon-remove"></span>
+							</button> 
+						</td>
+						</form>
 					</tr>
-
 				<%} %>
 		</tbody>
 
