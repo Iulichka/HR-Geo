@@ -1,14 +1,14 @@
 <%@page import="java.util.HashMap"%>
-<%@page import="backClasses.Skill"%>
+<%@page import="ge.HRGeo.backClasses.Skill"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="backClasses.Experience"%>
-<%@page import="backClasses.PersonEducation"%>
-<%@page import="backClasses.PersonSkills"%>
-<%@page import="backClasses.OverallExperience"%>
-<%@page import="backClasses.Education"%>
-<%@page import="backClasses.Person"%>
+<%@page import="ge.HRGeo.backClasses.Experience"%>
+<%@page import="ge.HRGeo.backClasses.PersonEducation"%>
+<%@page import="ge.HRGeo.backClasses.PersonSkills"%>
+<%@page import="ge.HRGeo.backClasses.OverallExperience"%>
+<%@page import="ge.HRGeo.backClasses.Education"%>
+<%@page import="ge.HRGeo.backClasses.Person"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
