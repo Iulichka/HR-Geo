@@ -44,8 +44,7 @@
 			}else{
    			 	response.sendRedirect("http://localhost:8080/HR-Geo/homePage.jsp");
    			 	return;
-			}
-			
+			}			
 %>  
 <nav class="navbar navbar-default">
   <div class="container-fluid">
