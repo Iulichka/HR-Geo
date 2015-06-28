@@ -8,7 +8,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>Person Registration</title>
 </head>
@@ -53,7 +53,7 @@
 
 
 
-<form action="PersonRegisterServlet" method="post">
+<form action="PersonRegisterServlet" method="post" accept-charset="UTF-8">
 <div class="container">
 	<div class="row">
     	<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
