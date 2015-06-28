@@ -15,6 +15,7 @@
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
 <%@page import="backClasses.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%
