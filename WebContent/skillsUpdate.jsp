@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <meta charset="utf-8">
+ <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update Profile</title>
@@ -29,6 +29,8 @@
 		String last_name = null;
 		Person p=null;
 		ArrayList<Skill> skillArray=null;
+		ArrayList<String> skillLevels=null;
+		ArrayList<String> skillNames=null;
 			if(request.getSession(false)!=null && session.getAttribute("email")!=null && session.getAttribute("person")!=null){
 				user=(String)session.getAttribute("email");
 				first_name=(String)session.getAttribute("first_name");
@@ -37,6 +39,8 @@
 				DataForPerson data=new DataForPerson();
 				PersonSkills skills=data.getPersonSkills(data.getPersonId(user));
 				skillArray=skills.getPersonSkills();
+				skillLevels=data.getSkillLevels();
+				skillNames=data.getSkillNames();
 			}else{
    			 	response.sendRedirect("http://localhost:8080/HR-Geo/homePage.jsp");
    			 	return;
@@ -72,20 +76,18 @@
 	
 		<%for(int i=0;i<skillArray.size();i++){ %>
 				<tr>
-		<form action="http://localhost:8080/HR-Geo/SkillChangeServlet" method="post">
+		<form action="SkillChangeServlet" method="post">
 				<td><%=skillArray.get(i).getName() %></td>
 				<td>
-					<select name="level" id="level">
-					<%if(skillArray.get(i).getLevel().equals("Novice")){ %>
-						 <option selected="selected" value="Novice">Novice</option>
-					<%}else{%>
-						 <option value="Novice">Novice</option>
+					<select name="level" id="level" class="form-control">
+					<%for(int j=0;j<skillLevels.size();j++){ %>
+						<%if(skillArray.get(i).getLevel().equals(skillLevels.get(j))){ %>
+							 <option selected="selected" value=<%=skillLevels.get(j) %>><%=skillLevels.get(j) %></option>
+						<%}else{%>
+							 <option value=<%=skillLevels.get(j) %>><%=skillLevels.get(j) %></option>
+						<%} %>
 					<%} %>
-					<%if(skillArray.get(i).getLevel().equals("Intermediate")){ %>
-						 <option selected="selected" value="Intermediate">Intermediate</option>
-					<%}else{%>
-						 <option value="Intermediate">Intermediate </option>
-					<%} %>
+					
 					</select>		
 				</td>
 				<td>
@@ -103,9 +105,41 @@
 
 						</button> 
 				 </td>	
-				 </form>			
+				 </form>
+				
+				 			
 			</tr>
-		<% } %>   
+		<% } %>  
+		<tr>  
+			<td><label>Choose Skill and Click Plus To add</label> </td>
+		</tr>
+		<tr>
+		<form action="SkillAddServlet" method="post">
+			 <td>
+			 	<select class="form-control" name="skill_name" id="skill_name">
+			 		<%for(int i=0;i<skillNames.size();i++){ %>
+			 			<option value=<%=skillNames.get(i)%>><%=skillNames.get(i) %> </option>
+			 		<%} %>
+			 	</select>
+			 </td>
+			 <td>
+				<select name="level" id="level" class="form-control">
+				<%for(int j=0;j<skillLevels.size();j++){ %>
+					<option value=<%=skillLevels.get(j) %>> <%=skillLevels.get(j) %></option>
+				<%} %>
+				
+				</select>	 		
+			 </td>
+			 
+			 <td>
+			 	<button type="submit"  name="SUBMIT" value="add" style="background-color: transparent;border-color: transparent ;">
+						<span class="glyphicon glyphicon-plus"></span>
+
+				</button> 
+			 </td>
+		</form>
+		</tr>
+		 
  </tbody>
 </table>
 	

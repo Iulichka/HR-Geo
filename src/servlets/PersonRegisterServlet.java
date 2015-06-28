@@ -51,6 +51,13 @@ public class PersonRegisterServlet extends HttpServlet {
 		String surname=(String)request.getParameter("last_name");
 		String id=(String)request.getParameter("id_number");
 		String sex=request.getParameter("inlineRadioOptions");
+		String yearS=(String)request.getParameter("year");
+		String monthS=(String)request.getParameter("month");
+		String dayS=(String)request.getParameter("day");
+		if(yearS.length()==0||monthS.length()==0||dayS.length()==0){
+			RequestDispatcher rd=request.getRequestDispatcher("personRegister.jsp");
+			rd.forward(request, response);
+		}
 		int year=Integer.parseInt(request.getParameter("year"));
 		int month=Integer.parseInt(request.getParameter("month"));
 		int day=Integer.parseInt(request.getParameter("day"));
@@ -59,8 +66,8 @@ public class PersonRegisterServlet extends HttpServlet {
 		DBSelect selects= new DBSelect();
 		try {
 			boolean contains=selects.searchPerson(email,password);			
-			if(contains==true||password==null
-					||password_confirm==null||!password.equals(password_confirm)||surname==null||email==null||first_name==null){
+			if(contains==true||password.length()==0
+					||password_confirm.length()==0||!password.equals(password_confirm)||surname.length()==0||email.length()==0||first_name.length()==0){
 				RequestDispatcher rd=request.getRequestDispatcher("personRegister.jsp");
 				rd.forward(request, response);
 			}else{
