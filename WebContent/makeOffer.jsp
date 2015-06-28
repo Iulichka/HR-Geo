@@ -1,7 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
 <head>
- <meta charset="utf-8">
+ <meta charset="UTF-8">
  <head> 
     <title>Update Profile</title>	
     <link href="css/sear.css" rel="stylesheet">
@@ -13,6 +15,7 @@
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
 <%@page import="backClasses.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%
