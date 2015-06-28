@@ -18,7 +18,7 @@
 	<link rel="stylesheet" type="text/css" href="http://snipplicious.com/css/font-awesome-4.1.0.min.css">
 	<script src="http://snipplicious.com/js/jquery.js"></script>
 	<script src="http://snipplicious.com/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>Update Skills</title>
 </head>
 <body>
 <%@page import="backClasses.*" %>
@@ -44,8 +44,7 @@
 			}else{
    			 	response.sendRedirect("http://localhost:8080/HR-Geo/homePage.jsp");
    			 	return;
-			}
-			
+			}			
 %>  
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -82,16 +81,16 @@
 					<select name="level" id="level" class="form-control">
 					<%for(int j=0;j<skillLevels.size();j++){ %>
 						<%if(skillArray.get(i).getLevel().equals(skillLevels.get(j))){ %>
-							 <option selected="selected" value=<%=skillLevels.get(j) %>><%=skillLevels.get(j) %></option>
+							 <option selected="selected" value="<%=skillLevels.get(j) %>"><%=skillLevels.get(j) %></option>
 						<%}else{%>
-							 <option value=<%=skillLevels.get(j) %>><%=skillLevels.get(j) %></option>
+							 <option value="<%=skillLevels.get(j) %>"><%=skillLevels.get(j) %></option>
 						<%} %>
 					<%} %>
 					
 					</select>		
 				</td>
 				<td>
-						<input type="hidden" name="skill_id" value=<%=skillArray.get(i).getId()%>>
+						<input type="hidden" name="skill_id" value="<%=skillArray.get(i).getId()%>">
 						<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-ok"></span>
 
@@ -99,15 +98,13 @@
 				
 				 </td>
 				 <td>
-						<input type="hidden" name="skill_id" value=<%=skillArray.get(i).getId()%> >
+						<input type="hidden" name="skill_id" value="<%=skillArray.get(i).getId()%>" >
 						<button type="submit"  name="SUBMIT" value="delete" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-remove"></span>
 
 						</button> 
 				 </td>	
 				 </form>
-				
-				 			
 			</tr>
 		<% } %>  
 		<tr>  
@@ -118,14 +115,14 @@
 			 <td>
 			 	<select class="form-control" name="skill_name" id="skill_name">
 			 		<%for(int i=0;i<skillNames.size();i++){ %>
-			 			<option value=<%=skillNames.get(i)%>><%=skillNames.get(i) %> </option>
+			 			<option value="<%=skillNames.get(i)%>"><%=skillNames.get(i) %> </option>
 			 		<%} %>
 			 	</select>
 			 </td>
 			 <td>
 				<select name="level" id="level" class="form-control">
 				<%for(int j=0;j<skillLevels.size();j++){ %>
-					<option value=<%=skillLevels.get(j) %>> <%=skillLevels.get(j) %></option>
+					<option value="<%=skillLevels.get(j) %>"> <%=skillLevels.get(j) %></option>
 				<%} %>
 				
 				</select>	 		

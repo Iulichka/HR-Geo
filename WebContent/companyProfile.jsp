@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!doctype html>
 <html>
 <head>
+ <meta charset="utf-8">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 <!-- jQuery library -->
@@ -84,7 +83,7 @@
                     <a href="companyProfileUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Profile</a> 
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis">                 
-                    <button class="btn btn-info btn-block"><span class="fa fa-user"></span> Make Offer </button>
+                    <a href="makeOffer.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Make Offer</a> 
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis">                 
                     <a href="companyPhotoes.jsp?mail=<%=comp.getMail() %>" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Company Photoes</a>

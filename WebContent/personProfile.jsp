@@ -1,7 +1,7 @@
-<!DOCTYPE html  >
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<!doctype html>
 <html>
+<head>
+ <meta charset="utf-8">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
 <!-- jQuery library -->
@@ -10,8 +10,8 @@
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<head >
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>Person Profile</title>
 </head>
@@ -32,7 +32,6 @@
 					if( request.getSession()!=null && session.getAttribute("email")!=null && request.getAttribute("person")!=null ){
 						pers=(Person)request.getAttribute("person");
 						skills=(PersonSkills)request.getAttribute("skills");
-						experience=(OverallExperience)request.getAttribute("experience");
 						user=pers.getName()+" "+pers.getSurname();
 					    personOffers=(AllOffersForPerson)request.getAttribute("offers");
 					    request.getSession().setAttribute("file", pers.getPhoto());
@@ -40,9 +39,6 @@
 		   			 	response.sendRedirect("homePage.jsp");
 		   			 	return;
 					}
-				
-		
-			
 %>   
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -99,7 +95,11 @@
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis" >                  
                     <p><small>Update Skills</small></p>
-                    <a href="skillsUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Profile</a>                  
+                    <a href="skillsUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Skills</a>                  
+                </div>
+                <div class="col-xs-12 col-sm-4 emphasis" >                  
+                    <p><small>Update Education</small></p>
+                    <a href="educationUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Education</a>                  
                 </div>
             </div>
     	 </div>                 
