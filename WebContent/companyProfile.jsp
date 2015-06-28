@@ -14,10 +14,10 @@
 <title>Company Profile</title>
 </head>
 <body>
-<%@ page import="ge.HRGeo.backClasses.Company" %>
-<%@ page import="ge.HRGeo.backClasses.Offer" %>
-<%@ page import="ge.HRGeo.backClasses.DBSelect" %>
-<%@ page import="ge.HRGeo.backClasses.Person" %>
+<%@ page import="backClasses.Company" %>
+<%@ page import="backClasses.Offer" %>
+<%@ page import="backClasses.DBSelect" %>
+<%@ page import="backClasses.Person" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Map" %>

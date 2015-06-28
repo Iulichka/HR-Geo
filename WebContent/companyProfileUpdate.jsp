@@ -18,7 +18,7 @@
 
 </head>
 <body>
-<%@page import="ge.HRGeo.backClasses.*" %>
+<%@page import="backClasses.*" %>
  <%
 		//allow access only if session exists
 		String companyEmail =null;	

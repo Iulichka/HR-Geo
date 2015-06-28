@@ -17,7 +17,7 @@
 	<link href="css/search.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<%@page import="ge.HRGeo.backClasses.*" %>
+<%@page import="backClasses.*" %>
  <%
 		//allow access only if session exists
 		String user =null;

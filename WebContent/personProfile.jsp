@@ -16,7 +16,7 @@
 <title>Person Profile</title>
 </head>
 <body>
-<%@ page import="ge.HRGeo.backClasses.*" %>
+<%@ page import="backClasses.*" %>
 <%@ page import="java.util.ArrayList" %>
 		<%
 		//allow access only if session exists
