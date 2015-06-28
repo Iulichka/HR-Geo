@@ -2,8 +2,7 @@
 <html>
 <head>
  <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+ <head> 
     <title>Update Profile</title>	
     <link href="css/sear.css" rel="stylesheet">
 	<script src="http://snipplicious.com/js/jquery.js"></script>
@@ -14,12 +13,22 @@
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
+<%@page import="backClasses.*" %>
+<%@ page import="java.util.ArrayList" %>
 <%
-		//allow access only if session exists						
-				String user =null;								
+		//allow access only if session exists		
+				int value=1;
+				String user =null;	
+				ArrayList<String> skills= new ArrayList<String>();
+				ArrayList<String> universities=new ArrayList<String>();
+				ArrayList<String> faculties=new ArrayList<String>();
+				DataForPerson data= new DataForPerson();
+				skills=data.getSkillNames();
+				universities=data.getUniversityNames();
+				faculties=data.getFacultyNames();
 					if(session.getAttribute("email")!=null){						
-						user=(String)session.getAttribute("email");																						
+						user=(String)session.getAttribute("email");
+						
 					}else{
 		   			 	response.sendRedirect("homePage.jsp");
 		   			 	return;
@@ -53,13 +62,13 @@
 		<div class="col-md-12">
             <div class="input-group" id="adv-search">
                 <select class="form-control" id="tagPicker" multiple="multiple">
-         <option value="1">Java</option>
-          <option value="2">Php</option>
-          <option selected="selected" value="3">MySQL</option>
-          <option value="4">Github</option>
-          <option selected="selected" value="5">Javascript</option>
-          <option value="6">Linux</option>
-          <option value="7">Insects</option>
+                <% for (int i=0;i<skills.size();i++){ %>
+         <option value=<%=value %>><%=skills.get(i) %></option>
+          <% 
+          value++;
+          }
+          value=1;
+         %>
         </select>  
                 <div class="input-group-btn">
                     <div class="btn-group" role="group">
@@ -69,27 +78,35 @@
                                 <form class="form-horizontal" role="form">
                                   <div class="form-group">
                                     <label for="filter">University:</label>
-                                    <select class="form-control">
+                                    <select class="form-control">                                   
                                         <option value="0" selected>All Universities</option>
-                                        <option value="1">Free University</option>
-                                        <option value="2">Tbilisi State University</option>
-                                        <option value="3">Georgia University</option>
-                                        <option value="4">Harvard University</option>
+                                        <% for (int k=0;k<universities.size();k++){ %>
+                                        <option value=<%=value%>><%=universities.get(k)%></option>
+                                        <% 
+         										 value++;
+          												}
+         										 value=1;
+         								%>
                                     </select>
+                                    
                                   </div>
                                   <div class="form-group">
                                     <label for="contain">Faculty</label>
                                     <select class="form-control">
                                         <option value="0" selected>All Faculties</option>
-                                        <option value="1">Mathematics</option>
-                                        <option value="2">Programming</option>
-                                        <option value="3">Physics</option>
-                                        <option value="4">Chemistry</option>
+                                        <% for (int k=0;k<faculties.size();k++){ %>
+                                        <option value=<%=value%>><%=faculties.get(k)%></option>
+                                        <% 
+         										 value++;
+          												}
+         										 value=1;
+         								%>
+                                    
                                     </select>
                                   </div>
                                   <div class="form-group">
                                     <label for="contain">Minimum Age</label>
-                                    <input class="form-control" type="text" />
+                                    <input class="form-control" name = "age" type="text" />
                                   </div>
                                   <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                                 </form>
