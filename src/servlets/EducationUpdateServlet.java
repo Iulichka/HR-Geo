@@ -1,27 +1,23 @@
 package servlets;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import backClasses.DataForPerson;
-import backClasses.Person;
-
 /**
- * Servlet implementation class SkillChangeServlet
+ * Servlet implementation class EducationUpdateServlet
  */
-@WebServlet("/SkillChangeServlet")
-public class SkillChangeServlet extends HttpServlet {
+@WebServlet("/EducationUpdateServlet")
+public class EducationUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SkillChangeServlet() {
+    public EducationUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,22 +33,18 @@ public class SkillChangeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		if(request.getSession().getAttribute("person")==null){
+	/** 	if(request.getSession().getAttribute("person")==null){
 			response.sendRedirect("homepage.jsp");
 		}
-		Person  pers=(Person)request.getSession().getAttribute("person");
-		int skill_id=Integer.parseInt(request.getParameter("skill_id"));
-		String type=request.getParameter("SUBMIT");
-		String skill_level=request.getParameter("level");
-		DataForPerson data=new DataForPerson();
-		if(type.equals("change")){
-			data.updateSkill(skill_id,skill_level,Integer.parseInt(pers.getId()));
-		}else{
-			data.deleteSkill(skill_id,Integer.parseInt(pers.getId()));
+		String universityName=request.getParameter("university");
+		String facultyName=request.getParameter("faculty");
+		int gradYear=Integer.parseInt(request.getParameter("year"));
+		String gradType=request.getParameter("grad_type");
+		String requestType=request.getParameter("SUBMIT");
+		while(true){
+			System.out.println(universityName);
 		}
-		
-	response.sendRedirect("skillsUpdate.jsp");
-	
+	**/
 	}
+
 }

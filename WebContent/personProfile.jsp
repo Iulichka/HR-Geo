@@ -103,7 +103,6 @@
                     <p><small>Update Education</small></p>
                     <a href="educationUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Education</a>                  
                 </div>
-                
             </div>
     	 </div>                 
 		</div>

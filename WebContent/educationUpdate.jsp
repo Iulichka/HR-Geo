@@ -69,8 +69,8 @@
 <thead><tr><th>Education Place</th><th>Faculty</th><th>Graduation Year</th><th>Graduation Type</th><th>Submit Change</th><th>Delete Education Entry</th></thead>
 		<tbody>
 				<%for(int i=0;i<edu.size();i++){  %>
-					<tr>
 					<form action="EducationUpdateServlet" method="post">
+					<tr>
 						<td><%=edu.get(i).getUniversity()%></td>
 						<td><%=edu.get(i).getFaculty() %></td>
 						<td>
@@ -123,8 +123,9 @@
 							<span class="glyphicon glyphicon-remove"></span>
 							</button> 
 						</td>
-						</form>
+						
 					</tr>
+					</form>
 				<%} %>
 		</tbody>
 
