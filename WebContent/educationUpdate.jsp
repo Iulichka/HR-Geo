@@ -1,10 +1,8 @@
-<%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<!doctype html> 
+<html lang="ka">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update Profile</title>
@@ -21,6 +19,7 @@
 </head>
 <body>
 <%@page import="backClasses.*" %>
+<%@page import="java.util.ArrayList"%>
  <%
 		//allow access only if session exists
 		String user =null;
@@ -37,7 +36,7 @@
 				DataForPerson data=new DataForPerson();
 				edu=data.getPersonEducation(Integer.parseInt(p.getId())).getEduList();
 			}else{
-   			 	response.sendRedirect("http://localhost:8080/HR-Geo/homePage.jsp");
+   			 	response.sendRedirect("homePage.jsp");
    			 	return;
 			}			
 %>  
@@ -88,7 +87,7 @@
 						<td>
 							<select name="grad_type" id="grad_type" class="form-control">
 								<%if(edu.get(i).getLevel().equals("საშუალო")){ %>
-									 <option selected="selected" value="საშუალო" > საშუალო</option>
+									 <option  selected="selected" value="საშუალო" > საშუალო</option>
 								<%}else {%>
 									<option value="საშუალო">საშუალო</option>
 								<% } %>
@@ -105,7 +104,7 @@
 								<%if(edu.get(i).getLevel().equals("დოქტორი")){ %>
 									 <option selected="selected" value="დოქტორი" >დოქტორი</option>
 								<%}else {%>
-									<option value="დოქტორი">დოქტორი</option>
+									<option value=<%=edu.get(i).getLevel() %>>დოქტორი</option>
 								<% } %>								
 							</select>
 						</td>

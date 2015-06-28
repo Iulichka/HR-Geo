@@ -33,7 +33,9 @@ public class EducationUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	/** 	if(request.getSession().getAttribute("person")==null){
+		int k=5;
+		request.setCharacterEncoding("UTF-8");
+		if(request.getSession().getAttribute("person")==null){
 			response.sendRedirect("homepage.jsp");
 		}
 		String universityName=request.getParameter("university");
@@ -42,9 +44,9 @@ public class EducationUpdateServlet extends HttpServlet {
 		String gradType=request.getParameter("grad_type");
 		String requestType=request.getParameter("SUBMIT");
 		while(true){
-			System.out.println(universityName);
+			//System.out.println(universityName);
 		}
-	**/
+	
 	}
 
 }
