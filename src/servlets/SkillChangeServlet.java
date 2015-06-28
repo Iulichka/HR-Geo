@@ -1,11 +1,15 @@
 package servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import backClasses.DataForPerson;
+import backClasses.Person;
 
 /**
  * Servlet implementation class SkillChangeServlet
@@ -33,12 +37,21 @@ public class SkillChangeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession().getAttribute("person")==null){
+			response.sendRedirect("homepage.jsp");
+		}
+		Person  pers=(Person)request.getSession().getAttribute("person");
 		int skill_id=Integer.parseInt(request.getParameter("skill_id"));
 		String type=request.getParameter("SUBMIT");
 		String skill_level=request.getParameter("level");
-		while(type.equals("")){
-			
+		DataForPerson data=new DataForPerson();
+		if(type.equals("change")){
+			data.updateSkill(skill_id,skill_level,Integer.parseInt(pers.getId()));
+		}else{
+			data.deleteSkill(skill_id,Integer.parseInt(pers.getId()));
 		}
+		
+		response.sendRedirect("skillsUpdate.jsp");
 	}
 
 }
