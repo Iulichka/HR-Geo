@@ -12,7 +12,8 @@ import javax.mail.internet.MimeMessage;
 
 public class EMailSender {
 
-	public static  void sendMsg(String to, String body,String from, String pass) {
+	// from = "hrgeofreeuni@gmail.com" pass = "hrgeofreeuni1"
+	public static  void sendEmail(String to, String body, String from, String pass) {
 		 	
 	        Properties props = System.getProperties();
 	        String host = "smtp.gmail.com";
