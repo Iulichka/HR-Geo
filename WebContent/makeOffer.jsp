@@ -3,10 +3,10 @@
 <!doctype html>
 <html>
 <head>
- <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Make Offer</title>	
+ <meta charset="UTF-8">
+ <head> 
+    <title>Update Profile</title>	
+    <link href="css/sear.css" rel="stylesheet">
 	<script src="http://snipplicious.com/js/jquery.js"></script>
 	<link href="css/search.css" rel="stylesheet" type="text/css">
 	<link href="css/advancedSearch.css" rel="stylesheet">
@@ -15,11 +15,11 @@
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
 <%@page import="backClasses.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%
-		//allow access only if session exists		
+		//allow access only if session exists	
+		ArrayList<String> chosenSkills=new ArrayList<String>();
 				int value=1;
 				String user =null;	
 				ArrayList<String> skills= new ArrayList<String>();
@@ -38,6 +38,7 @@
 					}						
 			
 %>   
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -60,11 +61,12 @@
     </div>
   </div>
 </nav>
+<form action="MakeOfferServlet" method="post" class="form-horizontal" role="form">
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
             <div class="input-group" id="adv-search">
-                <select class="form-control" id="tagPicker" multiple="multiple">
+                <select name ="skills" class="form-control" id="tagPicker" multiple="multiple">
                 <% for (int i=0;i<skills.size();i++){ %>
          <option value=<%=value %>><%=skills.get(i) %></option>
           <% 
@@ -78,10 +80,10 @@
                         <div class="dropdown dropdown-lg">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
                             <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                <form class="form-horizontal" role="form">
+                                
                                   <div class="form-group">
                                     <label for="filter">University:</label>
-                                    <select class="form-control">                                   
+                                    <select name="university" class="form-control">                                   
                                         <option value="0" selected>All Universities</option>
                                         <% for (int k=0;k<universities.size();k++){ %>
                                         <option value=<%=value%>><%=universities.get(k) %></option>
@@ -95,7 +97,7 @@
                                   </div>
                                   <div class="form-group">
                                     <label for="contain">Faculty</label>
-                                    <select class="form-control">
+                                    <select name="faculty" class="form-control">
                                         <option value="0" selected>All Faculties</option>
                                         <% for (int k=0;k<faculties.size();k++){ %>
                                         <option value=<%=value%>><%=faculties.get(k)%></option>
@@ -111,8 +113,12 @@
                                     <label for="contain">Minimum Age</label>
                                     <input class="form-control" name = "age" type="text" />
                                   </div>
+                                  <div class="form-group">
+                                    <label for="contain">Working Experience</label>
+                                    <input class="form-control" name = "experience" type="text" />
+                                  </div>
                                   <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                                </form>
+                                
                             </div>
                         </div>
                         <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
@@ -122,6 +128,7 @@
           </div>
         </div>
 	</div>
+	</form>
 <div class="container">
     <hgroup class="mb20">
 		<h1>Search Results</h1>

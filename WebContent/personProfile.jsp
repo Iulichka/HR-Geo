@@ -34,7 +34,6 @@
 					if( request.getSession()!=null && session.getAttribute("email")!=null && request.getAttribute("person")!=null ){
 						pers=(Person)request.getAttribute("person");
 						skills=(PersonSkills)request.getAttribute("skills");
-						experience=(OverallExperience)request.getAttribute("experience");
 						user=pers.getName()+" "+pers.getSurname();
 					    personOffers=(AllOffersForPerson)request.getAttribute("offers");
 					    request.getSession().setAttribute("file", pers.getPhoto());
@@ -42,9 +41,6 @@
 		   			 	response.sendRedirect("homePage.jsp");
 		   			 	return;
 					}
-				
-		
-			
 %>   
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -103,6 +99,11 @@
                     <p><small>Update Skills</small></p>
                     <a href="skillsUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Skills</a>                  
                 </div>
+                <div class="col-xs-12 col-sm-4 emphasis" >                  
+                    <p><small>Update Education</small></p>
+                    <a href="educationUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Education</a>                  
+                </div>
+                
             </div>
     	 </div>                 
 		</div>
