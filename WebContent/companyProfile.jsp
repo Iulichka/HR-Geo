@@ -33,6 +33,7 @@
 				Map <Offer,ArrayList<Person>> map = new HashMap<Offer,ArrayList<Person>>();
 					if(session.getAttribute("email")!=null){
 						comp=(Company)request.getAttribute("company");
+						session.setAttribute("fullCompany", comp);
 						if(comp!=null)
 						user=comp.getName();
 						map=(HashMap<Offer,ArrayList<Person>>)request.getAttribute("offers");
@@ -86,7 +87,7 @@
                     <button class="btn btn-info btn-block"><span class="fa fa-user"></span> Make Offer </button>
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis">                 
-                    <a href="companyPhotoes.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Company Photoes</a>
+                    <a href="companyPhotoes.jsp?mail=<%=comp.getMail() %>" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Company Photoes</a>
                 </div>
             </div>
     	 </div>                 

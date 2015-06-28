@@ -81,6 +81,14 @@
     			<input type="submit" />
 			</form>
 		</div>
+		<div>
+		<h6>Upload CV</h6>
+		<form action=<%="\""+"Upload?id="+p.getId()+"&type=cv\"" %> method="post" enctype="multipart/form-data">
+    			<input type="text" name="description" value="Enter Document Description" />
+    			<input type="file" name="file" />
+    			<input type="submit" />
+			</form>
+		</div>
       </div>
     </div>    
     <!-- edit form column -->
@@ -111,13 +119,13 @@
         <div class="form-group">
           <label class="col-lg-3 control-label">First name:</label>
           <div class="col-lg-8">
-            <input class="form-control" name="first_name" placeholder="First Name" type="text" id="first_name" value=<%=p.getName() %>>
+            <input class="form-control" name="first_name" placeholder="First Name" type="text" id="first_name" value="<%= p.getName() %>">
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-3 control-label">Last name:</label>
           <div class="col-lg-8">
-            <input class="form-control" name="last_name" placeholder="Last Name" type="text" value=<%=p.getSurname() %>>
+            <input class="form-control" name="last_name" placeholder="Last Name" type="text" value="<%=p.getSurname() %>">
           </div>
         </div>
         <!--  

@@ -1,5 +1,7 @@
 package backClasses;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class Company {
@@ -65,7 +67,8 @@ public class Company {
 
 	
 	public double getRating() {
-		return rating;
+		BigDecimal bd = new BigDecimal(rating).setScale(2, RoundingMode.HALF_EVEN);
+		return bd.doubleValue();
 	}
 	
 	public void setName(String name) {

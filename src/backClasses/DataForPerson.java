@@ -296,5 +296,23 @@ public void changeSkill(int id){
 	}
 			
 }
+public void addCV(String idST, FileInputStream in) {
+	int id=0;
+	Statement stm;
+	try {
+		id = Integer.parseInt(idST);
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prs = con.prepareStatement("insert into person_cv (person_CV, persons_id) values(?,?)");
+		prs.setBlob(1, in);
+		prs.setInt(2, id);
+		prs.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	
+}
 
 }

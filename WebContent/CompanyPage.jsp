@@ -19,13 +19,19 @@
 	out.println(c.getName()); %>
 </title>
 <script type="text/javascript">
+var bool = true;
 function fun1(n, mail){
-	document.getElementById("message").innerHTML=n;
+	if(!bool) {
+		document.getElementById("message").innerHTML="you heve allready voted";
+	} else {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("POST", "Rating?n="+n+"&mail="+mail, false);
 	xmlhttp.send();
 	var tx =  xmlhttp.responseText;
+	bool = false;
 	document.getElementById("message").innerHTML="thank you for voting new rating is: "+tx;
+	document.getElementById("ratingValue").innerHTML=tx;
+	}
 }
 </script>
 </head>
@@ -77,7 +83,7 @@ for (int i=1; i<=c.getImagesNum(); i++) {
 </div>
  <div class="col-xs-12 col-sm-3 text-center" id="rating" style="position: absolute; left: 52%; top: 15%; font-size: 16pt;">         
    <figcaption class="ratings">
-                            <p>Rating <%= c.getRating() %>
+                            <p>Rating <tt id="ratingValue"><%= c.getRating() %></tt>
  <%
  for (int i=0; i<5; i++) {
 	 String filledStar ="";
@@ -89,7 +95,7 @@ for (int i=1; i<=c.getImagesNum(); i++) {
  %>             
         </p>
      </figcaption>
-     <p id="message"style="font-size: 7pt"></p>
+     <p id="message"style="font-size: 9pt"></p>
    </div>
    <div>
 <form action=<%="\""+"Upload?mail="+c.getMail()+"\"" %> method="post" enctype="multipart/form-data">
