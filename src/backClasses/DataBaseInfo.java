@@ -6,11 +6,7 @@ import java.sql.SQLException;
 
 public class DataBaseInfo {
 	public static final String MYSQL_USERNAME = "root";
-<<<<<<< HEAD
 	public static final String MYSQL_PASSWORD = "14159265";
-=======
-	public static final String MYSQL_PASSWORD = "vayne";
->>>>>>> 7ad12ead2ff4f7273d97d88a07f1fe356eba9b14
 	public static final String MYSQL_DATABASE_SERVER = "localhost";
 	public static final String MYSQL_DATABASE_NAME = "webproject";
 	

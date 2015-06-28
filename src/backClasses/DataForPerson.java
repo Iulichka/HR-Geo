@@ -546,6 +546,28 @@ public void deleteEducation(int persId, String universityName,
 	}
 	
 }
+public void addEducation(int persId, String uni, String faculty, int year,
+		String gradType) {
+	Statement stm;
+	int uniID=getUniversityID(uni);
+	int facultyId=getFacultyId(faculty);
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prst=con.prepareStatement("insert into person_university (persons_id"
+				+ ",university_id,faculty_id,graduation_year,graduation_type )"
+				+ " values(?,?,?,?,?)");
+		prst.setInt(1, persId);
+		prst.setInt(2, uniID);
+		prst.setInt(3, facultyId);
+		prst.setInt(4,year);
+		prst.setString(5, gradType);
+		prst.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
 
 
 

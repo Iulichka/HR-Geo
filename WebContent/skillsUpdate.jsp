@@ -114,6 +114,7 @@
 		<form action="SkillAddServlet" method="post">
 			 <td>
 			 	<select class="form-control" name="skill_name" id="skill_name">
+			 		<option selected="selected" disabled="disabled">Skill </option>
 			 		<%for(int i=0;i<skillNames.size();i++){ %>
 			 			<option value="<%=skillNames.get(i)%>"><%=skillNames.get(i) %> </option>
 			 		<%} %>
@@ -121,6 +122,7 @@
 			 </td>
 			 <td>
 				<select name="level" id="level" class="form-control">
+				<option selected="selected" disabled="disabled">Level </option>
 				<%for(int j=0;j<skillLevels.size();j++){ %>
 					<option value="<%=skillLevels.get(j) %>"> <%=skillLevels.get(j) %></option>
 				<%} %>
