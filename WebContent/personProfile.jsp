@@ -10,7 +10,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<head>
+<head >
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>Person Profile</title>
@@ -101,7 +101,6 @@
                     <p><small>Update Education</small></p>
                     <a href="educationUpdate.jsp" class="btn btn-info btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Education</a>                  
                 </div>
-                
             </div>
     	 </div>                 
 		</div>

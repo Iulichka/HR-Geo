@@ -1,10 +1,8 @@
-<%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<!doctype html> 
+<html lang="ka">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update Profile</title>
@@ -21,6 +19,7 @@
 </head>
 <body>
 <%@page import="backClasses.*" %>
+<%@page import="java.util.ArrayList"%>
  <%
 		//allow access only if session exists
 		String user =null;
@@ -37,7 +36,7 @@
 				DataForPerson data=new DataForPerson();
 				edu=data.getPersonEducation(Integer.parseInt(p.getId())).getEduList();
 			}else{
-   			 	response.sendRedirect("http://localhost:8080/HR-Geo/homePage.jsp");
+   			 	response.sendRedirect("homePage.jsp");
    			 	return;
 			}			
 %>  
@@ -69,8 +68,8 @@
 <thead><tr><th>Education Place</th><th>Faculty</th><th>Graduation Year</th><th>Graduation Type</th><th>Submit Change</th><th>Delete Education Entry</th></thead>
 		<tbody>
 				<%for(int i=0;i<edu.size();i++){  %>
-					<tr>
 					<form action="EducationUpdateServlet" method="post">
+					<tr>
 						<td><%=edu.get(i).getUniversity()%></td>
 						<td><%=edu.get(i).getFaculty() %></td>
 						<td>
@@ -88,7 +87,7 @@
 						<td>
 							<select name="grad_type" id="grad_type" class="form-control">
 								<%if(edu.get(i).getLevel().equals("საშუალო")){ %>
-									 <option selected="selected" value="საშუალო" > საშუალო</option>
+									 <option  selected="selected" value="საშუალო" > საშუალო</option>
 								<%}else {%>
 									<option value="საშუალო">საშუალო</option>
 								<% } %>
@@ -110,21 +109,22 @@
 							</select>
 						</td>
 						<td>
-							<input type="hidden" name="university" value=<%=edu.get(i).getUniversity()%>>
-							<input type="hidden" name="faculty" value=<%=edu.get(i).getFaculty()%>>							
+							<input type="hidden" name="university" value="<%=edu.get(i).getUniversity()%>">
+							<input type="hidden" name="faculty" value="<%=edu.get(i).getFaculty()%>">							
 							<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
 							<span class="glyphicon glyphicon-ok"></span>
 							</button> 
 						</td>
 						<td>
-							<input type="hidden" name="university" value=<%=edu.get(i).getUniversity()%>>
-							<input type="hidden" name="faculty" value=<%=edu.get(i).getFaculty()%>>							
+							<input type="hidden" name="university" value="<%=edu.get(i).getUniversity()%>">
+							<input type="hidden" name="faculty" value="<%=edu.get(i).getFaculty()%>">							
 							<button type="submit" name="SUBMIT" value="delete" style="background-color: transparent;border-color: transparent ;">
 							<span class="glyphicon glyphicon-remove"></span>
 							</button> 
 						</td>
-						</form>
+						
 					</tr>
+					</form>
 				<%} %>
 		</tbody>
 
