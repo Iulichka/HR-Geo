@@ -91,7 +91,7 @@
             <div class="col-xs-12 divider text-center">
                 <div class="col-xs-12 col-sm-4 emphasis" >                  
                     <p><small> Update Info</small></p>
-                    <a href="personProfileUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Profile</a>                  
+                    <a href="personProfileUpdate.jsp" class="btn btn-primary btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Profile</a>                  
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis" >                  
                     <p><small>Update Skills</small></p>
@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis" >                  
                     <p><small>Update Education</small></p>
-                    <a href="educationUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Education</a>                  
+                    <a href="educationUpdate.jsp" class="btn btn-info btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Education</a>                  
                 </div>
                 
             </div>
@@ -108,7 +108,7 @@
 	</div>
 </div>	
 <table class="table table-hover">
-<thead><tr><th>Offer Name</th><th>Company</th><th>Offer Recieved</th><th>Offer End Date</th><th>Offer Status</th></tr></thead>
+<thead><tr><th>Offer Name</th><th>Company</th><th>Offer Recieved</th><th>Offer End Date</th><th>Offer Status</th><th>Actions</th></tr></thead>
 <tbody> 
 	<% while(personOffers.hasNext()) {%>
 		<%o=personOffers.getOffer(); %>
@@ -118,6 +118,24 @@
          <td><%=o.getStartDate() %></td>
          <td><%=o.getEndDate() %></td>
          <td><%=o.getStatus() %></td>
+         <td class="center">
+         <a class="btn btn-primary" href="#">
+         <i class=" glyphicon glyphicon-off icon-white"></i>
+         Offer Page
+         </a>
+		<a class="btn btn-success" href="#">
+<i class="glyphicon glyphicon-zoom-in icon-white"></i>
+Accept
+</a>
+<a class="btn btn-info" href="#">
+<i class="glyphicon glyphicon-edit icon-white"></i>
+Maybe
+</a>
+<a class="btn btn-danger" href="#">
+<i class="glyphicon glyphicon-trash icon-white"></i>
+Reject
+</a>
+</td>
      <%} %>            
  </tbody>
 </table>
