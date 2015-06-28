@@ -43,7 +43,7 @@ public class EducationAddServlet extends HttpServlet {
 			response.sendRedirect("homepage.jsp");
 		}
 		DataForPerson data=new DataForPerson();
-		Person p=(Person) request.getAttribute("person");
+		Person p=(Person)request.getSession().getAttribute("person");
 		int persId=Integer.parseInt(p.getId());
 		String uni=request.getParameter("university");
 		String faculty=request.getParameter("faculty");
@@ -52,6 +52,7 @@ public class EducationAddServlet extends HttpServlet {
 			year=Integer.parseInt(request.getParameter("year"));
 		}catch (Exception e){
 			response.sendRedirect("educationUpdate.jsp");
+			return;
 		}
 		String gradType=request.getParameter("grad_type");
 		data.addEducation(persId,uni,faculty,year,gradType);
