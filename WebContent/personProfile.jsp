@@ -101,6 +101,12 @@
                     <p><small>Update Education</small></p>
                     <a href="educationUpdate.jsp" class="btn btn-info btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Education</a>                  
                 </div>
+             
+                <div class="col-xs-12 col-sm-4 emphasis"  >                  
+                    <p><small>Update Experience</small></p>
+                     <a href="experienceUpdate.jsp" class="btn btn-danger btn-block-lg" role="button"><span class="fa fa-plus-circle"></span>Update Experience</a>                  
+                </div>
+                
             </div>
     	 </div>                 
 		</div>
