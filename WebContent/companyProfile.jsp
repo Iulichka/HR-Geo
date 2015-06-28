@@ -84,7 +84,7 @@
                     <a href="companyProfileUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Profile</a> 
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis">                 
-                    <button class="btn btn-info btn-block"><span class="fa fa-user"></span> Make Offer </button>
+                    <a href="makeOffer.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Make Offer</a> 
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis">                 
                     <a href="companyPhotoes.jsp?mail=<%=comp.getMail() %>" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Company Photoes</a>

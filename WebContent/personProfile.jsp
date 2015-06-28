@@ -99,7 +99,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis" >                  
                     <p><small>Update Skills</small></p>
-                    <a href="skillsUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Profile</a>                  
+                    <a href="skillsUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Skills</a>                  
                 </div>
             </div>
     	 </div>                 
