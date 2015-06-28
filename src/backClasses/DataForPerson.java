@@ -316,10 +316,44 @@ public ArrayList<String> getSkillNames(){
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
-	}
-	
-	
+	}		
 	return skills;
+	
+}
+public ArrayList<String> getUniversityNames(){
+	Statement stm;
+	ArrayList<String> universities=new ArrayList<String>();
+
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		ResultSet rSet=stm.executeQuery("select university_name from university");
+		while(rSet.next()){
+			universities.add(rSet.getString(1));
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}		
+	return universities;
+	
+}
+public ArrayList<String> getFacultyNames(){
+	Statement stm;
+	ArrayList<String> faculties=new ArrayList<String>();
+
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		ResultSet rSet=stm.executeQuery("select faculty_name from faculty");
+		while(rSet.next()){
+			faculties.add(rSet.getString(1));
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}		
+	return faculties;
 	
 }
 public ArrayList<String> getSkillLevels(){

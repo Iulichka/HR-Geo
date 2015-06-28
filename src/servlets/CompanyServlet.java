@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import backClasses.Company;
 import backClasses.DBSelect;
 import backClasses.DataForComp;
+
 import backClasses.Offer;
 import backClasses.Person;
 
@@ -48,9 +48,8 @@ public class CompanyServlet extends HttpServlet {
 		DataForComp data=new DataForComp();
 		Company company=data.getComp(email);
 		int companyID=select.getCompanyId(email);
-		offers=select.getCompanyOffers(companyID);
-		 	
-	      for(int i=0;i<offers.size();i++){
+		offers=select.getCompanyOffers(companyID);						 	
+	    for(int i=0;i<offers.size();i++){
 	    	  persons=select.getOfferPersons(offers.get(i).getOfferID());
 	    	  map.put(offers.get(i), persons);
 	      }
