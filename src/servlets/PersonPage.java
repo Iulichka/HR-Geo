@@ -38,6 +38,7 @@ public class PersonPage extends HttpServlet {
 	 * this servlet needs person Id and Type as parameters to create person and show it 
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 		if(id==null) id = "1"; // temp
 		String type = request.getParameter("type");

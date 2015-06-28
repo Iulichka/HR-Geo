@@ -38,6 +38,7 @@ public class PersonServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		HttpSession session=request.getSession();
 		String email= (String)session.getAttribute("email");
 		DataForPerson data=new DataForPerson();

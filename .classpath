@@ -9,5 +9,24 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/access-bridge.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/cldrdata.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/dnsns.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/jaccess.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/java-mail-1.4.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/javassist-3.13.0-ga.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/javax.servlet-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/javax.websocket-api-1.0-rc4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/jdom.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/jfxrt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/localedata.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/mysql-connector-java-5.1.23-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/nashorn.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/rome-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/sunec.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/sunjce_provider.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/sunmscapi.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/sunpkcs11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dato/Desktop/jar/zipfs.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -1,5 +1,9 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding//WebContent/educationUpdate.jsp=UTF-8
+=======
+encoding//WebContent/makeOffer.jsp=UTF-8
+>>>>>>> 3c13ddee0300a4869c496f0c0e900539271a9b5e
 encoding//WebContent/personRegister.jsp=UTF-8
 encoding//src/backClasses/DataForComp.java=UTF-8
 encoding/<project>=UTF-8
