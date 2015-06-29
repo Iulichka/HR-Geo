@@ -125,7 +125,7 @@
          <td><%=o.getStartDate() %></td>
          <td><%=o.getEndDate() %></td>
          <td><%=o.getStatus() %></td>
-         <%if(o.getStatus()=="active"){ %>
+         <%if(o.getStatus().length()==6&&o.getStatus().charAt(0)!='d'){ %>
          <td class="center">
          <a class="btn btn-primary" href="#">
          <i class=" glyphicon glyphicon-off icon-white"></i>
