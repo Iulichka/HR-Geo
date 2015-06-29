@@ -31,12 +31,23 @@ public class ChartData extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/plain");
+		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
+		String type = request.getParameter("type");
 		DataForStat stat = new DataForStat();
-		if (("gender").equals(request.getParameter("type"))) {
+		if (("gender").equals(type)) {
 			out.print(stat.getGenderNums());
-		} else if("skills".equals(request.getParameter("type"))) {
+		} else if("skills".equals(type)) {
 			out.print(stat.getSkillsStat());
+		} else if ("skillsDemand".equals(type)) {
+			//System.out.println(stat.getSkillsDemand());
+			out.print(stat.getSkillsDemand());
+		}else if("uniStat".equals(type)) {
+			//System.out.println(stat.getSkillsDemand());
+			out.print(stat.getUniStat());
+		} else if("faculty".equals(type)){
+			System.out.println(stat.getFacultyStat());
+			out.print(stat.getFacultyStat());
 		}
 	}
 
