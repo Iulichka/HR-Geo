@@ -48,7 +48,8 @@ public class OfferAnswer extends HttpServlet {
 		int offer_id=Integer.parseInt(request.getParameter("offer_id"));
 		String type=request.getParameter("SUBMIT");
 		if(type.equals("page")){
-			request.setAttribute("offerid", offer_id);			
+			request.setAttribute("offerid", offer_id);
+			request.setAttribute("person",pers);
 			RequestDispatcher rd=request.getRequestDispatcher("personOffer.jsp");
 			rd.forward(request, response);
 		}else{

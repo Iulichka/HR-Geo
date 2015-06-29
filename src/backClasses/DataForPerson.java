@@ -26,6 +26,7 @@ public class DataForPerson {
 					"from  persons_offer po,offer o,company_info c "+
 					"where po.offer_id=o.offer_id and po.persons_id="+id+" and o.company_id=c.company_id;");
 			while(rSet.next()){
+				
 				Offer cur=new Offer(rSet.getString(2),rSet.getString(3),rSet.getDate(4),rSet.getDate(5),
 						new Company(rSet.getString(6),null,null,0,null,1,null,null),rSet.getInt(1),rSet.getString(7));
 				offers.addOffer(cur);
@@ -34,6 +35,22 @@ public class DataForPerson {
 			System.out.println(e.getMessage());
 		}		
 	 return offers;
+ }
+ public Company getCompany(int offerID){
+	 Company company=null;
+	 Statement stm;
+	 try {
+		 	DBSelect select=new DBSelect();
+			stm=con.createStatement();
+			stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+			ResultSet rSet= stm.executeQuery("select company_id from  offer where offer_id="+offerID+";");
+			rSet.next();
+			
+			company=select.getCompany(rSet.getInt("company_id"));
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}		
+	 return company;
  }
  
  public int getPersonId(String email){
