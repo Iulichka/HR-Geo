@@ -14,10 +14,7 @@ public class PersonSearcher {
 	public static void main(String[] args) {
 		ArrayList<Integer> fac=new ArrayList<Integer>();
 		PersonSearcher ps=new PersonSearcher();
-		fac.add(1);
-		fac.add(2);
-		fac.add(3);
-		ps.getPersons(fac, fac, fac, 0, 0);
+		ps.getPersons(fac, fac, fac, 0, 3);
 	}
 	
 	 Connection con=null;
@@ -50,11 +47,25 @@ public class PersonSearcher {
 			selectWithSkills=getAllIdsString("pi3", "ps");
 		}
 		String selectWithAge=getAgeSelectString(personAge);
-		
+		String selectWithExperience="";
+		if(workingExperience!=0){
+			selectWithExperience=getExpSelectString(workingExperience);
+		}else{
+			selectWithExperience=getAllIdsString("pi5", "we");
+		}
 		try {
 			stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
-			PreparedStatement prst=con.prepareStatement(selectWithSkills);
+			PreparedStatement prst=con.prepareStatement(
+					"select * "
+					+ "from ("+selectWithUni+") as fromUni, "
+							+ " ("+selectWithFaculty+") as fromFaculty, "
+									+ "("+selectWithSkills+") as fromSkill, "
+											+ "("+selectWithAge+") as fromAge, "
+													+ "("+selectWithExperience+") as fromExp "
+					+ "where fromUni.pi1=fromFaculty.pi2 and fromFaculty.pi2=fromSkill.pi3 "
+					+ "and fromSkill.pi3=fromAge.pi4 and fromAge.pi4=fromExp.pi5;"
+					);
 			ResultSet rset=prst.executeQuery();
 			int id=-1;
 			while(rset.next()){
@@ -69,8 +80,23 @@ public class PersonSearcher {
 		return null;
 	}
 	
+	private String getExpSelectString(int workingExperience) {
+		String mins=
+	"select startings.pi6 as pi5 "+
+	"from "+
+	"(select we1.persons_id pi6, min(we1.job_start_date) startDate " +
+	"from working_experience we1 "+
+	"group by pi6) startings, "+
+	"(select maxis.pi8 pi7,max(maxis.endDate) endFinal "+
+	"from (select we3.persons_id pi8,if(we3.job_end_date is null,curdate(),we3.job_end_date) endDate "+
+	"from working_experience we3) as maxis "+
+	"group by pi7) endings "+
+    "where startings.pi6=endings.pi7 and TIMESTAMPDIFF(YEAR,startings.startDate,endings.endFinal)>"+workingExperience+" "+
+    "group by pi5";
+		return mins;
+	}
 	private String getAgeSelectString(int personAge) {
-		return "select  prs.persons_id pi4 from persons prs where TIMESTAMPDIFF(YEAR,prs.person_birth_date,curdate())>"+personAge+";";
+		return "select  prs.persons_id pi4 from persons prs where TIMESTAMPDIFF(YEAR,prs.person_birth_date,curdate())>"+personAge+"";
 	}
 	private String getSkillSelectString(ArrayList<Integer> chosenSkillsIds) {
 		String start="select ps.persons_id as pi3,count(*) c3 from person_skills ps where ";
@@ -81,7 +107,7 @@ public class PersonSearcher {
 				middle+="or ";
 			}
 		}
-		String end="group by pi3 having c3 =" + chosenSkillsIds.size() + " ;";
+		String end="group by pi3 having c3 =" + chosenSkillsIds.size() + " ";
 		return start+middle+end;
 	}
 	private String getFacultySelectString(ArrayList<Integer> chosenFacultyIds) {
@@ -93,13 +119,13 @@ public class PersonSearcher {
 				middle+="or ";
 			}
 		}
-		String end="group by pi2;";
+		String end="group by pi2";
 		
 		
 		return start+middle+end;
 	}
 	private String getAllIdsString(String string, String string2) {
-		String res="select "+string2+"."+"persons_id"+" "+string+" from persons "+string2+";"; 
+		String res="select "+string2+"."+"persons_id"+" "+string+" from persons "+string2+""; 
 		return res;
 	}
 	private String getUniSelectString(ArrayList<Integer> chosenUnisIds) {
@@ -111,7 +137,7 @@ public class PersonSearcher {
 				middle+="or ";
 			}
 		}
-		String end="group by pi1;";
+		String end="group by pi1";
 		
 		
 		return start+middle+end;
