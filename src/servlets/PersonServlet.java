@@ -1,8 +1,6 @@
 package servlets;
 import backClasses.*;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import backClasses.PersonOffer;
-import backClasses.DBSelect;
 import backClasses.DataForPerson;
 import backClasses.OverallExperience;
 import backClasses.Person;
@@ -37,15 +33,13 @@ public class PersonServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setCharacterEncoding("UTF-8");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {				
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session=request.getSession();
 		String email= (String)session.getAttribute("email");
 		DataForPerson data=new DataForPerson();
 		int id=0;
-		id = data.getPersonId(email);
-		
-		
+		id = data.getPersonId(email);				
 		Person person = data.getPerson(id);
 		PersonSkills skills=data.getPersonSkills(id);
 		OverallExperience experience=data.getPersonExperience(id);
