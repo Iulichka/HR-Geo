@@ -1,11 +1,9 @@
-<%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@page import="java.util.Iterator"%>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<!doctype html> 
+<html lang="ka">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update Profile</title>
@@ -18,34 +16,32 @@
 	<link rel="stylesheet" type="text/css" href="http://snipplicious.com/css/font-awesome-4.1.0.min.css">
 	<script src="http://snipplicious.com/js/jquery.js"></script>
 	<script src="http://snipplicious.com/js/bootstrap.min.js"></script>
-<title>Update Skills</title>
+<title>Update Experience</title>
 </head>
 <body>
 <%@page import="backClasses.*" %>
+<%@page import="java.util.ArrayList"%>
  <%
 		//allow access only if session exists
 		String user =null;
 		String first_name = null;
 		String last_name = null;
 		Person p=null;
-		ArrayList<Skill> skillArray=null;
-		ArrayList<String> skillLevels=null;
-		ArrayList<String> skillNames=null;
+		Experience cur=null;
+		Iterator<Experience> exp=null;
 			if(request.getSession(false)!=null && session.getAttribute("email")!=null && session.getAttribute("person")!=null){
 				user=(String)session.getAttribute("email");
 				first_name=(String)session.getAttribute("first_name");
 				last_name=(String)session.getAttribute("last_name");
-				p=(Person)session.getAttribute("person");
 				DataForPerson data=new DataForPerson();
-				PersonSkills skills=data.getPersonSkills(data.getPersonId(user));
-				skillArray=skills.getPersonSkills();
-				skillLevels=data.getSkillLevels();
-				skillNames=data.getSkillNames();
+				p=(Person)session.getAttribute("person");
+				exp=data.getPersonExperience(Integer.parseInt(p.getId())).getIterator();
 			}else{
-   			 	response.sendRedirect("http://localhost:8080/HR-Geo/homePage.jsp");
+   			 	response.sendRedirect("homePage.jsp");
    			 	return;
 			}			
 %>  
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -70,78 +66,46 @@
   </div><!-- /.container-fluid -->
 </nav>
  <table class="table table-condensed">
-<thead><tr><th>Skill Name</th><th>Skill Level</th><th>Submit Change</th><th>Delete Skill</th></thead>
-<tbody>
-	
-		<%for(int i=0;i<skillArray.size();i++){ %>
+<thead><tr><th>Company</th><th>Position</th><th>Start Date</th><th>End Date</th><th>Edit</th><th>Delete</th></thead>
+			<%while(exp.hasNext()) {%>
+				<form action="ExperienceUpdateServlet" method="post">
+				<%cur=exp.next(); %>
 				<tr>
-		<form action="SkillChangeServlet" method="post">
-				<td><%=skillArray.get(i).getName() %></td>
-				<td>
-					<select name="level" id="level" class="form-control">
-					<%for(int j=0;j<skillLevels.size();j++){ %>
-						<%if(skillArray.get(i).getLevel().equals(skillLevels.get(j))){ %>
-							 <option selected="selected" value="<%=skillLevels.get(j) %>"><%=skillLevels.get(j) %></option>
-						<%}else{%>
-							 <option value="<%=skillLevels.get(j) %>"><%=skillLevels.get(j) %></option>
+					<th><%=cur.getCompName()%></th>
+					<th><%=cur.getPosition() %></th>
+					<th>
+					   <input class="form-control" placeholder="date" name="start_date" type="date" value=<%=cur.getStartDate()%>>
+					</th>
+					<th>
+						<%if(cur.getEndDate()!=null){ %>
+					   <input class="form-control" placeholder="date" name="start_date" type="date" value=<%=cur.getEndDate()%>>
+						<%}else {%>
+					   <input class="form-control" placeholder="date" name="start_date" type="date" >					
 						<%} %>
-					<%} %>
+					</th>
 					
-					</select>		
-				</td>
-				<td>
-						<input type="hidden" name="skill_id" value="<%=skillArray.get(i).getId()%>">
+					<th> 
+						<input type="hidden" name="exp_id" value=<%=cur.getId() %>>						
 						<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-ok"></span>
-
 						</button> 
-				
-				 </td>
-				 <td>
-						<input type="hidden" name="skill_id" value="<%=skillArray.get(i).getId()%>" >
-						<button type="submit"  name="SUBMIT" value="delete" style="background-color: transparent;border-color: transparent ;">
+					</th>
+					
+					<th>
+					<th> 
+						<input type="hidden" name="exp_id" value=<%=cur.getId() %>>	
+						<input type="hidden" name="company_name" value=<%=cur.getCompName() %>>
+						<input type="hidden" name="pos_name" value=<%=cur.getPosition() %>>							
+						<button type="submit" name="SUBMIT" value="delete" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-remove"></span>
-
 						</button> 
-				 </td>	
-				 </form>
-			</tr>
-		<% } %>  
-		<tr>  
-			<td><label>Choose Skill and Click Plus To add</label> </td>
-		</tr>
-		<tr>
-		<form action="SkillAddServlet" method="post">
-			 <td>
-			 	<select class="form-control" name="skill_name" id="skill_name">
-			 		<option selected="selected" disabled="disabled">Skill </option>
-			 		<%for(int i=0;i<skillNames.size();i++){ %>
-			 			<option value="<%=skillNames.get(i)%>"><%=skillNames.get(i) %> </option>
-			 		<%} %>
-			 	</select>
-			 </td>
-			 <td>
-				<select name="level" id="level" class="form-control">
-				<option selected="selected" disabled="disabled">Level </option>
-				<%for(int j=0;j<skillLevels.size();j++){ %>
-					<option value="<%=skillLevels.get(j) %>"> <%=skillLevels.get(j) %></option>
-				<%} %>
-				
-				</select>	 		
-			 </td>
-			 
-			 <td>
-			 	<button type="submit"  name="SUBMIT" value="add" style="background-color: transparent;border-color: transparent ;">
-						<span class="glyphicon glyphicon-plus"></span>
-
-				</button> 
-			 </td>
-		</form>
-		</tr>
-		 
- </tbody>
+					</th>
+					</th>
+				</tr>
+			</form>	
+        	<% }%>
 </table>
-	
+
 
 </body>
 </html>

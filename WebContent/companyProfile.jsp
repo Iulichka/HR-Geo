@@ -1,10 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
 <head>
  <meta charset="utf-8">
-<head>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 <!-- jQuery library -->
@@ -83,13 +80,13 @@
             </div>            
             <div class="col-xs-12 divider text-center">
                 <div class="col-xs-12 col-sm-4 emphasis">                                     
-                    <a href="companyProfileUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Profile</a> 
+                    <a href="companyProfileUpdate.jsp" class="btn btn-primary btn-block" role="button">Update Profile</a> 
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis">                 
-                    <a href="makeOffer.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Make Offer</a> 
+                    <a href="makeOffer.jsp" class="btn btn-success btn-block" role="button">Make Offer</a> 
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis">                 
-                    <a href="companyPhotoes.jsp?mail=<%=comp.getMail() %>" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Company Photoes</a>
+                    <a href="companyPhotoes.jsp?mail=<%=comp.getMail() %>" class="btn btn-info btn-block" role="button">Company Photoes</a>
                 </div>
             </div>
     	 </div>                 

@@ -10,18 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import backClasses.DataForPerson;
 import backClasses.Person;
+import backClasses.PersonEducation;
 
 /**
- * Servlet implementation class SkillChangeServlet
+ * Servlet implementation class EducationAddServlet
  */
-@WebServlet("/SkillChangeServlet")
-public class SkillChangeServlet extends HttpServlet {
+@WebServlet("/EducationAddServlet")
+public class EducationAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SkillChangeServlet() {
+    public EducationAddServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,22 +38,26 @@ public class SkillChangeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		request.setCharacterEncoding("UTF-8");
 		if(request.getSession().getAttribute("person")==null){
 			response.sendRedirect("homepage.jsp");
 		}
-		Person  pers=(Person)request.getSession().getAttribute("person");
-		int skill_id=Integer.parseInt(request.getParameter("skill_id"));
-		String type=request.getParameter("SUBMIT");
-		String skill_level=request.getParameter("level");
 		DataForPerson data=new DataForPerson();
-		if(type.equals("change")){
-			data.updateSkill(skill_id,skill_level,Integer.parseInt(pers.getId()));
-		}else{
-			data.deleteSkill(skill_id,Integer.parseInt(pers.getId()));
+		Person p=(Person)request.getSession().getAttribute("person");
+		int persId=Integer.parseInt(p.getId());
+		String uni=request.getParameter("university");
+		String faculty=request.getParameter("faculty");
+		int year=0;
+		try{
+			year=Integer.parseInt(request.getParameter("year"));
+		}catch (Exception e){
+			response.sendRedirect("educationUpdate.jsp");
+			return;
 		}
+		String gradType=request.getParameter("grad_type");
+		data.addEducation(persId,uni,faculty,year,gradType);
 		
-	response.sendRedirect("skillsUpdate.jsp");
-	
+		response.sendRedirect("educationUpdate.jsp");
 	}
+
 }

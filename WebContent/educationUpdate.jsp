@@ -1,9 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<!doctype html> 
+<html lang="ka">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Update Profile</title>
@@ -29,6 +30,8 @@
 		ArrayList<Education> edu=null;
 		Person p=null;
 		ArrayList<String> gradTypes=null;
+		ArrayList<String> universities=null;
+		ArrayList<String> faculties=null;
 			if(request.getSession(false)!=null && session.getAttribute("email")!=null && session.getAttribute("person")!=null){
 				user=(String)session.getAttribute("email");
 				first_name=(String)session.getAttribute("first_name");
@@ -36,8 +39,10 @@
 				p=(Person)session.getAttribute("person");
 				DataForPerson data=new DataForPerson();
 				edu=data.getPersonEducation(Integer.parseInt(p.getId())).getEduList();
+				universities=data.getUniversityNames();
+				faculties=data.getFacultyNames();
 			}else{
-   			 	response.sendRedirect("http://localhost:8080/HR-Geo/homePage.jsp");
+   			 	response.sendRedirect("homePage.jsp");
    			 	return;
 			}			
 %>  
@@ -69,8 +74,8 @@
 <thead><tr><th>Education Place</th><th>Faculty</th><th>Graduation Year</th><th>Graduation Type</th><th>Submit Change</th><th>Delete Education Entry</th></thead>
 		<tbody>
 				<%for(int i=0;i<edu.size();i++){  %>
-					<tr>
 					<form action="EducationUpdateServlet" method="post">
+					<tr>
 						<td><%=edu.get(i).getUniversity()%></td>
 						<td><%=edu.get(i).getFaculty() %></td>
 						<td>
@@ -88,7 +93,7 @@
 						<td>
 							<select name="grad_type" id="grad_type" class="form-control">
 								<%if(edu.get(i).getLevel().equals("საშუალო")){ %>
-									 <option selected="selected" value="საშუალო" > საშუალო</option>
+									 <option  selected="selected" value="საშუალო" > საშუალო</option>
 								<%}else {%>
 									<option value="საშუალო">საშუალო</option>
 								<% } %>
@@ -110,22 +115,75 @@
 							</select>
 						</td>
 						<td>
-							<input type="hidden" name="university" value=<%=edu.get(i).getUniversity()%>>
-							<input type="hidden" name="faculty" value=<%=edu.get(i).getFaculty()%>>							
+							<input type="hidden" name="university" value="<%=edu.get(i).getUniversity()%>">
+							<input type="hidden" name="faculty" value="<%=edu.get(i).getFaculty()%>">							
 							<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
 							<span class="glyphicon glyphicon-ok"></span>
 							</button> 
 						</td>
 						<td>
-							<input type="hidden" name="university" value=<%=edu.get(i).getUniversity()%>>
-							<input type="hidden" name="faculty" value=<%=edu.get(i).getFaculty()%>>							
+							<input type="hidden" name="university" value="<%=edu.get(i).getUniversity()%>">
+							<input type="hidden" name="faculty" value="<%=edu.get(i).getFaculty()%>">							
 							<button type="submit" name="SUBMIT" value="delete" style="background-color: transparent;border-color: transparent ;">
 							<span class="glyphicon glyphicon-remove"></span>
 							</button> 
 						</td>
-						</form>
-					</tr>
+						
+					</tr> 
+					</form>
 				<%} %>
+				
+				<tr>
+					<td> Choose Your Education Parameteres And Click "+" to  add </td>
+				</tr>
+				<tr>
+					<form action="EducationAddServlet" method="post">
+						<td>
+							<select name="university" id="university" class="form-control">
+								<option selected="selected" disabled="disabled">University </option>
+								<%for(int i=0;i<universities.size();i++){ %>
+									<option value="<%=universities.get(i)%>"> <%=universities.get(i)%></option>
+								<%} %>
+							</select>
+						</td>
+						
+						<td>
+							<select name="faculty" id="faculty" class="form-control">
+								<option selected="selected" disabled="disabled">Faculty </option>
+								<%for(int i=0;i<faculties.size();i++){ %>
+									<option value="<%=faculties.get(i)%>"><%=faculties.get(i) %> </option>
+								<%} %>
+							</select>	
+						</td>
+						
+						<td>
+							<select name="year" id="year" class="form-control">
+								<option selected="selected" disabled="disabled">Year </option>
+								<%for(int j=1940;j<2030;j++){ %>	
+								 	 <option value=<%=j %>><%=j%></option>
+								<%}%>
+							</select>
+						</td>
+						
+						<td>
+							<select name="grad_type" id="grad_type" class="form-control">
+									<option selected="selected" disabled="disabled">Type </option>
+									<option value="საშუალო">საშუალო</option>
+									<option value="ბაკალავრი">ბაკალავრი</option>	
+									<option value="მაგისტრატურა">მაგისტრატურა</option>
+									<option value="დოქტორი">დოქტორი</option>
+							</select>
+						
+						</td>
+					
+						<td>
+							<button type="submit"  name="SUBMIT" value="add" style="background-color: transparent;border-color: transparent ;">
+								<span class="glyphicon glyphicon-plus"></span>
+							</button> 
+						</td>
+					</form>
+				
+				</tr>
 		</tbody>
 
 </table>
