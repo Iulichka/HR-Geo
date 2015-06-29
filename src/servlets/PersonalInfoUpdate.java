@@ -39,7 +39,11 @@ public class PersonalInfoUpdate extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
+		response.setCharacterEncoding("UTF-8");
+=======
 		response.setCharacterEncoding("UTF-8");		
+>>>>>>> 9d1a420916b7c39fce396582dead1a04ec2e6dda
 		if(request.getSession().getAttribute("person")==null){
 			response.sendRedirect("homepage.jsp");
 			return;
