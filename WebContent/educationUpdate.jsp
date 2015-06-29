@@ -79,7 +79,7 @@
 						<td><%=edu.get(i).getUniversity()%></td>
 						<td><%=edu.get(i).getFaculty() %></td>
 						<td>
-							<select name="year" id="year" class="form-control">
+							<select name="year" id="year" class="form-control" required="required">
 							
 								<%for(int j=1940;j<2030;j++){ %>	
 									<%if(edu.get(i).getEndYear()==j){ %>
@@ -91,7 +91,7 @@
 							</select>
 						</td>
 						<td>
-							<select name="grad_type" id="grad_type" class="form-control">
+							<select name="grad_type" id="grad_type" class="form-control" required="required">
 								<%if(edu.get(i).getLevel().equals("საშუალო")){ %>
 									 <option  selected="selected" value="საშუალო" > საშუალო</option>
 								<%}else {%>
@@ -139,7 +139,7 @@
 				<tr>
 					<form action="EducationAddServlet" method="post">
 						<td>
-							<select name="university" id="university" class="form-control">
+							<select name="university" id="university" class="form-control" required="required">
 								<option selected="selected" disabled="disabled">University </option>
 								<%for(int i=0;i<universities.size();i++){ %>
 									<option value="<%=universities.get(i)%>"> <%=universities.get(i)%></option>
@@ -148,7 +148,7 @@
 						</td>
 						
 						<td>
-							<select name="faculty" id="faculty" class="form-control">
+							<select name="faculty" id="faculty" class="form-control" required="required">
 								<option selected="selected" disabled="disabled">Faculty </option>
 								<%for(int i=0;i<faculties.size();i++){ %>
 									<option value="<%=faculties.get(i)%>"><%=faculties.get(i) %> </option>
@@ -157,7 +157,7 @@
 						</td>
 						
 						<td>
-							<select name="year" id="year" class="form-control">
+							<select name="year" id="year" class="form-control" required="required">
 								<option selected="selected" disabled="disabled">Year </option>
 								<%for(int j=1940;j<2030;j++){ %>	
 								 	 <option value=<%=j %>><%=j%></option>
@@ -166,7 +166,7 @@
 						</td>
 						
 						<td>
-							<select name="grad_type" id="grad_type" class="form-control">
+							<select name="grad_type" id="grad_type" class="form-control" required="required"> 
 									<option selected="selected" disabled="disabled">Type </option>
 									<option value="საშუალო">საშუალო</option>
 									<option value="ბაკალავრი">ბაკალავრი</option>	

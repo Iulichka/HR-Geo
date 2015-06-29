@@ -32,11 +32,11 @@ public class ChartData extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
+		DataForStat stat = new DataForStat();
 		if (("gender").equals(request.getParameter("type"))) {
-			DataForStat stat = new DataForStat();
 			out.print(stat.getGenderNums());
-		} else {
-			out.print("20 30 21 25");
+		} else if("skills".equals(request.getParameter("type"))) {
+			out.print(stat.getSkillsStat());
 		}
 	}
 

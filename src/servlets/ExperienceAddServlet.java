@@ -14,16 +14,16 @@ import backClasses.DataForPerson;
 import backClasses.Person;
 
 /**
- * Servlet implementation class ExperienceUpdateServlet
+ * Servlet implementation class ExperienceAddServlet
  */
-@WebServlet("/ExperienceUpdateServlet")
-public class ExperienceUpdateServlet extends HttpServlet {
+@WebServlet("/ExperienceAddServlet")
+public class ExperienceAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ExperienceUpdateServlet() {
+    public ExperienceAddServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,35 +45,29 @@ public class ExperienceUpdateServlet extends HttpServlet {
 			return;
 		}
 		DataForPerson data=new DataForPerson();
-		int expId=Integer.parseInt(request.getParameter("exp_id"));
+		String comName=request.getParameter("company_name");
+		String posName=request.getParameter("postition_name");
+		Person p=(Person) request.getSession().getAttribute("person");
+		int persId=Integer.parseInt(p.getId());
 		String dateStart=request.getParameter("start_date");
 		String dateEnd=request.getParameter("end_date");
 		Date dStart=null;
 		Date eDate=null;
 		String requestType=request.getParameter("SUBMIT");
-		if(dateStart!=null && dateStart.length()==10 && !requestType.equals("delete")){
-			int year=Integer.parseInt(dateStart.substring(0,4));
-			int day=Integer.parseInt(dateStart.substring(8));
-			int month=Integer.parseInt(dateStart.substring(5,7));
-			dStart=new GregorianCalendar(year, month-1, day).getTime();
-		}else if(!requestType.equals("delete")) {
-			response.sendRedirect("experienceUpdate.jsp");
-			return;
-		}	
-		
+		int year=Integer.parseInt(dateStart.substring(0,4));
+		int day=Integer.parseInt(dateStart.substring(8));
+		int month=Integer.parseInt(dateStart.substring(5,7));
+		dStart=new GregorianCalendar(year, month-1, day).getTime();	
 		if(dateEnd!=null && dateEnd.length()==10){
-			int year=Integer.parseInt(dateEnd.substring(0,4));
-			int day=Integer.parseInt(dateEnd.substring(8));
-			int month=Integer.parseInt(dateEnd.substring(5,7));
-			eDate=new GregorianCalendar(year, month-1, day).getTime();
+			int y=Integer.parseInt(dateEnd.substring(0,4));
+			int d=Integer.parseInt(dateEnd.substring(8));
+			int m=Integer.parseInt(dateEnd.substring(5,7));
+			eDate=new GregorianCalendar(y, m-1, d).getTime();
 		}
+		data.addExperience(persId,comName,posName,dStart,eDate);
 		
-		if(requestType.equals("change")){
-			data.changeExperience(expId,dStart,eDate);
-		}else{
-			data.deleteExp(expId);
-		}	
 		response.sendRedirect("experienceUpdate.jsp");
+		
 		
 	}
 
