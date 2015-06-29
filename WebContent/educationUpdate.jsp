@@ -28,6 +28,8 @@
 		ArrayList<Education> edu=null;
 		Person p=null;
 		ArrayList<String> gradTypes=null;
+		ArrayList<String> universities=null;
+		ArrayList<String> faculties=null;
 			if(request.getSession(false)!=null && session.getAttribute("email")!=null && session.getAttribute("person")!=null){
 				user=(String)session.getAttribute("email");
 				first_name=(String)session.getAttribute("first_name");
@@ -35,6 +37,8 @@
 				p=(Person)session.getAttribute("person");
 				DataForPerson data=new DataForPerson();
 				edu=data.getPersonEducation(Integer.parseInt(p.getId())).getEduList();
+				universities=data.getUniversityNames();
+				faculties=data.getFacultyNames();
 			}else{
    			 	response.sendRedirect("homePage.jsp");
    			 	return;
@@ -123,9 +127,61 @@
 							</button> 
 						</td>
 						
-					</tr>
+					</tr> 
 					</form>
 				<%} %>
+				
+				<tr>
+					<td> Choose Your Education Parameteres And Click "+" to  add </td>
+				</tr>
+				<tr>
+					<form action="EducationAddServlet" method="post">
+						<td>
+							<select name="university" id="university" class="form-control">
+								<option selected="selected" disabled="disabled">University </option>
+								<%for(int i=0;i<universities.size();i++){ %>
+									<option value="<%=universities.get(i)%>"> <%=universities.get(i)%></option>
+								<%} %>
+							</select>
+						</td>
+						
+						<td>
+							<select name="faculty" id="faculty" class="form-control">
+								<option selected="selected" disabled="disabled">Faculty </option>
+								<%for(int i=0;i<faculties.size();i++){ %>
+									<option value="<%=faculties.get(i)%>"><%=faculties.get(i) %> </option>
+								<%} %>
+							</select>	
+						</td>
+						
+						<td>
+							<select name="year" id="year" class="form-control">
+								<option selected="selected" disabled="disabled">Year </option>
+								<%for(int j=1940;j<2030;j++){ %>	
+								 	 <option value=<%=j %>><%=j%></option>
+								<%}%>
+							</select>
+						</td>
+						
+						<td>
+							<select name="grad_type" id="grad_type" class="form-control">
+									<option selected="selected" disabled="disabled">Type </option>
+									<option value="საშუალო">საშუალო</option>
+									<option value="ბაკალავრი">ბაკალავრი</option>	
+									<option value="მაგისტრატურა">მაგისტრატურა</option>
+									<option value="დოქტორი">დოქტორი</option>
+							</select>
+						
+						</td>
+					
+						<td>
+							<button type="submit"  name="SUBMIT" value="add" style="background-color: transparent;border-color: transparent ;">
+								<span class="glyphicon glyphicon-plus"></span>
+							</button> 
+						</td>
+					</form>
+				
+				</tr>
 		</tbody>
 
 </table>
