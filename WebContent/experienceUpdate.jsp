@@ -71,39 +71,67 @@
 				<form action="ExperienceUpdateServlet" method="post">
 				<%cur=exp.next(); %>
 				<tr>
-					<th><%=cur.getCompName()%></th>
-					<th><%=cur.getPosition() %></th>
-					<th>
-					   <input class="form-control" placeholder="date" name="start_date" type="date" value=<%=cur.getStartDate()%>>
-					</th>
-					<th>
+					<td><%=cur.getCompName()%></td>
+					<td><%=cur.getPosition() %></td>
+					<td>
+					   <input class="form-control" placeholder="date" name="start_date" type="date" value=<%=cur.getStartDate()%> required="required">
+					</td>
+					<td>
 						<%if(cur.getEndDate()!=null){ %>
-					   <input class="form-control" placeholder="date" name="start_date" type="date" value=<%=cur.getEndDate()%>>
+					   <input class="form-control" placeholder="date" name="end_date" type="date" value=<%=cur.getEndDate()%>>
 						<%}else {%>
-					   <input class="form-control" placeholder="date" name="start_date" type="date" >					
+					   <input class="form-control" placeholder="date" name="end_date" type="date" >					
 						<%} %>
-					</th>
+					</td>
 					
-					<th> 
-						<input type="hidden" name="exp_id" value=<%=cur.getId() %>>						
+					<td> 
+						<input type="hidden" name="exp_id" value=<%=cur.getId() %>>		
+						<input type="hidden" name="company_name" value=<%=cur.getCompName() %>>
+						<input type="hidden" name="pos_name" value=<%=cur.getPosition() %>>				
 						<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-ok"></span>
 						</button> 
-					</th>
+					</td>
 					
-					<th>
-					<th> 
+					<td> 
 						<input type="hidden" name="exp_id" value=<%=cur.getId() %>>	
 						<input type="hidden" name="company_name" value=<%=cur.getCompName() %>>
 						<input type="hidden" name="pos_name" value=<%=cur.getPosition() %>>							
 						<button type="submit" name="SUBMIT" value="delete" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-remove"></span>
 						</button> 
-					</th>
-					</th>
+					</td>
+					
 				</tr>
 			</form>	
         	<% }%>
+        	
+        	<tr>
+        	<td> Enter Experience Properties and Click "+" to add</td>
+        	</tr>
+        	<form action="ExperienceAddServlet" method="post">
+        	<tr>
+        		<td>
+        			<input type="text" required="required" class="form_control" name="company_name" placeholder="Company name">
+        		</td>
+        		<td>
+        			<input type="text" required="required" class="form_control" name="postition_name" placeholder="Position Name">
+        		</td>
+				
+				<td>						   
+					<input class="form-control" placeholder="Start Date" name="start_date" type="date"  required="required">	
+				</td>        		
+				<td> 
+					<input class="form-control" placeholder="End Date" name="end_date" type="date" >					
+				</td>
+				<td>
+					<button type="submit"  name="SUBMIT" value="add" style="background-color: transparent;border-color: transparent ;">
+						<span class="glyphicon glyphicon-plus"></span>
+					</button> 
+				</td>
+        	</tr>
+        	</form>
+        		
 </table>
 
 
