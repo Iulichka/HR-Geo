@@ -93,7 +93,9 @@
 					
 					<th>
 					<th> 
-						<input type="hidden" name="exp_id" value=<%=cur.getId() %>>						
+						<input type="hidden" name="exp_id" value=<%=cur.getId() %>>	
+						<input type="hidden" name="company_name" value=<%=cur.getCompName() %>>
+						<input type="hidden" name="pos_name" value=<%=cur.getPosition() %>>							
 						<button type="submit" name="SUBMIT" value="delete" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-remove"></span>
 						</button> 
