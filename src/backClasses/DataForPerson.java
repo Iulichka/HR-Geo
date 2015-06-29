@@ -568,6 +568,70 @@ public void addEducation(int persId, String uni, String faculty, int year,
 		e.printStackTrace();
 	}
 }
+public void changeExperience(int expId,java.util.Date dStart, java.util.Date dEnd) {
+	Statement stm;
+	Date sDate=new Date(dStart.getYear(), dStart.getMonth(), dStart.getDate());
+	Date eDate=null;
+	if(dEnd!=null){
+	 eDate=new Date(dEnd.getYear(),dEnd.getMonth(),dEnd.getDate());
+	}
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prst=con.prepareStatement("update working_experience set job_start_date= ? ,"
+				+ " job_end_date= ? where working_experience_id = ? ;");
+		prst.setDate(1, sDate);
+		prst.setDate(2, eDate);
+		prst.setInt(3, expId);
+		prst.executeUpdate();
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+}
+public void deleteExp(int expId) {
+	Statement stm;
+
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prst=con.prepareStatement("delete from working_experience "
+				+ "where working_experience_id = ? ;");
+		prst.setInt(1, expId);
+		prst.executeUpdate();
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+}
+public void addExperience(int persId, String comName, String posName,
+		java.util.Date dStart, java.util.Date dEnd) {
+	Statement stm;
+	Date sDate=new Date(dStart.getYear(), dStart.getMonth(), dStart.getDate());
+	Date eDate=null;
+	if(dEnd!=null){
+	 eDate=new Date(dEnd.getYear(),dEnd.getMonth(),dEnd.getDate());
+	}
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prst=con.prepareStatement("insert into working_experience "
+				+ "(persons_id,company_name,position,job_start_date,job_end_date)"
+				+ " values"
+				+ "(?,?,?,?,?) ;");
+		prst.setInt(1, persId);
+		prst.setString(2, comName);
+		prst.setString(3, posName);
+		prst.setDate(4, sDate);
+		prst.setDate(5, eDate);
+		prst.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	
+}
 
 
 
