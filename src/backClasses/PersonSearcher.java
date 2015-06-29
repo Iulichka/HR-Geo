@@ -49,6 +49,8 @@ public class PersonSearcher {
 		}else{
 			selectWithSkills=getAllIdsString("pi3", "ps");
 		}
+		String selectWithAge=getAgeSelectString(personAge);
+		String selectWithExp=
 		try {
 			stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
@@ -67,6 +69,9 @@ public class PersonSearcher {
 		return null;
 	}
 	
+	private String getAgeSelectString(int personAge) {
+		return "select  prs.persons_id pi4 from persons prs where TIMESTAMPDIFF(YEAR,prs.person_birth_date,curdate())>"+personAge+";";
+	}
 	private String getSkillSelectString(ArrayList<Integer> chosenSkillsIds) {
 		String start="select ps.persons_id as pi3,count(*) c3 from person_skills ps where ";
 		String middle="";
