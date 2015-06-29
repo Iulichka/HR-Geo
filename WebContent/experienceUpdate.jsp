@@ -1,3 +1,4 @@
+<%@page import="java.util.Iterator"%>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html> 
 <html lang="ka">
@@ -26,12 +27,15 @@
 		String first_name = null;
 		String last_name = null;
 		Person p=null;
+		Experience cur=null;
+		Iterator<Experience> exp=null;
 			if(request.getSession(false)!=null && session.getAttribute("email")!=null && session.getAttribute("person")!=null){
 				user=(String)session.getAttribute("email");
 				first_name=(String)session.getAttribute("first_name");
 				last_name=(String)session.getAttribute("last_name");
+				DataForPerson data=new DataForPerson();
 				p=(Person)session.getAttribute("person");
-			
+				exp=data.getPersonExperience(Integer.parseInt(p.getId())).getIterator();
 			}else{
    			 	response.sendRedirect("homePage.jsp");
    			 	return;
@@ -61,6 +65,44 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+ <table class="table table-condensed">
+<thead><tr><th>Company</th><th>Position</th><th>Start Date</th><th>End Date</th><th>Edit</th><th>Delete</th></thead>
+			<%while(exp.hasNext()) {%>
+				<form action="ExperienceUpdateServlet" method="post">
+				<%cur=exp.next(); %>
+				<tr>
+					<th><%=cur.getCompName()%></th>
+					<th><%=cur.getPosition() %></th>
+					<th>
+					   <input class="form-control" placeholder="date" name="start_date" type="date" value=<%=cur.getStartDate()%>>
+					</th>
+					<th>
+						<%if(cur.getEndDate()!=null){ %>
+					   <input class="form-control" placeholder="date" name="start_date" type="date" value=<%=cur.getEndDate()%>>
+						<%}else {%>
+					   <input class="form-control" placeholder="date" name="start_date" type="date" >					
+						<%} %>
+					</th>
+					
+					<th> 
+						<input type="hidden" name="exp_id" value=<%=cur.getId() %>>						
+						<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
+						<span class="glyphicon glyphicon-ok"></span>
+						</button> 
+					</th>
+					
+					<th>
+					<th> 
+						<input type="hidden" name="exp_id" value=<%=cur.getId() %>>						
+						<button type="submit" name="SUBMIT" value="delete" style="background-color: transparent;border-color: transparent ;">
+						<span class="glyphicon glyphicon-remove"></span>
+						</button> 
+					</th>
+					</th>
+				</tr>
+			</form>	
+        	<% }%>
+</table>
 
 
 </body>
