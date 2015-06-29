@@ -307,6 +307,8 @@ public void addCV(String idST, FileInputStream in) {
 		id = Integer.parseInt(idST);
 		stm=con.createStatement();
 		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		stm.executeQuery("SET SQL_SAFE_UPDATES = 0;");
+		stm.executeUpdate("delete from person_cv where persons_id = "+idST+";");
 		java.sql.PreparedStatement prs = con.prepareStatement("insert into person_cv (person_CV, persons_id) values(?,?)");
 		prs.setBlob(1, in);
 		prs.setInt(2, id);
@@ -648,6 +650,23 @@ public void addExperience(int persId, String comName, String posName,
 	}
 	
 	
+}
+public byte[] getCV(String id) {
+	byte[] result = null;
+	Statement stm;
+	try {
+		//id = Integer.parseInt(idST);
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		ResultSet rSet = stm.executeQuery("select pc.person_cv from person_cv pc where pc.persons_id = "+id);
+		rSet.next();
+		Blob blob = rSet.getBlob(1);
+		result =  blob.getBytes(1, (int) blob.length());
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return result;
 }
 
 

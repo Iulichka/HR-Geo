@@ -57,8 +57,12 @@ ArrayList<String> docs =(ArrayList<String>) request.getAttribute("docs");
 </div>
 </div>
 
+<div id="cv" style="position: absolute; padding-left: 60%; padding-top: 20%" >
+<h3>CV</h3>
+<a href="GetDocument?id=<%= per.getId()%>">CV download</a>
+</div>
 
-<div id="docs" style="position: absolute; padding-left: 60%; padding-top: 10%">
+<div id="docs" style="position: absolute; padding-left: 60%; margin-top: 30%">
 <h3 >Documents</h3>
 <%for(int i=0; i<docs.size(); i++) { 
 	String document = docs.get(i);

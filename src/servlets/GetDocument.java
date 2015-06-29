@@ -33,7 +33,12 @@ public class GetDocument extends HttpServlet {
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		DataForPerson dp = new DataForPerson();
-		byte [] file = dp.getDocument(id,name);
+		byte [] file;
+		if (name  != null) {
+			file = dp.getDocument(id,name);
+		} else {
+			file = dp.getCV(id);
+		}
 		request.getSession().setAttribute("file", file);
 		RequestDispatcher rd=request.getRequestDispatcher("GetFile?type=application/pdf");
 		rd.forward(request, response);
