@@ -1,3 +1,5 @@
+drop database if exists webproject;
+create database webproject;
 use webproject;
 
 create table persons(
