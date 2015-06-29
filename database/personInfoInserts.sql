@@ -1,18 +1,13 @@
 use webproject;
-insert into company_info 
-(company_name, company_email, company_info, company_password, company_rating, voters_number, company_telephone, company_site)
-values ('სოკარი', 'socar@yahoo.com', 'კავკასიაში პირველი ნავთობკომპანია', '123456', 6,0,'555 77 88 99', 'www.gulf.com'),
-('გალფი', 'gulf@yahoo.com', 'კავკასიაში მეორე ნავთობკომპანია', '123456', 6,0, '555 77 88 99', 'www.gulf.com'),
-('ვისოლი', 'oil@yahoo.com', 'ძაან მაგარი კომპანია', '123456', 5,0, '555 77 88 99', 'www.wissol.ge'),
-('გლდანის შაურმა', 'shaurma@yahoo.com', 'უგემრიელესი შაურამა მთელს საქართველოში', '123456', 4,0, '555 77 88 99', 'www.shaurma.ge'),
-('KPMG', 'KPMG@yahoo.com', 'big four', '123456', 2,0, '555 77 88 99', 'www.kpmg.com');
-
 insert into persons
 (person_name,person_surname,person_password,person_id_number,person_birth_date
 ,person_email,person_sex,person_education,person_info)
 values
 ('zura','zuradze','zura','01024070112','1994-01-01','zura@gmail.com','MALE','არავითარი','ტიპიაა'),
-('dato','datodze','dato','01024070111','1994-01-01','dato@gmail.com','MALE','არავითარი','ტიპიაა');
+('dato','datodze','dato','01024070111','1995-01-01','dato@gmail.com','MALE','არავითარი','ტიპიაა'),
+('არისტოფანე','ანდამატი','aristo','01024070178','1984-01-01','aristo@gmail.com','MALE','არავითარი','ტიპიაა'),
+('მაყვალა','ამილახვარი','mayvala','01024070145','1993-01-01','mayvala@gmail.com','FEMALE','არავითარი','ტიპიაა');
+
 
 
 
@@ -31,8 +26,21 @@ insert into skills
 (skill_name,searched_number,category_id)
 values
 ('Java',0,1),
+('PHP',0,1),
+('MySQL',0,1),
+('Javascript',0,1),
+('Perl',0,1),
+('Oracle',0,1),
+('C#',0,1),
+('C',0,1),
+('C++',0,1),
 ('Word',0,2),
-('Russian',0,3);
+('Excel',0,2),
+('Powerpoint',0,2),
+('Russian',0,3),
+('French',0,3),
+('Korean',0,3),
+('English',0,3);
 
 -- skill level insert 
 
@@ -50,7 +58,12 @@ values
 insert into  person_skills
 (skills_id,persons_id,skill_level_id)
 values
-(1,1,2);
+(1,1,2),
+(2,1,3),
+(4,1,1),
+(1,2,2),
+(2,2,2);
+
 
 
 -- insert into facultys
@@ -59,7 +72,11 @@ insert into faculty
 values
 ('ბიზნესის ადმინისტრირება'),
 ('პროგრამირება'),
-('ფიზიკა');
+('ფიზიკა'),
+('ქიმია'),
+('ბიოლოგია'),
+('მათემატიკა'),
+('ისტორია');
 
 
 --  inserts into university
@@ -67,13 +84,19 @@ insert into university
 (university_name)
 values
 ('თავისუფალი უნივერსიტეტი'),
-('ჯავახიშვილის უნივერსიტეტი');
+('ჯავახიშვილის უნივერსიტეტი'),
+('საქართველოს უნივერსიტეტი'),
+('თბილისის ტექნიკური უნივერსიტეტი'),
+('საქართველოს ეროოვნული უნივერსიტეტი');
 
 -- insert into person_university
 insert into person_university
 (persons_id,university_id,faculty_id,graduation_year,graduation_type)
 values
-(1,1,2,2009,'დოქტორი');
+(1,1,1,2009,'მაგისტრატურა'),
+(2,2,2,2010,'ბაკალავრი'),
+(3,1,4,2012,'მაგისტრატურა'),
+(1,1,2,2011,'დოქტორი');
 
 
 
@@ -87,12 +110,17 @@ values
 insert into offer
 (offer_info,offer_name,offer_start_date,offer_end_date,company_id)
 values
-('PHP Programmer Vacancy','PHP Programmer','2015-07-20','2015-08-10',3),
-('Java pto','java','2015-07-20','2015-08-10',3);
+('Java','java programmer','2015-07-20','2015-08-10',1),
+('C# Programmer','c# programmer','2015-07-20','2015-08-10',3),
+('Translator','translator from french','2015-07-20','2015-08-10',4),
+('PHP Programmer','php programmer','2015-07-20','2015-08-10',2);
 
 
 insert into persons_offer
 (offer_id,persons_id,offer_state,email_state)
 values
-(1,2,'danger','visible'),
-(2,2,'active','visible');
+(3,2,'active','visible'),
+(2,2,'active','visible'),
+(1,2,'active','visible'),
+(3,1,'success','visible'),
+(1,1,'warning','visible');

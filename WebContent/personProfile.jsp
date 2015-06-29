@@ -121,6 +121,7 @@
 	<% while(personOffers.hasNext()) {%>
 		<%o=personOffers.getOffer(); %>
 		<tr class=<%=o.getStatus() %>>
+         <form action ="OfferAnswer" method="post">
          <td><%=o.getName() %></td>
          <td><%=o.getCompany().getName() %></td>
          <td><%=o.getStartDate() %></td>
@@ -128,33 +129,42 @@
          <td><%=o.getStatus() %></td>
          <%if(o.getStatus().length()==6&&o.getStatus().charAt(0)!='d'){ %>
          <td class="center">
-         <a class="btn btn-primary" href="#">
+         <input type="hidden" name="offer_id" value="<%=o.getOfferID()%>">
+         <button type="submit"name="SUBMIT" class="btn btn-primary" value="page" >
          <i class=" glyphicon glyphicon-off icon-white"></i>
          Offer Page
-         </a>
-		<a class="btn btn-success" href="#">
+         </button>
+         <input type="hidden" name="offer_id" value="<%=o.getOfferID()%>">
+		<button type="submit" name="SUBMIT" class="btn btn-success" value="success">
 		<i class="glyphicon glyphicon-zoom-in icon-white"></i>
 			Accept
-			</a>
-			<a class="btn btn-info" href="#">
+		</button>
+		<input type="hidden" name="offer_id" value="<%=o.getOfferID()%>">
+		<button type="submit" name="SUBMIT" class="btn btn-info" value="warning">
 		<i class="glyphicon glyphicon-edit icon-white"></i>
 			Maybe
-			</a>
-		<a class="btn btn-danger" href="#">
+		</button>
+		<input type="hidden" name="offer_id" value="<%=o.getOfferID()%>">
+		<button type="submit" name="SUBMIT" class="btn btn-danger" value="danger">
 		<i class="glyphicon glyphicon-trash icon-white"></i>
 			Reject
-		</a>
+		</button>
 		</td>
+		
      <%
          }else{ %>
          	<td class="center">
-         <a class="btn btn-primary" href="#">
+         	<input type="hidden" name="offer_id" value="<%=o.getOfferID()%>">
+         <button type="submit" name="SUBMIT" class="btn btn-primary" value="page">
          <i class=" glyphicon glyphicon-off icon-white"></i>
          Offer Page
-         </a>
-         
-        <% 	 
-         }
+         </button>
+         </td>
+      <% 	 
+         } %>
+         </form>
+         </tr>
+     <% 
      } %>            
  </tbody>
 </table>

@@ -50,7 +50,7 @@ public class PersonSearcher {
 			selectWithSkills=getAllIdsString("pi3", "ps");
 		}
 		String selectWithAge=getAgeSelectString(personAge);
-		String selectWithExp=
+		
 		try {
 			stm = con.createStatement();
 			stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);

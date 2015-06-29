@@ -394,7 +394,19 @@ public class DBSelect {
 			e.printStackTrace();
 		}
 	}
-	
+	public void changeOfferStatus(int personID,int offerID,String status){
+		Connection con=DataBaseInfo.getConnection();
+		Statement stmt;
+		try {
+			stmt = con.createStatement();
+			 String sql = "UPDATE persons_offer SET offer_state = '"+status+"' WHERE offer_id = "+offerID
+					 +" AND persons_id = "+personID+";";	 		
+			 stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 }
