@@ -35,7 +35,9 @@ public class CompanyUpdateServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		HttpSession session=request.getSession();
 		String currentEmail=(String)session.getAttribute("email");
 		String updatedEmail=(String)request.getParameter("email");

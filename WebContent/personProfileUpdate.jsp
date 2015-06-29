@@ -1,6 +1,3 @@
-
-<%@ page language="java" contentType="text/html" %>
-
 <!doctype html>
 <html>
 <head >
