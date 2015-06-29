@@ -80,13 +80,13 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <div class="item active">
-                <div class="fill" style="background-image:url(http://burnish.co.in/images/career/pilot-web-banner.png);"></div>
+                <div class="fill" style="background-image:url(pagePictures/home1.png);"></div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url(http://accentappreciation.com.au/images/slide5.jpg);"></div>
+                <div class="fill" style="background-image:url(pagePictures/home2.jpg);"></div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>
+                <div class="fill" style="background-image:url(pagePictures/home3.jpg);"></div>
             </div>
         </div>
 
