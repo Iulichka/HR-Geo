@@ -10,19 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import backClasses.DataForPerson;
 import backClasses.Person;
-import backClasses.PersonEducation;
 
 /**
- * Servlet implementation class EducationAddServlet
+ * Servlet implementation class ExperienceUpdateServlet
  */
-@WebServlet("/EducationAddServlet")
-public class EducationAddServlet extends HttpServlet {
+@WebServlet("/ExperienceUpdateServlet")
+public class ExperienceUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EducationAddServlet() {
+    public ExperienceUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,21 +42,13 @@ public class EducationAddServlet extends HttpServlet {
 			response.sendRedirect("homepage.jsp");
 		}
 		DataForPerson data=new DataForPerson();
-		Person p=(Person)request.getSession().getAttribute("person");
-		int persId=Integer.parseInt(p.getId());
-		String uni=request.getParameter("university");
-		String faculty=request.getParameter("faculty");
-		int year=0;
-		try{
-			year=Integer.parseInt(request.getParameter("year"));
-		}catch (Exception e){
-			response.sendRedirect("educationUpdate.jsp");
-			return;
-		}
-		String gradType=request.getParameter("grad_type");
-		data.addEducation(persId,uni,faculty,year,gradType);
+		int expId=Integer.parseInt(request.getParameter("exp_id"));
+		Person p=(Person) request.getSession().getAttribute("person");
+		int personId=Integer.parseInt(p.getId());
+		String comName=request.getParameter("company_name");
+		String posName=request.getParameter("pos_name");
 		
-		response.sendRedirect("educationUpdate.jsp");
+		
 	}
 
 }
