@@ -11,6 +11,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <link id="bs-css" href="css/bootstrap-cerulean.min.css" rel="stylesheet">
+
 <head >
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -76,7 +77,7 @@
                     <p><strong>Skills: </strong>
                     <%for(int i=0;i<skills.getPersonSkills().size();i++){ %>
                     	<%if(skills!=null){ %>                   	
-                    	<a href="#" title=<%=skills.getPersonSkills().get(i).getLevel() %> data-toggle="tooltip" class="btn btn-warning btn-xs"><%=skills.getPersonSkills().get(i).getName() %></a>            		 
+                    	<a href="#" title=<%=skills.getPersonSkills().get(i).getLevel() %> data-toggle="tooltip" data-placement = "left" class="btn btn-warning btn-xs"><%=skills.getPersonSkills().get(i).getName() %></a>            		 
                 		<%} %>
                     <%} %>
                     

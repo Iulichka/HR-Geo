@@ -80,13 +80,13 @@
             </div>            
             <div class="col-xs-12 divider text-center">
                 <div class="col-xs-12 col-sm-4 emphasis">                                     
-                    <a href="companyProfileUpdate.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Profile</a> 
+                    <a href="companyProfileUpdate.jsp" class="btn btn-primary btn-block" role="button">Update Profile</a> 
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis">                 
-                    <a href="makeOffer.jsp" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Make Offer</a> 
+                    <a href="makeOffer.jsp" class="btn btn-success btn-block" role="button">Make Offer</a> 
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis">                 
-                    <a href="companyPhotoes.jsp?mail=<%=comp.getMail() %>" class="btn btn-success btn-block" role="button"><span class="fa fa-plus-circle"></span>Company Photoes</a>
+                    <a href="companyPhotoes.jsp?mail=<%=comp.getMail() %>" class="btn btn-info btn-block" role="button">Company Photoes</a>
                 </div>
             </div>
     	 </div>                 
