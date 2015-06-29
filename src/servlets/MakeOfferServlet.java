@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import backClasses.DataForPerson;
+import backClasses.PersonSearcher;
 
 /**
  * Servlet implementation class MakeOfferServlet
@@ -43,8 +44,8 @@ public class MakeOfferServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String [] selectedSkill=(String[])request.getParameterValues("skills");
-		String  selectedUniversity=(String)request.getParameter("university");
-		String  selectedFaculty=(String)request.getParameter("faculty");
+		String []  selectedUniversity=(String[])request.getParameterValues("university");
+		String [] selectedFaculty=(String[])request.getParameterValues("faculty");
 		String age=(String)request.getParameter("age");
 		String experience=(String)request.getParameter("experience");
 		boolean uniSearch=true;
@@ -52,14 +53,12 @@ public class MakeOfferServlet extends HttpServlet {
 		boolean skillSearch=true;
 		boolean ageSearch=true;
 		boolean experienceSearch=true;
-		String university=null;
-		String faculty=null;
 		int personAge=0;
 		int workingExperience=0;
-		if(Integer.parseInt(selectedUniversity)==0){
+		if(selectedUniversity.length<1){
 			uniSearch=false;
 		}
-		if(Integer.parseInt(selectedFaculty)==0){
+		if(selectedFaculty.length<1){
 			facSearch=false;
 		}
 		if(selectedSkill.length<1){
@@ -71,20 +70,39 @@ public class MakeOfferServlet extends HttpServlet {
 		if(experience.length()==0){
 			experienceSearch=false;
 		}
-		DataForPerson p= new DataForPerson();
-		ArrayList<String> chosenSkills = new ArrayList<String>();
-		ArrayList<String> skillNames =p.getSkillNames();
-		ArrayList<String> universityNames =p.getUniversityNames();
-		ArrayList<String> facultyNames =p.getFacultyNames();
+		PersonSearcher searcher=new PersonSearcher();
+		ArrayList<Integer> chosenSkillsIds = new ArrayList<Integer>();
+		ArrayList<Integer> chosenUnisIds=new ArrayList<Integer>();
+		ArrayList<Integer> chosenFacultyIds=new ArrayList<Integer>();
+		
 		if(uniSearch){
-			university = universityNames.get(Integer.parseInt(selectedUniversity)-1);
+			for(int i=0;i<selectedUniversity.length;i++){
+				try{
+					int id=Integer.parseInt(selectedUniversity[i]);
+				chosenUnisIds.add(id);
+				}catch(Exception e){
+					e.getMessage();
+				}
+			}
 		}
 		if(facSearch){
-			faculty = facultyNames.get(Integer.parseInt(selectedFaculty)-1);
+			for(int i=0;i<selectedFaculty.length;i++){
+				try{
+					int id=Integer.parseInt(selectedFaculty[i]);
+				chosenFacultyIds.add(id);
+				}catch(Exception e){
+					e.getMessage();
+				}
+			}
 		}
 		if(skillSearch){
 			for(int i=0;i<selectedSkill.length;i++){
-				chosenSkills.add(skillNames.get(Integer.parseInt(selectedSkill[i])-1));
+				try{
+					int id=Integer.parseInt(selectedSkill[i]);
+				chosenSkillsIds.add(id);
+				}catch(Exception e){
+					e.getMessage();
+				}
 			}
 		}
 		if(ageSearch){
@@ -93,6 +111,10 @@ public class MakeOfferServlet extends HttpServlet {
 		if(experienceSearch){
 			workingExperience=Integer.parseInt(experience);
 		}
+		ArrayList<Integer> personIds=searcher.getPersons(chosenUnisIds,chosenFacultyIds,chosenSkillsIds,personAge,workingExperience);
+		
+		
+		
 	}
 
 }
