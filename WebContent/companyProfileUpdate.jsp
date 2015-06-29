@@ -63,7 +63,7 @@
     <!-- left column -->
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="text-center">
-        <img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="" class="img-circle img-responsive" class="avatar img-circle img-thumbnail" alt="avatar">
+        <img src="CompImage?mail=<%=companyEmail%>&type=image/jpeg&num=1" alt="" class="img-circle img-responsive" class="avatar img-circle img-thumbnail" alt="avatar">
      
       </div>
     </div>

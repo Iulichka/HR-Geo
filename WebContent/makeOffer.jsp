@@ -64,70 +64,67 @@
 <form action="MakeOfferServlet" method="post" class="form-horizontal" role="form">
 <div class="container">
 	<div class="row">
+	<div class="form-group">
 		<div class="col-md-12">
-            <div class="input-group" id="adv-search">
                 <select name ="skills" class="form-control" id="tagPicker" multiple="multiple">
                 <% for (int i=0;i<skills.size();i++){ %>
-         <option value=<%=value %>><%=skills.get(i) %></option>
-          <% 
-          value++;
-          }
-          value=1;
-         %>
-        </select>  
-                <div class="input-group-btn">
-                    <div class="btn-group" role="group">
-                        <div class="dropdown dropdown-lg">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-                            <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                
-                                  <div class="form-group">
-                                    <label for="filter">University:</label>
-                                    <select name="university" class="form-control">                                   
-                                        <option value="0" selected>All Universities</option>
-                                        <% for (int k=0;k<universities.size();k++){ %>
-                                        <option value=<%=value%>><%=universities.get(k) %></option>
-                                        <% 
-         										 value++;
-          												}
-         										 value=1;
-         								%>
-                                    </select>
-                                    
+         		<option value=<%=value %>><%=skills.get(i) %></option>
+         		 <% 
+         			 value++;
+         			 }
+        			  value=1;
+        			 %>
+        		</select>  
+       		 </div>
+       	   </div>
+        
+       					<div class="form-group">
+							 <div class="col-md-12">                                                       
+                                    <select name="university" class="form-control" id="tagPicker2" multiple="multiple">                                   
+                                       <% for (int k=0;k<universities.size();k++){ %>
+         								<option value=<%=value %>><%=universities.get(k) %></option>
+         								 <% 
+         									 value++;
+         								 }
+        									  value=1;
+        								  %>
+                                    </select>                                 
                                   </div>
-                                  <div class="form-group">
-                                    <label for="contain">Faculty</label>
-                                    <select name="faculty" class="form-control">
-                                        <option value="0" selected>All Faculties</option>
-                                        <% for (int k=0;k<faculties.size();k++){ %>
-                                        <option value=<%=value%>><%=faculties.get(k)%></option>
-                                        <% 
-         										 value++;
-          												}
-         										 value=1;
-         								%>
-                                    
-                                    </select>
                                   </div>
+                                 
                                   <div class="form-group">
+                                  <div class="col-md-12">                                                       
+                                     <select name="faculty" class="form-control" id="tagPicker3" multiple="multiple">                                   
+                                       <% for (int i=0;i<faculties.size();i++){ %>
+         								<option value=<%=value %>><%=faculties.get(i) %></option>
+         								 <% 
+         									 value++;
+         								 }
+        									  value=1;
+        								  %>
+                                    </select>       
+                                  </div>
+                                  </div>
+                              
+                                  <div class="form-group">
+                                  <div class="col-md-12"> 
                                     <label for="contain">Minimum Age</label>
                                     <input class="form-control" name = "age" type="text" />
                                   </div>
+                                  </div>
                                   <div class="form-group">
+                                  <div class="col-md-12"> 
                                     <label for="contain">Working Experience</label>
                                     <input class="form-control" name = "experience" type="text" />
                                   </div>
+                                  </div>
                                   <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                                 
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                           
+                        
                     </div>
                 </div>
-            </div>
-          </div>
-        </div>
-	</div>
+            
 	</form>
 <div class="container">
     <hgroup class="mb20">
@@ -200,6 +197,30 @@
                     
       /* Select2 plugin as tagpicker */
       $("#tagPicker").select2({
+        closeOnSelect:false
+      });
+
+    }); //script         
+
+    $(document).ready(function() {});</script>
+    <script>
+    //Select2
+    $.getScript('http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.min.js',function(){
+                    
+      /* Select2 plugin as tagpicker */
+      $("#tagPicker2").select2({
+        closeOnSelect:false
+      });
+
+    }); //script         
+
+    $(document).ready(function() {});</script>
+    <script>
+    //Select2
+    $.getScript('http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.min.js',function(){
+                    
+      /* Select2 plugin as tagpicker */
+      $("#tagPicker3").select2({
         closeOnSelect:false
       });
 
