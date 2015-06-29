@@ -462,6 +462,112 @@ public void addSkill(int skillId, int skillLevelId, int persId) {
 	}
 	
 }
+public void changeEducation(int persId, String universityName,
+		String facultyName, int gradYear, String gradType) {
+	Statement stm;
+	int uniId=getUniversityID(universityName);
+	int facultyID=getFacultyId(facultyName);
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prst=con.prepareStatement("update person_university"
+				+ " set graduation_year = ? , graduation_type = ? "
+				+ "where persons_id = ? and university_id = ? and faculty_id = ?");
+		prst.setInt(1, gradYear);
+		prst.setString(2, gradType);
+		prst.setInt(3, persId);
+		prst.setInt(4, uniId);
+		prst.setInt(5, facultyID);
+		prst.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	
+}
+private int getFacultyId(String facultyName) {
+	int id=0;
+	Statement stm;
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prst=con.prepareStatement("select faculty_id from faculty "
+				+ "where faculty_name = ? ;");
+				prst.setString(1, facultyName);
+				ResultSet rst= prst.executeQuery();
+				if(rst.next()){
+					id=rst.getInt(1);
+				}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return id;
+}
+private int getUniversityID(String universityName) {
+	int id=0;
+	Statement stm;
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prst=con.prepareStatement("select university_id from university where"
+				+ " university_name = ? ;");
+				prst.setString(1, universityName);
+				
+				ResultSet rst= prst.executeQuery();
+				if(rst.next()){
+					id=rst.getInt(1);
+				}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return id;
+}
+public void deleteEducation(int persId, String universityName,
+		String facultyName) {
+	Statement stm;
+	int uniId=getUniversityID(universityName);
+	int facultyID=getFacultyId(facultyName);
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prst=con.prepareStatement("delete from person_university where "
+				+ " persons_id="+persId+" and university_id = ? and faculty_id = ? ;");
+		prst.setInt(1, uniId);
+		prst.setInt(2,facultyID);
+		prst.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+}
+public void addEducation(int persId, String uni, String faculty, int year,
+		String gradType) {
+	Statement stm;
+	int uniID=getUniversityID(uni);
+	int facultyId=getFacultyId(faculty);
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		java.sql.PreparedStatement prst=con.prepareStatement("insert into person_university (persons_id"
+				+ ",university_id,faculty_id,graduation_year,graduation_type )"
+				+ " values(?,?,?,?,?)");
+		prst.setInt(1, persId);
+		prst.setInt(2, uniID);
+		prst.setInt(3, facultyId);
+		prst.setInt(4,year);
+		prst.setString(5, gradType);
+		prst.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
 
 
 
