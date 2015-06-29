@@ -8,13 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-
-
-import backClasses.DataForComp;
-import backClasses.Person;
-
 /**
  * Servlet implementation class GetFile
  * this servlet gets "file" attribute from  session and sends it back

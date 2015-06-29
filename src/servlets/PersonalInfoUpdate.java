@@ -1,23 +1,14 @@
 package servlets;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.FieldPosition;
-import java.text.ParseException;
-import java.text.ParsePosition;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
-
 import backClasses.DBSelect;
 import backClasses.DataForPerson;
 import backClasses.Person;
@@ -48,8 +39,7 @@ public class PersonalInfoUpdate extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setCharacterEncoding("UTF-8");
-		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");		
 		if(request.getSession().getAttribute("person")==null){
 			response.sendRedirect("homepage.jsp");
 			return;

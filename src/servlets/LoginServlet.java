@@ -1,8 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import backClasses.Company;
 import backClasses.DBSelect;
 import backClasses.DataForPerson;
@@ -60,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 			    }
 			    session=request.getSession();
 			    DataForPerson data=new DataForPerson();
-			    Person p=data.getPerson(data.getPersonId(email));
+			    Person p=data.getPerson(data.getPersonId(email));			    
 			    session.setAttribute("person", p);
 				session.setAttribute("email", email);
 				session.setAttribute("first_name",p.getName() );

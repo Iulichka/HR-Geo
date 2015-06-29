@@ -7,10 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import backClasses.DataForPerson;
 import backClasses.Person;
-import backClasses.PersonEducation;
+
 
 /**
  * Servlet implementation class EducationAddServlet
