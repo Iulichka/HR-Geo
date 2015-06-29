@@ -76,9 +76,8 @@
         			 %>
         		</select>  
        		 </div>
-       	   </div>
-        
-       					<div class="form-group">
+       	   </div>       
+      					<div class="form-group">
 							 <div class="col-md-12">                                                       
                                     <select name="university" class="form-control" id="tagPicker2" multiple="multiple">                                   
                                        <% for (int k=0;k<universities.size();k++){ %>
