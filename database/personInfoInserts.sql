@@ -90,13 +90,9 @@ values
 ('PHP Programmer Vacancy','PHP Programmer','2015-07-20','2015-08-10',3),
 ('Java pto','java','2015-07-20','2015-08-10',3);
 
-use  webproject;
 
 insert into persons_offer
 (offer_id,persons_id,offer_state,email_state)
-
 values
-(1,1,'warning','visible'),
-(1,2,'warning','visible'),
-(2,2,'warning','visible'),
-(2,2,'warning','visible');
+(1,2,'danger','visible'),
+(2,2,'active','visible');

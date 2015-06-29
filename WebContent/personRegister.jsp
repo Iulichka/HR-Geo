@@ -81,18 +81,12 @@
 				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
 			</div>
 			
-			 <div class="form-group">
-       				 <label for="birthday" class="col-xs-3 col-sm-2 control-label">Birthday</label>
-        				<div class="col-xs-3">
-         				   <input type="text" name="year" class="form-control" placeholder="year"/>
-        				</div>
-       				 <div class="col-xs-3">
-         				   <input type="text" name="month"  class="form-control" placeholder="month"/>
-       				 </div>
-       					 <div class="col-xs-3">
-         				   <input type="text" name="day" class="form-control" placeholder="day"/>
-       					 </div>    
-   					 </div>	
+			  <div class="form-group">
+          <label class="col-lg-3 control-label">Birth Date:</label>
+          <div class="col-lg-8">
+            <input class="form-control" placeholder="date" name="date" type="date">
+          </div>
+        </div>
    					 
 			<label class="radio-inline">
  			 	<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="MALE" checked>MALE

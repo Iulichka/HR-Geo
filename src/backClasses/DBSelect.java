@@ -1,6 +1,7 @@
 package backClasses;
 import java.sql.Connection;
 import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -246,6 +247,26 @@ public class DBSelect {
 			Company company=null;
 			company=getCompany(rs.getInt("company_id"));
 			offer=new Offer(rs.getString("offer_name"), rs.getString("offer_info"), rs.getDate("offer_end_date"), rs.getDate("offer_start_date"), company,rs.getInt("offer_id"),null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return offer;
+	}
+	
+	public Offer getPersonOffer(int offerID,int personID){
+		Connection con=DataBaseInfo.getConnection();
+		Statement stmt;
+		Offer offer=null;
+		try {
+			DBSelect select=new DBSelect();
+			offer=select.getOffer(offerID);
+			stmt = con.createStatement();
+			String query = "SELECT * FROM persons_offer "
+					+ "WHERE " + "offer_id = '" + offerID + "'+AND persons_id= '"+personID+"';";
+			ResultSet rs=stmt.executeQuery(query);
+			offer.setSatus(rs.getString("offer_status"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

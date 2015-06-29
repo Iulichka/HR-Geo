@@ -60,8 +60,8 @@ public class PersonRegisterServlet extends HttpServlet {
 		DBSelect selects= new DBSelect();
 		try {
 			boolean contains=selects.searchPerson(email,password);			
-			if(contains==true||password==null
-					||password_confirm==null||!password.equals(password_confirm)||surname==null||email==null||first_name==null){
+			if(contains==true||password.length()==0
+					||password_confirm.length()==0||!password.equals(password_confirm)||surname.length()==0||email.length()==0|first_name.length()==0){
 				RequestDispatcher rd=request.getRequestDispatcher("personRegister.jsp");
 				rd.forward(request, response);
 			}else{

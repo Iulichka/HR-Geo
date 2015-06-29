@@ -12,15 +12,27 @@
       google.setOnLoadCallback(drawStuff);
 
       function drawStuff() {
-    	  var data = google.visualization.arrayToDataTable([
-    	    ['Genre', 'Fantasy & Sci Fi','skill', { role: 'annotation' } ],
-    	    ['2010', 10, 24,''],
-    	    ['2020', 16, 22, ''],
-    	    ['2030', 28, 19, '']
+    	  var xmlht1 = new XMLHttpRequest();
+  		xmlht1.open("GET", "ChartData?type=skills", false);
+  		xmlht1.send();
+  		var resp1 = xmlht1.responseText;
+  		var arr1 = resp1.split(" ");
+    	  var data1 = google.visualization.arrayToDataTable([
+    	    ['Skill', 'pre_intermadiate','Novice', 'Intermadiate', 'Begginer', 'Advance/Expert', { role: 'annotation' } ],
+    	    [arr1[1], parseInt(arr1[2]), parseInt(arr1[3]), parseInt(arr1[4]),parseInt(arr1[5]),parseInt(arr1[6]),''],
+    	    [arr1[7], parseInt(arr1[8]), parseInt(arr1[9]), parseInt(arr1[10]),parseInt(arr1[11]),parseInt(arr1[12]),''],
+    	    [arr1[13], parseInt(arr1[14]), parseInt(arr1[15]), parseInt(arr1[16]),parseInt(arr1[17]),parseInt(arr1[18]),''],
+    	    [arr1[19], parseInt(arr1[20]), parseInt(arr1[21]), parseInt(arr1[22]),parseInt(arr1[23]),parseInt(arr1[24]),''],
+    	    [arr1[25], parseInt(arr1[26]), parseInt(arr1[27]), parseInt(arr1[28]),parseInt(arr1[29]),parseInt(arr1[30]),''],
+    	    [arr1[31], parseInt(arr1[32]), parseInt(arr1[33]), parseInt(arr1[34]),parseInt(arr1[35]),parseInt(arr1[36]),''],
+    	    [arr1[37], parseInt(arr1[38]), parseInt(arr1[39]), parseInt(arr1[40]),parseInt(arr1[41]),parseInt(arr1[42]),''],
+    	    [arr1[43], parseInt(arr1[44]), parseInt(arr1[45]), parseInt(arr1[46]),parseInt(arr1[47]),parseInt(arr1[48]),''],
+    	    [arr1[49], parseInt(arr1[50]), parseInt(arr1[51]), parseInt(arr1[52]),parseInt(arr1[53]),parseInt(arr1[54]),''],
+    	    [arr1[55], parseInt(arr1[56]), parseInt(arr1[57]), parseInt(arr1[58]),parseInt(arr1[59]),parseInt(arr1[60]),'']
     	   ]);
 
-          var options = {
-            width: 600,
+          var options1 = {
+            width: 900,
             height: 400,
             legend: { position: 'top', maxLines: 3 },
             bar: { groupWidth: '75%' },
@@ -39,25 +51,25 @@
               ]);
 
         var options2 = {
-          title: 'gender balance',
+          title: 'gender proportion',
           pieHole: 0.4,
         };
         
         var chart1 = new google.visualization.ColumnChart(document.getElementById('top_x_div'));
-        chart1.draw(data, options);
+        chart1.draw(data1, options1);
 
         var chart2 = new google.visualization.PieChart(document.getElementById('donutchart'));
         chart2.draw(data2, options2);
  
-       // var chart = new google.charts.Bar(document.getElementById('top'));
-       // chart.draw(data, options);
       };
     </script>
   </head>
   <body>
   	<%@include  file="bootstrap.html" %>
   	<%@include file="navigation.html" %>
-    <div id="top_x_div" style="width: 900px; height: 500px; "></div>
+  	<h3>Skills Market <span class="label label-primary">make it more efficient</span></h3>
+    <div id="top_x_div" style="width: 100%; height: 500px; "></div>
+    <h3>On the Way of Gender Balance <span class="label label-primary">Chart</span></h3>
      <div id="donutchart" style="width: 900px; height: 500px;"></div>
   </body>
 </html>

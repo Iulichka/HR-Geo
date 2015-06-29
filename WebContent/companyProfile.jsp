@@ -1,4 +1,6 @@
 <!doctype html>
+<%@page import="backClasses.DataForPerson"%>
+<%@page import="backClasses.AllOffersForPerson"%>
 <html>
 <head>
  <meta charset="utf-8">
@@ -27,6 +29,7 @@
 <%
 		//allow access only if session exists		
 				Offer offer=null;
+				Offer o=null;
 				String user =null;			
 				Company comp=null;
 				Map <Offer,ArrayList<Person>> map = new HashMap<Offer,ArrayList<Person>>();
@@ -117,16 +120,22 @@
         <table class="table table-hover">          
 			<thead><tr><th>Offer Name</th><th>Person Name</th><th>Offer Sent</th><th>Offer End Date</th><th>Offer Status</th></tr></thead>														
 					<tbody>
-						<%
-							for(int i=0;i<value.size();i++){
-								Person pers=value.get(i);							
+						<%							
+							for(int i=0;i<value.size();i++){								
+								DBSelect select= new DBSelect();								
+								Person pers=value.get(i);		
+								DataForPerson data=new DataForPerson();
+								//o=select.getOffer(key.getOfferID());
+								AllOffersForPerson personOffers=data.getOffers(data.getPersonId(pers.getMail()));
+								o=personOffers.getMyOffer(key.getOfferID());
+								
 							%>
-           				<tr class="danger">
+           				<tr class=<%=o.getStatus() %>>
                     		<td><%=key.getName()%></td> 
                     		<td><%=pers.getName()+" "+pers.getSurname() %></td> 
                     		<td><%=key.getStartDate()%></td> 
                     		<td><%=key.getEndDate()%></td> 
-                    		<td>success</td>
+                    		<td><%=o.getStatus() %></td>
                     	</tr>   
                     	<% } %>       
            				

@@ -1,5 +1,4 @@
 package backClasses;
-import java.lang.*;
 import java.util.ArrayList;
 
 /** this class manages person's all offers.it works like iterator.user should check if it has next and then should 
@@ -18,6 +17,15 @@ public class AllOffersForPerson {
 	public void addOffer(Offer offer){
 		offers.add(offer);
 	} 
+	
+	public Offer getMyOffer(int offerID){
+		for(int i=0;i<offers.size();i++){
+			if(offers.get(i).getOfferID()==offerID){
+				return offers.get(i);
+			}
+		}
+		return null;
+	}
 	/**
 	 * this method returns personoffer object,
 	 * should be used after checking has next method or it will return null
