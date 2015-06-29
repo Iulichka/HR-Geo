@@ -10,6 +10,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<link id="bs-css" href="css/bootstrap-cerulean.min.css" rel="stylesheet">
 <head >
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -74,8 +75,8 @@
                     <p><strong>Birth Date: </strong><%=pers.getDate()%> </p>
                     <p><strong>Skills: </strong>
                     <%for(int i=0;i<skills.getPersonSkills().size();i++){ %>
-                    	<%if(skills!=null){ %>
-                    		<span class="label label-primary"><%=skills.getPersonSkills().get(i).getName() %></span> 
+                    	<%if(skills!=null){ %>                   	
+                    	<a href="#" title=<%=skills.getPersonSkills().get(i).getLevel() %> data-toggle="tooltip" class="btn btn-warning btn-xs"><%=skills.getPersonSkills().get(i).getName() %></a>            		 
                 		<%} %>
                     <%} %>
                     
@@ -117,31 +118,42 @@
 <tbody> 
 	<% while(personOffers.hasNext()) {%>
 		<%o=personOffers.getOffer(); %>
-		<tr class=<%=o.getStatus() %> onclick="window.document.location='<%=company%>';">
+		<tr class=<%=o.getStatus() %>>
          <td><%=o.getName() %></td>
          <td><%=o.getCompany().getName() %></td>
          <td><%=o.getStartDate() %></td>
          <td><%=o.getEndDate() %></td>
          <td><%=o.getStatus() %></td>
+         <%if(o.getStatus()=="active"){ %>
          <td class="center">
          <a class="btn btn-primary" href="#">
          <i class=" glyphicon glyphicon-off icon-white"></i>
          Offer Page
          </a>
 		<a class="btn btn-success" href="#">
-<i class="glyphicon glyphicon-zoom-in icon-white"></i>
-Accept
-</a>
-<a class="btn btn-info" href="#">
-<i class="glyphicon glyphicon-edit icon-white"></i>
-Maybe
-</a>
-<a class="btn btn-danger" href="#">
-<i class="glyphicon glyphicon-trash icon-white"></i>
-Reject
-</a>
-</td>
-     <%} %>            
+		<i class="glyphicon glyphicon-zoom-in icon-white"></i>
+			Accept
+			</a>
+			<a class="btn btn-info" href="#">
+		<i class="glyphicon glyphicon-edit icon-white"></i>
+			Maybe
+			</a>
+		<a class="btn btn-danger" href="#">
+		<i class="glyphicon glyphicon-trash icon-white"></i>
+			Reject
+		</a>
+		</td>
+     <%
+         }else{ %>
+         	<td class="center">
+         <a class="btn btn-primary" href="#">
+         <i class=" glyphicon glyphicon-off icon-white"></i>
+         Offer Page
+         </a>
+         
+        <% 	 
+         }
+     } %>            
  </tbody>
 </table>
 </body>
