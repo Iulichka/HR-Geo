@@ -12,55 +12,43 @@
       google.setOnLoadCallback(drawStuff);
 
       function drawStuff() {
-    	  var xmlhttp = new XMLHttpRequest();
-    		xmlhttp.open("GET", "ChartData", false);
-    		xmlhttp.send();
-    		var resp = xmlhttp.responseText;
-    		var tx =  parseInt(resp);
-    		var arr = resp.split(" ");
-        var data = new google.visualization.arrayToDataTable([
-          ['Opening Move', 'Percentage'],
-          ["King's pawn (e4)", parseInt(arr[0])],
-          ["Queen's pawn (d4)", 31],
-          ["Knight to King 3 (Nf3)", 12],
-          ["Queen's bishop pawn (c4)", 10],
-          ['Other', 3]
-        ]);
+    	  var data = google.visualization.arrayToDataTable([
+    	    ['Genre', 'Fantasy & Sci Fi','skill', { role: 'annotation' } ],
+    	    ['2010', 10, 24,''],
+    	    ['2020', 16, 22, ''],
+    	    ['2030', 28, 19, '']
+    	   ]);
 
-        var options = {
-          title: 'Chess opening moves',
-          width: 900,
-          legend: { position: 'none' },
-          chart: { title: 'Chess opening moves',
-                   subtitle: 'popularity by percentage' },
-          bars: 'vertical', // Required for Material Bar Charts.
-          axes: {
-            x: {
-              0: { side: 'top', label: 'Percentage'} // Top x-axis.
-            }
-          },
-          bar: { groupWidth: "90%" }
+          var options = {
+            width: 600,
+            height: 400,
+            legend: { position: 'top', maxLines: 3 },
+            bar: { groupWidth: '75%' },
+            isStacked: true,
+          };
+
+        var xmlht = new XMLHttpRequest();
+		xmlht.open("GET", "ChartData?type=gender", false);
+		xmlht.send();
+		var resp2 = xmlht.responseText;
+		var arr2 = resp2.split(" ");
+        var data2 = google.visualization.arrayToDataTable([
+                ['Gender', 'Quantity'],
+                ['Male',     parseInt(arr2[0])],
+                ['Female',     parseInt(arr2[1])]
+              ]);
+
+        var options2 = {
+          title: 'gender balance',
+          pieHole: 0.4,
         };
         
-        var data2 = google.visualization.arrayToDataTable([
-                                                          ['Task', 'Hours per Day'],
-                                                          ['Work',     11],
-                                                          ['Eat',      2],
-                                                          ['Commute',  2],
-                                                          ['Watch TV', 2],
-                                                          ['Sleep',    7]
-                                                        ]);
-
-                                                        var options2 = {
-                                                          title: 'My Daily Activities',
-                                                          pieHole: 0.4,
-                                                        };
-
-                                                        var chart2 = new google.visualization.PieChart(document.getElementById('donutchart'));
-                                                        chart2.draw(data2, options2);
-
-        var chart1 = new google.charts.Bar(document.getElementById('top_x_div'));
+        var chart1 = new google.visualization.ColumnChart(document.getElementById('top_x_div'));
         chart1.draw(data, options);
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart2.draw(data2, options2);
+ 
        // var chart = new google.charts.Bar(document.getElementById('top'));
        // chart.draw(data, options);
       };
