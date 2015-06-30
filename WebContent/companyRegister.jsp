@@ -13,17 +13,18 @@
 <title>Company Registration</title>
 <script  type="text/javascript">
 function validateCompanyName() {
-	if (document.getElementById("first_name").value.length < 2) {
-		document.getElementById("notice").innerHTML = "სახელი არასწორადაა  მითითებული";
+	if (document.getElementById("company_name").value.length < 2) {
+		document.getElementById("notice").innerHTML = "კომპანიის სახელი არასწორადაა  მითითებული";
 		document.getElementById("registerButton").disabled = true;
 	} else {
 		document.getElementById("registerButton").disabled = false;
-		document.getElementById("first_name").innerHTML = "*";
+		document.getElementById("company_name").innerHTML = "*";
 	}
 }
 </script>
 </head>
 <body>
+<p id ="notice"></p>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -105,7 +106,7 @@ function validateCompanyName() {
 			
 			<hr class="colorgraph">
 			<div class="row">
-				<div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+				<div class="col-xs-12 col-md-6"><input type="submit" value="Register" id="registerButton" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
 			</div>
 	</div>
 </div>
