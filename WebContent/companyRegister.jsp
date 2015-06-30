@@ -32,6 +32,16 @@ function validateCompanyEMail() {
 		document.getElementById("email").innerHTML = "*";
 	}
 }
+function validateCompanyPassword() {
+	var pass = document.getElementById("password").value;
+	if (pass.length < 6) {
+		document.getElementById("notice").innerHTML = "პაროლი უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს!";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("password").innerHTML = "*";
+	}
+}
 </script>
 </head>
 <body>
