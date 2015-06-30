@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html">
@@ -26,14 +27,13 @@
 		String first_name = null;
 		String last_name = null;
 		Person p=null;
-		
+		DataForPerson data = new DataForPerson();
 			if(request.getSession(false)!=null && session.getAttribute("email")!=null && session.getAttribute("person")!=null){
 				user=(String)session.getAttribute("email");
 				first_name=(String)session.getAttribute("first_name");
 				last_name=(String)session.getAttribute("last_name");
 				p=(Person)session.getAttribute("person");
-				DataForPerson data=new DataForPerson();
-				PersonSkills skills=data.getPersonSkills(data.getPersonId(user));
+				
 			}else{
    			 	response.sendRedirect("http://localhost:8080/HR-Geo/homePage.jsp");
    			 	return;
@@ -105,24 +105,45 @@
 		
 <table class="table table-hover">
 	<thead><tr><th>My Documents</th></thead>
-	<thead><tr><th>Description</th><th>CV</th><th>Delete CV</th></tr></thead>
+	<thead><tr><th>Description</th><th>Document</th><th>Delete Document</th></tr></thead>
 		<tbody>
+			<%
+			ArrayList<String> docs = data.getDocs(p.getId());
+			for (int i=0; i<docs.size(); i++) {%>
 			<tr>
-			<form action="RemoveDocumentServlet" method="post">
-				<td>CV</td>
+			<form action="DeleteDoc" method="post">
+				<td><%=docs.get(i)%></td>
 				<td>
-					<a href="GetDocument?id=<%=p.getId()%>">CV download</a>
+					<a href="GetDocument?id=<%=p.getId()%>&name=<%=docs.get(i)%>">Document</a>
 				</td>
 				<td>
 					<input type="hidden" name="person_id" value="<%=p.getId() %>">
+					<input type="hidden" name="doc_name" value="<%=docs.get(i) %>">
 						<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-remove"></span>
 						</button> 
 				</td>
 			</form>	
 			</tr>
+			<% } %>
+			
 		</tbody>
 </table>
+		<div class="row">
+		  <div class="col-lg-6">
+		    <div class="input-group">
+		    <form action=<%="\""+"Upload?id="+p.getId()+"&type=document\"" %> method="post" enctype="multipart/form-data">
+		      <span class="input-group-btn" style="width: 200px">
+		        <input type="text" class="form-control" name="description" placeholder="Enter Description" required="required">
+		      </span>
+		      <input type="file" class="form-control" placeholder="upload " name="file" style="width:300px;">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" type="submit">Upload!</button>
+		      </span>
+		      </form>
+		    </div><!-- /input-group -->
+		  </div>
+		</div>
 		
 </body>
 </html>
