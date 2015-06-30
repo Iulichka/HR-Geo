@@ -692,6 +692,19 @@ public void deleteCv(int perId) {
 	}
 	
 }
+public void deleteDocument(String id, String name) {
+Statement stm;
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		stm.executeUpdate("delete from documents where persons_id="+id+" and document_name = '"+name +"';");
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		System.out.println(e.getMessage());
+		e.printStackTrace();
+	}
+	
+}
 
 
 
