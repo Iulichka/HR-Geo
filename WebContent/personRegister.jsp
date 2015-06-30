@@ -22,13 +22,22 @@ function validateFirstName() {
 		document.getElementById("first_name").innerHTML = "*";
 	}
 }
-function lastnamevalidates() {
+function validateLastName() {
 	if (document.getElementById("last_name").value.length < 2) {
 		document.getElementById("last_name").innerHTML = "გვარი არასწორადაა  მითითებული";
 		document.getElementById("registerButton").disabled = true;
 	} else {
 		document.getElementById("registerButton").disabled = false;
 		document.getElementById("last_name").innerHTML = "*";
+	}
+}
+function validateID() {
+	if (document.getElementById("id_number").value.length < 10) {
+		document.getElementById("id_number").innerHTML = "პირადი ნომერი  არასწორადაა  მითითებული";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("id_number").innerHTML = "*";
 	}
 }
 </script>
@@ -94,7 +103,7 @@ function lastnamevalidates() {
 			</div>
 			
 			<div class="form-group">
-				<input type="text" name="id_number" id="id_number" class="form-control input-lg" placeholder="ID Number" tabindex="3">
+				<input type="text" name="id_number" id="id_number" class="form-control input-lg" placeholder="ID Number" tabindex="3" onchange="validateID()">
 			</div>
 			
 			<div class="form-group">
