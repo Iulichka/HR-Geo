@@ -19,6 +19,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <%@ page import="backClasses.*" %>
 <title>Home Page</title>
+
 </head>
 <body>
 <nav class="navbar navbar-default">
