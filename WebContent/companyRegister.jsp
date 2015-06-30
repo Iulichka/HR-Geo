@@ -33,12 +33,23 @@ function validateCompanyEMail() {
 	}
 }
 function validateCompanyTelephone() {
-	if (document.getElementById("company_name").value.length < 6) {
+	if (document.getElementById("tel").value.length < 6) {
 		document.getElementById("notice").innerHTML = "ტელეფონი  არასწორადაა  მითითებული";
 		document.getElementById("registerButton").disabled = true;
 	} else {
 		document.getElementById("registerButton").disabled = false;
-		document.getElementById("company_name").innerHTML = "*";
+		document.getElementById("tel").innerHTML = "*";
+	}
+}
+function validateCompanySite() {
+	var email = document.getElementById('site');
+	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if (!filter.test(email.value)) {
+		document.getElementById("notice").innerHTML = "მეილი  არასწორადაა  მითითებული";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("site").innerHTML = "*";
 	}
 }
 function validateCompanyPassword() {
