@@ -11,8 +11,72 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <title>Company Registration</title>
+<script  type="text/javascript">
+function validateCompanyName() {
+	if (document.getElementById("company_name").value.length < 2) {
+		document.getElementById("notice").innerHTML = "კომპანიის სახელი არასწორადაა  მითითებული";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("company_name").innerHTML = "*";
+	}
+}
+function validateCompanyEMail() {
+	var email = document.getElementById('email');
+	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if (!filter.test(email.value)) {
+		document.getElementById("notice").innerHTML = "მეილი  არასწორადაა  მითითებული";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("email").innerHTML = "*";
+	}
+}
+function validateCompanyTelephone() {
+	if (document.getElementById("tel").value.length < 6) {
+		document.getElementById("notice").innerHTML = "ტელეფონი  არასწორადაა  მითითებული";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("tel").innerHTML = "*";
+	}
+}
+function validateCompanySite() {
+	var email = document.getElementById('site');
+	var filter = /^([a-zA-Z0-9_\.\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if (!filter.test(email.value)) {
+		document.getElementById("notice").innerHTML = "მეილი  არასწორადაა  მითითებული";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("site").innerHTML = "*";
+	}
+}
+function validateCompanyPassword() {
+	var pass = document.getElementById("password").value;
+	if (pass.length < 6) {
+		document.getElementById("notice").innerHTML = "პაროლი უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს!";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("password").innerHTML = "*";
+	}
+}
+function validateCompanyRePassword() {
+	var pass = document.getElementById("password").value;
+	var repass = document.getElementById("password_confirmation").value;
+	if (pass != repass) {
+		document.getElementById("notice").innerHTML = "არ ემთხვევა პაროლი";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("password_confirmationr").innerHTML = "";
+	}
+}
+</script>
 </head>
 <body>
+<p id ="notice"></p>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -57,26 +121,26 @@
 			<h2>Registration Page <small>company register.</small></h2>
 			<hr class="colorgraph">	
 					<div class="form-group">
-                        <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Company Name" tabindex="1">
+                        <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Company Name" tabindex="1" onchange="validateCompanyName()">
 					</div>			
 			<div class="form-group">
-				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4" onchange="validateCompanyEMail()">
 			</div>
 			<div class="form-group">
-				<input type="text" name="tel" id="tel" class="form-control input-lg" placeholder="Telephone" tabindex="4">
+				<input type="text" name="tel" id="tel" class="form-control input-lg" placeholder="Telephone" tabindex="4" onchange="validateCompanyTelephone()">
 			</div>
 			<div class="form-group">
-				<input type="text" name="site" id="site" class="form-control input-lg" placeholder="Site" tabindex="4">
+				<input type="text" name="site" id="site" class="form-control input-lg" placeholder="Site" tabindex="4" onchange="validateCompanySite()">
 			</div>
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
+						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5" onchange="validateCompanyPassword()">
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6" onchange="validateCompanyRePassword()">
 					</div>
 				</div>
 			</div>
@@ -94,7 +158,7 @@
 			
 			<hr class="colorgraph">
 			<div class="row">
-				<div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+				<div class="col-xs-12 col-md-6"><input type="submit" value="Register" id="registerButton" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
 			</div>
 	</div>
 </div>
