@@ -33,7 +33,7 @@ public class MailSendingServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		EMailSender.sendEmail("dabes11@freeuni.edu.ge", "apfhapo");
+//		EMailSender.sendEmail("shiplessalien@gmail.com", "apfhapo");
 	}
 
 	/**

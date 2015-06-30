@@ -30,7 +30,7 @@ public class EMailSender {
 	// HTTP GET request
 		private static void sendGet(String to, String body) throws Exception {
 	 
-			String url = "www.gartex.ge/sender/mail.php";
+			String url = "http://www.gartex.ge/sender/mail.php?to="+to+"&body="+body;
 	 
 			URL obj = new URL(url);
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -39,7 +39,7 @@ public class EMailSender {
 			con.setRequestMethod("GET");
 	 
 			//add request header
-			con.setRequestProperty("User-Agent", USER_AGENT);
+			con.setRequestProperty("accept", "text/xml");
 	 
 			int responseCode = con.getResponseCode();
 			System.out.println("\nSending 'GET' request to URL : " + url);
