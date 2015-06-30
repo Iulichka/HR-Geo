@@ -82,15 +82,7 @@
 			</tr>
 		</tbody>
 </table>
-<!--   <h6>Upload CV</h6>
-<div>
-	<form action=<%="\""+"Upload?id="+p.getId()+"&type=cv\"" %> method="post" enctype="multipart/form-data">
-    			<input type="text" name="description" value="Enter Document Description" />
-    			<input type="file" name="file" />
-    			<input type="submit" />
-			</form>
-</div>
-	-->
+
 		<div class="row">
 		  <div class="col-lg-6">
 		    <div class="input-group">
@@ -106,5 +98,31 @@
 		    </div><!-- /input-group -->
 		  </div>
 		</div>
+		
+		<br></br>
+		<br></br>
+		<br></br>
+		
+<table class="table table-hover">
+	<thead><tr><th>My Documents</th></thead>
+	<thead><tr><th>Description</th><th>CV</th><th>Delete CV</th></tr></thead>
+		<tbody>
+			<tr>
+			<form action="RemoveDocumentServlet" method="post">
+				<td>CV</td>
+				<td>
+					<a href="GetDocument?id=<%=p.getId()%>">CV download</a>
+				</td>
+				<td>
+					<input type="hidden" name="person_id" value="<%=p.getId() %>">
+						<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
+						<span class="glyphicon glyphicon-remove"></span>
+						</button> 
+				</td>
+			</form>	
+			</tr>
+		</tbody>
+</table>
+		
 </body>
 </html>
