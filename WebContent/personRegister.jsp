@@ -40,6 +40,17 @@ function validateID() {
 		document.getElementById("id_number").innerHTML = "*";
 	}
 }
+function validateEMail() {
+	var email = document.getElementById('email');
+	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if (!filter.test(email.value)) {
+		document.getElementById("email").innerHTML = "არასწორი ფორმატი";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("email").innerHTML = "*";
+	}
+}
 </script>
 </head>
 <body>
@@ -107,7 +118,7 @@ function validateID() {
 			</div>
 			
 			<div class="form-group">
-				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4" onchange="validateEMail()">
 			</div>
 			
 			  <div class="form-group">
