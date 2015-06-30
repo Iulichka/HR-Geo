@@ -15,7 +15,7 @@
 <script  type="text/javascript">
 function validateFirstName() {
 	if (document.getElementById("first_name").value.length < 2) {
-		document.getElementById("first_name").innerHTML = "სახელი არასწორადაა  მითითებული";
+		document.getElementById("notice").innerHTML = "სახელი არასწორადაა  მითითებული";
 		document.getElementById("registerButton").disabled = true;
 	} else {
 		document.getElementById("registerButton").disabled = false;
@@ -24,7 +24,7 @@ function validateFirstName() {
 }
 function validateLastName() {
 	if (document.getElementById("last_name").value.length < 2) {
-		document.getElementById("last_name").innerHTML = "გვარი არასწორადაა  მითითებული";
+		document.getElementById("notice").innerHTML = "გვარი არასწორადაა  მითითებული";
 		document.getElementById("registerButton").disabled = true;
 	} else {
 		document.getElementById("registerButton").disabled = false;
@@ -33,7 +33,7 @@ function validateLastName() {
 }
 function validateID() {
 	if (document.getElementById("id_number").value.length < 10) {
-		document.getElementById("id_number").innerHTML = "პირადი ნომერი  არასწორადაა  მითითებული";
+		document.getElementById("notice").innerHTML = "პირადი ნომერი  არასწორადაა  მითითებული";
 		document.getElementById("registerButton").disabled = true;
 	} else {
 		document.getElementById("registerButton").disabled = false;
@@ -44,7 +44,7 @@ function validateEMail() {
 	var email = document.getElementById('email');
 	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 	if (!filter.test(email.value)) {
-		document.getElementById("email").innerHTML = "მეილი  არასწორადაა  მითითებული";
+		document.getElementById("notice").innerHTML = "მეილი  არასწორადაა  მითითებული";
 		document.getElementById("registerButton").disabled = true;
 	} else {
 		document.getElementById("registerButton").disabled = false;
@@ -54,7 +54,7 @@ function validateEMail() {
 function validatePassword() {
 	var pass = document.getElementById("password").value;
 	if (pass.length < 6) {
-		document.getElementById("password").innerHTML = "პაროლი უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს!";
+		document.getElementById("notice").innerHTML = "პაროლი უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს!";
 		document.getElementById("registerButton").disabled = true;
 	} else {
 		document.getElementById("registerButton").disabled = false;
@@ -65,16 +65,17 @@ function validateRePassword() {
 	var pass = document.getElementById("password").value;
 	var repass = document.getElementById("password_confirmation").value;
 	if (pass != repass) {
-		document.getElementById("password_confirmation").innerHTML = "არ ემთხვევა პაროლი";
+		document.getElementById("notice").innerHTML = "არ ემთხვევა პაროლი";
 		document.getElementById("registerButton").disabled = true;
 	} else {
 		document.getElementById("registerButton").disabled = false;
-		document.getElementById("password_confirmation").innerHTML = "";
+		document.getElementById("password_confirmationr").innerHTML = "";
 	}
 }
 </script>
 </head>
 <body>
+<p id ="notice"></p>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
