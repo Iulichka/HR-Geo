@@ -1,23 +1,29 @@
 package servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.jdt.internal.compiler.ast.MessageSend;
+
+import backClasses.EMailSender;
+import backClasses.MessageSender;
+
 /**
- * Servlet implementation class VerifyCheckerServlet
+ * Servlet implementation class MailSendingServlet
  */
-@WebServlet("/VerifyCheckerServlet")
-public class VerifyCheckerServlet extends HttpServlet {
+@WebServlet("/MailSendingServlet")
+public class MailSendingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VerifyCheckerServlet() {
+    public MailSendingServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,18 +32,16 @@ public class VerifyCheckerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		// TODO Auto-generated method stub
+//		EMailSender.sendEmail("shiplessalien@gmail.com", "apfhapo");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(!request.getParameter("code").equals(request.getSession().getAttribute("code"))){
-			request.getRequestDispatcher("illegalRegister.jsp").forward(request, response);
-		}else{
-			response.sendRedirect("http://localhost:8080/HR-Geo/PersonServlet");
-		}
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

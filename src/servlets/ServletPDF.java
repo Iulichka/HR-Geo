@@ -16,11 +16,14 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import backClasses.DataForPerson;
+import backClasses.Education;
 import backClasses.OverallExperience;
 import backClasses.Person;
 import backClasses.PersonEducation;
 import backClasses.PersonSkills;
+import backClasses.Skill;
 
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
@@ -68,7 +71,7 @@ public class ServletPDF extends HttpServlet {
 		
 
 		response.setContentType("application/pdf");
-		response.addHeader("Content-Disposition", "attachment; filename=iulia_created.pdf");
+		response.addHeader("Content-Disposition", "attachment; filename=CV.pdf");
 		
 		try {
 			// step 1
@@ -79,12 +82,10 @@ public class ServletPDF extends HttpServlet {
 			document.open();
 			// step 4
 			
-			document.add(new Paragraph("Hello World"));
-			document.add(new Paragraph(new Date().toString()));
-			
-			
+			document.add(new Paragraph("CV"));
 			
 			document.add(new Paragraph("Personal Statistics"));
+			document.add( Chunk.NEWLINE );
 			String name = per.getName() +" ";
 			name += per.getSurname();
 			document.add(new Paragraph(name));
@@ -98,8 +99,37 @@ public class ServletPDF extends HttpServlet {
 			mail +=	per.getMail();	
 			document.add(new Paragraph(mail));
 			
-			
+			document.add( Chunk.NEWLINE );
 			document.add(new Paragraph("Education"));
+			document.add( Chunk.NEWLINE );
+			ArrayList <Education> ls = edu.getEduList();
+			for (int i=0;i<ls.size();i++){
+				String uni = "Univeristy : ";
+				uni += ls.get(i).getUniversity();
+				String faculty = "Faculty : ";
+				faculty += ls.get(i).getFaculty();
+				String gradY = "Graduation Year: ";
+				gradY += ls.get(i).getEndYear();
+				document.add(new Paragraph(uni));
+				document.add(new Paragraph(faculty));
+				document.add(new Paragraph(gradY));				
+			}
+			document.add( Chunk.NEWLINE );
+			document.add(new Paragraph("Working Exprience"));
+			document.add( Chunk.NEWLINE );
+			
+			exp.getCurrentExperience();
+			
+			document.add( Chunk.NEWLINE );
+			document.add(new Paragraph("Skills"));
+			document.add( Chunk.NEWLINE );
+			ArrayList<Skill> skls = skills.getPersonSkills();
+			for (int i=0;i<skls.size();i++){
+				String sk = skls.get(i).getName();
+				sk += " Level : ";
+				sk += skls.get(i).getLevel();
+				document.add(new Paragraph(sk));
+			}
 			
 			// step 5
 			document.close();
