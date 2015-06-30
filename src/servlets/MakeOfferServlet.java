@@ -110,7 +110,8 @@ public class MakeOfferServlet extends HttpServlet {
 			workingExperience=Integer.parseInt(experience);
 		}
 		ArrayList<Integer> personIds=searcher.getPersons(chosenUnisIds,chosenFacultyIds,chosenSkillsIds,personAge,workingExperience);
-		request.setAttribute("persons", personIds);
+		// if(request.geta)
+		request.getSession().setAttribute("searchedpersons", personIds);
 		RequestDispatcher rd = request.getRequestDispatcher("makeOffer.jsp");
 		rd.forward(request, response);
 		
