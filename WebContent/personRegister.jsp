@@ -24,7 +24,10 @@ $(document).ready(function() {
 		e.preventDefault();
 		validateFirstName();
 		validateLastName();
-		console.log(error);
+		validateID();
+		validateEMail();
+		validatePassword();
+		validateRePassword();
 		if (!error)
 			$("#submitForm").submit();
 	});
