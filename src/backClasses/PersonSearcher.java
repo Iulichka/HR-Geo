@@ -26,6 +26,7 @@ public class PersonSearcher {
 			ArrayList<Integer> chosenFacultyIds,
 			ArrayList<Integer> chosenSkillsIds, int personAge,
 			int workingExperience) {
+		ArrayList<Integer> result=new ArrayList<Integer>();
 		Statement stm;
 		String selectWithUni="";
 		if(chosenUnisIds.size()!=0){
@@ -70,14 +71,16 @@ public class PersonSearcher {
 			int id=-1;
 			while(rset.next()){
 				 id=rset.getInt(1);
+				 result.add(id);
 			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 		
 		
-		return null;
+		return result;
 	}
 	
 	private String getExpSelectString(int workingExperience) {

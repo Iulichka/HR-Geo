@@ -27,7 +27,7 @@ public class EMailSender {
 	        Session session = Session.getDefaultInstance(props);
 	        MimeMessage message = new MimeMessage(session);
 	        try {
-				message.setFrom(new InternetAddress("from-email@gmail.com"));
+				message.setFrom(new InternetAddress("hrgeofreeuni@gmail.com"));
 				message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(to));
 				message.setSubject("HR Georgia","UTF-8");
 				message.setText("მესიჯი " + body ,"UTF-8");

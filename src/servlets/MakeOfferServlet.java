@@ -2,12 +2,13 @@ package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import backClasses.DataForPerson;
 import backClasses.PersonSearcher;
 
 /**
@@ -51,19 +52,19 @@ public class MakeOfferServlet extends HttpServlet {
 		boolean experienceSearch=true;
 		int personAge=0;
 		int workingExperience=0;
-		if(selectedUniversity.length<1){
+		if(selectedUniversity==null||selectedUniversity.length<1){
 			uniSearch=false;
 		}
-		if(selectedFaculty.length<1){
+		if(selectedFaculty==null||selectedFaculty.length<1){
 			facSearch=false;
 		}
-		if(selectedSkill.length<1){
+		if(selectedSkill==null||selectedSkill.length<1){
 			skillSearch=false;
 		}
-		if(age.length()==0){
+		if(age==null||age.length()==0){
 			ageSearch=false;
 		}
-		if(experience.length()==0){
+		if(experience==null||experience.length()==0){
 			experienceSearch=false;
 		}
 		PersonSearcher searcher=new PersonSearcher();
@@ -108,7 +109,9 @@ public class MakeOfferServlet extends HttpServlet {
 			workingExperience=Integer.parseInt(experience);
 		}
 		ArrayList<Integer> personIds=searcher.getPersons(chosenUnisIds,chosenFacultyIds,chosenSkillsIds,personAge,workingExperience);
-		
+		request.setAttribute("persons", personIds);
+		RequestDispatcher rd = request.getRequestDispatcher("makeOffer.jsp");
+		rd.forward(request, response);
 		
 		
 	}
