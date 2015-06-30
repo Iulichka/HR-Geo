@@ -28,5 +28,14 @@
 	<classpathentry kind="lib" path="JARS/sunmscapi.jar"/>
 	<classpathentry kind="lib" path="JARS/sunpkcs11.jar"/>
 	<classpathentry kind="lib" path="JARS/zipfs.jar"/>
+	<classpathentry kind="lib" path="JARS/itext-pdfa-5.5.6-javadoc.jar"/>
+	<classpathentry kind="lib" path="JARS/itext-pdfa-5.5.6-sources.jar"/>
+	<classpathentry kind="lib" path="JARS/itext-pdfa-5.5.6.jar"/>
+	<classpathentry kind="lib" path="JARS/itext-xtra-5.5.6-javadoc.jar"/>
+	<classpathentry kind="lib" path="JARS/itext-xtra-5.5.6-sources.jar"/>
+	<classpathentry kind="lib" path="JARS/itext-xtra-5.5.6.jar"/>
+	<classpathentry kind="lib" path="JARS/itextpdf-5.5.6-javadoc.jar"/>
+	<classpathentry kind="lib" path="JARS/itextpdf-5.5.6-sources.jar"/>
+	<classpathentry kind="lib" path="JARS/itextpdf-5.5.6.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
