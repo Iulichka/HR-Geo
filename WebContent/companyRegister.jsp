@@ -32,6 +32,15 @@ function validateCompanyEMail() {
 		document.getElementById("email").innerHTML = "*";
 	}
 }
+function validateCompanyTelephone() {
+	if (document.getElementById("company_name").value.length < 6) {
+		document.getElementById("notice").innerHTML = "ტელეფონი  არასწორადაა  მითითებული";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("company_name").innerHTML = "*";
+	}
+}
 function validateCompanyPassword() {
 	var pass = document.getElementById("password").value;
 	if (pass.length < 6) {
