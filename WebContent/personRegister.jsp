@@ -22,6 +22,15 @@ function validateFirstName() {
 		document.getElementById("first_name").innerHTML = "*";
 	}
 }
+function lastnamevalidates() {
+	if (document.getElementById("last_name").value.length < 2) {
+		document.getElementById("last_name").innerHTML = "გვარი არასწორადაა  მითითებული";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("last_name").innerHTML = "*";
+	}
+}
 </script>
 </head>
 <body>
@@ -79,7 +88,7 @@ function validateFirstName() {
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+						<input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2" onchange="validateLastName()">
 					</div>
 				</div>
 			</div>
