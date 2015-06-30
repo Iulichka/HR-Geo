@@ -41,6 +41,7 @@ function validateFirstName() {
 		$('#first_name').addClass('warning');
 		error = true;
 	} else {
+		$('#first_name').removeClass('warning');
 		document.getElementById("registerButton").disabled = false;
 		error = false;
 	}
@@ -52,6 +53,7 @@ function validateLastName() {
 		$('#last_name').addClass('warning');
 		error = true;
 	} else {
+		$('#last_name').removeClass('warning');
 		document.getElementById("registerButton").disabled = false;
 		error = false;
 	}
@@ -62,6 +64,7 @@ function validateID() {
 		//document.getElementById("registerButton").disabled = true;
 		$('#id_number').addClass('warning');
 	} else {
+		$('#id_numbers').removeClass('warning');
 		document.getElementById("registerButton").disabled = false;
 		error = false;
 	}
@@ -74,6 +77,7 @@ function validateEMail() {
 		//document.getElementById("registerButton").disabled = true;
 		$('#email').addClass('warning');
 	} else {
+		$('#email').removeClass('warning');
 		document.getElementById("registerButton").disabled = false;
 		error = false;
 	}
@@ -85,6 +89,7 @@ function validatePassword() {
 		//document.getElementById("registerButton").disabled = true;
 		$('#password').addClass('warning');
 	} else {
+		$('#password').removeClass('warning');
 		document.getElementById("registerButton").disabled = false;
 		error = false;
 	}
@@ -97,6 +102,7 @@ function validateRePassword() {
 		//document.getElementById("registerButton").disabled = true;
 		$('#password_confirmation').addClass('warning');
 	} else {
+		$('#password_confirmation').removeClass('warning');
 		document.getElementById("registerButton").disabled = false;
 		error = false;
 	}

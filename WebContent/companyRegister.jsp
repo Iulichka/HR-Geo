@@ -40,6 +40,7 @@ function validateCompanyName() {
 		error = true;
 	} else {
 		//document.getElementById("registerButton").disabled = false;
+		$('#company_name').removeClass('warning');
 		error = false;
 	}
 }
@@ -52,6 +53,7 @@ function validateCompanyEMail() {
 		//document.getElementById("registerButton").disabled = true;
 		error = true;
 	} else {
+		$('#email').removeClass('warning');
 		//document.getElementById("registerButton").disabled = false;
 		error = false;
 	}
@@ -64,6 +66,7 @@ function validateCompanyTelephone() {
 		//document.getElementById("registerButton").disabled = true;
 		error = true;
 	} else {
+		$('#tel').removeClass('warning');
 		document.getElementById("registerButton").disabled = false;
 		error = false;
 	}
@@ -78,6 +81,7 @@ function validateCompanySite() {
 		error = true;
 		//document.getElementById("registerButton").disabled = true;
 	} else {
+		$('#site').removeClass('warning');
 		document.getElementById("registerButton").disabled = false;
 		error = false;
 	}
@@ -91,6 +95,7 @@ function validateCompanyPassword() {
 		error = true;
 		//document.getElementById("registerButton").disabled = true;
 	} else {
+		$('#password').removeClass('warning');
 		document.getElementById("registerButton").disabled = false;
 		error = false;
 	}
@@ -105,6 +110,7 @@ function validateCompanyRePassword() {
 		error = true;
 		//document.getElementById("registerButton").disabled = true;
 	} else {
+		$('#password_confirmation').removeClass('warning');
 		document.getElementById("registerButton").disabled = false;
 		error = false;
 	}
