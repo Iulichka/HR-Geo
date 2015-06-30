@@ -155,23 +155,23 @@
             <input type="text" class="form-control" placeholder="Enter Offer Name" name="offer_name">
           </div>
         </div>
+         <div class="form-group">
+          <div class="col-lg-8">
+            <input class="form-control" placeholder="date" name="date" type="date" >
+          </div>
+        </div>
 	 <div class="form-group">
           <div class="col-lg-8">
            	<textarea cols="104" rows="5" name="about" placeholder="Enter Offer Info"> 
 				 
 			</textarea>
-			<button type="submit" name="makeoffer" class="btn btn-success" value="make offer" >
+			<button type="submit" name="makeoffer" class="btn btn-success"  >
          <i class=" glyphicon glyphicon-off icon-white"></i>
          Make Offer
          </button>
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-lg-3 control-label">Birth Date:</label>
-          <div class="col-lg-8">
-            <input class="form-control" placeholder="date" name="date" type="date" >
-          </div>
-        </div>
+       
         </form>
         <br></br>
         <br></br><br></br>
