@@ -11,14 +11,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <title>Company Registration</title>
+<style type="text/css">
+	.warning {
+		border: 1px solid red;
+	}
+</style>
 <script  type="text/javascript">
+var error = false;
+$(document).ready(function() {
+	$('#registerButton').click(function(e) {
+		e.preventDefault();
+		validateCompanyName();
+		if (!error)
+			$("#submitForm").submit();
+	});
+});
+
 function validateCompanyName() {
 	if (document.getElementById("company_name").value.length < 2) {
 		document.getElementById("notice").innerHTML = "კომპანიის სახელი არასწორადაა  მითითებული";
-		document.getElementById("registerButton").disabled = true;
+		//document.getElementById("registerButton").disabled = true;
+		$('#company_name').addClass('warning');
+		error = true;
 	} else {
-		document.getElementById("registerButton").disabled = false;
-		document.getElementById("company_name").innerHTML = "*";
+		//document.getElementById("registerButton").disabled = false;
+		error = false;
 	}
 }
 function validateCompanyEMail() {
@@ -26,19 +43,24 @@ function validateCompanyEMail() {
 	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 	if (!filter.test(email.value)) {
 		document.getElementById("notice").innerHTML = "მეილი  არასწორადაა  მითითებული";
-		document.getElementById("registerButton").disabled = true;
+		$('#email').addClass('warning');
+		//document.getElementById("registerButton").disabled = true;
+		error = true;
 	} else {
-		document.getElementById("registerButton").disabled = false;
-		document.getElementById("email").innerHTML = "*";
+		//document.getElementById("registerButton").disabled = false;
+		error = false;
 	}
 }
 function validateCompanyTelephone() {
 	if (document.getElementById("tel").value.length < 6) {
 		document.getElementById("notice").innerHTML = "ტელეფონი  არასწორადაა  მითითებული";
-		document.getElementById("registerButton").disabled = true;
+		//document.getElementById("registerButton").disabled = true;
+		$('#tel').addClass('warning');
+		//document.getElementById("registerButton").disabled = true;
+		error = true;
 	} else {
 		document.getElementById("registerButton").disabled = false;
-		document.getElementById("tel").innerHTML = "*";
+		error = false;
 	}
 }
 function validateCompanySite() {
@@ -46,20 +68,26 @@ function validateCompanySite() {
 	var filter = /^([a-zA-Z0-9_\.\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 	if (!filter.test(email.value)) {
 		document.getElementById("notice").innerHTML = "მეილი  არასწორადაა  მითითებული";
-		document.getElementById("registerButton").disabled = true;
+		//document.getElementById("registerButton").disabled = true;
+		$('#site').addClass('warning');
+		error = true;
+		//document.getElementById("registerButton").disabled = true;
 	} else {
 		document.getElementById("registerButton").disabled = false;
-		document.getElementById("site").innerHTML = "*";
+		error = false;
 	}
 }
 function validateCompanyPassword() {
 	var pass = document.getElementById("password").value;
 	if (pass.length < 6) {
 		document.getElementById("notice").innerHTML = "პაროლი უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს!";
-		document.getElementById("registerButton").disabled = true;
+		//document.getElementById("registerButton").disabled = true;
+		$('#password').addClass('warning');
+		error = true;
+		//document.getElementById("registerButton").disabled = true;
 	} else {
 		document.getElementById("registerButton").disabled = false;
-		document.getElementById("password").innerHTML = "*";
+		error = false;
 	}
 }
 function validateCompanyRePassword() {
@@ -67,16 +95,18 @@ function validateCompanyRePassword() {
 	var repass = document.getElementById("password_confirmation").value;
 	if (pass != repass) {
 		document.getElementById("notice").innerHTML = "არ ემთხვევა პაროლი";
-		document.getElementById("registerButton").disabled = true;
+		//document.getElementById("registerButton").disabled = true;
+		$('#password_confirmation').addClass('warning');
+		error = true;
+		//document.getElementById("registerButton").disabled = true;
 	} else {
 		document.getElementById("registerButton").disabled = false;
-		document.getElementById("password_confirmationr").innerHTML = "";
+		error = false;
 	}
 }
 </script>
 </head>
 <body>
-<p id ="notice"></p>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -120,14 +150,15 @@ function validateCompanyRePassword() {
    			 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 			<h2>Registration Page <small>company register.</small></h2>
 			<hr class="colorgraph">	
+			<p id ="notice" class="bg-danger" style="text-align:center; color: #000;"></p>	
 					<div class="form-group">
-                        <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Company Name" tabindex="1" onchange="validateCompanyName()">
+                        <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Company Name" tabindex="1">
 					</div>			
 			<div class="form-group">
-				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4" onchange="validateCompanyEMail()">
+				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
 			</div>
 			<div class="form-group">
-				<input type="text" name="tel" id="tel" class="form-control input-lg" placeholder="Telephone" tabindex="4" onchange="validateCompanyTelephone()">
+				<input type="text" name="tel" id="tel" class="form-control input-lg" placeholder="Telephone" tabindex="4">
 			</div>
 			<div class="form-group">
 				<input type="text" name="site" id="site" class="form-control input-lg" placeholder="Site" tabindex="4" onchange="validateCompanySite()">
