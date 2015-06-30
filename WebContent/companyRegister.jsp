@@ -27,8 +27,9 @@ $(document).ready(function() {
 		validateCompanySite();
 		validateCompanyPassword();
 		validateCompanyRePassword();
+		console.log(error);
 		if (!error)
-			$("#submitForm").submit();
+			$("#submitCompany").submit();
 	});
 });
 
@@ -155,7 +156,7 @@ function validateCompanyRePassword() {
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<form action="CompanyRegisterServlet" method="post">
+<form id="submitCompany" action="CompanyRegisterServlet" method="post">
 	<div class="container">
 		<div class="row">
    			 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
