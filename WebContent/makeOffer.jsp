@@ -19,19 +19,31 @@
 <%@ page import="java.util.ArrayList" %>
 <%
 		//allow access only if session exists	
-		ArrayList<String> chosenSkills=new ArrayList<String>();
+				ArrayList<String> chosenSkills=new ArrayList<String>();
 				int value=1;
 				String user =null;	
 				ArrayList<String> skills= new ArrayList<String>();
 				ArrayList<String> universities=new ArrayList<String>();
 				ArrayList<String> faculties=new ArrayList<String>();
-				DataForPerson data= new DataForPerson();
+				ArrayList<Integer> personIds=(ArrayList<Integer>)request.getAttribute("persons");
+				ArrayList<Person> persons=new ArrayList<Person>();
+				DataForPerson data = new DataForPerson();
 				skills=data.getSkillNames();
 				universities=data.getUniversityNames();
+				boolean searched=false;
 				faculties=data.getFacultyNames();
 					if(session.getAttribute("email")!=null){						
 						user=(String)session.getAttribute("email");
-						
+						if(personIds!=null){
+							searched=true;
+							if(personIds.size()>0){
+								for(int i=0;i<personIds.size();i++){
+								Person person=data.getPerson(personIds.get(i));
+								persons.add(i, person);
+								
+							}
+						}
+						}
 					}else{
 		   			 	response.sendRedirect("homePage.jsp");
 		   			 	return;
@@ -125,68 +137,48 @@
                 </div>
             
 	</form>
+	<% if(searched==true){
+		if(persons.size()>0){
+	
+		%>
+	
 <div class="container">
     <hgroup class="mb20">
 		<h1>Search Results</h1>
-		<h2 class="lead"><strong class="text-danger">3</strong> results were found for the search for <strong class="text-danger">Lorem</strong></h2>								
+		<h2 class="lead"><strong class="text-danger"><%=persons.size() %></strong> results were found for the search </h2>								
 	</hgroup>
 
     <section class="col-xs-12 col-sm-6 col-md-12">
+    	<% for(int k=0;k<persons.size();k++){ 
+    	session.setAttribute("file", persons.get(k).getPhoto());
+    	%>
 		<article class="search-result row">
 			<div class="col-xs-12 col-sm-12 col-md-3">
-				<a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="Lorem ipsum" /></a>
+				<a href="#" title="Lorem ipsum" class="thumbnail"><img src="GetFile?type=image/jpeg" alt="Lorem ipsum" /></a>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-2">
 				<ul class="meta-search">
-					<li><i class="glyphicon glyphicon-calendar"></i> <span>02/15/2014</span></li>					
+					<li><i class="glyphicon glyphicon-calendar"></i> <span><%=persons.get(k).getDate() %></span></li>					
 					<li><i class="glyphicon glyphicon-tags"></i> <span>Skills</span></li>
 				</ul>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-				<h3><a href="#" title="">Person Name, Age</a></h3>
-				<p>Information About Person</p>						
+				<h3><a href="PersonPage?id=<%=data.getPersonId(persons.get(k).getMail())%>&type=open" title=""><%=persons.get(k).getName()+" "+persons.get(k).getSurname() %></a></h3>
+				<p><%=persons.get(k).getAbout() %></p>						
                 <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
 			</div>
 			<span class="clearfix borda"></span>
 		</article>
 
-       <article class="search-result row">
-			<div class="col-xs-12 col-sm-12 col-md-3">
-				<a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="Lorem ipsum" /></a>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-2">
-				<ul class="meta-search">
-					<li><i class="glyphicon glyphicon-calendar"></i> <span>02/15/2014</span></li>					
-					<li><i class="glyphicon glyphicon-tags"></i> <span>Skills</span></li>
-				</ul>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-				<h3><a href="#" title="">Person Name, Age</a></h3>
-				<p>Information About Person</p>						
-                <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
-			</div>
-			<span class="clearfix borda"></span>
-		</article>
-<article class="search-result row">
-			<div class="col-xs-12 col-sm-12 col-md-3">
-				<a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="Lorem ipsum" /></a>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-2">
-				<ul class="meta-search">
-					<li><i class="glyphicon glyphicon-calendar"></i> <span>02/15/2014</span></li>					
-					<li><i class="glyphicon glyphicon-tags"></i> <span>Skills</span></li>
-				</ul>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-				<h3><a href="#" title="">Person Name, Age</a></h3>
-				<p>Information About Person</p>						
-                <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
-			</div>
-			<span class="clearfix border"></span>
-		</article>			
-
-	</section>
+       
+				<% 
+				} %>
+		</section>
 </div>
+<%		
+		}
+	} 
+	%>
 	<script src="js/jquery.min.js"></script>
      <script src="js/jquery-ui.min.js"></script>
      <script src="js/bootstrap.min.js"></script>

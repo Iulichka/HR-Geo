@@ -39,6 +39,7 @@ public class PersonPage extends HttpServlet {
 		if(id==null) id = "1"; // temp
 		String type = request.getParameter("type");
 		if(type == null) type = "open"; // temp
+		System.out.println(id+" "+type);
 		DataForPerson dfp = new DataForPerson();
 		int intId = Integer.parseInt(id);
 		dfp.getPerson(intId);
@@ -47,7 +48,7 @@ public class PersonPage extends HttpServlet {
 		PersonSkills skills = dfp.getPersonSkills(intId);
 		PersonEducation edu = dfp.getPersonEducation(intId);
 		ArrayList<String> docs = dfp.getDocs(id);
-		request.setAttribute("person", per);
+		request.setAttribute("person", per);		
 		request.setAttribute("experience", exp);
 		request.setAttribute("skills", skills);
 		request.setAttribute("education", edu);
