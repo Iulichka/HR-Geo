@@ -20,9 +20,8 @@
 </head>
 <body>
 	 <div  class="centerStyle" style="position: absolute; top: 100px; left:400px; width:600px; margin:auto;" align="center">
-			<p style="color:red; font-size: 18px;">თქვენ წარმატებით გაიარეთ ვერიფიკაცია </p>
+			<p style="color:Blue; font-size: 18px;">თქვენ წარმატებით გაიარეთ ვერიფიკაცია </p>
 				<form method="get" action="PersonServlet">
-					<input class="field" type="text" size="30" name="code">
 					<input class="submitButton" type="submit" value="დადასტურება"/>
 				</form>
 		</div>

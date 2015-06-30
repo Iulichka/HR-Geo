@@ -21,11 +21,11 @@
 <body>
 	 <div  class="centerStyle" style="position: absolute; top: 100px; left:400px; width:600px; margin:auto;" align="center">
 			<p style="color:red; font-size: 18px;">კოდი არასწორად არის მითითებული </p>
-			<p style="color:white; font-size: 18px;">გთხოვთ, გადაამოწმოთ  თქვენს მიერ მითითებულ ელექტრონულ ფოსტაზე მიღებული  დამადასტურებელი კოდი.<br>
+			<p style="color:Blue; font-size: 18px;">გთხოვთ, გადაამოწმოთ  თქვენს მიერ მითითებულ ელექტრონულ ფოსტაზე მიღებული  დამადასტურებელი კოდი.<br>
 			</p>
 				<form method="post" action="VerifyByMailServlet">
-					<input class="field" type="text" size="30" name="code">
-					<input class="submitButton" type="submit" value="დადასტურება"/>
+					
+					<input class="submitButton" type="submit" value="ხელახლა ცდა"/>
 				</form>
 		</div>
 </body>
