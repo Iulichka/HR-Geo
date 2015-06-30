@@ -20,13 +20,14 @@ public class PersonSearcher {
 	 Connection con=null;
 	 public PersonSearcher(){
 		 con=DataBaseInfo.getConnection();
-			 
 	}
+	 
+	 
 	public  ArrayList<Integer> getPersons(ArrayList<Integer> chosenUnisIds,
 			ArrayList<Integer> chosenFacultyIds,
 			ArrayList<Integer> chosenSkillsIds, int personAge,
 			int workingExperience) {
-		ArrayList<Integer> result=new ArrayList<Integer>();
+		addSearched(chosenSkillsIds);
 		Statement stm;
 		String selectWithUni="";
 		if(chosenUnisIds.size()!=0){
@@ -71,18 +72,38 @@ public class PersonSearcher {
 			int id=-1;
 			while(rset.next()){
 				 id=rset.getInt(1);
-				 result.add(id);
 			}
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 		
 		
-		return result;
+		return null;
 	}
 	
+	private void addSearched(ArrayList<Integer> chosenSkillsIds) {
+		Statement stm;
+		try {
+			stm = con.createStatement();
+			stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+			String forIn = "";
+			for (int i=0; i<chosenSkillsIds.size(); i++) {
+				if(i==0) {
+					forIn = chosenSkillsIds.get(i)+"";
+				} else {
+					forIn = forIn+", "+chosenSkillsIds.get(i);
+				}
+			}
+			stm.executeUpdate("update skills set searched_number = searched_number + 1 where skills_id in ("+
+			 forIn+" );");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
 	private String getExpSelectString(int workingExperience) {
 		String mins=
 	"select startings.pi6 as pi5 "+
