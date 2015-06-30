@@ -51,6 +51,16 @@ function validateEMail() {
 		document.getElementById("email").innerHTML = "*";
 	}
 }
+function validatePassword() {
+	var pass = document.getElementById("password").value;
+	if (pass.length < 6) {
+		document.getElementById("password").innerHTML = "პაროლი უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს!";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("password").innerHTML = "*";
+	}
+}
 </script>
 </head>
 <body>
@@ -139,7 +149,7 @@ function validateEMail() {
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
+						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5" onchange="validatePassword">
 					</div>
 				</div>
 				
