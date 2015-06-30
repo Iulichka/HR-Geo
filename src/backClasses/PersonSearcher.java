@@ -138,8 +138,6 @@ public class PersonSearcher {
 			}
 		}
 		String end="group by pi1";
-		
-		
 		return start+middle+end;
 	}
 	 
