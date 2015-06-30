@@ -12,8 +12,70 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>Person Registration</title>
+<script  type="text/javascript">
+function validateFirstName() {
+	if (document.getElementById("first_name").value.length < 2) {
+		document.getElementById("notice").innerHTML = "სახელი არასწორადაა  მითითებული";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("first_name").innerHTML = "*";
+	}
+}
+function validateLastName() {
+	if (document.getElementById("last_name").value.length < 2) {
+		document.getElementById("notice").innerHTML = "გვარი არასწორადაა  მითითებული";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("last_name").innerHTML = "*";
+	}
+}
+function validateID() {
+	if (document.getElementById("id_number").value.length < 10) {
+		document.getElementById("notice").innerHTML = "პირადი ნომერი  არასწორადაა  მითითებული";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("id_number").innerHTML = "*";
+	}
+}
+function validateEMail() {
+	var email = document.getElementById('email');
+	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if (!filter.test(email.value)) {
+		document.getElementById("notice").innerHTML = "მეილი  არასწორადაა  მითითებული";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("email").innerHTML = "*";
+	}
+}
+function validatePassword() {
+	var pass = document.getElementById("password").value;
+	if (pass.length < 6) {
+		document.getElementById("notice").innerHTML = "პაროლი უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს!";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("password").innerHTML = "*";
+	}
+}
+function validateRePassword() {
+	var pass = document.getElementById("password").value;
+	var repass = document.getElementById("password_confirmation").value;
+	if (pass != repass) {
+		document.getElementById("notice").innerHTML = "არ ემთხვევა პაროლი";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("password_confirmationr").innerHTML = "";
+	}
+}
+</script>
 </head>
 <body>
+<p id ="notice"></p>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -63,22 +125,22 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-                        <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                        <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1" onchange="validateFirstName()">
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+						<input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2" onchange="validateLastName()">
 					</div>
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<input type="text" name="id_number" id="id_number" class="form-control input-lg" placeholder="ID Number" tabindex="3">
+				<input type="text" name="id_number" id="id_number" class="form-control input-lg" placeholder="ID Number" tabindex="3" onchange="validateID()">
 			</div>
 			
 			<div class="form-group">
-				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4" onchange="validateEMail()">
 			</div>
 			
 			  <div class="form-group">
@@ -99,13 +161,13 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
+						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5" onchange="validatePassword()">
 					</div>
 				</div>
 				
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6" onchange="validateRePassword()">
 					</div>
 				</div>
 			</div>
@@ -121,7 +183,7 @@
 			<hr class="colorgraph">
 				<div class="row">
 					<div class="col-xs-12 col-md-6">									
-						<input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7">
+						<input type="submit" value="Register" id="registerButton" class="btn btn-primary btn-block btn-lg" tabindex="7">
 					</div>
 				</div>	
 </form>
