@@ -39,6 +39,7 @@ public class SkillAddServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("person")==null){
 			response.sendRedirect("homepage.jsp");
+			return;
 		}
 		DataForPerson data=new DataForPerson();
 		String skillName=request.getParameter("skill_name");

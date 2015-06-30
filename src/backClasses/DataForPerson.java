@@ -316,14 +316,14 @@ public void addCV(String idST, FileInputStream in) {
 		id = Integer.parseInt(idST);
 		stm=con.createStatement();
 		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
-		stm.executeQuery("SET SQL_SAFE_UPDATES = 0;");
-		stm.executeUpdate("delete from person_cv where persons_id = "+idST+";");
-		java.sql.PreparedStatement prs = con.prepareStatement("insert into person_cv (person_CV, persons_id) values(?,?)");
+		//stm.executeQuery("SET SQL_SAFE_UPDATES = 0;");
+		stm.executeUpdate("delete from person_CV where persons_id = "+idST+";");
+		java.sql.PreparedStatement prs = con.prepareStatement("insert into person_CV (person_CV, persons_id) values(?,?)");
 		prs.setBlob(1, in);
 		prs.setInt(2, id);
 		prs.executeUpdate();
 	} catch (SQLException e) {
-		// TODO Auto-generated catch block
+		System.out.println(e.getMessage());
 		e.printStackTrace();
 	}
 	
@@ -667,15 +667,30 @@ public byte[] getCV(String id) {
 		//id = Integer.parseInt(idST);
 		stm=con.createStatement();
 		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
-		ResultSet rSet = stm.executeQuery("select pc.person_cv from person_cv pc where pc.persons_id = "+id);
+		ResultSet rSet = stm.executeQuery("select pc.person_CV from person_CV pc where pc.persons_id = "+id);
 		rSet.next();
 		Blob blob = rSet.getBlob(1);
 		result =  blob.getBytes(1, (int) blob.length());
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
+		result = null;
 		e.printStackTrace();
 	}
 	return result;
+}
+public void deleteCv(int perId) {
+	Statement stm;
+	
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		stm.executeUpdate("delete from person_CV where persons_id="+perId+";");
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		System.out.println(e.getMessage());
+		e.printStackTrace();
+	}
+	
 }
 
 

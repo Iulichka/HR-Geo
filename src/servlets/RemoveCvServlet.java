@@ -9,19 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import backClasses.DataForPerson;
-import backClasses.Person;
 
 /**
- * Servlet implementation class SkillChangeServlet
+ * Servlet implementation class RemoveCvServlet
  */
-@WebServlet("/SkillChangeServlet")
-public class SkillChangeServlet extends HttpServlet {
+@WebServlet("/RemoveCvServlet")
+public class RemoveCvServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SkillChangeServlet() {
+    public RemoveCvServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,23 +36,16 @@ public class SkillChangeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		request.setCharacterEncoding("UTF-8");
 		if(request.getSession().getAttribute("person")==null){
 			response.sendRedirect("homepage.jsp");
 			return;
 		}
-		Person  pers=(Person)request.getSession().getAttribute("person");
-		int skill_id=Integer.parseInt(request.getParameter("skill_id"));
-		String type=request.getParameter("SUBMIT");
-		String skill_level=request.getParameter("level");
 		DataForPerson data=new DataForPerson();
-		if(type.equals("change")){
-			data.updateSkill(skill_id,skill_level,Integer.parseInt(pers.getId()));
-		}else{
-			data.deleteSkill(skill_id,Integer.parseInt(pers.getId()));
-		}
+		int perId=Integer.parseInt(request.getParameter("person_id"));
+		data.deleteCv(perId);
+		response.sendRedirect("updateDocuments.jsp");
 		
-	response.sendRedirect("skillsUpdate.jsp");
-	
 	}
+
 }
