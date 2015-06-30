@@ -168,7 +168,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
 				<h3><a href="PersonPage?id=<%=data.getPersonId(persons.get(k).getMail())%>&type=open" title=""><%=persons.get(k).getName()+" "+persons.get(k).getSurname() %></a></h3>
 				<p><%=persons.get(k).getAbout() %></p>						
-                <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+                <button type="button" class="btn btn-primary active">Active Primary</button>
 			</div>
 			<span class="clearfix borda"></span>
 		</article>
