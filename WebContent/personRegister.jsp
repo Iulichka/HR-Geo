@@ -61,6 +61,17 @@ function validatePassword() {
 		document.getElementById("password").innerHTML = "*";
 	}
 }
+function validateRePassword() {
+	var pass = document.getElementById("password").value;
+	var repass = document.getElementById("password_confirmation").value;
+	if (pass != repass) {
+		document.getElementById("password_confirmation").innerHTML = "არ ემთხვევა პაროლი";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("password_confirmation").innerHTML = "";
+	}
+}
 </script>
 </head>
 <body>
@@ -149,13 +160,13 @@ function validatePassword() {
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5" onchange="validatePassword">
+						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5" onchange="validatePassword()">
 					</div>
 				</div>
 				
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6" onchange="validateRePassword()">
 					</div>
 				</div>
 			</div>
