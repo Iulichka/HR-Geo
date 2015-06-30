@@ -78,6 +78,7 @@
 	<div class="row">
 	<div class="form-group">
 		<div class="col-md-12">
+		<label for="contain">Skills:</label>
                 <select name ="skills" class="form-control" id="tagPicker" multiple="multiple">
                 <% for (int i=0;i<skills.size();i++){ %>
          		<option value=<%=value %>><%=skills.get(i) %></option>
@@ -90,7 +91,8 @@
        		 </div>
        	   </div>       
       					<div class="form-group">
-							 <div class="col-md-12">                                                       
+							 <div class="col-md-12">      
+							 <label for="contain">Universities:</label>                                                 
                                     <select name="university" class="form-control" id="tagPicker2" multiple="multiple">                                   
                                        <% for (int k=0;k<universities.size();k++){ %>
          								<option value=<%=value %>><%=universities.get(k) %></option>
@@ -104,7 +106,8 @@
                                   </div>
                                  
                                   <div class="form-group">
-                                  <div class="col-md-12">                                                       
+                                  <div class="col-md-12">  
+                                  <label for="contain">Faculties:</label>                                                     
                                      <select name="faculty" class="form-control" id="tagPicker3" multiple="multiple">                                   
                                        <% for (int i=0;i<faculties.size();i++){ %>
          								<option value=<%=value %>><%=faculties.get(i) %></option>
@@ -119,24 +122,21 @@
                               
                                   <div class="form-group">
                                   <div class="col-md-12"> 
-                                    <label for="contain">Minimum Age</label>
+                                    <label for="contain">Minimum Age:</label>
                                     <input class="form-control" name = "age" type="text" />
                                   </div>
                                   </div>
                                   <div class="form-group">
                                   <div class="col-md-12"> 
-                                    <label for="contain">Working Experience</label>
+                                    <label for="contain">Minimum Working Experience:</label>
                                     <input class="form-control" name = "experience" type="text" />
                                   </div>
+               
                                   </div>
-                                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                                
-                           
-                        
+                                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>                                                                                   
                     </div>
-                </div>
-            
-	</form>
+                </div>            
+		</form>
 	<% if(searched==true){
 		if(persons.size()>0){
 	
@@ -149,16 +149,19 @@
 	</hgroup>
 
     <section class="col-xs-12 col-sm-6 col-md-12">
-    	<% for(int k=0;k<persons.size();k++){ 
-    	session.setAttribute("file", persons.get(k).getPhoto());
+    	<% for(int k=0;k<persons.size();k++){
+    	
     	%>
 		<article class="search-result row">
 			<div class="col-xs-12 col-sm-12 col-md-3">
-				<a href="#" title="Lorem ipsum" class="thumbnail"><img src="GetFile?type=image/jpeg" alt="Lorem ipsum" /></a>
+				<a href="#" title="Lorem ipsum" class="thumbnail"><img src="GetPersonPicture?id=<%=personIds.get(k)%>"  /></a>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-2">
 				<ul class="meta-search">
 					<li><i class="glyphicon glyphicon-calendar"></i> <span><%=persons.get(k).getDate() %></span></li>					
+
+
+
 					<li><i class="glyphicon glyphicon-tags"></i> <span>Skills</span></li>
 				</ul>
 			</div>

@@ -33,10 +33,11 @@ public class GetFile extends HttpServlet {
 	 * type parameter is file type like "text/html"
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String fileType = request.getParameter("type");
 		response.setContentType(fileType);
 		byte [] file = (byte[]) request.getSession().getAttribute("file");
-		request.removeAttribute("file");
+		request.getSession().removeAttribute("file");
 		response.setContentLength(file.length);
 		OutputStream out = response.getOutputStream();
 		//System.out.println(request.getSession().getAttributeNames());
