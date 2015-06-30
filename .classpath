@@ -9,5 +9,24 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="JARS/access-bridge.jar"/>
+	<classpathentry kind="lib" path="JARS/cldrdata.jar"/>
+	<classpathentry kind="lib" path="JARS/dnsns.jar"/>
+	<classpathentry kind="lib" path="JARS/jaccess.jar"/>
+	<classpathentry kind="lib" path="JARS/java-mail-1.4.4.jar"/>
+	<classpathentry kind="lib" path="JARS/javassist-3.13.0-ga.jar"/>
+	<classpathentry kind="lib" path="JARS/javax.servlet-3.1.jar"/>
+	<classpathentry kind="lib" path="JARS/javax.websocket-api-1.0-rc4.jar"/>
+	<classpathentry kind="lib" path="JARS/jdom.jar"/>
+	<classpathentry kind="lib" path="JARS/jfxrt.jar"/>
+	<classpathentry kind="lib" path="JARS/localedata.jar"/>
+	<classpathentry kind="lib" path="JARS/mysql-connector-java-5.1.23-bin.jar"/>
+	<classpathentry kind="lib" path="JARS/nashorn.jar"/>
+	<classpathentry kind="lib" path="JARS/rome-1.0.jar"/>
+	<classpathentry kind="lib" path="JARS/sunec.jar"/>
+	<classpathentry kind="lib" path="JARS/sunjce_provider.jar"/>
+	<classpathentry kind="lib" path="JARS/sunmscapi.jar"/>
+	<classpathentry kind="lib" path="JARS/sunpkcs11.jar"/>
+	<classpathentry kind="lib" path="JARS/zipfs.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
