@@ -8,10 +8,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.*;
 import java.util.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
+
+import backClasses.OverallExperience;
+import backClasses.Person;
+import backClasses.PersonEducation;
+import backClasses.PersonSkills;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -40,6 +47,8 @@ public class ServletPDF extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		String id = request.getParameter("id");
+		request.getRequestDispatcher("PersonPage?id="+id).forward(request, response);
 
 		response.setContentType("application/pdf");
 		response.addHeader("Content-Disposition", "attachment; filename=test.pdf");
@@ -54,6 +63,13 @@ public class ServletPDF extends HttpServlet {
 			
 			document.add(new Paragraph("Hello World"));
 			document.add(new Paragraph(new Date().toString()));
+			Person p = (Person) request.getAttribute("person");
+			PersonSkills s = (PersonSkills) request.getAttribute("skills");
+			PersonEducation e = (PersonEducation) request.getAttribute("education");
+			OverallExperience exp = (OverallExperience)request.getAttribute("experience");
+			document.add(new Paragraph("Personal Statistics"));
+		
+			
 			// step 5
 			document.close();
 		} catch (DocumentException de) {

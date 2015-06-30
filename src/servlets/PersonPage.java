@@ -59,6 +59,8 @@ public class PersonPage extends HttpServlet {
 			rightJsp = "PersonPage.jsp";
 		} else if(type.equals("closed")) {
 			rightJsp = "PersonPageClosed.jsp";	
+		} else if (type.equals("CV")) {
+			request.getRequestDispatcher("ServletPDF").forward(request, response);
 		}
 		RequestDispatcher rd=request.getRequestDispatcher(rightJsp);
 		rd.forward(request, response);
