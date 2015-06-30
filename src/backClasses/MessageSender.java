@@ -10,10 +10,9 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class EMailSender {
+public class MessageSender {
 
-	// from = "hrgeofreeuni@gmail.com" pass = "hrgeofreeuni1"
-	public static  void sendEmail(String to, String body, String from, String pass) {
+	public static  void sendMsg(String to, String body,String from, String pass) {
 		 	
 	        Properties props = System.getProperties();
 	        String host = "smtp.gmail.com";
@@ -27,10 +26,10 @@ public class EMailSender {
 	        Session session = Session.getDefaultInstance(props);
 	        MimeMessage message = new MimeMessage(session);
 	        try {
-				message.setFrom(new InternetAddress("hrgeofreeuni@gmail.com"));
+				message.setFrom(new InternetAddress("from-email@gmail.com"));
 				message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(to));
-				message.setSubject("HR Georgia","UTF-8");
-				message.setText("მესიჯი " + body ,"UTF-8");
+				message.setSubject("Restaurants of Tbilis - ვერიფიკაცია","UTF-8");
+				message.setText("თქვენი ვერიფიკაციის კოდია:  " + body ,"UTF-8");
 				Transport transport = session.getTransport("smtp");
 		        transport.connect(host, from, pass);
 		        transport.sendMessage(message, message.getAllRecipients());
