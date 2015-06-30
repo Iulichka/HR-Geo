@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import backClasses.EMailSender;
+import backClasses.MessageSender;
 
 /**
  * Servlet implementation class VerifyByMailServlet
@@ -40,7 +41,7 @@ public class VerifyByMailServlet extends HttpServlet {
 		Random r = new Random( System.currentTimeMillis() );
 		String code = ""+10000 + r.nextInt(20000);
 		request.getSession().setAttribute("code", code);
-		EMailSender.sendEmail(request.getParameter("email"),code,"hrgeofreeuni@gmail.com","hrgeofreeuni1");
+		MessageSender.sendMsg(request.getParameter("email"),code,"hrgeofreeuni@gmail.com","hrgeofreeuni1");
 		request.getRequestDispatcher("Activation.jsp").forward(request,response);
 	}
 
