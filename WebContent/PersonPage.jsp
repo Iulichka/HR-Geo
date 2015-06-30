@@ -34,9 +34,13 @@ ArrayList<String> docs =(ArrayList<String>) request.getAttribute("docs");
 <%//session.setAttribute("file", per.getPhoto()); %>
 
 <div class="page-header">
-  <h1 style="color: blue;"><%=per.getName()+" "+per.getSurname() %> <small><%=exp.getCurrentExperience().getPosition()+" at " + exp.getCurrentExperience().getCompName()
-  %></small></h1>
+  <h1 style="color: blue;"><%=per.getName()+" "+per.getSurname() %> 
+  <% if(exp!=null&&exp.getCurrentExperience()!=null){%>
+  <small><%=exp.getCurrentExperience().getPosition()+" at " + exp.getCurrentExperience().getCompName()%></small>
+  <% }%>
+  </h1>
 </div>
+
 
 
 <div id="pic">
@@ -56,7 +60,7 @@ ArrayList<String> docs =(ArrayList<String>) request.getAttribute("docs");
   </p>
 </div>
 </div>
-
+<%if(docs!=null){ %>
 <div id="cv" style="position: absolute; padding-left: 60%; padding-top: 20%" >
 <h3>CV</h3>
 <a href="GetDocument?id=<%= per.getId()%>">CV download</a>
@@ -74,9 +78,9 @@ ArrayList<String> docs =(ArrayList<String>) request.getAttribute("docs");
   </p>
   <%} %>
 </div>
+<%} %>
 
-
-
+<%if(exp!=null){ %>
 <div id="experience" style="width: 50%;">
  <div class="panel panel-default">
  <h3><%=per.getAge() %> years old</h3>
@@ -94,6 +98,7 @@ ArrayList<String> docs =(ArrayList<String>) request.getAttribute("docs");
 out.println("e-mail: "+ per.getMail());
 %>
 </p>
+
 
         <div class="panel-body">
         <table class="table table-hover">          
@@ -120,7 +125,8 @@ out.println("e-mail: "+ per.getMail());
     </div>
 
 </div>
-
+<%} %>
+<% if(edu!=null){ %>
 <div id="Education" style="width: 50%;">
  <div class="panel panel-default">
       <div class="panel-heading">
@@ -154,8 +160,8 @@ out.println("e-mail: "+ per.getMail());
 
 </div>
 
-
-
+<%} %>
+<% if(skills!=null){ %>
 <div id="Skills"  style="width: 50%">
   <div class="panel-group" id="accordion">
  	<%
@@ -184,7 +190,9 @@ out.println("e-mail: "+ per.getMail());
 			<thead><tr><th>Skill</th><th>Level</th></tr></thead>														
 					<tbody>
 						<%
+						if(categorySkills!=null)
 							for(int j=0; j<categorySkills.size(); j++){
+								
 								Skill currentSkill = categorySkills.get(j);	
 								int length = currentSkill.getLevel().length();
 								String cssClass;
@@ -214,7 +222,7 @@ out.println("e-mail: "+ per.getMail());
  	} %>
     </div>
   </div>
-  
+  <%} %>
   <div>
 <form action=<%="\""+"Upload?id="+per.getId()+"\"" %> method="post" enctype="multipart/form-data">
     <input type="text" name="description" />
