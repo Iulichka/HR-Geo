@@ -36,7 +36,7 @@ public class VerifyCheckerServlet extends HttpServlet {
 		if(!request.getParameter("code").equals(request.getSession().getAttribute("code"))){
 			request.getRequestDispatcher("illegalRegister.jsp").forward(request, response);
 		}else{
-			request.getRequestDispatcher("Success.jsp").forward(request, response);
+			response.sendRedirect("http://localhost:8080/HR-Geo/PersonServlet");
 		}
 	}
 
