@@ -34,7 +34,7 @@ public class VerifyCheckerServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(!request.getParameter("code").equals(request.getSession().getAttribute("code"))){
-			request.getRequestDispatcher("illegalRegistr.jsp").forward(request, response);
+			request.getRequestDispatcher("illegalRegister.jsp").forward(request, response);
 		}else{
 			request.getRequestDispatcher("Success.jsp").forward(request, response);
 		}

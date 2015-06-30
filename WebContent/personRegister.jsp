@@ -54,7 +54,7 @@
 
 
 
-<form action="PersonRegisterServlet" method="post" accept-charset="UTF-8">
+<form action="VerifyByMailServlet" method="post" accept-charset="UTF-8">
 <div class="container">
 	<div class="row">
     	<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">

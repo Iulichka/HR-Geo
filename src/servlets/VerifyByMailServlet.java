@@ -41,7 +41,7 @@ public class VerifyByMailServlet extends HttpServlet {
 		String code = ""+10000 + r.nextInt(20000);
 		request.getSession().setAttribute("code", code);
 		EMailSender.sendEmail(request.getParameter("email"),code,"hrgeofreeuni@gmail.com","hrgeofreeuni1");
-		request.getRequestDispatcher("activation.jsp").forward(request,response);
+		request.getRequestDispatcher("Activation.jsp").forward(request,response);
 	}
 
 }
