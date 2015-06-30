@@ -109,6 +109,10 @@
                     <p><small>Update Experience</small></p>
                      <a href="experienceUpdate.jsp" class="btn btn-danger btn-block-lg" role="button"><span class="fa fa-plus-circle"></span>Update Experience</a>                  
                 </div>
+                <div class="col-xs-12 col-sm-4 emphasis" >                  
+                    <p><small> Update Documents</small></p>
+                    <a href="updateDocuments.jsp" class="btn btn-primary btn-block-lg" role="button"><span class="fa fa-plus-circle"></span>Update Documents</a>                  
+                </div>
                 
                     <div class="col-xs-12 col-sm-4 emphasis"  >                  
                     <p><small>Update Experience</small></p>

@@ -25,7 +25,7 @@
 				ArrayList<String> skills= new ArrayList<String>();
 				ArrayList<String> universities=new ArrayList<String>();
 				ArrayList<String> faculties=new ArrayList<String>();
-				ArrayList<Integer> personIds=(ArrayList<Integer>)request.getAttribute("persons");
+				ArrayList<Integer> personIds=(ArrayList<Integer>) session.getAttribute("searchedpersons");
 				ArrayList<Person> persons=new ArrayList<Person>();
 				DataForPerson data = new DataForPerson();
 				skills=data.getSkillNames();
@@ -37,9 +37,13 @@
 						if(personIds!=null){
 							searched=true;
 							if(personIds.size()>0){
+								if(session.getAttribute("cart")==null){
+									ArrayList<Integer> cart=new ArrayList<Integer>();
+									session.setAttribute("cart", cart);
+								}
 								for(int i=0;i<personIds.size();i++){
-								Person person=data.getPerson(personIds.get(i));
-								persons.add(i, person);
+									Person person=data.getPerson(personIds.get(i));
+									persons.add(i, person);
 								
 							}
 						}
@@ -138,15 +142,42 @@
                 </div>            
 		</form>
 	<% if(searched==true){
-		if(persons.size()>0){
-	
+		if(persons.size()>0){				
+			
 		%>
-	
-<div class="container">
+		<br></br>
+		
+		<div class="container">
+		<div class="row">
+		<form action="MakeFinalOffer" method="post">
+		<div class="form-group">
+          <div class="col-lg-8">
+            <input type="text" class="form-control" placeholder="Enter Offer Name" name="offer_name">
+          </div>
+        </div>
+	 <div class="form-group">
+          <div class="col-lg-8">
+           	<textarea cols="104" rows="5" name="about" placeholder="Enter Offer Info"> 
+				 
+			</textarea>
+			<button type="submit" name="makeoffer" class="btn btn-success" value="make offer" >
+         <i class=" glyphicon glyphicon-off icon-white"></i>
+         Make Offer
+         </button>
+          </div>
+        </div>
+        </form>
+        <br></br>
+        <br></br><br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <div class="form-group">
     <hgroup class="mb20">
-		<h1>Search Results</h1>
+		<h4>            </h4>
 		<h2 class="lead"><strong class="text-danger"><%=persons.size() %></strong> results were found for the search </h2>								
 	</hgroup>
+	</div>
 
     <section class="col-xs-12 col-sm-6 col-md-12">
     	<% for(int k=0;k<persons.size();k++){
@@ -167,17 +198,35 @@
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
 				<h3><a href="PersonPage?id=<%=data.getPersonId(persons.get(k).getMail())%>&type=open" title=""><%=persons.get(k).getName()+" "+persons.get(k).getSurname() %></a></h3>
-				<p><%=persons.get(k).getAbout() %></p>						
-                <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+				<p><%=persons.get(k).getAbout() %></p>					
 			</div>
 			<span class="clearfix borda"></span>
-		</article>
-
+		
+		<% 
+					
+					
+				if(!data.contains((ArrayList<Integer>)session.getAttribute("cart"), personIds.get(k))){											
+					%>
+					<form action="PersonAddToCart" method="post">
+                  		<input type="hidden" name="person_id" value="<%=personIds.get(k)%>">
+       			  		<button type="submit"name="SUBMIT" class="btn btn-primary" value="send" >
+       			  		<i class="glyphicon glyphicon-off icon-white"></i>Send Offer</button>
+       			  </form>
+       			  <% }else{
+       				  %>
+       				  <button type="button" class="btn btn-primary disabled">Already Sent</button>
+       				  <%} %>
+		
        
 				<% 
 				} %>
+				</article>
 		</section>
+		
 </div>
+
+  </div>       
+        
 <%		
 		}
 	} 
@@ -187,39 +236,33 @@
      <script src="js/bootstrap.min.js"></script>
     <script>
     //Select2
-    $.getScript('http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.min.js',function(){
+    $.getScript('js/select.js',function(){
                     
       /* Select2 plugin as tagpicker */
       $("#tagPicker").select2({
         closeOnSelect:false
       });
-
     }); //script         
-
     $(document).ready(function() {});</script>
     <script>
     //Select2
-    $.getScript('http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.min.js',function(){
+    $.getScript('js/select.js',function(){
                     
       /* Select2 plugin as tagpicker */
       $("#tagPicker2").select2({
         closeOnSelect:false
       });
-
     }); //script         
-
     $(document).ready(function() {});</script>
     <script>
     //Select2
-    $.getScript('http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.min.js',function(){
+    $.getScript('js/select.js',function(){
                     
       /* Select2 plugin as tagpicker */
       $("#tagPicker3").select2({
         closeOnSelect:false
       });
-
     }); //script         
-
     $(document).ready(function() {});</script>
 
 </body>

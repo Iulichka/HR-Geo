@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import backClasses.DataForPerson;
-import backClasses.Person;
+import backClasses.Company;
+import backClasses.DataForComp;
 
 /**
- * Servlet implementation class SkillChangeServlet
+ * Servlet implementation class MakeFinalOffer
  */
-@WebServlet("/SkillChangeServlet")
-public class SkillChangeServlet extends HttpServlet {
+@WebServlet("/MakeFinalOffer")
+public class MakeFinalOffer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SkillChangeServlet() {
+    public MakeFinalOffer() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,23 +38,12 @@ public class SkillChangeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		if(request.getSession().getAttribute("person")==null){
-			response.sendRedirect("homepage.jsp");
-			return;
-		}
-		Person  pers=(Person)request.getSession().getAttribute("person");
-		int skill_id=Integer.parseInt(request.getParameter("skill_id"));
-		String type=request.getParameter("SUBMIT");
-		String skill_level=request.getParameter("level");
-		DataForPerson data=new DataForPerson();
-		if(type.equals("change")){
-			data.updateSkill(skill_id,skill_level,Integer.parseInt(pers.getId()));
-		}else{
-			data.deleteSkill(skill_id,Integer.parseInt(pers.getId()));
-		}
+		ArrayList<Integer> cart= (ArrayList<Integer>)request.getSession().getAttribute("cart");
+		String email=(String)request.getSession().getAttribute("email");
+		DataForComp data= new DataForComp();
+		Company company=data.getComp(email);
 		
-	response.sendRedirect("skillsUpdate.jsp");
-	
+		
 	}
+
 }
