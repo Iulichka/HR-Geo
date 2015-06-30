@@ -20,7 +20,7 @@
 </head>
 <body>
  		 <div  class="centerStyle" style="position: absolute; top: 100px; left:400px; width:600px; margin:auto;" align="center">
-			<p style="color:white;font-size: 18px">გთხოვთ, შეიყვანოთ  თქვენ მიერ მითითებულ ელექტრონულ ფოსტაზე მიღებული  დამადასტურებელი კოდი.<br>
+			<p style="color:blue;font-size: 18px">გთხოვთ, შეიყვანოთ  თქვენს მიერ მითითებულ ელექტრონულ ფოსტაზე მიღებული  დამადასტურებელი კოდი.<br>
 			</p>
 				<form method="post" action="VerifyCheckerServlet">
 					<input class="field" type="text" size="30" name="code">
