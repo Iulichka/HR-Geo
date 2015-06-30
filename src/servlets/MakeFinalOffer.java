@@ -42,6 +42,8 @@ public class MakeFinalOffer extends HttpServlet {
 		String email=(String)request.getSession().getAttribute("email");
 		DataForComp data= new DataForComp();
 		Company company=data.getComp(email);
+		String offerName = (String)request.getParameter("offer_name");
+		String offerInfo=(String)request.getParameter("makeoffer");
 		
 		
 	}
