@@ -11,6 +11,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <title>Company Registration</title>
+<script  type="text/javascript">
+function validateCompanyName() {
+	if (document.getElementById("first_name").value.length < 2) {
+		document.getElementById("notice").innerHTML = "სახელი არასწორადაა  მითითებული";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("first_name").innerHTML = "*";
+	}
+}
+</script>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -57,7 +68,7 @@
 			<h2>Registration Page <small>company register.</small></h2>
 			<hr class="colorgraph">	
 					<div class="form-group">
-                        <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Company Name" tabindex="1">
+                        <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Company Name" tabindex="1" onchange="validateCompanyName()">
 					</div>			
 			<div class="form-group">
 				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
