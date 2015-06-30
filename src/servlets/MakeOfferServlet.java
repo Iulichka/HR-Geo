@@ -40,6 +40,7 @@ public class MakeOfferServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String [] selectedSkill=(String[])request.getParameterValues("skills");
 		String []  selectedUniversity=(String[])request.getParameterValues("university");
 		String [] selectedFaculty=(String[])request.getParameterValues("faculty");

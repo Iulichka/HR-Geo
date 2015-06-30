@@ -35,6 +35,7 @@ public class CompanyRegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String email=(String)request.getParameter("email");
 		String password=(String)request.getParameter("password");
 		String name=(String)request.getParameter("company_name");

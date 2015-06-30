@@ -63,16 +63,22 @@
   </div><!-- /.container-fluid -->
 </nav>
 <table class="table table-hover">
-	<thead><tr><td>My Cv</td></tr></thead>
-	<thead><tr><th>Description</th><th>CV</th></thead>
+	<thead><tr><th>My Cv</th></thead>
+	<thead><tr><th>Description</th><th>CV</th><th>Delete CV</th></tr></thead>
 		<tbody>
 			<tr>
+			<form action="RemoveCvServlet" method="post">
 				<td>CV</td>
 				<td>
-					
 					<a href="GetDocument?id=<%=p.getId()%>">CV download</a>
-					
 				</td>
+				<td>
+					<input type="hidden" name="person_id" value="<%=p.getId() %>">
+						<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
+						<span class="glyphicon glyphicon-remove"></span>
+						</button> 
+				</td>
+			</form>	
 			</tr>
 		</tbody>
 </table>

@@ -669,6 +669,20 @@ public byte[] getCV(String id) {
 	}
 	return result;
 }
+public void deleteCv(int perId) {
+	Statement stm;
+	
+	try {
+		stm=con.createStatement();
+		stm.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
+		stm.executeUpdate("delete from person_CV where persons_id="+perId+";");
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		System.out.println(e.getMessage());
+		e.printStackTrace();
+	}
+	
+}
 
 
 
