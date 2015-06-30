@@ -12,7 +12,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>Person Registration</title>
-<script>
+<script  type="text/javascript">
+function validateFirstName() {
+	if (document.getElementById("first_name").value.length < 2) {
+		document.getElementById("first_name").innerHTML = "სახელი არასწორადაა  მითითებული";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("first_name").innerHTML = "*";
+	}
+}
 </script>
 </head>
 <body>
@@ -65,7 +74,7 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-                        <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                        <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1" onchange="validateFirstName()">
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
@@ -123,7 +132,7 @@
 			<hr class="colorgraph">
 				<div class="row">
 					<div class="col-xs-12 col-md-6">									
-						<input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7">
+						<input type="submit" value="Register" id="registerButton" class="btn btn-primary btn-block btn-lg" tabindex="7">
 					</div>
 				</div>	
 </form>
