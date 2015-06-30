@@ -36,6 +36,16 @@ public class DataForPerson {
 		}		
 	 return offers;
  }
+ public boolean contains(ArrayList<Integer> arr,int value){
+	 
+	 if(arr!=null)
+	 for(int i=0;i<arr.size();i++){
+		 if(arr.get(i)==value){
+			 return true;
+		 }
+	 }
+	 return false;
+ }
  public Company getCompany(int offerID){
 	 Company company=null;
 	 Statement stm;
