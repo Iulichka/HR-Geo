@@ -42,6 +42,17 @@ function validateCompanyPassword() {
 		document.getElementById("password").innerHTML = "*";
 	}
 }
+function validateCompanyRePassword() {
+	var pass = document.getElementById("password").value;
+	var repass = document.getElementById("password_confirmation").value;
+	if (pass != repass) {
+		document.getElementById("notice").innerHTML = "არ ემთხვევა პაროლი";
+		document.getElementById("registerButton").disabled = true;
+	} else {
+		document.getElementById("registerButton").disabled = false;
+		document.getElementById("password_confirmationr").innerHTML = "";
+	}
+}
 </script>
 </head>
 <body>
