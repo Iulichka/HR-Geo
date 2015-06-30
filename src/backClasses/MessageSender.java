@@ -20,13 +20,13 @@ public class MessageSender {
 	        props.put("mail.smtp.host", host);
 	        props.put("mail.smtp.user", from);
 	        props.put("mail.smtp.password", pass);
-	        props.put("mail.smtp.port", "587");
+	        props.put("mail.smtp.port", "465");
 	        props.put("mail.smtp.auth", "true");
 	        
 	        Session session = Session.getDefaultInstance(props);
 	        MimeMessage message = new MimeMessage(session);
 	        try {
-				message.setFrom(new InternetAddress("from-email@gmail.com"));
+				message.setFrom(new InternetAddress(from));
 				message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(to));
 				message.setSubject("Restaurants of Tbilis - ვერიფიკაცია","UTF-8");
 				message.setText("თქვენი ვერიფიკაციის კოდია:  " + body ,"UTF-8");
