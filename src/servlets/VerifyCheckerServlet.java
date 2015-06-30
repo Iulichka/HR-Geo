@@ -1,11 +1,17 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import backClasses.DBSelect;
+import backClasses.DataForPerson;
+import backClasses.Person;
 
 /**
  * Servlet implementation class VerifyCheckerServlet
@@ -36,6 +42,11 @@ public class VerifyCheckerServlet extends HttpServlet {
 		if(!request.getParameter("code").equals(request.getSession().getAttribute("code"))){
 			request.getRequestDispatcher("illegalRegister.jsp").forward(request, response);
 		}else{
+			DBSelect select=new DBSelect();
+			select.addPerson((String)request.getSession().getAttribute("first_name"),(String) request.getSession().getAttribute("last_name"),(String)request.getSession().getAttribute("password"),(String) request.getSession().getAttribute("id"), (Date)request.getSession().getAttribute("date"), (String)request.getSession().getAttribute("email"),(String)request.getSession().getAttribute("sex"));
+			DataForPerson person= new DataForPerson();
+			Person p=person.getPerson(person.getPersonId((String)request.getSession().getAttribute("email")));
+			request.getSession().setAttribute("person",p);
 			response.sendRedirect("http://localhost:8080/HR-Geo/PersonServlet");
 		}
 	}
