@@ -183,8 +183,13 @@
 		<h4>            </h4>
 		<h2 class="lead"><strong class="text-danger"><%=persons.size() %></strong> results were found for the search </h2>								
 	</hgroup>
+	<div><form action="PersonAddToCart" method="post">
+                  		<input type="hidden" name="alls" value="true">
+       			  		<button type="submit"name="SUBMIT" class="btn btn-primary" value="send" >
+       			  		<i></i>Add All To List</button>
+     </form>
+     </div>
 	</div>
-
     <section class="col-xs-12 col-sm-6 col-md-12">
     	<% for(int k=0;k<persons.size();k++){
     	

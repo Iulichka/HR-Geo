@@ -38,9 +38,14 @@ public class PersonAddToCart extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("cart")!=null){
-			ArrayList<Integer> cart=(ArrayList<Integer>)request.getSession().getAttribute("cart");
-			int id =Integer.parseInt(request.getParameter("person_id"));
-			cart.add(id);
+			
+			if(request.getParameter("alls")!=null){
+				request.getSession().setAttribute("cart",request.getSession().getAttribute("searchedpersons"));
+			}else{
+				ArrayList<Integer> cart=(ArrayList<Integer>)request.getSession().getAttribute("cart");
+				int id =Integer.parseInt(request.getParameter("person_id"));
+				cart.add(id);
+			}
 			RequestDispatcher rd=request.getRequestDispatcher("makeOffer.jsp");
 			rd.forward(request, response);
 		}
