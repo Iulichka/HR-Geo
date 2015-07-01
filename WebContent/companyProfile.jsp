@@ -148,7 +148,7 @@
       <div id=<%=collapseID %> class="panel-collapse collapse in">
         <div class="panel-body">
         <table class="table table-hover">          
-			<thead><tr><th>Offer Name</th><th>Person Name</th><th>Offer Sent</th><th>Offer End Date</th><th>Offer Status</th></tr></thead>														
+			<thead><tr><th>Offer Name</th><th>Person Name</th><th>Offer Sent</th><th>Offer End Date</th><th>Offer Status</th><th>Person Page</th></tr></thead>														
 					<tbody>
 						<%							
 							for(int i=0;i<value.size();i++){								
@@ -166,6 +166,16 @@
                     		<td><%=key.getStartDate()%></td> 
                     		<td><%=key.getEndDate()%></td> 
                     		<td><%=o.getStatus() %></td>
+                    		<form action="GoToPersonPage" method="post">
+                    		 <td class="center">
+        					 <input type="hidden" name="offer_status" value="<%=o.getStatus()%>">
+        					 <input type="hidden" name="person_id" value="<%=data.getPersonId(pers.getMail())%>">
+        					 <button type="submit"name="SUBMIT" class="btn btn-primary" value="page" >
+        					<i class=" glyphicon glyphicon-off icon-white"></i>
+        					 Person Page
+        					 </button>
+        					 </td>
+        					 </form>
                     	</tr>   
                     	<% } %>       
            				
