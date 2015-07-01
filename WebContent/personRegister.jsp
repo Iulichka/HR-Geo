@@ -21,8 +21,8 @@
 <script  type="text/javascript">
 var error = false;
 $(document).ready(function() {
-	$('#registerButton').click(function(e) {
-		e.preventDefault();		
+	$('#password_confirmation').onkeydown(function(e) {
+				
 		validateRePassword();
 		if (!error){
 			$("#submitForm").submit();
@@ -34,6 +34,7 @@ function validateRePassword() {
 	var pass = document.getElementById("password").value;
 	var repass = document.getElementById("password_confirmation").value;
 	if (pass != repass) {
+	
 		error=true;
 		document.getElementById("notice").innerHTML = "არ ემთხვევა პაროლი";
 		//document.getElementById("registerButton").disabled = true;
@@ -163,18 +164,19 @@ function validateRePassword() {
     </div>
 </div>
 	
-
-	<div class="row">
+	
+	<div class="row" style="margin-left: 22%;text-align: center;">
 		<div class="col-xs-8 col-sm-9 col-md-9">
 			 By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
 		</div>
 	</div>
 			<hr class="colorgraph">
-				<div class="row">
-					<div class="col-xs-12 col-md-6">									
+				<div class="row" >
+					<div class="col-xs-12 col-md-6" style="margin-left: 25%">									
 						<input type="submit" value="Register" id="registerButton" class="btn btn-primary btn-block btn-lg" tabindex="7">
 					</div>
 				</div>	
+				
 </form>
 <!-- Modal -->
 <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
