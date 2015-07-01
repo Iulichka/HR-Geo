@@ -216,11 +216,11 @@
 					<form action="PersonAddToCart" method="post">
                   		<input type="hidden" name="person_id" value="<%=personIds.get(k)%>">
        			  		<button type="submit"name="SUBMIT" class="btn btn-primary" value="send" >
-       			  		<i class="glyphicon glyphicon-off icon-white"></i>Send Offer</button>
+       			  		<i class="glyphicon glyphicon-off icon-white"></i>Add To List</button>
        			  </form>
        			  <% }else{
        				  %>
-       				  <button type="button" class="btn btn-primary disabled">Already Sent</button>
+       				  <button type="button" class="btn btn-primary disabled">Already Added</button>
        				  <%} %>
 		
        
