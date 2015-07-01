@@ -111,7 +111,7 @@ public class DataForStat {
 		try {
 			Statement st = con.createStatement();
 			st.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
-			ResultSet r = st.executeQuery("select s.skill_name, s.searched_number from skills s order by s.searched_number desc limit 20;");
+			ResultSet r = st.executeQuery("select s.skill_name, s.searched_number from skills s order by s.searched_number desc limit 12;");
 			while(r.next()) {
 				int n = r.getInt(2);
 				String name = trim(r.getString(1));

@@ -13,7 +13,7 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 <title>
 <% Company c = (Company)request.getAttribute("comp");
 	out.println(c.getName()); %>
@@ -29,7 +29,7 @@ function fun1(n, mail){
 	xmlhttp.send();
 	var tx =  xmlhttp.responseText;
 	bool = false;
-	document.getElementById("message").innerHTML="thank you for voting new rating is: "+tx;
+	document.getElementById("message").innerHTML="thank you for voting";
 	document.getElementById("ratingValue").innerHTML=tx;
 	}
 }
@@ -59,7 +59,8 @@ site:
 out.println(c.getSite());
 %>
 </a>
-    <a href="CompImage">view</a>
+<br></br>
+    <a href="companyPhotoes.jsp?mail=<%=c.getMail()%>&type=gal">view gallery</a>
 </div>
 <div id="mail">
 <%
@@ -70,6 +71,7 @@ out.println("e-mail: "+ c.getMail());
 <div class="row">
 <%
 for (int i=1; i<=c.getImagesNum(); i++) {
+	if (i==3) break;
 	out.print("<div class=\"col-xs-6 col-md-3\">");
 	out.print("<a href=\"#\" class=\"thumbnail\">");
 	String mail = c.getMail();
@@ -97,12 +99,14 @@ for (int i=1; i<=c.getImagesNum(); i++) {
      </figcaption>
      <p id="message"style="font-size: 9pt"></p>
    </div>
-   <div>
-<form action=<%="\""+"Upload?mail="+c.getMail()+"\"" %> method="post" enctype="multipart/form-data">
-    <input type="text" name="description" />
-    <input type="file" name="file" />
-    <input type="submit" />
-</form>
-</div>
+   
+<div class="copyRight" id="copyRight" style="font-size: 12pt;
+	text-align: center;
+	bottom: inherit;
+	padding-top: 200pt;" >
+                <div class="col-lg-12">
+                    <p>Copyright &copy; HR-geo 2015</p>
+                </div>
+            </div>
 </body>
 </html>

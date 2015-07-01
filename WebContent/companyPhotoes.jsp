@@ -17,8 +17,12 @@
         <div class="row">
         <h3>Company Photos</h3>
             <% 
-            
-            Company c = (Company)session.getAttribute("fullCompany");
+            Company c;
+          	 if (!"gal".equals("gal")) {
+             c = (Company)session.getAttribute("fullCompany");
+            } else {
+             c = new DataForComp().getComp(request.getParameter("mail"));
+           }
  for (int i=1; i<=c.getImagesNum(); i++) {
 	out.print("<div class=\"col-lg-3 col-md-4 col-xs-6 thumb\">");
 	out.print("<a href=\"#\" class=\"thumbnail\">");
