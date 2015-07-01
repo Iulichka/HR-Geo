@@ -58,7 +58,7 @@ public class MakeFinalOffer extends HttpServlet {
 			d=new GregorianCalendar(year, month-1, day).getTime();
 		}
 		select.addOfferToPersons(company, offerInfo, offerName, d, cart);
-		response.sendRedirect("http://localhost:8080/HR-Geo/CompanyServlet");
+		response.sendRedirect("CompanyServlet");
 		
 		
 		

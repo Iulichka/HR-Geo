@@ -19,8 +19,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <%
 Person per =(Person) request.getAttribute("person");
+if(per==null){
+	response.sendRedirect("homePage.jsp");
+	return;
+}
 PersonEducation edu = (PersonEducation) request.getAttribute("education");
 OverallExperience exp = (OverallExperience) request.getAttribute("experience");
 PersonSkills skills = (PersonSkills) request.getAttribute("skills");

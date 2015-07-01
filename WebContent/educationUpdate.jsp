@@ -32,7 +32,7 @@
 		ArrayList<String> gradTypes=null;
 		ArrayList<String> universities=null;
 		ArrayList<String> faculties=null;
-			if(request.getSession(false)!=null && session.getAttribute("email")!=null && session.getAttribute("person")!=null){
+			if(request.getSession()!=null && session.getAttribute("email")!=null && session.getAttribute("person")!=null){
 				user=(String)session.getAttribute("email");
 				first_name=(String)session.getAttribute("first_name");
 				last_name=(String)session.getAttribute("last_name");

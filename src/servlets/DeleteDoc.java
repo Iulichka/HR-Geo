@@ -39,6 +39,7 @@ public class DeleteDoc extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		if(request.getSession().getAttribute("person")==null){
 			response.sendRedirect("homepage.jsp");
+			return;
 		}
 		String id = request.getParameter("person_id");
 		String name = request.getParameter("doc_name");

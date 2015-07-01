@@ -36,7 +36,9 @@ public class PersonPage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
-		if(id==null) id = "1"; // temp
+		if(id==null){
+			response.sendRedirect("homePage.jsp");
+		}
 		String type = request.getParameter("type");
 		if(type == null) type = "open"; // temp
 		System.out.println(id+" "+type);

@@ -26,7 +26,7 @@
 		String first_name = null;
 		String last_name = null;
 		Person p=null;
-			if(request.getSession(false)!=null && session.getAttribute("email")!=null){
+			if(request.getSession()!=null && session.getAttribute("email")!=null && session.getAttribute("person")!=null){
 				user=(String)session.getAttribute("email");
 				first_name=(String)session.getAttribute("first_name");
 				last_name=(String)session.getAttribute("last_name");

@@ -41,7 +41,7 @@
 				skillLevels=data.getSkillLevels();
 				skillNames=data.getSkillNames();
 			}else{
-   			 	response.sendRedirect("http://localhost:8080/HR-Geo/homePage.jsp");
+   			 	response.sendRedirect("homePage.jsp");
    			 	return;
 			}			
 %>  

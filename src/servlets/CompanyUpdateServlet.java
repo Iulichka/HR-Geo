@@ -40,6 +40,10 @@ public class CompanyUpdateServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session=request.getSession();
+		if(session.getAttribute("email")==null){
+			response.sendRedirect("personPage.jsp");
+			return;
+		}
 		String currentEmail=(String)session.getAttribute("email");
 		String updatedEmail=(String)request.getParameter("email");
 		String name=(String)request.getParameter("name");

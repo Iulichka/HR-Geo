@@ -28,7 +28,7 @@
 				Person pers=null;
 				AllOffersForPerson personOffers=null;				
 				Offer o=null;
-					if(request.getSession()!=null &&session.getAttribute("email")!=null ){	
+					if(request.getSession()!=null && session.getAttribute("email")!=null && session.getAttribute("person")!=null  ){	
 						pers=(Person)request.getAttribute("person");
 						int offerID=(Integer)request.getAttribute("offerid");						
 						personOffers=data.getOffers(data.getPersonId(pers.getMail()));
