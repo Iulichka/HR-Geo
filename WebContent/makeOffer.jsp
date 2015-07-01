@@ -17,7 +17,12 @@
 <body>
 <%@page import="backClasses.*" %>
 <%@ page import="java.util.ArrayList" %>
+<%if(session.getAttribute("email")==null){
+	response.sendRedirect("homePage.jsp");
+	return;
+ }%>
 <%
+
 		//allow access only if session exists	
 				ArrayList<String> chosenSkills=new ArrayList<String>();
 				int value=1;
