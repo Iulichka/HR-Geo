@@ -74,9 +74,27 @@
 				</td>
 				<td>
 					<input type="hidden" name="person_id" value="<%=p.getId() %>">
-						<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
+						 <a href="#<%=p.getId()%>" data-toggle="modal"><button type="button" name="b" value="k" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-remove"></span>
-						</button> 
+						</button> </a>
+						<div class="modal fade" id="<%=p.getId()%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										<h4 class="modal-title" id="myModalLabel"> Seriously? </h4>
+									</div>
+									<div class="modal-body">
+										<h2 style="padding-left: 38%;" >Are You Sure ?</h2>
+									
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+										<button type="submit" name="SUBMIT" value="change" class="btn btn-primary" >Yes</button>
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div>
 				</td>
 			</form>	
 			</tr>
@@ -119,9 +137,27 @@
 				<td>
 					<input type="hidden" name="person_id" value="<%=p.getId() %>">
 					<input type="hidden" name="doc_name" value="<%=docs.get(i) %>">
-						<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
+						 <a href="#<%=i%>" data-toggle="modal"><button type="button" name="b" value="k" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-remove"></span>
-						</button> 
+						</button> </a>
+						<div class="modal fade" id="<%=i%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										<h4 class="modal-title" id="myModalLabel"> Seriously? </h4>
+									</div>
+									<div class="modal-body">
+										<h2 style="padding-left: 38%;" >Are You Sure ?</h2>
+									
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+										<button type="submit" name="SUBMIT" value="change" class="btn btn-primary" >Yes</button>
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div>
 				</td>
 			</form>	
 			</tr>

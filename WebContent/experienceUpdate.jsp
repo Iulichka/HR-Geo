@@ -88,17 +88,55 @@
 						<input type="hidden" name="company_name" value=<%=cur.getCompName() %>>
 						<input type="hidden" name="pos_name" value=<%=cur.getPosition() %>>				
 						<button type="submit" name="SUBMIT" value="change" style="background-color: transparent;border-color: transparent ;">
+						  <a href="#<%=cur.getId()%>" data-toggle="modal"><button type="button" name="b" value="k" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-ok"></span>
-						</button> 
+						</button> </a>
+						<div class="modal fade" id="<%=cur.getId()%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										<h4 class="modal-title" id="myModalLabel"> Seriously? </h4>
+									</div>
+									<div class="modal-body">
+										<h2 style="padding-left: 38%;" >Are You Sure ?</h2>
+									
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+										<button type="submit" name="SUBMIT" value="change" class="btn btn-primary" >Yes</button>
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div>
 					</td>
 					
 					<td> 
 						<input type="hidden" name="exp_id" value=<%=cur.getId() %>>	
 						<input type="hidden" name="company_name" value=<%=cur.getCompName() %>>
 						<input type="hidden" name="pos_name" value=<%=cur.getPosition() %>>							
-						<button type="submit" name="SUBMIT" value="delete" style="background-color: transparent;border-color: transparent ;">
+						<a href="#deleteModal<%=cur.getId()%>" data-toggle="modal" >
+			           <button type="button"  name="b2" value="bc" style="background-color: transparent;border-color: transparent ;">
 						<span class="glyphicon glyphicon-remove"></span>
-						</button> 
+						</button> </a>
+						<div class="modal fade" id="deleteModal<%=cur.getId()%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										<h4 class="modal-title" id="myModalLabel"> Seriously? </h4>
+									</div>
+									<div class="modal-body">
+										<h2 style="padding-left: 38%;" >Are You Sure ?</h2>
+									
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+										<button type="submit" name="SUBMIT" value="delete" class="btn btn-primary" >Yes</button>
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div>
 					</td>
 					
 				</tr>

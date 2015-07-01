@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html >
 <html>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <!-- jQuery library -->
@@ -17,97 +17,37 @@
 		border: 1px solid red;
 	}
 </style>
+
 <script  type="text/javascript">
 var error = false;
 $(document).ready(function() {
 	$('#registerButton').click(function(e) {
-		e.preventDefault();
-		validateFirstName();
-		validateLastName();
-		validateID();
-		validateEMail();
-		validatePassword();
+		e.preventDefault();		
 		validateRePassword();
-		if (!error)
+		if (!error){
 			$("#submitForm").submit();
+		}
 	});
 });
 
-
-function validateFirstName() {
-	if (document.getElementById("first_name").value.length < 2) {
-		document.getElementById("notice").innerHTML = "სახელი არასწორადაა  მითითებული";
-		//document.getElementById("registerButton").disabled = true;
-		$('#first_name').addClass('warning');
-		error = true;
-	} else {
-		$('#first_name').removeClass('warning');
-		document.getElementById("registerButton").disabled = false;
-		error = false;
-	}
-}
-function validateLastName() {
-	if (document.getElementById("last_name").value.length < 2) {
-		document.getElementById("notice").innerHTML = "გვარი არასწორადაა  მითითებული";
-		//document.getElementById("registerButton").disabled = true;
-		$('#last_name').addClass('warning');
-		error = true;
-	} else {
-		$('#last_name').removeClass('warning');
-		document.getElementById("registerButton").disabled = false;
-		error = false;
-	}
-}
-function validateID() {
-	if (document.getElementById("id_number").value.length < 10) {
-		document.getElementById("notice").innerHTML = "პირადი ნომერი  არასწორადაა  მითითებული";
-		//document.getElementById("registerButton").disabled = true;
-		$('#id_number').addClass('warning');
-	} else {
-		$('#id_numbers').removeClass('warning');
-		document.getElementById("registerButton").disabled = false;
-		error = false;
-	}
-}
-function validateEMail() {
-	var email = document.getElementById('email');
-	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-	if (!filter.test(email.value)) {
-		document.getElementById("notice").innerHTML = "მეილი  არასწორადაა  მითითებული";
-		//document.getElementById("registerButton").disabled = true;
-		$('#email').addClass('warning');
-	} else {
-		$('#email').removeClass('warning');
-		document.getElementById("registerButton").disabled = false;
-		error = false;
-	}
-}
-function validatePassword() {
-	var pass = document.getElementById("password").value;
-	if (pass.length < 6) {
-		document.getElementById("notice").innerHTML = "პაროლი უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს!";
-		//document.getElementById("registerButton").disabled = true;
-		$('#password').addClass('warning');
-	} else {
-		$('#password').removeClass('warning');
-		document.getElementById("registerButton").disabled = false;
-		error = false;
-	}
-}
 function validateRePassword() {
 	var pass = document.getElementById("password").value;
 	var repass = document.getElementById("password_confirmation").value;
 	if (pass != repass) {
+		error=true;
 		document.getElementById("notice").innerHTML = "არ ემთხვევა პაროლი";
 		//document.getElementById("registerButton").disabled = true;
 		$('#password_confirmation').addClass('warning');
+		
 	} else {
 		$('#password_confirmation').removeClass('warning');
 		document.getElementById("registerButton").disabled = false;
 		error = false;
 	}
 }
+
 </script>
+
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -160,22 +100,22 @@ function validateRePassword() {
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-                        <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                        <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1" required="required">
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+						<input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2" required="required">
 					</div>
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<input type="text" name="id_number" id="id_number" class="form-control input-lg" placeholder="ID Number" tabindex="3">
+				<input type="text" name="id_number" id="id_number" class="form-control input-lg" placeholder="ID Number" tabindex="3" required="required">
 			</div>
 			
 			<div class="form-group">
-				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4" required="required">
 			</div>
 			
 			  <div class="form-group">
@@ -196,13 +136,13 @@ function validateRePassword() {
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
+						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5" required="required">
 					</div>
 				</div>
 				
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+						<input type="password"  name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6" required="required">
 					</div>
 				</div>
 			</div>
@@ -212,7 +152,7 @@ function validateRePassword() {
 
 	<div class="row">
 		<div class="col-xs-8 col-sm-9 col-md-9">
-			 By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a>set out by this site, including our Cookie Use.
+			 By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
 		</div>
 	</div>
 			<hr class="colorgraph">
