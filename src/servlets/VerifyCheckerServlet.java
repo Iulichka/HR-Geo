@@ -49,7 +49,10 @@ public class VerifyCheckerServlet extends HttpServlet {
 			request.getRequestDispatcher("illegalRegister.jsp").forward(request, response);
 		}else{
 			DBSelect select=new DBSelect();
-			select.addPerson((String)request.getSession().getAttribute("first_name"),(String) request.getSession().getAttribute("last_name"),(String)request.getSession().getAttribute("password"),(String) request.getSession().getAttribute("id"), (Date)request.getSession().getAttribute("date"), (String)request.getSession().getAttribute("email"),(String)request.getSession().getAttribute("sex"));
+			select.addPerson((String)request.getSession().getAttribute("first_name"),(String) request.getSession().getAttribute("last_name"),
+					(String)request.getSession().getAttribute("password"),(String) request.getSession().getAttribute("id"), 
+					(Date)request.getSession().getAttribute("date"), (String)request.getSession().getAttribute("email"),
+					(String)request.getSession().getAttribute("sex"));
 			DataForPerson person= new DataForPerson();
 			Person p=person.getPerson(person.getPersonId((String)request.getSession().getAttribute("email")));
 			request.getSession().setAttribute("person",p);

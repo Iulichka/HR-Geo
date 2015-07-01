@@ -47,7 +47,7 @@ public class Upload extends HttpServlet {
 	 * if mail parameter exists considered as company otherwise as person
 	 */
 	 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    	response.setContentType("text/plain");
+	    	response.setContentType("text/html");
 	    	String mail = request.getParameter("mail");
 	    	String id = request.getParameter("id");
 	    	String type = request.getParameter("type");
@@ -77,7 +77,7 @@ public class Upload extends HttpServlet {
 	        }
 	        inputStream.close();
 	        file.delete();
-	        response.getWriter().print("file: "+description+" was successfully uploaded");
+	        response.getWriter().print("<html><h1>file: "+description+" was successfully uploaded</h1></html>");
 	  }
 
 }
