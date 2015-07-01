@@ -22,7 +22,7 @@
 		//allow access only if session exists
 		String companyEmail =null;	
  		Company company=null;
-			if(session.getAttribute("email")!=null){
+			if(request.getSession()!=null && session.getAttribute("email")!=null && request.getAttribute("person")==null){
 				companyEmail=(String)session.getAttribute("email");
 				company=(Company)session.getAttribute("company");
 			}else{

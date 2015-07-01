@@ -30,7 +30,12 @@ public class CompanyPage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		response.setCharacterEncoding("UTF-8");
+		if(request.getParameter("mail")==null){
+			response.sendRedirect("homePage.jsp");
+			return;
+		}
 		request.setAttribute("comp", new DataForComp().getComp(request.getParameter("mail")));
 		RequestDispatcher rd=request.getRequestDispatcher("CompanyPage.jsp");
 		rd.forward(request, response);		

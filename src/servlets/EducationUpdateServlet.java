@@ -40,6 +40,7 @@ public class EducationUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		if(request.getSession().getAttribute("person")==null){
 			response.sendRedirect("homepage.jsp");
+			return;
 		}
 		Person p=(Person) request.getSession().getAttribute("person");
 		DataForPerson data=new DataForPerson();

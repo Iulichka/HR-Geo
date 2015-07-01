@@ -35,6 +35,10 @@ public class PersonServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {				
 		request.setCharacterEncoding("UTF-8");
+		if(request.getSession().getAttribute("person")==null){
+			response.sendRedirect("homePage.jsp");
+			return;
+		}
 		HttpSession session=request.getSession();
 		String email= (String)session.getAttribute("email");
 		DataForPerson data=new DataForPerson();

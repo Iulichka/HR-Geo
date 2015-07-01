@@ -64,9 +64,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 <div class="list-group" style="width: 50%; left: 25%; position: absolute;">
-<%if(session.getAttribute("email")==null){
-	response.sendRedirect("homePage.jsp");
- }%>
+
 <%DataForComp d = new DataForComp();
 ArrayList<Company> comps = d.getCompList();
 for (int i=0; i<comps.size(); i++) {

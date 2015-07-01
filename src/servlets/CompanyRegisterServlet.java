@@ -41,6 +41,10 @@ public class CompanyRegisterServlet extends HttpServlet {
 		String name=(String)request.getParameter("company_name");
 		String site=(String)request.getParameter("site");
 		String tel=(String)request.getParameter("tel");
+		if(email==null){
+			response.sendRedirect("homePage.jsp");
+			return;
+		}
 		DBSelect selects= new DBSelect();
 		boolean contains=selects.searchCompany(email,password);	
 		if(contains==true||password.length()==0||email.length()==0||tel.length()==0||site.length()==0||name.length()==0){
