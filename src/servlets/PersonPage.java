@@ -42,7 +42,7 @@ public class PersonPage extends HttpServlet {
 		System.out.println(id+" "+type);
 		DataForPerson dfp = new DataForPerson();
 		int intId = Integer.parseInt(id);
-		dfp.getPerson(intId);
+		//dfp.getPerson(intId);
 		Person per = dfp.getPerson(intId);
 		OverallExperience exp = dfp.getPersonExperience(intId);
 		PersonSkills skills = dfp.getPersonSkills(intId);

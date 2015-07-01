@@ -46,7 +46,7 @@ ArrayList<String> docs =(ArrayList<String>) request.getAttribute("docs");
 <div id="pic">
   <div class="col-xs-4 col-md-2">
     <a href="#" class="thumbnail">
-      <img src="GetFile?type=image/jpeg" alt="profile picture">
+      <img src="GetPersonPicture?id=<%=per.getId() %>" alt="profile picture">
     </a>
   </div>
 </div>
@@ -223,20 +223,13 @@ out.println("e-mail: "+ per.getMail());
     </div>
   </div>
   <%} %>
-  <div>
-<form action=<%="\""+"Upload?id="+per.getId()+"\"" %> method="post" enctype="multipart/form-data">
-    <input type="text" name="description" />
-    <input type="file" name="file" />
-    <input type="submit" />
-</form>
-</div>
-
-<div>
-<form action=<%="\""+"Upload?id="+per.getId()+"&type=document\"" %> method="post" enctype="multipart/form-data">
-    <input type="text" name="description" />
-    <input type="file" name="file" />
-    <input type="submit" />
-</form>
-</div>
+ <div class="copyRight" id="copyRight" style="font-size: 12pt;
+	text-align: center;
+	bottom: inherit;
+	padding-top: 100pt;" >
+                <div class="col-lg-12">
+                    <p>Copyright &copy; HR-geo 2015</p>
+                </div>
+            </div>
 </body>
 </html>

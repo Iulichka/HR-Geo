@@ -30,7 +30,7 @@ public class Upload extends HttpServlet {
 	
 	// change it according OS
 
-	private static final String FILE_PATH = "/home/levan/Desktop/Photos";
+	private static final String FILE_PATH = "D:";
 
 
        
