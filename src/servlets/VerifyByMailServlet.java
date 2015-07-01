@@ -47,10 +47,6 @@ public class VerifyByMailServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Random r = new Random( System.currentTimeMillis() );
-		String code = ""+10000 + r.nextInt(20000);
-		request.getSession().setAttribute("code", code);
-		EMailSender.sendEmail(request.getParameter("email"), code);
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		String email=(String)request.getParameter("email");
@@ -60,38 +56,41 @@ public class VerifyByMailServlet extends HttpServlet {
 		String surname=(String)request.getParameter("last_name");
 		String id=(String)request.getParameter("id_number");
 		String sex=request.getParameter("inlineRadioOptions");
-		String dateS = request.getParameter("date");
-		
+		String dateS = request.getParameter("date");		
 		int year=Integer.parseInt(dateS.substring(0,4));
 		int day=Integer.parseInt(dateS.substring(8));
 		int month=Integer.parseInt(dateS.substring(5,7));
 		Date d=new GregorianCalendar(year, month-1, day).getTime();
 		java.sql.Date da=new java.sql.Date(year, month-1, day);
 		DBSelect selects= new DBSelect();
-		try {
-			boolean contains=selects.searchPerson(email,password);			
-			if(contains==true||password.length()==0
-					||password_confirm.length()==0||!password.equals(password_confirm)||surname.length()==0||email.length()==0|first_name.length()==0){
-				RequestDispatcher rd=request.getRequestDispatcher("personRegister.jsp");
+		try {			
+			boolean contains=selects.searchPerson(email,password);	
+			if(contains==true){
+				RequestDispatcher rd= request.getRequestDispatcher("homePage.jsp");
 				rd.forward(request, response);
-			}else{
-				  HttpSession session = request.getSession(false);			        
-			        if(session != null){
-			            session.invalidate();
-			        }
-				selects.addPerson(first_name, surname, password, id, da, email, sex);
-				DataForPerson data=new DataForPerson();
-				Person p=data.getPerson(data.getPersonId(email));
-				session=request.getSession();
-				session.setAttribute("person", p);
+			}
+				HttpSession session = request.getSession(false);			        
+			    if(session != null){
+			        session.invalidate();
+			    }
+			    session=request.getSession();
 				session.setAttribute("first_name", first_name);
 				session.setAttribute("last_name", surname);
 				session.setAttribute("email", email);
-				request.getRequestDispatcher("Activation.jsp").forward(request,response);
-			}
+				session.setAttribute("date", da);
+				session.setAttribute("sex", sex);
+				session.setAttribute("id", id);
+				session.setAttribute("password", password);		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		Random r = new Random( System.currentTimeMillis() );
+		String code = ""+10000 + r.nextInt(20000);
+		request.getSession().setAttribute("code", code);
+		EMailSender.sendEmail(request.getParameter("email"), code);
+		request.getRequestDispatcher("Activation.jsp").forward(request,response);
+		
 	}
 
 }

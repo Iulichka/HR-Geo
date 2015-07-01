@@ -34,7 +34,7 @@
 				String user =null;			
 				Company comp=null;
 				Map <Offer,ArrayList<Person>> map = new HashMap<Offer,ArrayList<Person>>();
-					if(session.getAttribute("email")!=null){
+					if(request.getSession()!=null && session.getAttribute("email")!=null && request.getAttribute("person")==null){
 						comp=(Company)request.getAttribute("company");
 						session.setAttribute("fullCompany", comp);
 						if(comp!=null)
