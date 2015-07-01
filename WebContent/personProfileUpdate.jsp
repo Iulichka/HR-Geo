@@ -65,8 +65,8 @@
     <!-- left column -->
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="text-center">
-        <img src="GetFile?type=image/jpeg" alt="" class="img-circle img-responsive" class="avatar img-circle img-thumbnail" alt="avatar">
-        <h6>Upload a different photo</h6>
+        <img src="GetPersonPicture?id=<%=p.getId()%>" alt="" class="img-circle img-responsive" class="avatar img-circle img-thumbnail" alt="avatar">
+        <h5>Upload a different photo</h5>
        <div>
 			<form action=<%="\""+"Upload?id="+p.getId()+"\"" %> method="post" enctype="multipart/form-data">
 			    <input type="text" name="description" />
@@ -82,7 +82,7 @@
       <div class="alert alert-info alert-dismissable">
         <a class="panel-close close" data-dismiss="alert">×</a> 
         <i class="fa fa-coffee"></i>
-        This is an <strong>.alert</strong>. Use this to show important messages to the user.
+         <strong>ყურადღება!</strong>. გთხოვთ შეავსოთ შესაბამისი ველები სანდო ინფორმაციით.
       </div>
       <h3>Personal info</h3>
       <form class="form-horizontal" role="form" action="PersonalInfoUpdate" method="post">       

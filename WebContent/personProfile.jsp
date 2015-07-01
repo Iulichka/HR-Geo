@@ -86,7 +86,7 @@
                 </div>             
                 <div class="col-xs-12 col-sm-4 text-center">
                     <figure>
-                        <img src="GetFile?type=image/jpeg" alt="" class="img-circle img-responsive">
+                        <img src="GetPersonPicture?id=<%=pers.getId()%>" alt="" class="img-circle img-responsive">
                     </figure>
                 </div>
             </div> 

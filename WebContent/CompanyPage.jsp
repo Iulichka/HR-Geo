@@ -29,7 +29,7 @@ function fun1(n, mail){
 	xmlhttp.send();
 	var tx =  xmlhttp.responseText;
 	bool = false;
-	document.getElementById("message").innerHTML="thank you for voting new rating is: "+tx;
+	document.getElementById("message").innerHTML="thank you for voting";
 	document.getElementById("ratingValue").innerHTML=tx;
 	}
 }
