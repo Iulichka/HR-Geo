@@ -72,7 +72,7 @@
       <div class="alert alert-info alert-dismissable">
         <a class="panel-close close" data-dismiss="alert">×</a> 
         <i class="fa fa-coffee"></i>
-        This is an <strong>.alert</strong>. Use this to show important messages to the user.
+        This is an <strong>.alert</strong>. Please fill with relevant information
       </div>
       <h3>Personal info</h3>
         <div class="form-group">

@@ -75,22 +75,6 @@
 			</form>
 			
 		</div>
-		<div>
-		<h6>Upload Document</h6>
-		<form action=<%="\""+"Upload?id="+p.getId()+"&type=document\"" %> method="post" enctype="multipart/form-data">
-    			<input type="text" name="description" value="Enter Document Description" />
-    			<input type="file" name="file" />
-    			<input type="submit" />
-			</form>
-		</div>
-		<div>
-		<h6>Upload CV</h6>
-		<form action=<%="\""+"Upload?id="+p.getId()+"&type=cv\"" %> method="post" enctype="multipart/form-data">
-    			<input type="text" name="description" value="Enter Document Description" />
-    			<input type="file" name="file" />
-    			<input type="submit" />
-			</form>
-		</div>
       </div>
     </div>    
     <!-- edit form column -->
