@@ -36,7 +36,8 @@ public class GetPersonPicture extends HttpServlet {
 		DataForPerson dat = new DataForPerson();
 		byte [] pic = dat.getPhoto(Integer.parseInt(id));
 		if (pic == null){
-			response.sendRedirect("http://dogvacay.com/img/default_profile.jpg");
+			//response.sendRedirect("http://dogvacay.com/img/default_profile.jpg");
+			response.sendRedirect("pagePictures/default_profile.jpg");
 			return;
 		}
 		response.setContentLength(pic.length);
