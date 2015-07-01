@@ -40,6 +40,10 @@ public class CompanyServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		if(request.getSession()==null||request.getSession().getAttribute("person")!=null){
+			RequestDispatcher rd=request.getRequestDispatcher("homePage.jsp");
+			rd.forward(request, response);
+		}
 		HttpSession session=request.getSession();
 		String email= (String)session.getAttribute("email");
 		DBSelect select= new DBSelect();

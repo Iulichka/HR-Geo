@@ -1,7 +1,6 @@
 package backClasses;
 import java.sql.Connection;
 import java.sql.Date;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,6 +33,45 @@ public class DBSelect {
 		return true;
 			
 	}
+	
+	public void addOfferToPersons(Company company,String info,String name,java.util.Date eDate,ArrayList<Integer> persons){
+		Connection con=DataBaseInfo.getConnection();
+		PreparedStatement stmt;
+		Date endDate=new Date(eDate.getYear(), eDate.getMonth(), eDate.getDate());
+		try {
+			
+			stmt = con.prepareStatement("INSERT INTO offer (offer_info,offer_name,offer_start_date,"
+					+ "offer_end_date,company_id) "
+					+ "values (?,?,curdate(),?,?)");
+			stmt.setString(1, info);
+			stmt.setString(2, name);
+			stmt.setDate(3, endDate);
+			stmt.setInt(4,getCompanyId(company.getMail()));
+			stmt.executeUpdate();
+			int maxId=0;
+			Statement st =con.createStatement();
+			String query="SELECT MAX(offer_id) from offer;";
+			ResultSet rs=st.executeQuery(query);
+			if(rs.next()){
+				maxId=rs.getInt(1);
+			}
+			
+			for(int i=0;i<persons.size();i++){
+				stmt =con.prepareStatement("INSERT INTO persons_offer (offer_id,persons_id,offer_state,email_state) "+
+						"values (?,?,?,?);");
+				stmt.setInt(1,maxId);
+				stmt.setInt(2, persons.get(i));
+				stmt.setString(3,"active");
+				stmt.setString(4, "visible");
+				stmt.executeUpdate();
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.print(e.getMessage());
+		}
+	}
+	
 	public boolean searchCompany(String email,String password){
 		Connection con=DataBaseInfo.getConnection();
 		Statement stmt;
@@ -78,6 +116,7 @@ public class DBSelect {
 		int id=0;
 		try {
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			String query = "SELECT * FROM company_info "
 					+ "WHERE " + "company_email = '" + email + "' ;";
 			ResultSet rs=stmt.executeQuery(query);

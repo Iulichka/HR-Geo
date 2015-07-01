@@ -12,6 +12,102 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>Person Registration</title>
+<style type="text/css">
+	.warning {
+		border: 1px solid red;
+	}
+</style>
+<script  type="text/javascript">
+var error = false;
+$(document).ready(function() {
+	$('#registerButton').click(function(e) {
+		e.preventDefault();
+		validateFirstName();
+		validateLastName();
+		validateID();
+		validateEMail();
+		validatePassword();
+		validateRePassword();
+		if (!error)
+			$("#submitForm").submit();
+	});
+});
+
+
+function validateFirstName() {
+	if (document.getElementById("first_name").value.length < 2) {
+		document.getElementById("notice").innerHTML = "სახელი არასწორადაა  მითითებული";
+		//document.getElementById("registerButton").disabled = true;
+		$('#first_name').addClass('warning');
+		error = true;
+	} else {
+		$('#first_name').removeClass('warning');
+		document.getElementById("registerButton").disabled = false;
+		error = false;
+	}
+}
+function validateLastName() {
+	if (document.getElementById("last_name").value.length < 2) {
+		document.getElementById("notice").innerHTML = "გვარი არასწორადაა  მითითებული";
+		//document.getElementById("registerButton").disabled = true;
+		$('#last_name').addClass('warning');
+		error = true;
+	} else {
+		$('#last_name').removeClass('warning');
+		document.getElementById("registerButton").disabled = false;
+		error = false;
+	}
+}
+function validateID() {
+	if (document.getElementById("id_number").value.length < 10) {
+		document.getElementById("notice").innerHTML = "პირადი ნომერი  არასწორადაა  მითითებული";
+		//document.getElementById("registerButton").disabled = true;
+		$('#id_number').addClass('warning');
+	} else {
+		$('#id_numbers').removeClass('warning');
+		document.getElementById("registerButton").disabled = false;
+		error = false;
+	}
+}
+function validateEMail() {
+	var email = document.getElementById('email');
+	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if (!filter.test(email.value)) {
+		document.getElementById("notice").innerHTML = "მეილი  არასწორადაა  მითითებული";
+		//document.getElementById("registerButton").disabled = true;
+		$('#email').addClass('warning');
+	} else {
+		$('#email').removeClass('warning');
+		document.getElementById("registerButton").disabled = false;
+		error = false;
+	}
+}
+function validatePassword() {
+	var pass = document.getElementById("password").value;
+	if (pass.length < 6) {
+		document.getElementById("notice").innerHTML = "პაროლი უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს!";
+		//document.getElementById("registerButton").disabled = true;
+		$('#password').addClass('warning');
+	} else {
+		$('#password').removeClass('warning');
+		document.getElementById("registerButton").disabled = false;
+		error = false;
+	}
+}
+function validateRePassword() {
+	var pass = document.getElementById("password").value;
+	var repass = document.getElementById("password_confirmation").value;
+	if (pass != repass) {
+		document.getElementById("notice").innerHTML = "არ ემთხვევა პაროლი";
+		//document.getElementById("registerButton").disabled = true;
+		$('#password_confirmation').addClass('warning');
+	} else {
+		$('#password_confirmation').removeClass('warning');
+		document.getElementById("registerButton").disabled = false;
+		error = false;
+	}
+}
+</script>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -54,12 +150,13 @@
 
 
 
-<form action="PersonRegisterServlet" method="post" accept-charset="UTF-8">
+<form action="VerifyByMailServlet" id="submitForm" method="post" accept-charset="UTF-8">
 <div class="container">
 	<div class="row">
     	<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 			<h2>Registration Page <small>person registration.</small></h2>
-			<hr class="colorgraph">		
+			<hr class="colorgraph">	
+			<p id ="notice" class="bg-danger" style="text-align:center; color: #000;"></p>	
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
@@ -84,7 +181,7 @@
 			  <div class="form-group">
           <label class="col-lg-3 control-label">Birth Date:</label>
           <div class="col-lg-8">
-            <input class="form-control" placeholder="date" name="date" type="date">
+            <input class="form-control" placeholder="date" name="date" type="date" required="required">
           </div>
         </div>
    					 
@@ -121,7 +218,7 @@
 			<hr class="colorgraph">
 				<div class="row">
 					<div class="col-xs-12 col-md-6">									
-						<input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7">
+						<input type="submit" value="Register" id="registerButton" class="btn btn-primary btn-block btn-lg" tabindex="7">
 					</div>
 				</div>	
 </form>

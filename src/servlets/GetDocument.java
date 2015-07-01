@@ -30,6 +30,7 @@ public class GetDocument extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		DataForPerson dp = new DataForPerson();
@@ -39,9 +40,16 @@ public class GetDocument extends HttpServlet {
 		} else {
 			file = dp.getCV(id);
 		}
-		request.getSession().setAttribute("file", file);
-		RequestDispatcher rd=request.getRequestDispatcher("GetFile?type=application/pdf");
-		rd.forward(request, response);
+		
+		if(file==null || file.length==0){
+		//	request.getSession().setAttribute("file", "NO CV FOUND");
+			response.setContentType("text/html");
+			response.getWriter().print("<html><h1 style=\"text-allign: center;\">Upload Cv If You Want</h1><html>");
+		}else{ 
+			request.getSession().setAttribute("file", file);
+			RequestDispatcher rd=request.getRequestDispatcher("GetFile?type=application/pdf");
+			rd.forward(request, response);
+		}
 	}
 
 	/**

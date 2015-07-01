@@ -30,6 +30,7 @@ public class PersonSearcher {
 		addSearched(chosenSkillsIds);
 		Statement stm;
 		String selectWithUni="";
+		ArrayList<Integer> ints=new ArrayList<Integer>();
 		if(chosenUnisIds.size()!=0){
 			selectWithUni=getUniSelectString(chosenUnisIds);
 		}else{
@@ -71,7 +72,7 @@ public class PersonSearcher {
 			ResultSet rset=prst.executeQuery();
 			int id=-1;
 			while(rset.next()){
-				 id=rset.getInt(1);
+				 ints.add(rset.getInt(1));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -79,7 +80,7 @@ public class PersonSearcher {
 		}
 		
 		
-		return null;
+		return ints;
 	}
 	
 	private void addSearched(ArrayList<Integer> chosenSkillsIds) {
@@ -162,8 +163,6 @@ public class PersonSearcher {
 			}
 		}
 		String end="group by pi1";
-		
-		
 		return start+middle+end;
 	}
 	 

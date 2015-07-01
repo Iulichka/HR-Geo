@@ -11,6 +11,112 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <title>Company Registration</title>
+<style type="text/css">
+	.warning {
+		border: 1px solid red;
+	}
+</style>
+<script  type="text/javascript">
+var error = false;
+$(document).ready(function() {
+	$('#registerButton').click(function(e) {
+		e.preventDefault();
+		validateCompanyName();
+		validateCompanyEMail();
+		validateCompanyTelephone();
+		validateCompanySite();
+		validateCompanyPassword();
+		validateCompanyRePassword();
+		console.log(error);
+		if (!error)
+			$("#submitCompany").submit();
+	});
+});
+
+function validateCompanyName() {
+	if (document.getElementById("company_name").value.length < 2) {
+		document.getElementById("notice").innerHTML = "კომპანიის სახელი არასწორადაა  მითითებული";
+		//document.getElementById("registerButton").disabled = true;
+		$('#company_name').addClass('warning');
+		error = true;
+	} else {
+		//document.getElementById("registerButton").disabled = false;
+		$('#company_name').removeClass('warning');
+		error = false;
+	}
+}
+function validateCompanyEMail() {
+	var email = document.getElementById('email');
+	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	if (!filter.test(email.value)) {
+		document.getElementById("notice").innerHTML = "მეილი  არასწორადაა  მითითებული";
+		$('#email').addClass('warning');
+		//document.getElementById("registerButton").disabled = true;
+		error = true;
+	} else {
+		$('#email').removeClass('warning');
+		//document.getElementById("registerButton").disabled = false;
+		error = false;
+	}
+}
+function validateCompanyTelephone() {
+	if (document.getElementById("tel").value.length < 6) {
+		document.getElementById("notice").innerHTML = "ტელეფონი  არასწორადაა  მითითებული";
+		//document.getElementById("registerButton").disabled = true;
+		$('#tel').addClass('warning');
+		//document.getElementById("registerButton").disabled = true;
+		error = true;
+	} else {
+		$('#tel').removeClass('warning');
+		document.getElementById("registerButton").disabled = false;
+		error = false;
+	}
+}
+function validateCompanySite() {
+	var email = document.getElementById('site');
+	var filter = /^([a-zA-Z0-9_\.\-])+([a-zA-Z0-9]{2,4})+$/;
+	if (!filter.test(email.value)) {
+		document.getElementById("notice").innerHTML = "მეილი  არასწორადაა  მითითებული";
+		//document.getElementById("registerButton").disabled = true;
+		$('#site').addClass('warning');
+		error = true;
+		//document.getElementById("registerButton").disabled = true;
+	} else {
+		$('#site').removeClass('warning');
+		document.getElementById("registerButton").disabled = false;
+		error = false;
+	}
+}
+function validateCompanyPassword() {
+	var pass = document.getElementById("password").value;
+	if (pass.length < 6) {
+		document.getElementById("notice").innerHTML = "პაროლი უნდა შეიცავდეს მინიმუმ 6 სიმბოლოს!";
+		//document.getElementById("registerButton").disabled = true;
+		$('#password').addClass('warning');
+		error = true;
+		//document.getElementById("registerButton").disabled = true;
+	} else {
+		$('#password').removeClass('warning');
+		document.getElementById("registerButton").disabled = false;
+		error = false;
+	}
+}
+function validateCompanyRePassword() {
+	var pass = document.getElementById("password").value;
+	var repass = document.getElementById("password_confirmation").value;
+	if (pass != repass) {
+		document.getElementById("notice").innerHTML = "არ ემთხვევა პაროლი";
+		//document.getElementById("registerButton").disabled = true;
+		$('#password_confirmation').addClass('warning');
+		error = true;
+		//document.getElementById("registerButton").disabled = true;
+	} else {
+		$('#password_confirmation').removeClass('warning');
+		document.getElementById("registerButton").disabled = false;
+		error = false;
+	}
+}
+</script>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -50,12 +156,13 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<form action="CompanyRegisterServlet" method="post">
+<form id="submitCompany" action="CompanyRegisterServlet" method="post">
 	<div class="container">
 		<div class="row">
    			 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 			<h2>Registration Page <small>company register.</small></h2>
 			<hr class="colorgraph">	
+			<p id ="notice" class="bg-danger" style="text-align:center; color: #000;"></p>	
 					<div class="form-group">
                         <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Company Name" tabindex="1">
 					</div>			
@@ -94,7 +201,7 @@
 			
 			<hr class="colorgraph">
 			<div class="row">
-				<div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+				<div class="col-xs-12 col-md-6"><input type="submit" value="Register" id="registerButton" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
 			</div>
 	</div>
 </div>

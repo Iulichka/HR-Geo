@@ -19,19 +19,35 @@
 <%@ page import="java.util.ArrayList" %>
 <%
 		//allow access only if session exists	
-		ArrayList<String> chosenSkills=new ArrayList<String>();
+				ArrayList<String> chosenSkills=new ArrayList<String>();
 				int value=1;
 				String user =null;	
 				ArrayList<String> skills= new ArrayList<String>();
 				ArrayList<String> universities=new ArrayList<String>();
 				ArrayList<String> faculties=new ArrayList<String>();
-				DataForPerson data= new DataForPerson();
+				ArrayList<Integer> personIds=(ArrayList<Integer>) session.getAttribute("searchedpersons");
+				ArrayList<Person> persons=new ArrayList<Person>();
+				DataForPerson data = new DataForPerson();
 				skills=data.getSkillNames();
 				universities=data.getUniversityNames();
+				boolean searched=false;
 				faculties=data.getFacultyNames();
 					if(session.getAttribute("email")!=null){						
 						user=(String)session.getAttribute("email");
-						
+						if(personIds!=null){
+							searched=true;
+							if(personIds.size()>0){
+								if(session.getAttribute("cart")==null){
+									ArrayList<Integer> cart=new ArrayList<Integer>();
+									session.setAttribute("cart", cart);
+								}
+								for(int i=0;i<personIds.size();i++){
+									Person person=data.getPerson(personIds.get(i));
+									persons.add(i, person);
+								
+							}
+						}
+						}
 					}else{
 		   			 	response.sendRedirect("homePage.jsp");
 		   			 	return;
@@ -66,6 +82,7 @@
 	<div class="row">
 	<div class="form-group">
 		<div class="col-md-12">
+		<label for="contain">Skills:</label>
                 <select name ="skills" class="form-control" id="tagPicker" multiple="multiple">
                 <% for (int i=0;i<skills.size();i++){ %>
          		<option value=<%=value %>><%=skills.get(i) %></option>
@@ -78,7 +95,8 @@
        		 </div>
        	   </div>       
       					<div class="form-group">
-							 <div class="col-md-12">                                                       
+							 <div class="col-md-12">      
+							 <label for="contain">Universities:</label>                                                 
                                     <select name="university" class="form-control" id="tagPicker2" multiple="multiple">                                   
                                        <% for (int k=0;k<universities.size();k++){ %>
          								<option value=<%=value %>><%=universities.get(k) %></option>
@@ -92,7 +110,8 @@
                                   </div>
                                  
                                   <div class="form-group">
-                                  <div class="col-md-12">                                                       
+                                  <div class="col-md-12">  
+                                  <label for="contain">Faculties:</label>                                                     
                                      <select name="faculty" class="form-control" id="tagPicker3" multiple="multiple">                                   
                                        <% for (int i=0;i<faculties.size();i++){ %>
          								<option value=<%=value %>><%=faculties.get(i) %></option>
@@ -107,124 +126,149 @@
                               
                                   <div class="form-group">
                                   <div class="col-md-12"> 
-                                    <label for="contain">Minimum Age</label>
+                                    <label for="contain">Minimum Age:</label>
                                     <input class="form-control" name = "age" type="text" />
                                   </div>
                                   </div>
                                   <div class="form-group">
                                   <div class="col-md-12"> 
-                                    <label for="contain">Working Experience</label>
+                                    <label for="contain">Minimum Working Experience:</label>
                                     <input class="form-control" name = "experience" type="text" />
                                   </div>
+               
                                   </div>
-                                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                                
-                           
-                        
+                                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>                                                                                   
                     </div>
-                </div>
-            
-	</form>
-<div class="container">
+                </div>            
+		</form>
+	<% if(searched==true){
+		if(persons.size()>0){				
+			
+		%>
+		<br></br>
+		
+		<div class="container">
+		<div class="row">
+		<form action="MakeFinalOffer" method="post">
+		<div class="form-group">
+          <div class="col-lg-8">
+            <input type="text" class="form-control" placeholder="Enter Offer Name" name="offer_name">
+          </div>
+        </div>
+         <div class="form-group">
+          <div class="col-lg-8">
+            <input class="form-control" placeholder="date" name="date" type="date" >
+          </div>
+        </div>
+	 <div class="form-group">
+          <div class="col-lg-8">
+           	<textarea cols="104" rows="5" name="about" placeholder="Enter Offer Info"> 
+				 
+			</textarea>
+			<button type="submit" name="makeoffer" class="btn btn-success"  >
+         <i class=" glyphicon glyphicon-off icon-white"></i>
+         Make Offer
+         </button>
+          </div>
+        </div>
+       
+        </form>
+        <br></br>
+        <br></br><br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <div class="form-group">
     <hgroup class="mb20">
-		<h1>Search Results</h1>
-		<h2 class="lead"><strong class="text-danger">3</strong> results were found for the search for <strong class="text-danger">Lorem</strong></h2>								
+		<h4>            </h4>
+		<h2 class="lead"><strong class="text-danger"><%=persons.size() %></strong> results were found for the search </h2>								
 	</hgroup>
+	</div>
 
     <section class="col-xs-12 col-sm-6 col-md-12">
+    	<% for(int k=0;k<persons.size();k++){
+    	
+    	%>
 		<article class="search-result row">
 			<div class="col-xs-12 col-sm-12 col-md-3">
-				<a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="Lorem ipsum" /></a>
+				<a href="#" title="Lorem ipsum" class="thumbnail"><img src="GetPersonPicture?id=<%=personIds.get(k)%>"  /></a>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-2">
 				<ul class="meta-search">
-					<li><i class="glyphicon glyphicon-calendar"></i> <span>02/15/2014</span></li>					
+					<li><i class="glyphicon glyphicon-calendar"></i> <span><%=persons.get(k).getDate() %></span></li>					
+
+
+
 					<li><i class="glyphicon glyphicon-tags"></i> <span>Skills</span></li>
 				</ul>
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-				<h3><a href="#" title="">Person Name, Age</a></h3>
-				<p>Information About Person</p>						
-                <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+				<h3><a href="PersonPage?id=<%=data.getPersonId(persons.get(k).getMail())%>&type=open" title=""><%=persons.get(k).getName()+" "+persons.get(k).getSurname() %></a></h3>
+				<p><%=persons.get(k).getAbout() %></p>					
 			</div>
 			<span class="clearfix borda"></span>
-		</article>
-
-       <article class="search-result row">
-			<div class="col-xs-12 col-sm-12 col-md-3">
-				<a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="Lorem ipsum" /></a>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-2">
-				<ul class="meta-search">
-					<li><i class="glyphicon glyphicon-calendar"></i> <span>02/15/2014</span></li>					
-					<li><i class="glyphicon glyphicon-tags"></i> <span>Skills</span></li>
-				</ul>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-				<h3><a href="#" title="">Person Name, Age</a></h3>
-				<p>Information About Person</p>						
-                <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
-			</div>
-			<span class="clearfix borda"></span>
-		</article>
-<article class="search-result row">
-			<div class="col-xs-12 col-sm-12 col-md-3">
-				<a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://dc693.4shared.com/img/yuQEeqLc/s3/142cae080e0/Anonymous_Facebook_Profile_Pic" alt="Lorem ipsum" /></a>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-2">
-				<ul class="meta-search">
-					<li><i class="glyphicon glyphicon-calendar"></i> <span>02/15/2014</span></li>					
-					<li><i class="glyphicon glyphicon-tags"></i> <span>Skills</span></li>
-				</ul>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-				<h3><a href="#" title="">Person Name, Age</a></h3>
-				<p>Information About Person</p>						
-                <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
-			</div>
-			<span class="clearfix border"></span>
-		</article>			
-
-	</section>
+		
+		<% 
+					
+					
+				if(!data.contains((ArrayList<Integer>)session.getAttribute("cart"), personIds.get(k))){											
+					%>
+					<form action="PersonAddToCart" method="post">
+                  		<input type="hidden" name="person_id" value="<%=personIds.get(k)%>">
+       			  		<button type="submit"name="SUBMIT" class="btn btn-primary" value="send" >
+       			  		<i class="glyphicon glyphicon-off icon-white"></i>Send Offer</button>
+       			  </form>
+       			  <% }else{
+       				  %>
+       				  <button type="button" class="btn btn-primary disabled">Already Sent</button>
+       				  <%} %>
+		
+       
+				<% 
+				} %>
+				</article>
+		</section>
+		
 </div>
+
+  </div>       
+        
+<%		
+		}
+	} 
+	%>
 	<script src="js/jquery.min.js"></script>
      <script src="js/jquery-ui.min.js"></script>
      <script src="js/bootstrap.min.js"></script>
     <script>
     //Select2
-    $.getScript('http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.min.js',function(){
+    $.getScript('js/select.js',function(){
                     
       /* Select2 plugin as tagpicker */
       $("#tagPicker").select2({
         closeOnSelect:false
       });
-
     }); //script         
-
     $(document).ready(function() {});</script>
     <script>
     //Select2
-    $.getScript('http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.min.js',function(){
+    $.getScript('js/select.js',function(){
                     
       /* Select2 plugin as tagpicker */
       $("#tagPicker2").select2({
         closeOnSelect:false
       });
-
     }); //script         
-
     $(document).ready(function() {});</script>
     <script>
     //Select2
-    $.getScript('http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.min.js',function(){
+    $.getScript('js/select.js',function(){
                     
       /* Select2 plugin as tagpicker */
       $("#tagPicker3").select2({
         closeOnSelect:false
       });
-
     }); //script         
-
     $(document).ready(function() {});</script>
 
 </body>

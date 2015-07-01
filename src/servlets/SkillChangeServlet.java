@@ -40,6 +40,7 @@ public class SkillChangeServlet extends HttpServlet {
 	
 		if(request.getSession().getAttribute("person")==null){
 			response.sendRedirect("homepage.jsp");
+			return;
 		}
 		Person  pers=(Person)request.getSession().getAttribute("person");
 		int skill_id=Integer.parseInt(request.getParameter("skill_id"));
