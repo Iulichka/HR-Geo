@@ -107,16 +107,16 @@
              
                 <div class="col-xs-12 col-sm-4 emphasis"  >                  
                     <p><small>Update Experience</small></p>
-                     <a href="experienceUpdate.jsp" class="btn btn-danger btn-block-lg" role="button"><span class="fa fa-plus-circle"></span>Update Experience</a>                  
+                     <a href="experienceUpdate.jsp" class="btn btn-danger btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Experience</a>                  
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis" >                  
                     <p><small> Update Documents</small></p>
-                    <a href="updateDocuments.jsp" class="btn btn-primary btn-block-lg" role="button"><span class="fa fa-plus-circle"></span>Update Documents</a>                  
+                    <a href="updateDocuments.jsp" class="btn btn-primary btn-block" role="button"><span class="fa fa-plus-circle"></span>Update Document</a>                  
                 </div>
                 
                     <div class="col-xs-12 col-sm-4 emphasis"  >                  
                     <p><small>Update Experience</small></p>
-                     <a href="ServletPDF?id=<%=pers.getId() %>" class="btn btn-danger btn-block-lg" role="button"><span class="fa fa-plus-circle"></span>Create CV</a>                  
+                     <a href="ServletPDF?id=<%=pers.getId() %>" class="btn btn-danger btn-block" role="button"><span class="fa fa-plus-circle"></span>Create CV</a>                  
                 </div>
                 
                 
