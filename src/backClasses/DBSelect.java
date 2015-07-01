@@ -18,6 +18,7 @@ public class DBSelect {
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			String query = "SELECT * FROM persons "
 					+ "WHERE " + "person_email = '" + email + "' AND person_password = '"+password
 					+ "' ;";
@@ -43,6 +44,7 @@ public class DBSelect {
 			stmt = con.prepareStatement("INSERT INTO offer (offer_info,offer_name,offer_start_date,"
 					+ "offer_end_date,company_id) "
 					+ "values (?,?,curdate(),?,?)");
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			stmt.setString(1, info);
 			stmt.setString(2, name);
 			stmt.setDate(3, endDate);
@@ -77,6 +79,7 @@ public class DBSelect {
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			String query = "SELECT * FROM company_info "
 					+ "WHERE " + "company_email = '" + email + "' AND company_password = '"+password
 					+ "' ;";
@@ -136,6 +139,7 @@ public class DBSelect {
 		try {
 			stmt = con.prepareStatement("INSERT INTO persons (person_name,person_surname,person_password,person_id_number,person_birth_date,person_email,person_sex,person_education,person_info) "
 					+ "values (?,?,?,?,?,?,?,?,?)");
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			stmt.setString(1, name);
 			stmt.setString(2, surname);
 			stmt.setString(3, password);
@@ -159,6 +163,7 @@ public class DBSelect {
 		try {
 			stmt = con.prepareStatement("INSERT INTO company_info (company_name,company_email,company_info,company_password,company_rating,voters_number,company_telephone,company_site) "
 					+ "values (?,?,?,?,?,?,?,?)");
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			stmt.setString(1, name);
 			stmt.setString(2, email);
 			stmt.setString(3, " ");
@@ -179,6 +184,7 @@ public class DBSelect {
 		Connection con=DataBaseInfo.getConnection();
 		StringTokenizer token=new StringTokenizer(skills, ",");
 		Statement stmt=con.createStatement();
+		stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 		while(token.hasMoreTokens()){
 			String skill=token.nextToken();
 			String querySkillID = "SELECT * FROM skills "
@@ -221,6 +227,7 @@ public class DBSelect {
 		ArrayList<PersonOffer> result=new ArrayList<PersonOffer>();
 		try {
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			String query = "SELECT * FROM persons_offer "
 					+ "WHERE " + "persons_id = '" + personID+ "' ;";
 			ResultSet rs=stmt.executeQuery(query);		
@@ -242,6 +249,7 @@ public class DBSelect {
 		Person person=null;
 		try {
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			String query = "SELECT * FROM persons "
 					+ "WHERE " + "persons_id = '" + personID+ "' ;";
 			ResultSet rs=stmt.executeQuery(query);
@@ -262,6 +270,7 @@ public class DBSelect {
 		Company company=null;
 		try {
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			String query = "SELECT * FROM company_info "
 					+ "WHERE " + "company_id = '" + companyID+ "' ;";
 			ResultSet rs=stmt.executeQuery(query);
@@ -280,6 +289,7 @@ public class DBSelect {
 		Offer offer=null;
 		try {
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			String query = "SELECT * FROM offer "
 					+ "WHERE " + "offer_id = '" + offerID+ "' ;";
 			ResultSet rs=stmt.executeQuery(query);
@@ -302,6 +312,7 @@ public class DBSelect {
 			DBSelect select=new DBSelect();
 			offer=select.getOffer(offerID);
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			String query = "SELECT * FROM persons_offer "
 					+ "WHERE " + "offer_id = '" + offerID + "'+AND persons_id= '"+personID+"';";
 			ResultSet rs=stmt.executeQuery(query);
@@ -321,6 +332,7 @@ public class DBSelect {
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			String query = "SELECT * FROM offer "
 					+ "WHERE " + "company_id = '" + companyID+ "' ;";
 			ResultSet rs=stmt.executeQuery(query);
@@ -345,6 +357,7 @@ public class DBSelect {
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			String query = "SELECT * FROM persons_offer "
 					+ "WHERE " + "offer_id = '" + offerID+ "' ;";
 			ResultSet rs=stmt.executeQuery(query);
@@ -364,6 +377,7 @@ public class DBSelect {
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			 String sql = "UPDATE company_info SET company_email = '"+newEmail+"' WHERE company_email = '"+oldEmail+"'";
 			 stmt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -378,6 +392,7 @@ public class DBSelect {
 			Statement stmt;
 			try {
 				stmt = con.createStatement();
+				stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 				 String sql = "UPDATE company_info SET company_name = '"+name+"' WHERE company_email = '"+email+"'";
 				 stmt.executeUpdate(sql);
 			} catch (SQLException e) {
@@ -390,6 +405,7 @@ public class DBSelect {
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			 String sql = "UPDATE company_info SET company_telephone = '"+tel+"' WHERE company_email = '"+email+"'";
 			 stmt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -402,6 +418,7 @@ public class DBSelect {
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			 String sql = "UPDATE company_info SET company_password = '"+password+"' WHERE company_email = '"+email+"'";
 			 stmt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -414,6 +431,7 @@ public class DBSelect {
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			 String sql = "UPDATE company_info SET company_site = '"+site+"' WHERE company_email = '"+email+"'";
 			 stmt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -426,6 +444,7 @@ public class DBSelect {
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			 String sql = "UPDATE company_info SET company_info = '"+info+"' WHERE company_email = '"+email+"'";
 			 stmt.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -438,6 +457,7 @@ public class DBSelect {
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
+			stmt.executeQuery("USE " + DataBaseInfo.MYSQL_DATABASE_NAME);
 			 String sql = "UPDATE persons_offer SET offer_state = '"+status+"' WHERE offer_id = "+offerID
 					 +" AND persons_id = "+personID+";";	 		
 			 stmt.executeUpdate(sql);
