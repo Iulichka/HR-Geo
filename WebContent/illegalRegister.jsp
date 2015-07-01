@@ -23,10 +23,7 @@
 			<p style="color:red; font-size: 18px;">კოდი არასწორად არის მითითებული </p>
 			<p style="color:Blue; font-size: 18px;">გთხოვთ, გადაამოწმოთ  თქვენს მიერ მითითებულ ელექტრონულ ფოსტაზე მიღებული  დამადასტურებელი კოდი.<br>
 			</p>
-				<form method="post" action="VerifyByMailServlet">
-					
-					<input class="submitButton" type="submit" value="ხელახლა ცდა"/>
-				</form>
+				 <a href="Activation.jsp" class="btn btn-primary btn-block" role="button"><span class="fa fa-plus-circle"></span>Try Again</a>            
 		</div>
 </body>
 </html>

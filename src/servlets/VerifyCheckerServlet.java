@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import backClasses.DBSelect;
 import backClasses.DataForPerson;
+import backClasses.EMailSender;
 import backClasses.Person;
 
 /**
@@ -40,6 +42,10 @@ public class VerifyCheckerServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(!request.getParameter("code").equals(request.getSession().getAttribute("code"))){
+			Random r = new Random( System.currentTimeMillis() );
+			String code = ""+10000 + r.nextInt(20000);
+			request.getSession().setAttribute("code", code);
+			EMailSender.sendEmail(request.getParameter("email"), code);
 			request.getRequestDispatcher("illegalRegister.jsp").forward(request, response);
 		}else{
 			DBSelect select=new DBSelect();
