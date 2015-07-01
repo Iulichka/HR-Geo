@@ -46,7 +46,7 @@ ArrayList<String> docs =(ArrayList<String>) request.getAttribute("docs");
 <div id="pic">
   <div class="col-xs-4 col-md-2">
     <a href="#" class="thumbnail">
-      <img src="GetFile?type=image/jpeg" alt="profile picture">
+     <img src="GetPersonPicture?id=<%=per.getId() %>" alt="profile picture">
     </a>
   </div>
 </div>

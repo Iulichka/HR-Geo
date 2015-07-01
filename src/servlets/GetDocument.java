@@ -44,7 +44,7 @@ public class GetDocument extends HttpServlet {
 		if(file==null || file.length==0){
 		//	request.getSession().setAttribute("file", "NO CV FOUND");
 			response.setContentType("text/html");
-			response.getWriter().print("<html><h1 style=\"text-allign: center;\">Upload Cv If You Want</h1><html>");
+			response.getWriter().print("<html><h1 style=\"text-allign: center;\">No CV Uploaded</h1><html>");
 		}else{ 
 			request.getSession().setAttribute("file", file);
 			RequestDispatcher rd=request.getRequestDispatcher("GetFile?type=application/pdf");
